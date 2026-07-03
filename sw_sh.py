@@ -1,7 +1,7 @@
 import tkinter as tk
 
 class SwShScreen(tk.Frame):
-    def __init__(self, parent, back_callback):
+    def __init__(self, parent, back_callback, boot_screen):
         super().__init__(parent, bg="#4a4a4a")
 
         self.regirock = tk.PhotoImage(file="images/regirock.png")
@@ -35,18 +35,18 @@ class SwShScreen(tk.Frame):
         )
         label.place(x=70, y=80)
 
-        self.create_pokemon_button(50, 150, self.regirock, "Regirock")
-        self.create_pokemon_button(150, 150, self.regice, "Regice")
-        self.create_pokemon_button(250, 150, self.registeel, "Registeel")
-        self.create_pokemon_button(350, 150, self.regidrago, "Regidrago")
-        self.create_pokemon_button(450, 150, self.regieleki, "Regieleki")
-        self.create_pokemon_button(550, 150, self.virizon, "Virizion")
-        self.create_pokemon_button(650, 150, self.terrakion, "Terrakion")
-        self.create_pokemon_button(50, 250, self.cobalion, "Cobalion")
-        self.create_pokemon_button(150, 250, self.arctovish, "Arctovish")
-        self.create_pokemon_button(250, 250, self.arctozolt, "Arctozolt")
-        self.create_pokemon_button(350, 250, self.dracovish, "Dracovish")
-        self.create_pokemon_button(450, 250, self.dracozolt, "Dracozolt")
+        self.create_pokemon_button(63, 150, self.regirock, "Regirock")
+        self.create_pokemon_button(163, 150, self.regice, "Regice")
+        self.create_pokemon_button(263, 150, self.registeel, "Registeel")
+        self.create_pokemon_button(363, 150, self.regidrago, "Regidrago")
+        self.create_pokemon_button(463, 150, self.regieleki, "Regieleki")
+        self.create_pokemon_button(563, 150, self.virizon, "Virizion")
+        self.create_pokemon_button(663, 150, self.terrakion, "Terrakion")
+        self.create_pokemon_button(63, 250, self.cobalion, "Cobalion")
+        self.create_pokemon_button(163, 250, self.arctovish, "Arctovish")
+        self.create_pokemon_button(263, 250, self.arctozolt, "Arctozolt")
+        self.create_pokemon_button(363, 250, self.dracovish, "Dracovish")
+        self.create_pokemon_button(463, 250, self.dracozolt, "Dracozolt")
 
         #Back button
 
@@ -74,7 +74,8 @@ class SwShScreen(tk.Frame):
             text=name,
             font=("Arial", 10),
             fg="black",
-            bg="white"
+            bg="white", 
+            command=boot_screen
         )
         label.place(x=x+4, y=y + 54, width=66, height=16)
 

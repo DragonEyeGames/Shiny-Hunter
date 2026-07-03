@@ -3,6 +3,7 @@ from sw_sh import SwShScreen
 from bd_sp import BdSpScreen
 from fr_lg import FrLgScreen
 from lg import LGScreen
+from capture_card import CaptureCard
 
 #Initialize the main window
 root = tk.Tk()
@@ -19,7 +20,10 @@ root.configure(bg="#4a4a4a")
 main_menu = tk.Frame(root, bg="#4a4a4a")
 main_menu.place(x=0, y=0, relwidth=1, relheight=1)
 
-swsh = SwShScreen(root, lambda: main_menu.tkraise())
+switch_screen = CaptureCard(root)
+switch_screen.place(x=0, y=0, relwidth=1, relheight=1)
+
+swsh = SwShScreen(root, lambda: main_menu.tkraise(), lambda: switch_screen.tkraise())
 swsh.place(x=0, y=0, relwidth=1, relheight=1)
 
 bdsp = BdSpScreen(root, lambda: main_menu.tkraise())
