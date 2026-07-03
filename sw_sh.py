@@ -4,7 +4,7 @@ class SwShScreen(tk.Frame):
     def __init__(self, parent, back_callback):
         super().__init__(parent, bg="#4a4a4a")
 
-        regirock = tk.PhotoImage(file="images/regirock.png")
+        self.regirock = tk.PhotoImage(file="images/regirock.png")
 
 
         #Game title
@@ -23,19 +23,19 @@ class SwShScreen(tk.Frame):
             font=("Arial", 24),
             bg="#4a4a4a"
         )
-        label.place(x=50, y=70)
+        label.place(x=70, y=80)
 
         regirock_button = tk.Button(
             self,
-            image=regirock,
+            image=self.regirock,
             bg="#bfbfbf",
             activebackground="#d0d0d0",
             borderwidth=2
         )
-        regirock_button.place(x=50, y=150, width=100, height=100)
+        regirock_button.place(x=50, y=150)
         back_button = tk.Button(
             self,
             text="Back",
             command=back_callback
         )
-        back_button.pack()
+        back_button.place(x=625, y=680, width=30, height=30)
