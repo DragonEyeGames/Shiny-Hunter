@@ -6,6 +6,29 @@ class SwShScreen(tk.Frame):
 
         self.regirock = tk.PhotoImage(file="images/regirock.png")
         self.regice = tk.PhotoImage(file="images/regice.png")
+        self.registeel = tk.PhotoImage(file="images/registeel.png")
+
+        #Pokemon creation script
+        def create_pokemon_button(self, x, y, image, name):
+            button = tk.Button(
+                self,
+                image=image,
+                bg="#8f8d8d",
+                activebackground="#bfbfbf",
+                borderwidth=0
+            )
+            button.place(x=x, y=y, width=70, height=70)
+
+            label = tk.Label(
+                self,
+                text=name,
+                font=("Arial", 10),
+                fg="black",
+                bg="white"
+            )
+            label.place(x=x, y=y + 50, width=70, height=20)
+
+            return button, label
 
         #Game title
         label = tk.Label(
@@ -25,45 +48,9 @@ class SwShScreen(tk.Frame):
         )
         label.place(x=70, y=80)
 
-        #Regirock button and text
-
-        regirock_button = tk.Button(
-            self,
-            image=self.regirock,
-            bg="#8f8d8d",
-            activebackground="#bfbfbf",
-            borderwidth=0
-        )
-        regirock_button.place(x=50, y=150, width=70, height=70)
-
-        regirock_text = tk.Label(
-            self,
-            text="Regirock",
-            font=("Arial", 10),
-            fg="black",
-            bg="white"
-        )
-        regirock_text.place(x=50, y=200, width=70, height=20)
-
-        #Regice button and text
-
-        regice_button = tk.Button(
-            self,
-            image=self.regice,
-            bg="#8f8d8d",
-            activebackground="#bfbfbf",
-            borderwidth=0
-        )
-        regice_button.place(x=150, y=150, width=70, height=70)
-
-        regice_text = tk.Label(
-            self,
-            text="Regice",
-            font=("Arial", 10),
-            fg="black",
-            bg="white"
-        )
-        regice_text.place(x=150, y=200, width=70, height=20)
+        self.create_pokemon_button(50, 150, self.regirock, "Regirock")
+        self.create_pokemon_button(150, 150, self.regice, "Regice")
+        self.create_pokemon_button(250, 150, self.registeel, "Registeel")
 
         #Back button
 
@@ -73,4 +60,4 @@ class SwShScreen(tk.Frame):
             font=("Arial", 15),
             command=back_callback
         )
-        back_button.place(x=380, y=440, width=40, height=20)
+        back_button.place(x=370, y=440, width=60, height=25)
