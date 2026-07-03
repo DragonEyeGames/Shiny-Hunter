@@ -20,7 +20,7 @@ root.configure(bg="#4a4a4a")
 label = tk.Label(root, text="Select which game you will be hunting in:", font=("Arial", 24), bg="#4a4a4a", fg="black")
 label.pack(pady=20)
 
-button = tk.Button(root, text="Sword and Shield", bg="#4a4a4a", fg="black" font=("Arial", 18), command=on_click_sword_shield)
-button.pack(pady=50)
+button = tk.Button(root, text="SW/SH", bg="#4a4a4a", fg="black", font=("Arial", 18), command=on_click_sword_shield)
+button.place(x=50, y=70, width=100, height=100)
 
 root.mainloop()
