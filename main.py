@@ -20,7 +20,7 @@ root.configure(bg="#4a4a4a")
 main_menu = tk.Frame(root, bg="#4a4a4a")
 main_menu.place(x=0, y=0, relwidth=1, relheight=1)
 
-switch_screen = CaptureCard(root)
+switch_screen = CaptureCard(root, lambda: main_menu.tkraise())
 switch_screen.place(x=0, y=0, relwidth=1, relheight=1)
 
 swsh = SwShScreen(root, lambda: main_menu.tkraise(), lambda: switch_screen.tkraise())

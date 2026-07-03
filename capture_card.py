@@ -2,14 +2,17 @@ import tkinter as tk
 import cv2
 from PIL import Image, ImageTk
 
-class CaptureCard:
-    def __init__(self, root):
-        self.root = root
+class CaptureCard(tk.Frame):
+    def __init__(self, parent, back_callback):
+        super().__init__(parent, bg="black")
 
-        self.label = tk.Label(root)
+        self.label = tk.Label(self)
         self.label.pack()
-        
+
         self.cap = cv2.VideoCapture(0)
+
+        self.back_button = tk.Button(self, text="Back", command=back_callback)
+        self.back_button.pack()
 
         self.update_frame()
 
@@ -25,9 +28,4 @@ class CaptureCard:
             self.label.imgtk = imgtk
             self.label.configure(image=imgtk)
 
-        self.root.after(16, self.update_frame)
-
-
-root = tk.Tk()
-app = VideoApp(root)
-root.mainloop()
+        self.after(16, self.update_frame)
