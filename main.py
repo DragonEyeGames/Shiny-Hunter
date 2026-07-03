@@ -1,6 +1,8 @@
 import tkinter as tk
 from sw_sh import SwShScreen
-
+from bd_sp import BdSpScreen
+from fr_lg import FrLgScreen
+from lg import LGScreen
 
 #Initialize the main window
 root = tk.Tk()
@@ -17,8 +19,17 @@ root.configure(bg="#4a4a4a")
 main_menu = tk.Frame(root, bg="#4a4a4a")
 main_menu.place(x=0, y=0, relwidth=1, relheight=1)
 
-swsh = SwShScreen(root)
+swsh = SwShScreen(root, lambda: main_menu.tkraise())
 swsh.place(x=0, y=0, relwidth=1, relheight=1)
+
+bdsp = BdSpScreen(root, lambda: main_menu.tkraise())
+bdsp.place(x=0, y=0, relwidth=1, relheight=1)
+
+frlg = FrLgScreen(root, lambda: main_menu.tkraise())
+frlg.place(x=0, y=0, relwidth=1, relheight=1)
+
+lgep = LGScreen(root, lambda: main_menu.tkraise())
+lgep.place(x=0, y=0, relwidth=1, relheight=1)
 
 main_menu.tkraise()
 
@@ -30,12 +41,15 @@ def on_click_sword_shield():
 
 def on_click_lets_go():
     print("Let's go button clicked")
+    lgep.tkraise()
 
 def on_click_diamond_pearl():
     print("Diamond and Pearl button clicked")
+    bdsp.tkraise()
 
 def on_click_red_green():
     print("Red and Green button clicked")
+    frlg.tkraise()
 
 #Populate the main window with widgets
 
