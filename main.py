@@ -7,7 +7,7 @@ from lg import LGScreen
 #Initialize the main window
 root = tk.Tk()
 root.title("Shiny Hunter")
-root.geometry("1280x720")
+root.geometry("800x480")
 
 root.attributes('-fullscreen', True)
 root.bind('<Escape>', lambda e: root.attributes('-fullscreen', False))

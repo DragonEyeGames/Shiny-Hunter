@@ -73,4 +73,4 @@ class SwShScreen(tk.Frame):
             font=("Arial", 15),
             command=back_callback
         )
-        back_button.place(x=620, y=650, width=40, height=20)
+        back_button.place(x=380, y=440, width=40, height=20)
