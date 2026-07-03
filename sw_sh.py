@@ -1,4 +1,5 @@
 import tkinter as tk
+import config
 
 class SwShScreen(tk.Frame):
     def __init__(self, parent, back_callback, boot_screen):
@@ -16,6 +17,8 @@ class SwShScreen(tk.Frame):
         self.arctozolt= tk.PhotoImage(file="images/arctozolt.png")
         self.dracovish= tk.PhotoImage(file="images/dracovish.png")
         self.dracozolt= tk.PhotoImage(file="images/dracozolt.png")
+
+        config.pokemon_name="Sword and Shield"
 
         #Game title
         label = tk.Label(

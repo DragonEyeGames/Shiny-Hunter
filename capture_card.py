@@ -1,7 +1,7 @@
 import tkinter as tk
 import cv2
 from PIL import Image, ImageTk
-
+import config
 
 class CaptureCard(tk.Frame):
     def __init__(self, parent, back_callback, camera_index=0):
@@ -9,7 +9,7 @@ class CaptureCard(tk.Frame):
 
         # Video display label
         self.label = tk.Label(self, bg="black")
-        self.label.place(x=0, y=0, relwidth=1, relheight=1)
+        self.label.place(x=0, y=200, relwidth=1, relheight=1)
 
         # Open the camera/capture card
         self.cap = cv2.VideoCapture(camera_index)
@@ -26,6 +26,8 @@ class CaptureCard(tk.Frame):
         )
         self.back_button.place(x=10, y=10, width=100, height=40)
 
+        self.hunting = tk.Label(self, bg="black", fg="white", font=("Arial", 16), text=f"Hunting {config.pokemon_name}")
+
         self.update_frame()
 
     def update_frame(self):
@@ -33,25 +35,20 @@ class CaptureCard(tk.Frame):
             ret, frame = self.cap.read()
 
             if ret:
-                # Get the current size of this frame
-                width = self.winfo_width()
-                height = self.winfo_height()
+                width = 200
+                height = 120
 
-                # Avoid resizing to 1x1 before Tkinter finishes drawing
                 if width > 1 and height > 1:
                     frame = cv2.resize(frame, (width, height))
 
-                # Convert BGR -> RGB
                 frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
-                # Convert to Tkinter image
                 img = Image.fromarray(frame)
                 imgtk = ImageTk.PhotoImage(img)
 
                 self.label.imgtk = imgtk
                 self.label.configure(image=imgtk)
 
-        # Update again in ~16 ms (~60 FPS)
         self.after(16, self.update_frame)
 
     def release(self):
