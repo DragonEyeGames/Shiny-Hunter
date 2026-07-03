@@ -70,6 +70,7 @@ class SwShScreen(tk.Frame):
         back_button = tk.Button(
             self,
             text="Back",
+            font=("Arial", 15),
             command=back_callback
         )
-        back_button.place(x=625, y=680, width=30, height=30)
+        back_button.place(x=620, y=650, width=40, height=20)
