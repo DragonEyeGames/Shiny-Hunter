@@ -57,15 +57,15 @@ label = tk.Label(main_menu, text="Select which game you will be hunting in:", fo
 label.pack(pady=20)
 
 lets_go_button = tk.Button(main_menu, text="Let's Go", bg="#bfbfbf", fg="black", font=("Arial", 18), command=on_click_lets_go)
-lets_go_button.place(x=50, y=70, width=100, height=100)
+lets_go_button.place(x=50, y=80, width=100, height=100)
 
 sword_shield_button = tk.Button(main_menu, text="SW/SH", bg="#bfbfbf", fg="black", font=("Arial", 18), command=on_click_sword_shield)
-sword_shield_button.place(x=200, y=70, width=100, height=100)
+sword_shield_button.place(x=200, y=80, width=100, height=100)
 
 diamond_pearl_button = tk.Button(main_menu, text="Bd/Sp", bg="#bfbfbf", fg="black", font=("Arial", 18), command=on_click_diamond_pearl)
-diamond_pearl_button.place(x=350, y=70, width=100, height=100)
+diamond_pearl_button.place(x=350, y=80, width=100, height=100)
 
 red_green_button = tk.Button(main_menu, text="Fr/Lg", bg="#bfbfbf", fg="black", font=("Arial", 18), command=on_click_red_green)
-red_green_button.place(x=500, y=70, width=100, height=100)
+red_green_button.place(x=500, y=80, width=100, height=100)
 
 root.mainloop()
