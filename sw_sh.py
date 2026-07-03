@@ -34,7 +34,7 @@ class SwShScreen(tk.Frame):
             activebackground="#bfbfbf",
             borderwidth=0
         )
-        regirock_button.place(x=50, y=150)
+        regirock_button.place(x=50, y=150, width=70, height=70)
 
         regirock_text = tk.Label(
             self,
@@ -49,12 +49,12 @@ class SwShScreen(tk.Frame):
 
         regice_button = tk.Button(
             self,
-            image=self.regirock,
+            image=self.regice,
             bg="#8f8d8d",
             activebackground="#bfbfbf",
             borderwidth=0
         )
-        regice_button.place(x=150, y=150)
+        regice_button.place(x=150, y=150, width=70, height=70)
 
         regice_text = tk.Label(
             self,
