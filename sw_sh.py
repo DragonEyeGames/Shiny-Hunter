@@ -42,21 +42,21 @@ class SwShScreen(tk.Frame):
         self.create_pokemon_button(450, 150, self.regieleki, "Regieleki")
         self.create_pokemon_button(550, 150, self.virizon, "Virizion")
         self.create_pokemon_button(650, 150, self.terrakion, "Terrakion")
-        self.create_pokemon_button(750, 150, self.cobalion, "Cobalion")
-        self.create_pokemon_button(50, 250, self.arctovish, "Arctovish")
-        self.create_pokemon_button(150, 250, self.arctozolt, "Arctozolt")
-        self.create_pokemon_button(250, 250, self.dracovish, "Dracovish")
-        self.create_pokemon_button(350, 250, self.dracozolt, "Dracozolt")
+        self.create_pokemon_button(50, 250, self.cobalion, "Cobalion")
+        self.create_pokemon_button(150, 250, self.arctovish, "Arctovish")
+        self.create_pokemon_button(250, 250, self.arctozolt, "Arctozolt")
+        self.create_pokemon_button(350, 250, self.dracovish, "Dracovish")
+        self.create_pokemon_button(450, 250, self.dracozolt, "Dracozolt")
 
         #Back button
 
         back_button = tk.Button(
             self,
             text="Back",
-            font=("Arial", 15),
+            font=("Arial", 20),
             command=back_callback
         )
-        back_button.place(x=370, y=440, width=60, height=25)
+        back_button.place(x=340, y=420, width=100, height=40)
 
     #Pokemon creation script
     def create_pokemon_button(self, x, y, image, name):
@@ -76,6 +76,6 @@ class SwShScreen(tk.Frame):
             fg="black",
             bg="white"
         )
-        label.place(x=x+2, y=y + 50, width=70, height=20)
+        label.place(x=x+4, y=y + 54, width=66, height=16)
 
         return button, label
