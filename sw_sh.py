@@ -8,28 +8,6 @@ class SwShScreen(tk.Frame):
         self.regice = tk.PhotoImage(file="images/regice.png")
         self.registeel = tk.PhotoImage(file="images/registeel.png")
 
-        #Pokemon creation script
-        def create_pokemon_button(self, x, y, image, name):
-            button = tk.Button(
-                self,
-                image=image,
-                bg="#8f8d8d",
-                activebackground="#bfbfbf",
-                borderwidth=0
-            )
-            button.place(x=x, y=y, width=70, height=70)
-
-            label = tk.Label(
-                self,
-                text=name,
-                font=("Arial", 10),
-                fg="black",
-                bg="white"
-            )
-            label.place(x=x, y=y + 50, width=70, height=20)
-
-            return button, label
-
         #Game title
         label = tk.Label(
             self,
@@ -61,3 +39,25 @@ class SwShScreen(tk.Frame):
             command=back_callback
         )
         back_button.place(x=370, y=440, width=60, height=25)
+
+    #Pokemon creation script
+    def create_pokemon_button(self, x, y, image, name):
+        button = tk.Button(
+            self,
+            image=image,
+            bg="#8f8d8d",
+            activebackground="#bfbfbf",
+            borderwidth=0
+        )
+        button.place(x=x, y=y, width=70, height=70)
+
+        label = tk.Label(
+            self,
+            text=name,
+            font=("Arial", 10),
+            fg="black",
+            bg="white"
+        )
+        label.place(x=x, y=y + 50, width=70, height=20)
+
+        return button, label
