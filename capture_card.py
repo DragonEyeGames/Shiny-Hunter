@@ -29,19 +29,19 @@ class CaptureCard(tk.Frame):
         self.hunting = tk.Label(self, bg="black", fg="white", font=("Arial", 20), text=f"Hunting {config.pokemon_name} in {config.game_name}")
         self.hunting.place(x=10, y=20)
 
-        self.status="Idle"
+        config.status="Idle"
 
-        self.status_label = tk.Label(self, bg="black", fg="white", font=("Arial", 20), text=f"Status: {self.status}")
+        self.status_label = tk.Label(self, bg="black", fg="white", font=("Arial", 20), text=f"Status: {config.status}")
         self.status_label.place(x=330, y=160)
 
         self.update_frame()
 
     def start_controller(self):
          def run():
-            self.status="Pairing with Switch"
+            config.status="Pairing with Switch"
             self.controller = SwitchController()
             self.controller.connect()
-            self.status="Initializing Hunt"
+            config.status="Initializing Hunt"
             hunting_manager = hm.HuntingManager(self.controller, self.cap)
             self.controller.press_a()
             time.sleep(0.8)
@@ -55,7 +55,7 @@ class CaptureCard(tk.Frame):
             time.sleep(0.1)
             self.controller.press_a()
             time.sleep(1.5)
-            self.status="Hunting"
+            config.status="Hunting"
             hunting_manager.run_script(registeel_commands)
 
          threading.Thread(target=run, daemon=True).start()
@@ -68,7 +68,7 @@ class CaptureCard(tk.Frame):
 
     def update_frame(self):
         self.hunting.configure(text=f"Hunting {config.pokemon_name} in {config.game_name}")
-        self.status_label.configure(text=f"Status: {self.status}")
+        self.status_label.configure(text=f"Status: {config.status}")
         if config.start_camera and not self.camera_started:
             self.start_camera()
         if self.camera_started:

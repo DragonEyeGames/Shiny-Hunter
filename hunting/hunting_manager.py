@@ -7,8 +7,10 @@ class HuntingManager:
     def __init__(self, controller, cap):
         self.controller = controller
         self.cap=cap
+        self.script = []
 
     def run_script(self, script):
+        self.script=script
         for action, delay in script:
             self.execute(action)
             time.sleep(delay)
@@ -23,7 +25,27 @@ class HuntingManager:
         elif action == "left_left":
             self.controller.left_left()
         elif action == "search":
+            config.status="Searching"
             detected, ratio, elapsed = self.wait_for_white_flash(self.cap, config.roi, timeout=1.0)
+
+            if detected:
+                config.status="Not Shiny, Restarting"
+                self.controller.press_home()
+                time.sleep(2)
+                self.controller.press_x()
+                time.sleep(1)
+                self.controller.press_a()
+                time.sleep(.5)
+                self.controller.press_a()
+                time.sleep(.5)
+                self.controller.press_a()
+                time.sleep(15)
+                self.controller.press_a()
+                time.sleep(1)
+                config.status="Hunting"
+                self.run_script(self.script)
+            else:
+                config.status="Shiny Detected!"
 
     def get_roi_pixels(self, frame, normalized_roi):
         h, w = frame.shape[:2]

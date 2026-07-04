@@ -32,6 +32,9 @@ class SwitchController:
     def press_b(self):
         self.press_button(Buttons.B)
 
+    def press_home(self):
+        self.press_button(Buttons.HOME)
+
     def tilt_stick(self, stick, x, y, hold_time=0.05):
         if not self.connected or self.controller_index is None:
             print("Controller not connected!")
