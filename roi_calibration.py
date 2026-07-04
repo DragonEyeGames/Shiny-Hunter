@@ -30,3 +30,5 @@ def calibrate_roi(camera_index=0):
     }
     print(f"Selected ROI (normalized): {normalized_roi}")
     return normalized_roi
+
+calibrate_roi(0)
