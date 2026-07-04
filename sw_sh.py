@@ -19,7 +19,7 @@ class SwShScreen(tk.Frame):
         self.dracozolt= tk.PhotoImage(file="images/dracozolt.png")
 
         config.game_name="Sword and Shield"
-        config.pokemon_name="Sword and Shield"
+        #config.pokemon_name="Sword and Shield"
 
         #Game title
         label = tk.Label(
@@ -63,13 +63,18 @@ class SwShScreen(tk.Frame):
         back_button.place(x=340, y=420, width=100, height=40)
 
     #Pokemon creation script
+
+    def start_hunt(self, pokemon_name, boot_screen):
+        config.pokemon_name = pokemon_name
+        boot_screen
+
     def create_pokemon_button(self, x, y, image, name, boot_screen):
         button = tk.Button(
             self,
             image=image,
             bg="#8f8d8d",
             activebackground="#bfbfbf",
-            command=boot_screen,
+            command=self.start_hunt(name, boot_screen),
             borderwidth=0
         )
         button.place(x=x, y=y, width=74, height=74)

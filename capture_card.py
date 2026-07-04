@@ -8,7 +8,7 @@ class CaptureCard(tk.Frame):
         super().__init__(parent, bg="black")
 
         self.label = tk.Label(self, bg="black")
-        self.label.place(x=0, y=110, width=300, height=180)
+        self.label.place(x=10, y=80, width=300, height=180)
 
         self.cap = None
         self.camera_started=False
@@ -19,10 +19,10 @@ class CaptureCard(tk.Frame):
             font=("Arial", 16),
             command=back_callback
         )
-        self.back_button.place(x=690, y=10, width=100, height=40)
+        self.back_button.place(x=690, y=20, width=100, height=40)
 
         self.hunting = tk.Label(self, bg="black", fg="white", font=("Arial", 20), text=f"Hunting {config.pokemon_name} in {config.game_name}")
-        self.hunting.place(x=10, y=10)
+        self.hunting.place(x=10, y=20)
         self.update_frame()
 
     def start_camera(self):
