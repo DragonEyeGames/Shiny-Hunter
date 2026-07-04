@@ -1,6 +1,6 @@
-from nxbt import NXBT
+from nxbt import Nxbt, PRO_CONTROLLER, Buttons
 
-nx = NXBT()
+nx = Nxbt()
 
 index = nx.create_controller(nx.PRO_CONTROLLER)
 
