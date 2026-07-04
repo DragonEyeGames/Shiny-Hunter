@@ -2,6 +2,7 @@ import tkinter as tk
 import cv2
 from PIL import Image, ImageTk
 import config
+from switch_controller import SwitchController
 
 class CaptureCard(tk.Frame):
     def __init__(self, parent, back_callback, camera_index=0):
@@ -29,6 +30,9 @@ class CaptureCard(tk.Frame):
         if not self.camera_started:
             self.cap = cv2.VideoCapture(0)
             self.camera_started=True
+            self.controller = SwitchController()
+            self.controller.connect()
+            self.controller.press_a()
 
     def update_frame(self):
         self.hunting.configure(text=f"Hunting {config.pokemon_name} in {config.game_name}")
