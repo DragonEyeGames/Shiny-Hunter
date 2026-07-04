@@ -18,6 +18,10 @@ root.configure(bg="#4a4a4a")
 
 #Boot up screens
 
+def open_capture_screen():
+    config.start_camera=True
+    switch_screen.tkraise()
+
 main_menu = tk.Frame(root, bg="#4a4a4a")
 main_menu.place(x=0, y=0, relwidth=1, relheight=1)
 
@@ -55,10 +59,6 @@ def on_click_diamond_pearl():
 def on_click_red_green():
     print("Red and Green button clicked")
     frlg.tkraise()
-
-def open_capture_screen():
-    config.start_camera=True
-    switch_screen.tkraise()
 
 #Populate the main window with widgets
 
