@@ -41,7 +41,7 @@ class HuntingManager:
                 self.controller.press_a()
                 time.sleep(15)
                 self.controller.press_a()
-                time.sleep(1)
+                time.sleep(3)
                 config.status="Hunting"
                 self.run_script(self.script)
             else:

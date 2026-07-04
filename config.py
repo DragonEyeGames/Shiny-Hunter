@@ -4,6 +4,8 @@ start_camera=False
 
 status="Idle"
 
+resets=0
+
 roi = {
     "x": 0.8703125,
     "y": 0.7861,
