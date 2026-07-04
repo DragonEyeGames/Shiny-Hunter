@@ -43,16 +43,8 @@ class CaptureCard(tk.Frame):
             self.controller.connect()
             config.status="Initializing Hunt"
             hunting_manager = hm.HuntingManager(self.controller, self.cap)
-            self.controller.press_a()
-            time.sleep(0.8)
-            self.controller.press_b()
-            time.sleep(1.2)
-            self.controller.left_up()
-            time.sleep(.6)
-            self.controller.left_left()
-            time.sleep(0.1)
-            self.controller.left_left()
-            time.sleep(0.1)
+            self.controller.press_home()
+            time.sleep(1.5)
             self.controller.press_a()
             time.sleep(1.5)
             config.status="Hunting"
