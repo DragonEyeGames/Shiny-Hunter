@@ -1,4 +1,4 @@
-from nxbt import Nxbt, PRO_CONTROLLER, Buttons
+from nxbt import Nxbt, PRO_CONTROLLER, Buttons, Sticks
 import time
 
 class SwitchController:
@@ -7,9 +7,6 @@ class SwitchController:
         self.controller_index = None
         self.connected = False
 
-    # -------------------------
-    # CONNECT CONTROLLER
-    # -------------------------
     def connect(self):
         if self.connected:
             print("Already connected.")
@@ -21,9 +18,6 @@ class SwitchController:
         self.connected = True
         print("Controller connected!")
 
-    # -------------------------
-    # PRESS ANY BUTTON
-    # -------------------------
     def press_button(self, button, hold_time=0.05):
         if not self.connected or self.controller_index is None:
             print("Controller not connected!")
@@ -31,18 +25,25 @@ class SwitchController:
         # press_buttons presses AND releases automatically
         self.nx.press_buttons(self.controller_index, [button], down=hold_time)
 
-    # -------------------------
-    # CONVENIENCE FUNCTIONS
-    # -------------------------
+
     def press_a(self):
         self.press_button(Buttons.A)
 
     def press_b(self):
         self.press_button(Buttons.B)
 
-    # -------------------------
-    # CLEANUP
-    # -------------------------
+    def tilt_stick(self, stick, x, y, hold_time=0.05):
+        if not self.connected or self.controller_index is None:
+            print("Controller not connected!")
+            return
+        self.nx.tilt_stick(self.controller_index, stick, x, y, tilted=hold_time)
+
+    def left_up(self):
+        self.tilt_stick(Sticks.LEFT_STICK, 0, 100)
+
+    def left_left(self):
+        self.tilt_stick(Sticks.LEFT_STICK, -100, 0)
+
     def disconnect(self):
         if self.controller_index is not None:
             print("Stopping controller...")

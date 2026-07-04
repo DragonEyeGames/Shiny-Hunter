@@ -32,6 +32,11 @@ class CaptureCard(tk.Frame):
             self.controller = SwitchController()
             self.controller.connect()
             self.controller.press_a()
+            self.controller.press_b()
+            self.controller.left_up()
+            self.controller.left_left()
+            self.controller.left_left()
+            self.controller.press_a()
 
          threading.Thread(target=run, daemon=True).start()
 
