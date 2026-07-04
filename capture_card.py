@@ -38,7 +38,7 @@ class CaptureCard(tk.Frame):
 
     def start_controller(self):
          def run():
-            self.status="Connecting to Controller"
+            self.status="Pairing with Switch"
             self.controller = SwitchController()
             self.controller.connect()
             self.status="Initializing Hunt"
@@ -54,7 +54,7 @@ class CaptureCard(tk.Frame):
             self.controller.left_left()
             time.sleep(0.1)
             self.controller.press_a()
-            time.sleep(1.2)
+            time.sleep(1.5)
             self.status="Hunting"
             hunting_manager.run_script(registeel_commands)
 
