@@ -37,7 +37,7 @@ class CaptureCard(tk.Frame):
             self.controller.press_b()
             time.sleep(0.5)
             self.controller.left_up()
-            time.sleep(0.5)
+            time.sleep(1)
             self.controller.left_left()
             time.sleep(0.5)
             self.controller.left_left()
