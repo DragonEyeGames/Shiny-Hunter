@@ -42,7 +42,7 @@ class CaptureCard(tk.Frame):
             self.controller = SwitchController()
             self.controller.connect()
             self.status="Initializing Hunt"
-            hunting_manager = hm.HuntingManager(self.controller)
+            hunting_manager = hm.HuntingManager(self.controller, self.cap)
             self.controller.press_a()
             time.sleep(0.5)
             self.controller.press_b()
