@@ -28,7 +28,7 @@ class CaptureCard(tk.Frame):
     def start_camera(self):
         if not self.camera_started:
             self.cap = cv2.VideoCapture(0)
-            self.camera_started=true
+            self.camera_started=True
 
     def update_frame(self):
         if config.start_camera and not self.camera_started:
