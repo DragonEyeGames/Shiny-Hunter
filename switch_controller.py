@@ -32,6 +32,12 @@ class SwitchController:
     def press_b(self):
         self.press_button(Buttons.B)
 
+    def press_x(self):
+        self.press_button(Buttons.X)
+
+    def press_y(self):
+        self.press_button(Buttons.Y)
+
     def press_home(self):
         self.press_button(Buttons.HOME)
 
