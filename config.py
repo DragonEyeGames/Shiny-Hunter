@@ -1,3 +1,3 @@
-pokemon_name="blank"
-game_name="blank"
+pokemon_name="(loading)"
+game_name="(loading)"
 start_camera=False
