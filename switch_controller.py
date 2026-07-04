@@ -1,6 +1,5 @@
-from nxbt import Nxbt
+from nxbt import Nxbt, PRO_CONTROLLER, Buttons
 import time
-
 
 class SwitchController:
     def __init__(self):
@@ -15,17 +14,10 @@ class SwitchController:
         if self.connected:
             print("Already connected.")
             return
-
         print("Creating controller...")
-
-        self.controller_index = self.nx.create_controller(
-            self.nx.PRO_CONTROLLER
-        )
-
+        self.controller_index = self.nx.create_controller(PRO_CONTROLLER)
         print("Put Switch in 'Change Grip/Order' screen now...")
-
         self.nx.wait_for_connection(self.controller_index)
-
         self.connected = True
         print("Controller connected!")
 
@@ -36,25 +28,17 @@ class SwitchController:
         if not self.connected or self.controller_index is None:
             print("Controller not connected!")
             return
-
-        self.nx.press_buttons(self.controller_index, [button])
-        time.sleep(hold_time)
-        self.nx.release_buttons(self.controller_index, [button])
+        # press_buttons presses AND releases automatically
+        self.nx.press_buttons(self.controller_index, [button], down=hold_time)
 
     # -------------------------
     # CONVENIENCE FUNCTIONS
     # -------------------------
     def press_a(self):
-        self.press_button("A")
+        self.press_button(Buttons.A)
 
     def press_b(self):
-        self.press_button("B")
-
-    def press_home(self):
-        self.press_button("HOME")
-
-    def press_start(self):
-        self.press_button("PLUS")
+        self.press_button(Buttons.B)
 
     # -------------------------
     # CLEANUP
@@ -62,6 +46,6 @@ class SwitchController:
     def disconnect(self):
         if self.controller_index is not None:
             print("Stopping controller...")
-            self.nx.stop_controller(self.controller_index)
+            self.nx.remove_controller(self.controller_index)
             self.connected = False
             self.controller_index = None
