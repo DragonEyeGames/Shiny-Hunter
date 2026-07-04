@@ -4,6 +4,7 @@ from PIL import Image, ImageTk
 import config
 from switch_controller import SwitchController
 import threading
+import time
 
 class CaptureCard(tk.Frame):
     def __init__(self, parent, back_callback, camera_index=0):
@@ -32,10 +33,15 @@ class CaptureCard(tk.Frame):
             self.controller = SwitchController()
             self.controller.connect()
             self.controller.press_a()
+            time.sleep(0.5)
             self.controller.press_b()
+            time.sleep(0.5)
             self.controller.left_up()
+            time.sleep(0.5)
             self.controller.left_left()
+            time.sleep(0.5)
             self.controller.left_left()
+            time.sleep(0.5)
             self.controller.press_a()
 
          threading.Thread(target=run, daemon=True).start()
