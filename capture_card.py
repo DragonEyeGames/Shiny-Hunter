@@ -46,7 +46,7 @@ class CaptureCard(tk.Frame):
             self.controller.left_left()
             time.sleep(0.1)
             self.controller.press_a()
-            time.sleep(1)
+            time.sleep(1.2)
             hunting_manager.run_script(registeel_commands)
 
          threading.Thread(target=run, daemon=True).start()
