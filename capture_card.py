@@ -33,7 +33,7 @@ class CaptureCard(tk.Frame):
             self.controller.connect()
             self.controller.press_a()
 
-        threading.Thread(target=run, daemon=True).start()
+         threading.Thread(target=run, daemon=True).start()
 
     def start_camera(self):
         if not self.camera_started:
