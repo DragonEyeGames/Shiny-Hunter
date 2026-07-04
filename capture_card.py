@@ -8,7 +8,7 @@ class CaptureCard(tk.Frame):
         super().__init__(parent, bg="black")
 
         self.label = tk.Label(self, bg="black")
-        self.label.place(x=0, y=200, width=200, height=120)
+        self.label.place(x=0, y=110, width=300, height=180)
 
         self.cap = None
         self.camera_started=False
@@ -21,7 +21,7 @@ class CaptureCard(tk.Frame):
         )
         self.back_button.place(x=690, y=10, width=100, height=40)
 
-        self.hunting = tk.Label(self, bg="black", fg="white", font=("Arial", 16), text=f"Hunting {config.pokemon_name}")
+        self.hunting = tk.Label(self, bg="black", fg="white", font=("Arial", 20), text=f"Hunting {config.pokemon_name} in {config.game_name}")
         self.hunting.place(x=10, y=10)
         self.update_frame()
 
@@ -31,14 +31,15 @@ class CaptureCard(tk.Frame):
             self.camera_started=True
 
     def update_frame(self):
+        self.hunting.configure(text=f"Hunting {config.pokemon_name} in {config.game_name}")
         if config.start_camera and not self.camera_started:
             self.start_camera()
         if self.camera_started:
             ret, frame = self.cap.read()
 
             if ret:
-                width = 200
-                height = 120
+                width = 300
+                height = 180
 
                 if width > 1 and height > 1:
                     frame = cv2.resize(frame, (width, height))

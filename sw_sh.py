@@ -18,6 +18,7 @@ class SwShScreen(tk.Frame):
         self.dracovish= tk.PhotoImage(file="images/dracovish.png")
         self.dracozolt= tk.PhotoImage(file="images/dracozolt.png")
 
+        config.game_name="Sword and Shield"
         config.pokemon_name="Sword and Shield"
 
         #Game title
