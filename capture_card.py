@@ -6,7 +6,7 @@ from switch_controller import SwitchController
 import threading
 import time
 from hunting.sw_sh_registeel import commands as registeel_commands
-import hunting.hunting_manager
+from hunting.hunting_manager import hm
 
 class CaptureCard(tk.Frame):
     def __init__(self, parent, back_callback, camera_index=0):
@@ -34,7 +34,7 @@ class CaptureCard(tk.Frame):
          def run():
             self.controller = SwitchController()
             self.controller.connect()
-            hunting_manager = hunting_manager.HuntingManager(self.controller)
+            hunting_manager = hm.HuntingManager(self.controller)
             self.controller.press_a()
             time.sleep(0.5)
             self.controller.press_b()
