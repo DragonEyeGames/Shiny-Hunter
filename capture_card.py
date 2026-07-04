@@ -5,8 +5,8 @@ import config
 from switch_controller import SwitchController
 import threading
 import time
-from sw_sh_registeel import commands as registeel_commands
-import hunting_manager
+from hunting.sw_sh_registeel import commands as registeel_commands
+import hunting.hunting_manager
 
 class CaptureCard(tk.Frame):
     def __init__(self, parent, back_callback, camera_index=0):
