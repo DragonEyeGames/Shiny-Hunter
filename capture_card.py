@@ -7,31 +7,33 @@ class CaptureCard(tk.Frame):
     def __init__(self, parent, back_callback, camera_index=0):
         super().__init__(parent, bg="black")
 
-        # Video display label
         self.label = tk.Label(self, bg="black")
-        self.label.place(x=0, y=200, relwidth=1, relheight=1)
+        self.label.place(x=0, y=200, width=200, height=120)
 
-        # Open the camera/capture card
-        self.cap = cv2.VideoCapture(camera_index)
+        self.cap = None
+        self.camera_started=False
 
-        if not self.cap.isOpened():
-            print(f"Could not open camera {camera_index}")
-
-        # Back button (placed over the video)
         self.back_button = tk.Button(
             self,
             text="Back",
             font=("Arial", 16),
             command=back_callback
         )
-        self.back_button.place(x=10, y=10, width=100, height=40)
+        self.back_button.place(x=690, y=10, width=100, height=40)
 
         self.hunting = tk.Label(self, bg="black", fg="white", font=("Arial", 16), text=f"Hunting {config.pokemon_name}")
-
+        self.hunting.place(x=10, y=10)
         self.update_frame()
 
+    def start_camera(self):
+        if not self.camera_started:
+            self.cap = cv2.VideoCapture(0)
+            self.camera_started=true
+
     def update_frame(self):
-        if self.cap.isOpened():
+        if config.start_camera and not self.camera_started:
+            self.start_camera()
+        if self.cap.isOpened() and self.camera_started:
             ret, frame = self.cap.read()
 
             if ret:

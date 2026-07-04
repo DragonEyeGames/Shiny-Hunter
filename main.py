@@ -4,6 +4,7 @@ from bd_sp import BdSpScreen
 from fr_lg import FrLgScreen
 from lg import LGScreen
 from capture_card import CaptureCard
+import config
 
 #Initialize the main window
 root = tk.Tk()
@@ -23,7 +24,7 @@ main_menu.place(x=0, y=0, relwidth=1, relheight=1)
 switch_screen = CaptureCard(root, lambda: main_menu.tkraise(), camera_index=0)
 switch_screen.place(x=0, y=0, relwidth=1, relheight=1)
 
-swsh = SwShScreen(root, lambda: main_menu.tkraise(), lambda: switch_screen.tkraise())
+swsh = SwShScreen(root, lambda: main_menu.tkraise(), open_capture_screen)
 swsh.place(x=0, y=0, relwidth=1, relheight=1)
 
 bdsp = BdSpScreen(root, lambda: main_menu.tkraise())
@@ -54,6 +55,10 @@ def on_click_diamond_pearl():
 def on_click_red_green():
     print("Red and Green button clicked")
     frlg.tkraise()
+
+def open_capture_screen():
+    config.start_camera=True
+    switch_screen.tkraise()
 
 #Populate the main window with widgets
 
