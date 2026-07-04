@@ -18,3 +18,5 @@ class HuntingManager:
             self.controller.left_up()
         elif action == "left_left":
             self.controller.left_left()
+        elif action == "search":
+            pass
