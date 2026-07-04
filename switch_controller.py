@@ -1,10 +1,10 @@
-from nxbt import NXBT
+from nxbt import Nxbt
 import time
 
 
 class SwitchController:
     def __init__(self):
-        self.nx = NXBT()
+        self.nx = Nxbt()
         self.controller_index = None
         self.connected = False
 
