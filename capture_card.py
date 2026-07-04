@@ -33,7 +33,7 @@ class CaptureCard(tk.Frame):
     def update_frame(self):
         if config.start_camera and not self.camera_started:
             self.start_camera()
-        if self.cap.isOpened() and self.camera_started:
+        if self.camera_started:
             ret, frame = self.cap.read()
 
             if ret:
