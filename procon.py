@@ -137,7 +137,7 @@ def simulate_procon():
             elif data[0] == 0x01 and len(data) > 16:
                 if data[10] == 0x02:
                     uart_response(0x82, data[10], bytes.fromhex('03480302' + mac_addr[::-1] + '0301'))
-                elif data[10] in (0x08, 0x30, 0x38, 0x40, 0x48):
+                elif data[10] in (0x01, 0x08, 0x30, 0x38, 0x40, 0x48):
                     uart_response(0x80, data[10], [])
                 elif data[10] == 0x03:
                     global report_mode
@@ -163,6 +163,9 @@ def simulate_procon():
                          print(f"Unknown SPI address requested: {addr.hex()}", flush=True)
                 elif data[10] >= 0x04 and data[10] <= 0x0F:
                     print(f"Unknown subcommand {data[10]:02x}")
+                    uart_response(0x80, data[10], [])
+                else:
+                    print(f"Unhandled subcommand {data[10]:02x}: {data.hex()}", flush=True)
                     uart_response(0x80, data[10], [])
         except BlockingIOError:
             pass
