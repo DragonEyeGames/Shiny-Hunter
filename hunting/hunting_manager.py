@@ -28,7 +28,7 @@ class HuntingManager:
             self.controller.left_left()
         elif action == "search":
             config.status="Searching"
-            detected, ratio, elapsed = self.wait_for_white_flash(self.cap, config.roi, timeout=0.3)
+            detected, ratio, elapsed = self.wait_for_white_flash(self.cap, config.roi, timeout=0.5)
 
             if detected:
                 config.status="Not Shiny, Restarting"
