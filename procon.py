@@ -76,11 +76,14 @@ def simulate_procon():
     while True:
         try:
             data = os.read(gadget, 128)
+            print(f"<<< received: {data.hex()}")  # ADD THIS
             if data[0] == 0x80:
                 if data[1] == 0x01:
+                    print("Got 0x80/0x01 - sending MAC address")  # ADD THIS
                     response(0x81, data[1], bytes.fromhex('0003' + mac_addr))
                 elif data[1] == 0x02:
                     response(0x81, data[1], [])
+                    print("Got handshake complete signal - starting input loop")
                 elif data[1] == 0x04:
                     threading.Thread(target=input_response, daemon=True).start()
             elif data[0] == 0x01 and len(data) > 16:
@@ -117,7 +120,11 @@ def press(button, duration=0.1):
     buttons[button] = False
     time.sleep(0.05)
 
-time.sleep(1)  # let the handshake finish after connecting
+time.sleep(1)
 press('A')
 time.sleep(0.5)
 press('B')
+
+# Keep the script (and its threads) alive
+while True:
+    time.sleep(1)
