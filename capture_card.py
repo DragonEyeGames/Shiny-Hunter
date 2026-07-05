@@ -7,6 +7,7 @@ import threading
 import time
 from hunting.sw_sh_registeel import commands as registeel_commands
 import hunting.hunting_manager as hm
+from save_manager import save_data, load_data
 
 class CaptureCard(tk.Frame):
     def __init__(self, parent, back_callback, camera_index=0):
@@ -28,8 +29,9 @@ class CaptureCard(tk.Frame):
         def end_hunt():
             print("ending hunt")
             config.status="Ending Hunt"
+            save_data(config.hunting_data)
 
-        self.end_button = tk.Button(self, text="End Hunt", font=("Arial", 16), command=lambda: end_hunt)
+        self.end_button = tk.Button(self, text="End Hunt", font=("Arial", 16), command=lambda: end_hunt())
         self.end_button.place(x=300, y=350, width=100, height=40)
 
         self.hunting = tk.Label(self, bg="black", fg="white", font=("Arial", 20), text=f"Hunting {config.pokemon_name} in {config.game_name}")
@@ -42,6 +44,8 @@ class CaptureCard(tk.Frame):
 
         self.resets_label = tk.Label(self, bg="black", fg="white", font=("Arial", 16), text=f"Resets: {config.hunting_data[config.pokemon_name]}")
         self.resets_label.place(x=330, y=190)
+
+        config.hunting_data = load_data(config.hunting_data)
 
         self.update_frame()
 

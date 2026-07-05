@@ -12,6 +12,8 @@ class HuntingManager:
     def run_script(self, script):
         self.script=script
         for action, delay in script:
+            if(config.status=="Ending Hunt"):
+                return
             self.execute(action)
             time.sleep(delay)
 
@@ -30,11 +32,17 @@ class HuntingManager:
 
             if detected:
                 config.status="Not Shiny, Restarting"
+                if(config.status=="Ending Hunt"):
+                    return
                 self.controller.press_home()
                 time.sleep(2.5)
+                if(config.status=="Ending Hunt"):
+                    return
                 config.status="Closing + Rebooting Game"
                 self.controller.press_x()
                 time.sleep(1.5)
+                if(config.status=="Ending Hunt"):
+                    return
                 self.controller.press_a()
                 time.sleep(1)
                 config.hunting_data[config.pokemon_name] += 1
