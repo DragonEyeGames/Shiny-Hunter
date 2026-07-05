@@ -55,6 +55,19 @@ class CaptureCard(tk.Frame):
     def start_camera(self):
         if not self.camera_started:
             self.cap = cv2.VideoCapture(0)
+
+            #Make sure the card works.
+            if not self.cap or not self.cap.isOpened():
+                config.status = "Error: Capture Card Not Found!"
+                print("[ERROR] Capture card index 0 failed to open.")
+                
+                # Clean up the bad object so it doesn't cause loop errors
+                if self.cap:
+                    self.cap.release()
+                self.cap = None
+                return  # HALT execution here. Do not start the controller.
+
+            config.status="Booted up Screen"
             self.camera_started=True
             self.start_controller()
 
