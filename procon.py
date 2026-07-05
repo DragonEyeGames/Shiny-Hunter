@@ -24,8 +24,8 @@ buttons = {
     'L': False, 'ZL': False,
     'UP': False, 'DOWN': False, 'LEFT': False, 'RIGHT': False,
 }
-stick_left = {'x': 0x800, 'y': 0x800}   # center ~0x800 (0-0xFFF range)
-stick_right = {'x': 0x800, 'y': 0x800}
+stick_left = {'x': 512, 'y': 512}
+stick_right = {'x': 512, 'y': 512}
 handshake_done = threading.Event()
 
 def countup():
@@ -59,56 +59,56 @@ def spi_response(addr, data):
     uart_response(0x90, 0x10, buf)
 
 def pack_stick(x, y):
-    return [x & 0xFF, ((x >> 8) & 0xF) | ((y & 0xF) << 4), (y >> 4) & 0xFF]
+    # Switch expects 10-bit values (0–1023)
+    x = max(0, min(1023, x))
+    y = max(0, min(1023, y))
+
+    return [
+        x & 0xFF,
+        ((x >> 8) & 0x03) | ((y & 0x03) << 2),
+        (y >> 2) & 0xFF
+    ]
 
 def input_response():
     while True:
-        report = bytearray(11)
+        report = bytearray(8)
 
-        # timer
         report[0] = counter
+        report[1] = 0x80  # battery / connection flags (important)
 
-        # battery + wired
-        report[1] = 0x81
-
-        # buttons
         report[2] = (
             (1 if buttons['Y'] else 0) << 0 |
             (1 if buttons['X'] else 0) << 1 |
             (1 if buttons['B'] else 0) << 2 |
             (1 if buttons['A'] else 0) << 3 |
-            (1 if buttons['R'] else 0) << 6 |
+            (1 if buttons['L'] else 0) << 4 |
+            (1 if buttons['R'] else 0) << 5 |
+            (1 if buttons['ZL'] else 0) << 6 |
             (1 if buttons['ZR'] else 0) << 7
         )
 
         report[3] = (
             (1 if buttons['MINUS'] else 0) << 0 |
-            (1 if buttons['PLUS'] else 0) << 1 |
-            (1 if buttons['L'] else 0) << 6 |
-            (1 if buttons['ZL'] else 0) << 7
+            (1 if buttons['PLUS'] else 0) << 1
         )
 
         report[4] = (
-            (1 if buttons['DOWN'] else 0) << 0 |
-            (1 if buttons['UP'] else 0) << 1 |
-            (1 if buttons['RIGHT'] else 0) << 2 |
-            (1 if buttons['LEFT'] else 0) << 3
+            (1 if buttons['LEFT'] else 0) << 0 |
+            (1 if buttons['RIGHT'] else 0) << 1 |
+            (1 if buttons['UP'] else 0) << 2 |
+            (1 if buttons['DOWN'] else 0) << 3
         )
 
-        report[5:8] = pack_stick(
-            stick_left['x'],
-            stick_left['y']
-        )
+        # sticks (center = 512)
+        lx, ly = pack_stick(stick_left['x'], stick_left['y'])
+        rx, ry = pack_stick(stick_right['x'], stick_right['y'])
 
-        report[8:11] = pack_stick(
-            stick_right['x'],
-            stick_right['y']
-        )
+        report[5:8] = bytes([lx, ly, rx])
+        report.append(ry)
 
-        print("REPORT:", report.hex())
+        os.write(gadget, report)
 
-        response(report_mode, counter, report)
-        time.sleep(1/60)
+        time.sleep(0.008)  # IMPORTANT: ~125Hz polling
 
 def simulate_procon():
     while True:
