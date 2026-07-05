@@ -93,14 +93,14 @@ def input_response():
             print("Sending:", buf.hex())
             last = bytes(buf)
 
-        response(0x30, counter, buf)
+        response(report_mode, counter, buf)
         time.sleep(1/60)
 
 def simulate_procon():
     while True:
         try:
             data = os.read(gadget, 128)
-            #print(f"<<< received: {data.hex()}", flush=True)
+            print(f"<<< received: {data.hex()}", flush=True)
             if data[0] == 0x80:
                 if data[1] == 0x01:
                     response(0x81, data[1], bytes.fromhex('0003' + mac_addr))
@@ -121,7 +121,12 @@ def simulate_procon():
             elif data[0] == 0x01 and len(data) > 16:
                 if data[10] == 0x02:
                     uart_response(0x82, data[10], bytes.fromhex('03480302' + mac_addr[::-1] + '0301'))
-                elif data[10] in (0x03, 0x08, 0x30, 0x38, 0x40, 0x48):
+                elif data[10] in (0x08, 0x30, 0x38, 0x40, 0x48):
+                    uart_response(0x80, data[10], [])
+                elif data[10] == 0x03:
+                    global report_mode
+                    report_mode = data[11]
+                    print(f"Switch requested report mode {report_mode:02x}")
                     uart_response(0x80, data[10], [])
                 elif data[10] == 0x21:
                     uart_response(0xa0, data[10], bytes.fromhex('0100ff0003000501'))
