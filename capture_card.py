@@ -56,7 +56,7 @@ class CaptureCard(tk.Frame):
         self.resets_label = tk.Label(self, bg="black", fg="white", font=("Arial", 16), text=f"Resets: {config.hunting_data[config.pokemon_name]['resets']}")
         self.resets_label.place(x=330, y=140)
 
-        self.spent_label = tk.Label(self, bg="black", fg="white", font=("Arial", 16), text=f"Time Spent: {convert_seconds(int(config.hunting_data[config.pokemon_name]['time_spent']))}")
+        self.spent_label = tk.Label(self, bg="black", fg="white", font=("Arial", 16), text=f"Time Spent: {self.convert_seconds(int(config.hunting_data[config.pokemon_name]['time_spent']))}")
         self.spent_label.place(x=330, y=170)
 
         self.time_label = tk.Label(self, bg="black", fg="white", font=("Arial", 16), text=f"Time Per Reset: {config.last_reset_time:.3f}")
