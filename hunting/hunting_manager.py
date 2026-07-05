@@ -39,6 +39,8 @@ class HuntingManager:
                 self.controller.press_a()
                 time.sleep(1)
                 self.controller.press_a()
+                time.sleep(1)
+                self.controller.press_a()
                 time.sleep(15.5)
                 self.controller.press_a()
                 time.sleep(3.5)
