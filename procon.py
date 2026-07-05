@@ -107,7 +107,7 @@ def input_response():
 
         print("REPORT:", report.hex())
 
-        response(0x30, counter, report)
+        response(report_mode, counter, report)
         time.sleep(1/60)
 
 def simulate_procon():
@@ -120,6 +120,18 @@ def simulate_procon():
                     response(0x81, data[1], bytes.fromhex('0003' + mac_addr))
                 elif data[1] == 0x02:
                     response(0x81, data[1], [])
+                elif data[10] == 0x03:
+                    global report_mode, input_started
+                    report_mode = data[11]
+                    print(f"Switch requested report mode {report_mode:02x}")
+                    uart_response(0x80, data[10], [])
+
+                    if not input_started:
+                        input_started = True
+                        threading.Thread(
+                            target=input_response,
+                            daemon=True
+                        ).start()
                 elif data[1] == 0x04:
                     global input_started
 
@@ -161,6 +173,9 @@ def simulate_procon():
                         spi_response(addr, bytes.fromhex(responses[addr]))
                     else:
                          print(f"Unknown SPI address requested: {addr.hex()}", flush=True)
+                elif data[10] >= 0x04 and data[10] <= 0x0F:
+                    print(f"Unknown subcommand {data[10]:02x}")
+                    uart_response(0x80, data[10], [])
         except BlockingIOError:
             pass
         except:
