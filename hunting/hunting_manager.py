@@ -14,6 +14,7 @@ class HuntingManager:
         for action, delay in script:
             self.execute(action)
             time.sleep(delay)
+        config.hunting_data[config.pokemon_name] += 1
 
     def execute(self, action):
         if action == "a":
@@ -32,6 +33,7 @@ class HuntingManager:
                 config.status="Not Shiny, Restarting"
                 self.controller.press_home()
                 time.sleep(2.5)
+                config.status="Closing + Rebooting Game"
                 self.controller.press_x()
                 time.sleep(1.5)
                 self.controller.press_a()
@@ -41,7 +43,8 @@ class HuntingManager:
                 self.controller.press_a()
                 time.sleep(1)
                 self.controller.press_a()
-                time.sleep(15.5)
+                config.status="Waiting for Game to Load"
+                time.sleep(14.5)
                 self.controller.press_a()
                 time.sleep(3.5)
                 config.status="Hunting"
@@ -64,7 +67,7 @@ class HuntingManager:
         ratio = white_pixels / total_pixels
         return ratio >= white_percentage, ratio
 
-    def wait_for_white_flash(self, cap, roi, timeout=1.0, brightness_threshold=240, white_percentage=0.95):
+    def wait_for_white_flash(self, cap, roi, timeout=0.5, brightness_threshold=240, white_percentage=0.95):
         start_time = time.time()
         last_ratio = 0.0
 

@@ -17,7 +17,6 @@ class CaptureCard(tk.Frame):
 
         self.cap = None
         self.camera_started=False
-
         self.back_button = tk.Button(
             self,
             text="Back",
@@ -33,6 +32,9 @@ class CaptureCard(tk.Frame):
 
         self.status_label = tk.Label(self, bg="black", fg="white", font=("Arial", 20), text=f"Status: {config.status}")
         self.status_label.place(x=330, y=160)
+
+        self.resets_label = tk.Label(self, bg="black", fg="white", font=("Arial", 16), text=f"Resets: {config.hunting_data[config.pokemon_name]}")
+        self.resets_label.place(x=330, y=190)
 
         self.update_frame()
 
@@ -73,6 +75,7 @@ class CaptureCard(tk.Frame):
 
     def update_frame(self):
         self.hunting.configure(text=f"Hunting {config.pokemon_name} in {config.game_name}")
+        self.resets_label.configure(text=f"Resets: {config.hunting_data[config.pokemon_name]}")
         self.status_label.configure(text=f"Status: {config.status}")
         if config.start_camera and not self.camera_started:
             self.start_camera()

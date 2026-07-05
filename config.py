@@ -4,7 +4,7 @@ start_camera=False
 
 status="Idle"
 
-resets=0
+hunting_data = { "Registeel": 45 }
 
 roi = {
     "x": 0.8703125,
