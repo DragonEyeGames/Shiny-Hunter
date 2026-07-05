@@ -1,4 +1,7 @@
 import json
+import os
+
+FILENAME = "hunting_data.json"
 
 hunting_data = {
     "Registeel": 0
