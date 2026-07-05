@@ -141,27 +141,14 @@ def simulate_procon():
                     reversed_mac = bytes.fromhex(mac_addr)[::-1].hex()
                     uart_response(0x82, data[10], bytes.fromhex('03480302' + reversed_mac + '0301'))
 
-                elif data[10] == 0x01:
-                    # Bluetooth manual pairing (dekuNukem bluetooth_hid_subcommands_notes.md)
-                    # This is a 3-step exchange, NOT a "do nothing, just ack" subcommand.
-                    # Step 1 is documented; steps 2/3 payloads are only partially documented
-                    # upstream, so we fall back to a generic ack there rather than guess
-                    # binary content (an earlier guess here crashed real hardware).
-                    step = data[11] if len(data) > 11 else 0x00
-                    if step == 0x01:
-                        our_mac = bytes.fromhex(mac_addr)[::-1]  # our MAC, little-endian
-                        reply = bytes([0x01]) + our_mac + bytes(25)  # 25 bytes: undocumented, zero-filled
-                        uart_response(0x81, data[10], reply)
-                        print("Manual pairing step 1 acked", flush=True)
-                    else:
-                        # Steps 2 (LTK) and 3 (finalize): payload not fully documented upstream.
-                        # Generic ack per "subcommands that do nothing reply with ACK 0x80## + 0x03".
-                        uart_response(0x80, data[10], [0x03])
-                        print(f"Manual pairing step {step:02x} generic-acked", flush=True)
-
-                elif data[10] in (0x08, 0x30, 0x38, 0x40, 0x48):
-                    # Generic "do nothing" subcommands: ACK format is 0x80 <subcmd> 0x03
-                    # (previously sent with empty data, missing the required 0x03 byte)
+                elif data[10] in (0x01, 0x08, 0x30, 0x38, 0x40, 0x48):
+                    # Generic "do nothing" subcommands: ACK format is 0x80 <subcmd> 0x03.
+                    # A real-hardware USB capture (Switch <-> genuine Pro Controller,
+                    # bridged through a Pi: mzyy94.com/blog/2020/03/20/nintendo-switch-pro-controller-usb-gadget)
+                    # shows subcommand 0x01 (Bluetooth manual pairing) occurring exactly
+                    # ONCE during a normal USB connection and being treated the same as
+                    # every other one-shot "do nothing" subcommand here -- no multi-step
+                    # MAC/LTK exchange over USB, unlike the Bluetooth-specific docs.
                     uart_response(0x80, data[10], [0x03])
 
                 elif data[10] == 0x03:
