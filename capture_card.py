@@ -35,6 +35,13 @@ class CaptureCard(tk.Frame):
             config.status="Ending Hunt"
             save_data(config.hunting_data)
 
+        def convert_seconds(total_seconds):
+            self.days, self.remainder = divmod(total_seconds, 86400)
+            self.hours, self.remainder = divmod(self.remainder, 3600)
+            self.minutes, self.seconds = divmod(self.remainder, 60)
+            # Format each variable to 2 digits, padded with leading zeros
+            return f"{self.days:02}:{self.hours:02}:{self.minutes:02}:{self.seconds:02}"
+
         self.end_button = tk.Button(self, text="End Hunt", font=("Arial", 16), command=lambda: end_hunt())
         self.end_button.place(x=300, y=350, width=100, height=40)
 
@@ -49,7 +56,7 @@ class CaptureCard(tk.Frame):
         self.resets_label = tk.Label(self, bg="black", fg="white", font=("Arial", 16), text=f"Resets: {config.hunting_data[config.pokemon_name]['resets']}")
         self.resets_label.place(x=330, y=140)
 
-        self.spent_label = tk.Label(self, bg="black", fg="white", font=("Arial", 16), text=f"Time Spent: {config.hunting_data[config.pokemon_name]['time_spent']:.3f}")
+        self.spent_label = tk.Label(self, bg="black", fg="white", font=("Arial", 16), text=f"Time Spent: {convert_seconds(int(config.hunting_data[config.pokemon_name]['time_spent']))}")
         self.spent_label.place(x=330, y=170)
 
         self.time_label = tk.Label(self, bg="black", fg="white", font=("Arial", 16), text=f"Time Per Reset: {config.last_reset_time:.3f}")
@@ -95,6 +102,7 @@ class CaptureCard(tk.Frame):
             self.camera_started=True
             self.start_controller()
 
+
     def update_frame(self):
         if(self.initialize_time!=self.start_time):
             config.hunting_data[config.pokemon_name]['time_spent']+=(time.time()-self.start_time)
@@ -105,7 +113,7 @@ class CaptureCard(tk.Frame):
         self.hunting.configure(text=f"Hunting {config.pokemon_name} in {config.game_name}")
         self.resets_label.configure(text=f"Resets: {config.hunting_data[config.pokemon_name]['resets']}")
         self.status_label.configure(text=f"Status: {config.status}")
-        self.spent_label.configure(text=f"Time Spent: {config.hunting_data[config.pokemon_name]['time_spent']:.3f}")
+        self.spent_label.configure(text=f"Time Spent: {self.convert_seconds(int(config.hunting_data[config.pokemon_name]['time_spent']))}")
         self.time_label.configure(text=f"Time Per Reset: {config.last_reset_time:.3f}")
         if config.start_camera and not self.camera_started:
             self.start_camera()
