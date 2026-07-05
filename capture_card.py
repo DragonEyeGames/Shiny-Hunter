@@ -36,11 +36,11 @@ class CaptureCard(tk.Frame):
             save_data(config.hunting_data)
 
         def convert_seconds(self, total_seconds):
-            self.days, self.remainder = divmod(total_seconds, 86400)
-            self.hours, self.remainder = divmod(self.remainder, 3600)
-            self.minutes, self.seconds = divmod(self.remainder, 60)
-            # Format each variable to 2 digits, padded with leading zeros
-            return f"{self.days:02}:{self.hours:02}:{self.minutes:02}:{self.seconds:02}"
+             # Using local variables instead of self.
+             days, remainder = divmod(total_seconds, 86400)
+             hours, remainder = divmod(remainder, 3600)
+             minutes, seconds = divmod(remainder, 60)
+             return f"{days:02}:{hours:02}:{minutes:02}:{seconds:02}"
 
         self.end_button = tk.Button(self, text="End Hunt", font=("Arial", 16), command=lambda: end_hunt())
         self.end_button.place(x=300, y=350, width=100, height=40)
