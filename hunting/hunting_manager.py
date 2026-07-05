@@ -48,7 +48,7 @@ class HuntingManager:
                     return
                 time.sleep(1)
 
-                config.last_reset_time=config.curret_reset_time
+                config.last_reset_time=config.current_reset_time
                 config.current_reset_time=0
 
                 config.hunting_data[config.pokemon_name]['resets'] += 1
