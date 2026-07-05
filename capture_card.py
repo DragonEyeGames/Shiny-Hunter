@@ -42,10 +42,10 @@ class CaptureCard(tk.Frame):
         self.status_label = tk.Label(self, bg="black", fg="white", font=("Arial", 20), text=f"Status: {config.status}")
         self.status_label.place(x=330, y=110)
 
-        self.resets_label = tk.Label(self, bg="black", fg="white", font=("Arial", 16), text=f"Resets: {config.hunting_data[config.pokemon_name]["resets"]}")
+        self.resets_label = tk.Label(self, bg="black", fg="white", font=("Arial", 16), text=f"Resets: {config.hunting_data[config.pokemon_name]['resets']}")
         self.resets_label.place(x=330, y=140)
 
-        self.spent_label = tk.Label(self, bg="black", fg="white", font=("Arial", 16), text=f"Time Spent: {config.hunting_data[config.pokemon_name]["time_spent"]:.3f}")
+        self.spent_label = tk.Label(self, bg="black", fg="white", font=("Arial", 16), text=f"Time Spent: {config.hunting_data[config.pokemon_name]['time_spent']:.3f}")
         self.spent_label.place(x=330, y=170)
 
         self.time_label = tk.Label(self, bg="black", fg="white", font=("Arial", 16), text=f"Time Per Reset: {config.last_reset_time:.3f}")
@@ -94,13 +94,13 @@ class CaptureCard(tk.Frame):
         if(config.pokemon_name not in config.hunting_data):
             config.hunting_data[config.pokemon_name] = 0
         self.hunting.configure(text=f"Hunting {config.pokemon_name} in {config.game_name}")
-        self.resets_label.configure(text=f"Resets: {config.hunting_data[config.pokemon_name]["resets"]}")
+        self.resets_label.configure(text=f"Resets: {config.hunting_data[config.pokemon_name]['resets']}")
         self.status_label.configure(text=f"Status: {config.status}")
-        self.spent_label.configure(text=f"Time Spent: {config.hunting_data[config.pokemon_name]["time_spent"]:.3f}")
+        self.spent_label.configure(text=f"Time Spent: {config.hunting_data[config.pokemon_name]['time_spent']:.3f}")
         if config.start_camera and not self.camera_started:
             self.start_camera()
         if self.camera_started:
-            config.hunting_data[config.pokemon_name]["time_spent"] += 0.016
+            config.hunting_data[config.pokemon_name]['time_spent'] += 0.016
             config.curret_reset_time += 0.016
             ret, frame = self.cap.read()
 

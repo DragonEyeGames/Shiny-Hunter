@@ -49,7 +49,7 @@ class HuntingManager:
                 time.sleep(1)
                 config.last_reset_time = config.curret_reset_time
                 config.curret_reset_time = 0.000
-                config.hunting_data[config.pokemon_name]["resets"] += 1
+                config.hunting_data[config.pokemon_name]['resets'] += 1
                 self.controller.press_a()
                 if(config.status=="Ending Hunt"):
                     return
