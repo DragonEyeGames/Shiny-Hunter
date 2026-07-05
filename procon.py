@@ -77,7 +77,7 @@ def simulate_procon():
     while True:
         try:
             data = os.read(gadget, 128)
-            print(f"<<< received: {data.hex()}", flush=True)
+            #print(f"<<< received: {data.hex()}", flush=True)
             if data[0] == 0x80:
                 if data[1] == 0x01:
                     response(0x81, data[1], bytes.fromhex('0003' + mac_addr))
@@ -116,9 +116,11 @@ def simulate_procon():
 
 # ============ YOUR MACRO GOES HERE ============
 def press(button, duration=0.1):
+    print(f"Pressing {button}")
     buttons[button] = True
     time.sleep(duration)
     buttons[button] = False
+    print(f"Released {button}")
     time.sleep(0.05)
 
 threading.Thread(target=simulate_procon, daemon=True).start()
@@ -128,9 +130,15 @@ print("Waiting for handshake...", flush=True)
 handshake_done.wait()   # blocks here until handshake truly finishes, however long that takes
 print("Handshake done, sending macro", flush=True)
 
+time.sleep(5)
+
+print("Initializing pushes")
+
 press('A')
 time.sleep(0.5)
 press('B')
+
+print("Pushes complete")
 
 while True:
     time.sleep(1)
