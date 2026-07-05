@@ -30,7 +30,7 @@ class CaptureCard(tk.Frame):
             config.status="Ending Hunt"
 
         self.end_button = tk.Button(self, text="End Hunt", font=("Arial", 16), command=lambda: end_hunt)
-        self.end_button.place(x=300, y=340, width=100, height=40)
+        self.end_button.place(x=300, y=350, width=100, height=40)
 
         self.hunting = tk.Label(self, bg="black", fg="white", font=("Arial", 20), text=f"Hunting {config.pokemon_name} in {config.game_name}")
         self.hunting.place(x=10, y=20)
