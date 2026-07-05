@@ -35,7 +35,7 @@ class CaptureCard(tk.Frame):
             config.status="Ending Hunt"
             save_data(config.hunting_data)
 
-        def convert_seconds(total_seconds):
+        def convert_seconds(self, total_seconds):
             self.days, self.remainder = divmod(total_seconds, 86400)
             self.hours, self.remainder = divmod(self.remainder, 3600)
             self.minutes, self.seconds = divmod(self.remainder, 60)
