@@ -35,12 +35,6 @@ class CaptureCard(tk.Frame):
             config.status="Ending Hunt"
             save_data(config.hunting_data)
 
-        def convert_seconds(self, total_seconds):
-             # Using local variables instead of self.
-             days, remainder = divmod(total_seconds, 86400)
-             hours, remainder = divmod(remainder, 3600)
-             minutes, seconds = divmod(remainder, 60)
-             return f"{days:02}:{hours:02}:{minutes:02}:{seconds:02}"
 
         self.end_button = tk.Button(self, text="End Hunt", font=("Arial", 16), command=lambda: end_hunt())
         self.end_button.place(x=300, y=350, width=100, height=40)
@@ -140,3 +134,10 @@ class CaptureCard(tk.Frame):
     def release(self):
         if self.cap and self.cap.isOpened():
             self.cap.release()
+
+    def convert_seconds(self, total_seconds):
+             # Using local variables instead of self.
+             days, remainder = divmod(total_seconds, 86400)
+             hours, remainder = divmod(remainder, 3600)
+             minutes, seconds = divmod(remainder, 60)
+             return f"{days:02}:{hours:02}:{minutes:02}:{seconds:02}"
