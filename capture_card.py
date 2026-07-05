@@ -20,7 +20,7 @@ class CaptureCard(tk.Frame):
         self.camera_started=False
 
         self.start_time = time.time()
-        self.initialize_time = time.time()
+        self.initialize_time = self.start_time
 
         self.back_button = tk.Button(
             self,
@@ -64,7 +64,7 @@ class CaptureCard(tk.Frame):
             config.status="Pairing with Switch"
             self.controller = SwitchController()
             self.controller.connect()
-            start_time = time.time()
+            self.start_time = time.time()
             config.status="Initializing Hunt"
             hunting_manager = hm.HuntingManager(self.controller, self.cap)
             self.controller.press_home()
