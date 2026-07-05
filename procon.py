@@ -136,10 +136,14 @@ def simulate_procon():
                     response(0x81, data[1], [])
             elif data[0] == 0x01 and len(data) > 16:
                 if data[10] == 0x02:
-                    # NOTE: mac_addr[::-1] reverses the *string*, not the bytes.
-                    # Reversing actual byte order instead:
-                    reversed_mac = bytes.fromhex(mac_addr)[::-1].hex()
-                    uart_response(0x82, data[10], bytes.fromhex('03480302' + reversed_mac + '0301'))
+                    # Device info reply layout (dekuNukem bluetooth_hid_subcommands_notes.md):
+                    # [fw_major, fw_minor, type(3=Pro), 0x02, MAC x6 (BIG-ENDIAN), 0x01, color_flag]
+                    # mac_addr is already stored big-endian (used as-is elsewhere, e.g. the
+                    # 0x8001 MAC response) so it must NOT be reversed here. The old code both
+                    # reversed it into little-endian AND sent the wrong constant (03 instead
+                    # of 01) in byte 10 -- likely why the Switch silently stopped issuing any
+                    # further subcommands right after this reply.
+                    uart_response(0x82, data[10], bytes.fromhex('03480302' + mac_addr + '0101'))
 
                 elif data[10] in (0x01, 0x08, 0x30, 0x38, 0x40, 0x48):
                     # Generic "do nothing" subcommands: ACK format is 0x80 <subcmd> 0x03.
