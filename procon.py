@@ -23,6 +23,7 @@ buttons = {
 }
 stick_left = {'x': 0x800, 'y': 0x800}   # center ~0x800 (0-0xFFF range)
 stick_right = {'x': 0x800, 'y': 0x800}
+handshake_done = threading.Event()
 
 def countup():
     global counter
@@ -76,16 +77,16 @@ def simulate_procon():
     while True:
         try:
             data = os.read(gadget, 128)
-            print(f"<<< received: {data.hex()}")  # ADD THIS
+            print(f"<<< received: {data.hex()}", flush=True)
             if data[0] == 0x80:
                 if data[1] == 0x01:
-                    print("Got 0x80/0x01 - sending MAC address")  # ADD THIS
                     response(0x81, data[1], bytes.fromhex('0003' + mac_addr))
                 elif data[1] == 0x02:
                     response(0x81, data[1], [])
-                    print("Got handshake complete signal - starting input loop")
                 elif data[1] == 0x04:
+                    print("Handshake complete - starting input loop", flush=True)
                     threading.Thread(target=input_response, daemon=True).start()
+                    handshake_done.set()   # ADD THIS
             elif data[0] == 0x01 and len(data) > 16:
                 if data[10] == 0x02:
                     uart_response(0x82, data[10], bytes.fromhex('03480302' + mac_addr[::-1] + '0301'))
@@ -96,6 +97,7 @@ def simulate_procon():
                 elif data[10] == 0x10:
                     addr = data[11:13]
                     responses = {
+                        b'\x00\x60': 'ffffffffffffffffffffffffffffffff',
                         b'\x50\x60': 'bc114275a928ffffffffffffff',
                         b'\x80\x60': '50fd0000c60f0f30619630f3d41454411554c7799c333663',
                         b'\x98\x60': '0f30619630f3d41454411554c7799c333663',
@@ -105,13 +107,12 @@ def simulate_procon():
                     }
                     if addr in responses:
                         spi_response(addr, bytes.fromhex(responses[addr]))
+                    else:
+                         print(f"Unknown SPI address requested: {addr.hex()}", flush=True)
         except BlockingIOError:
             pass
         except:
             os._exit(1)
-
-threading.Thread(target=simulate_procon, daemon=True).start()
-threading.Thread(target=countup, daemon=True).start()
 
 # ============ YOUR MACRO GOES HERE ============
 def press(button, duration=0.1):
@@ -120,11 +121,16 @@ def press(button, duration=0.1):
     buttons[button] = False
     time.sleep(0.05)
 
-time.sleep(1)
+threading.Thread(target=simulate_procon, daemon=True).start()
+threading.Thread(target=countup, daemon=True).start()
+
+print("Waiting for handshake...", flush=True)
+handshake_done.wait()   # blocks here until handshake truly finishes, however long that takes
+print("Handshake done, sending macro", flush=True)
+
 press('A')
 time.sleep(0.5)
 press('B')
 
-# Keep the script (and its threads) alive
 while True:
     time.sleep(1)
