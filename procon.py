@@ -136,16 +136,43 @@ def simulate_procon():
                     response(0x81, data[1], [])
             elif data[0] == 0x01 and len(data) > 16:
                 if data[10] == 0x02:
-                    uart_response(0x82, data[10], bytes.fromhex('03480302' + mac_addr[::-1] + '0301'))
-                elif data[10] in (0x01, 0x08, 0x30, 0x38, 0x40, 0x48):
-                    uart_response(0x80, data[10], [])
+                    # NOTE: mac_addr[::-1] reverses the *string*, not the bytes.
+                    # Reversing actual byte order instead:
+                    reversed_mac = bytes.fromhex(mac_addr)[::-1].hex()
+                    uart_response(0x82, data[10], bytes.fromhex('03480302' + reversed_mac + '0301'))
+
+                elif data[10] == 0x01:
+                    # Bluetooth manual pairing (dekuNukem bluetooth_hid_subcommands_notes.md)
+                    # This is a 3-step exchange, NOT a "do nothing, just ack" subcommand.
+                    # Step 1 is documented; steps 2/3 payloads are only partially documented
+                    # upstream, so we fall back to a generic ack there rather than guess
+                    # binary content (an earlier guess here crashed real hardware).
+                    step = data[11] if len(data) > 11 else 0x00
+                    if step == 0x01:
+                        our_mac = bytes.fromhex(mac_addr)[::-1]  # our MAC, little-endian
+                        reply = bytes([0x01]) + our_mac + bytes(25)  # 25 bytes: undocumented, zero-filled
+                        uart_response(0x81, data[10], reply)
+                        print("Manual pairing step 1 acked", flush=True)
+                    else:
+                        # Steps 2 (LTK) and 3 (finalize): payload not fully documented upstream.
+                        # Generic ack per "subcommands that do nothing reply with ACK 0x80## + 0x03".
+                        uart_response(0x80, data[10], [0x03])
+                        print(f"Manual pairing step {step:02x} generic-acked", flush=True)
+
+                elif data[10] in (0x08, 0x30, 0x38, 0x40, 0x48):
+                    # Generic "do nothing" subcommands: ACK format is 0x80 <subcmd> 0x03
+                    # (previously sent with empty data, missing the required 0x03 byte)
+                    uart_response(0x80, data[10], [0x03])
+
                 elif data[10] == 0x03:
                     global report_mode
                     report_mode = data[11]
                     print(f"Switch requested report mode {report_mode:02x}")
-                    uart_response(0x80, data[10], [])
+                    uart_response(0x80, data[10], [0x03])
+
                 elif data[10] == 0x21:
                     uart_response(0xa0, data[10], bytes.fromhex('0100ff0003000501'))
+
                 elif data[10] == 0x10:
                     addr = data[11:13]
                     responses = {
@@ -161,12 +188,14 @@ def simulate_procon():
                         spi_response(addr, bytes.fromhex(responses[addr]))
                     else:
                          print(f"Unknown SPI address requested: {addr.hex()}", flush=True)
+
                 elif data[10] >= 0x04 and data[10] <= 0x0F:
                     print(f"Unknown subcommand {data[10]:02x}")
-                    uart_response(0x80, data[10], [])
+                    uart_response(0x80, data[10], [0x03])
+
                 else:
                     print(f"Unhandled subcommand {data[10]:02x}: {data.hex()}", flush=True)
-                    uart_response(0x80, data[10], [])
+                    uart_response(0x80, data[10], [0x03])
         except BlockingIOError:
             pass
         except:
