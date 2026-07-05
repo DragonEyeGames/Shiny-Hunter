@@ -62,38 +62,52 @@ def pack_stick(x, y):
     return [x & 0xFF, ((x >> 8) & 0xF) | ((y & 0xF) << 4), (y >> 4) & 0xFF]
 
 def input_response():
-    last = None
     while True:
-        buf = bytearray.fromhex(initial_input)
-        buf[1] = (
-            buttons['Y'] << 0 |
-            buttons['X'] << 1 |
-            buttons['B'] << 2 |
-            buttons['A'] << 3 |
-            buttons['R'] << 6 |
-            buttons['ZR'] << 7
-        )
-        buf[2] = (
-            buttons['MINUS'] << 0 |
-            buttons['PLUS'] << 1 |
-            buttons['L'] << 6 |
-            buttons['ZL'] << 7
-        )
-        buf[3] = (
-            buttons['DOWN'] << 0 |
-            buttons['UP'] << 1 |
-            buttons['RIGHT'] << 2 |
-            buttons['LEFT'] << 3
+        report = bytearray(11)
+
+        # timer
+        report[0] = counter
+
+        # battery + wired
+        report[1] = 0x81
+
+        # buttons
+        report[2] = (
+            (1 if buttons['Y'] else 0) << 0 |
+            (1 if buttons['X'] else 0) << 1 |
+            (1 if buttons['B'] else 0) << 2 |
+            (1 if buttons['A'] else 0) << 3 |
+            (1 if buttons['R'] else 0) << 6 |
+            (1 if buttons['ZR'] else 0) << 7
         )
 
-        buf[4:7] = pack_stick(stick_left['x'], stick_left['y'])
-        buf[7:10] = pack_stick(stick_right['x'], stick_right['y'])
+        report[3] = (
+            (1 if buttons['MINUS'] else 0) << 0 |
+            (1 if buttons['PLUS'] else 0) << 1 |
+            (1 if buttons['L'] else 0) << 6 |
+            (1 if buttons['ZL'] else 0) << 7
+        )
 
-        if buf != last:
-            print("Sending:", buf.hex())
-            last = bytes(buf)
+        report[4] = (
+            (1 if buttons['DOWN'] else 0) << 0 |
+            (1 if buttons['UP'] else 0) << 1 |
+            (1 if buttons['RIGHT'] else 0) << 2 |
+            (1 if buttons['LEFT'] else 0) << 3
+        )
 
-        response(report_mode, counter, buf)
+        report[5:8] = pack_stick(
+            stick_left['x'],
+            stick_left['y']
+        )
+
+        report[8:11] = pack_stick(
+            stick_right['x'],
+            stick_right['y']
+        )
+
+        print("REPORT:", report.hex())
+
+        response(0x30, counter, report)
         time.sleep(1/60)
 
 def simulate_procon():
@@ -118,6 +132,8 @@ def simulate_procon():
                         ).start()
 
                     handshake_done.set()
+                elif data[1] == 0x05:
+                    response(0x81, data[1], [])
             elif data[0] == 0x01 and len(data) > 16:
                 if data[10] == 0x02:
                     uart_response(0x82, data[10], bytes.fromhex('03480302' + mac_addr[::-1] + '0301'))
