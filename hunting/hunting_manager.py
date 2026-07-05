@@ -44,17 +44,29 @@ class HuntingManager:
                 if(config.status=="Ending Hunt"):
                     return
                 self.controller.press_a()
+                if(config.status=="Ending Hunt"):
+                    return
                 time.sleep(1)
                 config.hunting_data[config.pokemon_name] += 1
                 self.controller.press_a()
+                if(config.status=="Ending Hunt"):
+                    return
                 time.sleep(1)
                 self.controller.press_a()
+                if(config.status=="Ending Hunt"):
+                    return
                 time.sleep(1)
                 self.controller.press_a()
+                if(config.status=="Ending Hunt"):
+                    return
                 config.status="Waiting for Game to Load"
                 time.sleep(14.5)
+                if(config.status=="Ending Hunt"):
+                    return
                 self.controller.press_a()
                 time.sleep(3.5)
+                if(config.status=="Ending Hunt"):
+                    return
                 config.status="Hunting"
                 self.run_script(self.script)
             else:
