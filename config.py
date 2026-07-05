@@ -4,7 +4,10 @@ start_camera=False
 
 status="Idle"
 
-hunting_data = { "Registeel": 4, "(loading)": 0 }
+hunting_data = { "Registeel": {"resets": 0, "time_spent": 0.000}, "(loading)": {"resets": 0, "time_spent": 0.000} }
+
+curret_reset_time=0.000
+last_reset_time=0.000
 
 roi = {
     "x": 0.8703125,

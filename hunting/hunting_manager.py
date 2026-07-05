@@ -47,7 +47,9 @@ class HuntingManager:
                 if(config.status=="Ending Hunt"):
                     return
                 time.sleep(1)
-                config.hunting_data[config.pokemon_name] += 1
+                config.last_reset_time = config.curret_reset_time
+                config.curret_reset_time = 0.000
+                config.hunting_data[config.pokemon_name]["resets"] += 1
                 self.controller.press_a()
                 if(config.status=="Ending Hunt"):
                     return
@@ -60,7 +62,7 @@ class HuntingManager:
                 if(config.status=="Ending Hunt"):
                     return
                 config.status="Waiting for Game to Load"
-                time.sleep(14.5)
+                time.sleep(13.5)
                 if(config.status=="Ending Hunt"):
                     return
                 self.controller.press_a()
