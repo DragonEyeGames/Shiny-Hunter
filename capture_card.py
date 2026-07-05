@@ -23,7 +23,14 @@ class CaptureCard(tk.Frame):
             font=("Arial", 16),
             command=back_callback
         )
-        self.back_button.place(x=690, y=20, width=100, height=40)
+        #self.back_button.place(x=690, y=20, width=100, height=40)
+
+        def end_hunt():
+            print("ending hunt")
+            config.status="Ending Hunt"
+
+        self.end_button = tk.Button(self, text="End Hunt", font=("Arial", 16), command=lambda: end_hunt)
+        self.end_button.place(x=300, y=340, width=100, height=40)
 
         self.hunting = tk.Label(self, bg="black", fg="white", font=("Arial", 20), text=f"Hunting {config.pokemon_name} in {config.game_name}")
         self.hunting.place(x=10, y=20)
@@ -74,6 +81,8 @@ class CaptureCard(tk.Frame):
             self.start_controller()
 
     def update_frame(self):
+        if(config.pokemon_name not in config.hunting_data):
+            config.hunting_data[config.pokemon_name] = 0
         self.hunting.configure(text=f"Hunting {config.pokemon_name} in {config.game_name}")
         self.resets_label.configure(text=f"Resets: {config.hunting_data[config.pokemon_name]}")
         self.status_label.configure(text=f"Status: {config.status}")

@@ -14,7 +14,6 @@ class HuntingManager:
         for action, delay in script:
             self.execute(action)
             time.sleep(delay)
-        config.hunting_data[config.pokemon_name] += 1
 
     def execute(self, action):
         if action == "a":
@@ -38,6 +37,7 @@ class HuntingManager:
                 time.sleep(1.5)
                 self.controller.press_a()
                 time.sleep(1)
+                config.hunting_data[config.pokemon_name] += 1
                 self.controller.press_a()
                 time.sleep(1)
                 self.controller.press_a()
