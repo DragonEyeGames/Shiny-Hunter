@@ -46,7 +46,7 @@ class CaptureCard(tk.Frame):
         self.end_button.place(x=300, y=420, width=100, height=40)
 
         self.hunting = tk.Label(self, bg="#2b2b2b", fg="white", font=("Droid Sans Fallback", 30), text=f"Hunting {config.pokemon_name} in {config.game_name}")
-        self.hunting.pack(pady=20)
+        self.hunting.pack(pady=35)
 
         config.status="Idle"
 
