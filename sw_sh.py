@@ -38,26 +38,26 @@ class SwShScreen(tk.Frame):
         )
         label.pack()
 
-        self.border_box = tk.Frame(self, bg="black", width=702, height=202, relief="groove")
+        self.border_box = tk.Frame(self, bg="black", width=602, height=202, relief="groove")
         self.border_box.pack_propagate(False)
-        self.border_box.place(x = 49, y = 186)
+        self.border_box.place(x = 99, y = 166)
 
-        self.color_box = tk.Frame(self, bg="#5e5e5e", width=694, height=194, relief="groove")
+        self.color_box = tk.Frame(self, bg="#5e5e5e", width=594, height=194, relief="groove")
         self.color_box.pack_propagate(False)
-        self.color_box.place(x = 53, y = 190)
+        self.color_box.place(x = 103, y = 170)
 
-        self.create_pokemon_button(113, 200, self.regirock, "Regirock", boot_screen)
-        self.create_pokemon_button(213, 200, self.regice, "Regice", boot_screen)
-        self.create_pokemon_button(313, 200, self.registeel, "Registeel", boot_screen)
-        self.create_pokemon_button(413, 200, self.regidrago, "Regidrago", boot_screen)
-        self.create_pokemon_button(513, 200, self.regieleki, "Regieleki", boot_screen)
-        self.create_pokemon_button(613, 200, self.virizon, "Virizion", boot_screen)
-        self.create_pokemon_button(113, 300, self.terrakion, "Terrakion", boot_screen)
-        self.create_pokemon_button(213, 300, self.cobalion, "Cobalion", boot_screen)
-        self.create_pokemon_button(313, 300, self.arctovish, "Arctovish", boot_screen)
-        self.create_pokemon_button(413, 300, self.arctozolt, "Arctozolt", boot_screen)
-        self.create_pokemon_button(513, 300, self.dracovish, "Dracovish", boot_screen)
-        self.create_pokemon_button(613, 300, self.dracozolt, "Dracozolt", boot_screen)
+        self.create_pokemon_button(113, 180, self.regirock, "Regirock", boot_screen)
+        self.create_pokemon_button(213, 180, self.regice, "Regice", boot_screen)
+        self.create_pokemon_button(313, 180, self.registeel, "Registeel", boot_screen)
+        self.create_pokemon_button(413, 180, self.regidrago, "Regidrago", boot_screen)
+        self.create_pokemon_button(513, 180, self.regieleki, "Regieleki", boot_screen)
+        self.create_pokemon_button(613, 180, self.virizon, "Virizion", boot_screen)
+        self.create_pokemon_button(113, 280, self.terrakion, "Terrakion", boot_screen)
+        self.create_pokemon_button(213, 280, self.cobalion, "Cobalion", boot_screen)
+        self.create_pokemon_button(313, 280, self.arctovish, "Arctovish", boot_screen)
+        self.create_pokemon_button(413, 280, self.arctozolt, "Arctozolt", boot_screen)
+        self.create_pokemon_button(513, 280, self.dracovish, "Dracovish", boot_screen)
+        self.create_pokemon_button(613, 280, self.dracozolt, "Dracozolt", boot_screen)
 
         #Back button
 
@@ -99,7 +99,7 @@ class SwShScreen(tk.Frame):
         label = tk.Label(
             self,
             text=name,
-            font=("C052", 10),
+            font=("C052", 9),
             fg="black",
             bg="white"
         )
