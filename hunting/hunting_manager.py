@@ -16,9 +16,10 @@ class HuntingManager:
 
     def run_script(self, script):
         self.script = script
-        
+        print("Starting script loop...")
         # Use an outer infinite loop so the script can truly reset from the beginning
         while True:
+            print("Loop")
             if config.status == "Ending Hunt":
                 return
                 
@@ -28,19 +29,15 @@ class HuntingManager:
                         return
                         
                     current_time = time.time()
-                    
-                    # If execute raises a RestartScriptException, the code jumps straight to 'except'
+                    print(f"Executing action '{action}' with delay {delay}s")
                     self.execute(action, delay)
-                    
-                    # Fix: Subtraction order fixed to calculate sleep time correctly
+                    print(f"Executed action '{action}' with delay {delay}s")
                     time_to_wait = delay - (time.time() - current_time)
                     if time_to_wait < 0:
                         time_to_wait = 0
                     time.sleep(time_to_wait)
                     
             except RestartScriptException:
-                # Catch the restart signal, break the current inner for-loop, 
-                # and allow the outer 'while True' loop to start the script fresh
                 print("Restarting script loop from the beginning...")
                 continue
 
