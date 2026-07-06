@@ -3,7 +3,7 @@ import config
 
 class SwShScreen(tk.Frame):
     def __init__(self, parent, back_callback, boot_screen):
-        super().__init__(parent, bg="#4a4a4a")
+        super().__init__(parent, bg="#2b2b2b")
 
         self.regirock = tk.PhotoImage(file="images/regirock.png")
         self.regice = tk.PhotoImage(file="images/regice.png")
@@ -22,8 +22,8 @@ class SwShScreen(tk.Frame):
         label = tk.Label(
             self,
             text="Sword and Shield",
-            font=("Arial", 30),
-            bg="#4a4a4a"
+            font=("Dejavu Sans", 30),
+            bg="#2b2b2b"
         )
         label.pack(pady=20)
 
@@ -32,9 +32,13 @@ class SwShScreen(tk.Frame):
             self,
             text="Select the pokemon you want to hunt:",
             font=("Arial", 24),
-            bg="#4a4a4a"
+            bg="#2b2b2b"
         )
         label.place(x=70, y=80)
+
+        self.color_box = tk.Frame(self, bg="#4a4a4a", width=184, height=694, borderwidth=4, relief="groove")
+        self.color_box.pack_propagate(False)
+        self.color_box.place(x = 53, y = 140)
 
         self.create_pokemon_button(63, 150, self.regirock, "Regirock", boot_screen)
         self.create_pokemon_button(163, 150, self.regice, "Regice", boot_screen)

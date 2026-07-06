@@ -15,7 +15,7 @@ root.geometry("800x480")
 root.attributes('-fullscreen', True)
 root.bind('<Escape>', lambda e: root.attributes('-fullscreen', False))
 
-root.configure(bg="#4a4a4a")
+root.configure(bg="#2b2b2b")
 
 #Boot up screens
 
@@ -27,7 +27,7 @@ def close_project():
     save_data(config.hunting_data)
     root.destroy()
 
-main_menu = tk.Frame(root, bg="#4a4a4a")
+main_menu = tk.Frame(root, bg="#2b2b2b")
 main_menu.place(x=0, y=0, relwidth=1, relheight=1)
 
 switch_screen = CaptureCard(root, lambda: main_menu.tkraise(), camera_index=0)
@@ -44,9 +44,6 @@ frlg.place(x=0, y=0, relwidth=1, relheight=1)
 
 lgep = LGScreen(root, lambda: main_menu.tkraise())
 lgep.place(x=0, y=0, relwidth=1, relheight=1)
-
-end_button = tk.Button(root, text="Quit Program", font=("Arial", 16), command=close_project)
-end_button.place(x=300, y=370, width=100, height=40)
 
 main_menu.tkraise()
 
@@ -70,19 +67,23 @@ def on_click_red_green():
 
 #Populate the main window with widgets
 
-label = tk.Label(main_menu, text="Select the game you will be hunting in:", font=("Quicksand Medium", 24), bg="#4a4a4a", fg="black")
+label = tk.Label(main_menu, text="Select the game you will be hunting in:", font=("Dejavu Sans", 24), bg="#4a4a4a", fg="black")
 label.pack(pady=20)
 
-lets_go_button = tk.Button(main_menu, text="Let's Go", bg="#bfbfbf", fg="black", font=("P052", 18), command=on_click_lets_go)
-lets_go_button.place(x=50, y=80, width=100, height=100)
+lets_go_button = tk.Button(main_menu, text="Let's Go", bg="#bfbfbf", fg="black", font=("C052", 18), command=on_click_lets_go)
+lets_go_button.place(x=100, y=80, width=100, height=100)
 
-sword_shield_button = tk.Button(main_menu, text="SW/SH", bg="#bfbfbf", fg="black", font=("P052", 18), command=on_click_sword_shield)
-sword_shield_button.place(x=200, y=80, width=100, height=100)
+sword_shield_button = tk.Button(main_menu, text="SW/SH", bg="#bfbfbf", fg="black", font=("C052", 18), command=on_click_sword_shield)
+sword_shield_button.place(x=250, y=80, width=100, height=100)
 
-diamond_pearl_button = tk.Button(main_menu, text="Bd/Sp", bg="#bfbfbf", fg="black", font=("P052", 18), command=on_click_diamond_pearl)
-diamond_pearl_button.place(x=350, y=80, width=100, height=100)
+diamond_pearl_button = tk.Button(main_menu, text="Bd/Sp", bg="#bfbfbf", fg="black", font=("C052", 18), command=on_click_diamond_pearl)
+diamond_pearl_button.place(x=400, y=80, width=100, height=100)
 
-red_green_button = tk.Button(main_menu, text="Fr/Lg", bg="#bfbfbf", fg="black", font=("P052", 18), command=on_click_red_green)
-red_green_button.place(x=500, y=80, width=100, height=100)
+red_green_button = tk.Button(main_menu, text="Fr/Lg", bg="#bfbfbf", fg="black", font=("C052", 18), command=on_click_red_green)
+red_green_button.place(x=550, y=80, width=100, height=100)
+
+end_button = tk.Button(main_menu, text="Quit Program", font=("Arial", 16), command=close_project)
+end_button.place(x=300, y=350, width=100, height=40)
+
 
 root.mainloop()
