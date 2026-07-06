@@ -53,19 +53,19 @@ class HuntingManager:
 
         if(restarting):
             if(config.status=="Ending Hunt"):
-                return
+                return False
             self.controller.press_home()
             time.sleep(2.5)
             if(config.status=="Ending Hunt"):
-                return
+                return False
             config.status="Closing + Rebooting Game"
             self.controller.press_x()
             time.sleep(1.5)
             if(config.status=="Ending Hunt"):
-                return
+                return False
             self.controller.press_a()
             if(config.status=="Ending Hunt"):
-                return
+                return False
             time.sleep(1)
 
             config.last_reset_time=config.current_reset_time
@@ -74,25 +74,28 @@ class HuntingManager:
             config.hunting_data[config.pokemon_name]['resets'] += 1
             self.controller.press_a()
             if(config.status=="Ending Hunt"):
-                return
+                return False
             time.sleep(1)
             self.controller.press_a()
             if(config.status=="Ending Hunt"):
-                return
+                return False
             time.sleep(1)
             self.controller.press_a()
             if(config.status=="Ending Hunt"):
-                return
+                return False
             config.status="Waiting for Game to Load"
             time.sleep(13.5)
             if(config.status=="Ending Hunt"):
-                return
+                return False
             self.controller.press_a()
             time.sleep(3.5)
             if(config.status=="Ending Hunt"):
-                return
+                return False
             config.status="Hunting"
             self.run_script(self.script)
+            return False
+        else:
+            return True
 
     def get_roi_pixels(self, frame, normalized_roi):
         h, w = frame.shape[:2]
