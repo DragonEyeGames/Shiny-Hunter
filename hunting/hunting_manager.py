@@ -16,8 +16,12 @@ class HuntingManager:
             if(config.status=="Ending Hunt"):
                 return
             current_time=time.time()
-            self.execute(action, delay)
-            time.sleep(delay-(time.time()-current_time))
+            if(not self.execute(action, delay)):
+                break
+            time_to_wait=delay-(time.time()-current_time)
+            if(time_to_wait<0):
+                time_to_wait=0
+            time.sleep(time_to_wait)
 
     def execute(self, action, delay, restarting=False):
         if action == "a":
