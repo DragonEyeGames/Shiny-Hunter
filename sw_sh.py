@@ -31,7 +31,7 @@ class SwShScreen(tk.Frame):
         #Text for the user to select a pokemon
         label = tk.Label(
             self,
-            text="Select a Pokémon to Hunt",
+            text="Select a Pokemon to Hunt",
             font=("C052", 20),
             bg="#2b2b2b",
             fg="white"
