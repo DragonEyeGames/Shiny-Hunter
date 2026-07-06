@@ -21,14 +21,6 @@ class CaptureCard(tk.Frame):
         self.start_time = time.time()
         self.initialize_time = self.start_time
 
-        self.back_button = tk.Button(
-            self,
-            text="Back",
-            font=("Arial", 16),
-            command=back_callback
-        )
-        #self.back_button.place(x=690, y=20, width=100, height=40)
-
         def end_hunt():
             print("ending hunt")
             config.status="Ending Hunt"
@@ -37,14 +29,18 @@ class CaptureCard(tk.Frame):
 
         self.border_box = tk.Frame(self, bg="black", width=788, height=208, relief="groove")
         self.border_box.pack_propagate(False)
-        self.border_box.place(x = 6, y = 96)
+        self.border_box.place(x = 6, y = 126)
 
         self.color_box = tk.Frame(self, bg="#5e5e5e", width=780, height=200, relief="groove")
         self.color_box.pack_propagate(False)
-        self.color_box.place(x = 10, y = 100)
+        self.color_box.place(x = 10, y = 130)
+
+        self.border_box = tk.Frame(self, bg="black", width=306, height=186, relief="groove")
+        self.border_box.pack_propagate(False)
+        self.border_box.place(x = 17, y = 137)
 
         self.label = tk.Label(self, bg="black")
-        self.label.place(x=20, y=110, width=300, height=180)
+        self.label.place(x=20, y=140, width=300, height=180)
 
         self.end_button = tk.Button(self, text="End Hunt", font=("C052", 16), command=lambda: end_hunt())
         self.end_button.place(x=300, y=420, width=100, height=40)
@@ -55,16 +51,16 @@ class CaptureCard(tk.Frame):
         config.status="Idle"
 
         self.status_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 20), text=f"Status: {config.status}")
-        self.status_label.place(x=340, y=140)
+        self.status_label.place(x=340, y=170)
 
         self.resets_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 18), text=f"Resets: {config.hunting_data[config.pokemon_name]['resets']}")
-        self.resets_label.place(x=340, y=175)
+        self.resets_label.place(x=340, y=205)
 
         self.spent_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text=f"Time Spent: {self.convert_seconds(int(config.hunting_data[config.pokemon_name]['time_spent']))}")
-        self.spent_label.place(x=340, y=205)
+        self.spent_label.place(x=340, y=235)
 
         self.time_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text=f"Time Per Reset: {config.last_reset_time:.3f}")
-        self.time_label.place(x=340, y=235)
+        self.time_label.place(x=340, y=265)
 
         config.hunting_data = load_data(config.hunting_data)
         self.label.lift()
