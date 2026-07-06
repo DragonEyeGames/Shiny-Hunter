@@ -14,8 +14,6 @@ class CaptureCard(tk.Frame):
         super().__init__(parent, bg="#2b2b2b")
         self.callback=back_callback
 
-        self.label = tk.Label(self, bg="#2b2b2b")
-        self.label.place(x=20, y=110, width=300, height=180)
         self.frame_count = 0
         self.cap = None
         self.camera_started=False
@@ -45,24 +43,27 @@ class CaptureCard(tk.Frame):
         self.color_box.pack_propagate(False)
         self.color_box.place(x = 10, y = 100)
 
+        self.label = tk.Label(self, bg="#5e5e5e")
+        self.label.place(x=20, y=110, width=300, height=180)
+
         self.end_button = tk.Button(self, text="End Hunt", font=("C052", 16), command=lambda: end_hunt())
         self.end_button.place(x=300, y=420, width=100, height=40)
 
-        self.hunting = tk.Label(self, bg="#2b2b2b", fg="white", font=("Droid Sans Fallback", 20), text=f"Hunting {config.pokemon_name} in {config.game_name}")
+        self.hunting = tk.Label(self, bg="#5e5e5e", fg="white", font=("Droid Sans Fallback", 30), text=f"Hunting {config.pokemon_name} in {config.game_name}")
         self.hunting.pack(pady=20)
 
         config.status="Idle"
 
-        self.status_label = tk.Label(self, bg="#2b2b2b", fg="white", font=("C052", 20), text=f"Status: {config.status}")
+        self.status_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 20), text=f"Status: {config.status}")
         self.status_label.place(x=340, y=140)
 
-        self.resets_label = tk.Label(self, bg="#2b2b2b", fg="white", font=("C052", 18), text=f"Resets: {config.hunting_data[config.pokemon_name]['resets']}")
+        self.resets_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 18), text=f"Resets: {config.hunting_data[config.pokemon_name]['resets']}")
         self.resets_label.place(x=340, y=175)
 
-        self.spent_label = tk.Label(self, bg="#2b2b2b", fg="white", font=("C052", 16), text=f"Time Spent: {self.convert_seconds(int(config.hunting_data[config.pokemon_name]['time_spent']))}")
+        self.spent_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text=f"Time Spent: {self.convert_seconds(int(config.hunting_data[config.pokemon_name]['time_spent']))}")
         self.spent_label.place(x=340, y=205)
 
-        self.time_label = tk.Label(self, bg="#2b2b2b", fg="white", font=("C052", 16), text=f"Time Per Reset: {config.last_reset_time:.3f}")
+        self.time_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text=f"Time Per Reset: {config.last_reset_time:.3f}")
         self.time_label.place(x=340, y=235)
 
         config.hunting_data = load_data(config.hunting_data)
@@ -95,7 +96,7 @@ class CaptureCard(tk.Frame):
 
             #Make sure the card works.
             if not self.cap or not self.cap.isOpened():
-                config.status = "Error: Capture Card Not Found!"
+                config.status = "Finding Capture Card"
                 print("[ERROR] Capture card index 0 failed to open.")
                 
                 # Clean up the bad object so it doesn't cause loop errors
