@@ -127,7 +127,7 @@ class HuntingManager:
                 else:
                     config.status="Loading Screen Found"
                     self.load=True
-            time.sleep(4)
+            time.sleep(10)
             
             if config.status == "Ending Hunt": return
             self.controller.press_a()
