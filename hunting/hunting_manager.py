@@ -76,9 +76,22 @@ class HuntingManager:
                     time.sleep(1.0) 
 
         if restarting:
-            if config.status == "Ending Hunt": return
-            self.controller.press_home()
-            time.sleep(2.0)
+            self.home=False
+            while not self.home:
+                if config.status == "Ending Hunt": return
+                self.controller.press_home()
+                if config.status == "Ending Hunt": return
+                config.status="Looking for Home Screen"
+                detected, ratio, elapsed = self.wait_for_white_flash(self.cap, config.home, timeout=3, brightness_threshold=225)
+                if config.status == "Ending Hunt": return
+                if(not detected):
+                    config.status="Home Screen Not Found"
+                    time.sleep(.2)
+                else:
+                    config.status="Home Screen Found"
+                    self.home=True
+
+            time.sleep(.2)
             
             if config.status == "Ending Hunt": return
             config.status = "Closing + Rebooting Game"
@@ -100,8 +113,21 @@ class HuntingManager:
             self.controller.press_a()
             time.sleep(1)
             
-            config.status = "Waiting for Game to Load"
-            time.sleep(11.5)
+
+            self.load=False
+            while not self.load:
+                if config.status == "Ending Hunt": return
+                self.controller.press_a()
+                if config.status == "Ending Hunt": return
+                config.status="Looking for Loading Screen"
+                detected, ratio, elapsed = self.wait_for_black_flash(self.cap, config.load, timeout=3)
+                if config.status == "Ending Hunt": return
+                if(not detected):
+                    config.status="Loading Screen Not Found"
+                else:
+                    config.status="Loading Screen Found"
+                    self.load=True
+            time.sleep(4)
             
             if config.status == "Ending Hunt": return
             self.controller.press_a()
@@ -127,6 +153,13 @@ class HuntingManager:
         ratio = white_pixels / total_pixels
         return ratio >= white_percentage, ratio
 
+    def is_roi_mostly_black(self, roi_crop, darkness_threshold=10, black_percentage=0.9):
+        gray = cv2.cvtColor(roi_crop, cv2.COLOR_BGR2GRAY)
+        black_pixels = np.sum(gray <= darkness_threshold)
+        total_pixels = gray.size
+        ratio = black_pixels / total_pixels
+        return ratio >= black_percentage, ratio
+
     def wait_for_white_flash(self, cap, roi, timeout=0.5, brightness_threshold=240, white_percentage=0.95):
         start_time = time.time()
         last_ratio = 0.0
@@ -144,4 +177,23 @@ class HuntingManager:
                 return True, ratio, elapsed
         elapsed = time.time() - start_time
         print(f"No white flash detected in {elapsed:.3f}s (last ratio: {last_ratio:.2%})")
+        return False, last_ratio, elapsed
+
+    def wait_for_black_flash(self, cap, roi, timeout=0.5, darkness_threshold=10, black_percentage=0.95):
+        start_time = time.time()
+        last_ratio = 0.0
+        while time.time() - start_time < timeout:
+            ret, frame = cap.read()
+            if not ret:
+                continue
+            x, y, w, h = self.get_roi_pixels(frame, roi)
+            roi_crop = frame[y:y+h, x:x+w]
+            is_black, ratio = self.is_roi_mostly_black(roi_crop, darkness_threshold, black_percentage)
+            last_ratio = ratio
+            if is_black:
+                elapsed = time.time() - start_time
+                print(f"Black flash detected! ({ratio:.2%} black) after {elapsed:.3f}s")
+                return True, ratio, elapsed
+        elapsed = time.time() - start_time
+        print(f"No white black detected in {elapsed:.3f}s (last ratio: {last_ratio:.2%})")
         return False, last_ratio, elapsed
