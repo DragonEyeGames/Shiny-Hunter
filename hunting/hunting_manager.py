@@ -1,40 +1,63 @@
-import time
-import config
-import cv2
-import numpy as np
-import threading
+import time 
+import config 
+import cv2 
+import numpy as np 
+import threading 
+
+# Create a custom exception to cleanly break out of nested execution loops
+class RestartScriptException(Exception):
+    pass
 
 class HuntingManager:
     def __init__(self, controller, cap):
         self.controller = controller
-        self.cap=cap
+        self.cap = cap
         self.script = []
 
     def run_script(self, script):
-        self.script=script
-        for action, delay in script:
-            if(config.status=="Ending Hunt"):
+        self.script = script
+        
+        # Use an outer infinite loop so the script can truly reset from the beginning
+        while True:
+            if config.status == "Ending Hunt":
                 return
-            current_time=time.time()
-            if(not self.execute(action, delay)):
-                break
-            time_to_wait=delay-(time.time()-current_time)
-            if(time_to_wait<0):
-                time_to_wait=0
-            time.sleep(time_to_wait)
+                
+            try:
+                for action, delay in self.script:
+                    if config.status == "Ending Hunt":
+                        return
+                        
+                    current_time = time.time()
+                    
+                    # If execute raises a RestartScriptException, the code jumps straight to 'except'
+                    self.execute(action, delay)
+                    
+                    # Fix: Subtraction order fixed to calculate sleep time correctly
+                    time_to_wait = delay - (time.time() - current_time)
+                    if time_to_wait < 0:
+                        time_to_wait = 0
+                    time.sleep(time_to_wait)
+                    
+            except RestartScriptException:
+                # Catch the restart signal, break the current inner for-loop, 
+                # and allow the outer 'while True' loop to start the script fresh
+                print("Restarting script loop from the beginning...")
+                continue
 
-    def execute(self, action, delay, restarting=False):
+    def execute(self, action, delay):
+        restarting = False
+        
         if action == "a":
             self.controller.press_a()
-        if action == "white_a":
+        elif action == "white_a":
             self.controller.press_a()
-            config.status="Loading Encounter"
+            config.status = "Loading Encounter"
             detected, ratio, elapsed = self.wait_for_white_flash(self.cap, config.full, timeout=delay-1)
             if detected:
                 config.status = "Encounter Loaded"
             else:
                 config.status = "No Encounter Detected, Restarting"
-                restarting=True
+                restarting = True
         elif action == "b":
             self.controller.press_b()
         elif action == "left_up":
@@ -42,60 +65,50 @@ class HuntingManager:
         elif action == "left_left":
             self.controller.left_left()
         elif action == "search":
-            config.status="Searching"
+            config.status = "Searching"
             detected, ratio, elapsed = self.wait_for_white_flash(self.cap, config.roi, timeout=0.5)
-
             if detected:
-                config.status="Not Shiny, Restarting"
-                restarting=True
+                config.status = "Not Shiny, Restarting"
+                restarting = True
             else:
-                config.status="Shiny Detected!"
+                config.status = "Shiny Detected!"
 
-        if(restarting):
-            if(config.status=="Ending Hunt"):
-                return False
+        if restarting:
+            if config.status == "Ending Hunt": return
             self.controller.press_home()
             time.sleep(2.5)
-            if(config.status=="Ending Hunt"):
-                return False
-            config.status="Closing + Rebooting Game"
+            
+            if config.status == "Ending Hunt": return
+            config.status = "Closing + Rebooting Game"
             self.controller.press_x()
             time.sleep(1.5)
-            if(config.status=="Ending Hunt"):
-                return False
+            
+            if config.status == "Ending Hunt": return
             self.controller.press_a()
-            if(config.status=="Ending Hunt"):
-                return False
-            time.sleep(1)
-
-            config.last_reset_time=config.current_reset_time
-            config.current_reset_time=0
-
+            time.sleep(1.0)
+            
+            config.last_reset_time = config.current_reset_time
+            config.current_reset_time = 0
             config.hunting_data[config.pokemon_name]['resets'] += 1
+            
             self.controller.press_a()
-            if(config.status=="Ending Hunt"):
-                return False
-            time.sleep(1)
+            time.sleep(1.0)
             self.controller.press_a()
-            if(config.status=="Ending Hunt"):
-                return False
-            time.sleep(1)
+            time.sleep(1.0)
             self.controller.press_a()
-            if(config.status=="Ending Hunt"):
-                return False
-            config.status="Waiting for Game to Load"
+            time.sleep(1.0)
+            
+            config.status = "Waiting for Game to Load"
             time.sleep(13.5)
-            if(config.status=="Ending Hunt"):
-                return False
+            
+            if config.status == "Ending Hunt": return
             self.controller.press_a()
             time.sleep(3.5)
-            if(config.status=="Ending Hunt"):
-                return False
-            config.status="Hunting"
-            self.run_script(self.script)
-            return False
-        else:
-            return True
+            
+            config.status = "Hunting"
+            
+            # Instead of calling self.run_script inside here, raise the exception
+            raise RestartScriptException()
 
     def get_roi_pixels(self, frame, normalized_roi):
         h, w = frame.shape[:2]
@@ -115,23 +128,18 @@ class HuntingManager:
     def wait_for_white_flash(self, cap, roi, timeout=0.5, brightness_threshold=240, white_percentage=0.95):
         start_time = time.time()
         last_ratio = 0.0
-
         while time.time() - start_time < timeout:
             ret, frame = cap.read()
             if not ret:
                 continue
-
             x, y, w, h = self.get_roi_pixels(frame, roi)
             roi_crop = frame[y:y+h, x:x+w]
-
             is_white, ratio = self.is_roi_mostly_white(roi_crop, brightness_threshold, white_percentage)
             last_ratio = ratio
-
             if is_white:
                 elapsed = time.time() - start_time
                 print(f"White flash detected! ({ratio:.2%} white) after {elapsed:.3f}s")
                 return True, ratio, elapsed
-
         elapsed = time.time() - start_time
         print(f"No white flash detected in {elapsed:.3f}s (last ratio: {last_ratio:.2%})")
         return False, last_ratio, elapsed
