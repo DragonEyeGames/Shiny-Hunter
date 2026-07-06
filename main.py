@@ -67,8 +67,11 @@ def on_click_red_green():
 
 #Populate the main window with widgets
 
-label = tk.Label(main_menu, text="Select the game you will be hunting in:", font=("Droid Sans Fallback", 24), bg="#2b2b2b", fg="white")
-label.pack(pady=70)
+label = tk.Label(main_menu, text="Pokemon Shiny Hunter", font=("Droid Sans Fallback", 35), bg="#2b2b2b", fg="white")
+label.pack(pady=20)
+
+label = tk.Label(main_menu, text="Pick a Game to Hunt In", font=("Droid Sans Fallback", 24), bg="#2b2b2b", fg="white")
+label.pack()
 
 lets_go_button = tk.Button(main_menu, text="Let's Go", bg="#bfbfbf", fg="black", font=("C052", 18), command=on_click_lets_go)
 lets_go_button.place(x=100, y=180, width=100, height=100)
@@ -83,7 +86,7 @@ red_green_button = tk.Button(main_menu, text="Fr/Lg", bg="#bfbfbf", fg="black", 
 red_green_button.place(x=550, y=180, width=100, height=100)
 
 end_button = tk.Button(main_menu, text="Quit Program", font=("C052", 16), command=close_project)
-end_button.place(x=275, y=420, width=250, height=40)
+end_button.place(x=265, y=420, width=230, height=40)
 
 
 root.mainloop()
