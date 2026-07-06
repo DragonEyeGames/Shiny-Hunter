@@ -40,21 +40,21 @@ class CaptureCard(tk.Frame):
         self.end_button = tk.Button(self, text="End Hunt", font=("Arial", 16), command=lambda: end_hunt())
         self.end_button.place(x=300, y=350, width=100, height=40)
 
-        self.hunting = tk.Label(self, bg="black", fg="white", font=("Arial", 20), text=f"Hunting {config.pokemon_name} in {config.game_name}")
+        self.hunting = tk.Label(self, bg="black", fg="white", font=("Quicksand Medium", 20), text=f"Hunting {config.pokemon_name} in {config.game_name}")
         self.hunting.place(x=10, y=20)
 
         config.status="Idle"
 
-        self.status_label = tk.Label(self, bg="black", fg="white", font=("Arial", 20), text=f"Status: {config.status}")
+        self.status_label = tk.Label(self, bg="black", fg="white", font=("P052", 20), text=f"Status: {config.status}")
         self.status_label.place(x=330, y=110)
 
-        self.resets_label = tk.Label(self, bg="black", fg="white", font=("Arial", 16), text=f"Resets: {config.hunting_data[config.pokemon_name]['resets']}")
+        self.resets_label = tk.Label(self, bg="black", fg="white", font=("P052", 18), text=f"Resets: {config.hunting_data[config.pokemon_name]['resets']}")
         self.resets_label.place(x=330, y=140)
 
-        self.spent_label = tk.Label(self, bg="black", fg="white", font=("Arial", 16), text=f"Time Spent: {self.convert_seconds(int(config.hunting_data[config.pokemon_name]['time_spent']))}")
+        self.spent_label = tk.Label(self, bg="black", fg="white", font=("P052", 16), text=f"Time Spent: {self.convert_seconds(int(config.hunting_data[config.pokemon_name]['time_spent']))}")
         self.spent_label.place(x=330, y=170)
 
-        self.time_label = tk.Label(self, bg="black", fg="white", font=("Arial", 16), text=f"Time Per Reset: {config.last_reset_time:.3f}")
+        self.time_label = tk.Label(self, bg="black", fg="white", font=("P052", 16), text=f"Time Per Reset: {config.last_reset_time:.3f}")
         self.time_label.place(x=330, y=200)
 
         config.hunting_data = load_data(config.hunting_data)
