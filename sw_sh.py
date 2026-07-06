@@ -23,7 +23,8 @@ class SwShScreen(tk.Frame):
             self,
             text="Sword and Shield",
             font=("Dejavu Sans", 30),
-            bg="#2b2b2b"
+            bg="#2b2b2b",
+            fg="white"
         )
         label.pack(pady=20)
 
@@ -32,11 +33,16 @@ class SwShScreen(tk.Frame):
             self,
             text="Select the pokemon you want to hunt:",
             font=("Arial", 24),
-            bg="#2b2b2b"
+            bg="#2b2b2b",
+            fg="white"
         )
         label.place(x=70, y=80)
 
-        self.color_box = tk.Frame(self, bg="#4a4a4a", width=184, height=694, borderwidth=4, relief="groove")
+        self.border_box = tk.Frame(self, bg="black", width=702, height=202, relief="groove")
+        self.border_box.pack_propagate(False)
+        self.border_box.place(x = 49, y = 136)
+
+        self.color_box = tk.Frame(self, bg="#5e5e5e", width=694, height=194, relief="groove")
         self.color_box.pack_propagate(False)
         self.color_box.place(x = 53, y = 140)
 
