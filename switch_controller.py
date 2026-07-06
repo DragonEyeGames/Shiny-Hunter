@@ -23,13 +23,13 @@ class SwitchController:
             print("Controller not connected!")
             return
         # press_buttons presses AND releases automatically
+        print("push")
         self.nx.press_buttons(self.controller_index, [button], down=hold_time)
+        print("release")
 
 
     def press_a(self):
-        print("A")
         self.press_button(Buttons.A)
-        print("Finished A")
 
     def press_b(self):
         self.press_button(Buttons.B)

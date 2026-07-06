@@ -15,7 +15,7 @@ class CaptureCard(tk.Frame):
         self.callback=back_callback
         self.label = tk.Label(self, bg="black")
         self.label.place(x=10, y=80, width=300, height=180)
-
+        self.frame_count = 0
         self.cap = None
         self.camera_started=False
 
@@ -124,22 +124,23 @@ class CaptureCard(tk.Frame):
         if config.start_camera and not self.camera_started:
             self.start_camera()
         if self.camera_started:
-            ret, frame = self.cap.read()
+            self.frame_count+=1
+            if self.frame_count % 2 == 0:
+                ret, frame = self.cap.read()
+                if ret:
+                    width = 300
+                    height = 180
 
-            if ret:
-                width = 300
-                height = 180
+                    if width > 1 and height > 1:
+                        frame = cv2.resize(frame, (width, height))
 
-                if width > 1 and height > 1:
-                    frame = cv2.resize(frame, (width, height))
+                    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
-                frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                    img = Image.fromarray(frame)
+                    imgtk = ImageTk.PhotoImage(img)
 
-                img = Image.fromarray(frame)
-                imgtk = ImageTk.PhotoImage(img)
-
-                self.label.imgtk = imgtk
-                self.label.configure(image=imgtk)
+                    self.label.imgtk = imgtk
+                    self.label.configure(image=imgtk)
 
         self.after(16, self.update_frame)
 
