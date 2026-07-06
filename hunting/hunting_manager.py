@@ -72,6 +72,8 @@ class HuntingManager:
                 restarting = True
             else:
                 config.status = "Shiny Detected!"
+                while config.status == "Shiny Detected!":
+                    time.sleep(1.0) 
 
         if restarting:
             if config.status == "Ending Hunt": return
@@ -99,7 +101,7 @@ class HuntingManager:
             time.sleep(1.0)
             
             config.status = "Waiting for Game to Load"
-            time.sleep(13.5)
+            time.sleep(12.5)
             
             if config.status == "Ending Hunt": return
             self.controller.press_a()
