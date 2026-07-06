@@ -15,9 +15,9 @@ class HuntingManager:
         for action, delay in script:
             if(config.status=="Ending Hunt"):
                 return
-            thread = threading.Thread(target=self.execute, args=(action, delay))
-            thread.start()
-            time.sleep(delay)
+            current_time=time.time()
+            self.execute(action, delay)
+            time.sleep(delay-(time.time()-current_time))
 
     def execute(self, action, delay, restarting=False):
         if action == "a":
