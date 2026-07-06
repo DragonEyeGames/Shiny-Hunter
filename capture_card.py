@@ -12,7 +12,7 @@ from save_manager import save_data, load_data
 class CaptureCard(tk.Frame):
     def __init__(self, parent, back_callback, camera_index=0):
         super().__init__(parent, bg="black")
-
+        self.callback=back_callback
         self.label = tk.Label(self, bg="black")
         self.label.place(x=10, y=80, width=300, height=180)
 
@@ -34,6 +34,7 @@ class CaptureCard(tk.Frame):
             print("ending hunt")
             config.status="Ending Hunt"
             save_data(config.hunting_data)
+            self.stop_camera()
 
 
         self.end_button = tk.Button(self, text="End Hunt", font=("Arial", 16), command=lambda: end_hunt())
@@ -77,6 +78,9 @@ class CaptureCard(tk.Frame):
 
          threading.Thread(target=run, daemon=True).start()
 
+    def remove_controller(self):
+        self.controller.disconnect()
+
     def start_camera(self):
         if not self.camera_started:
             self.cap = cv2.VideoCapture(0)
@@ -96,6 +100,14 @@ class CaptureCard(tk.Frame):
             self.camera_started=True
             self.start_controller()
 
+    def stop_camera(self):
+        if self.camera_started:
+            self.cap.release()
+            self.cap = None
+            self.camera_started=False
+            config.start_camera=False
+            self.remove_controller()
+            self.callback()
 
     def update_frame(self):
         if(self.initialize_time!=self.start_time):
