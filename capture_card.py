@@ -43,13 +43,13 @@ class CaptureCard(tk.Frame):
         self.color_box.pack_propagate(False)
         self.color_box.place(x = 10, y = 100)
 
-        self.label = tk.Label(self, bg="#5e5e5e")
+        self.label = tk.Label(self, bg="black")
         self.label.place(x=20, y=110, width=300, height=180)
 
         self.end_button = tk.Button(self, text="End Hunt", font=("C052", 16), command=lambda: end_hunt())
         self.end_button.place(x=300, y=420, width=100, height=40)
 
-        self.hunting = tk.Label(self, bg="#5e5e5e", fg="white", font=("Droid Sans Fallback", 30), text=f"Hunting {config.pokemon_name} in {config.game_name}")
+        self.hunting = tk.Label(self, bg="#2b2b2b", fg="white", font=("Droid Sans Fallback", 30), text=f"Hunting {config.pokemon_name} in {config.game_name}")
         self.hunting.pack(pady=20)
 
         config.status="Idle"
@@ -67,7 +67,7 @@ class CaptureCard(tk.Frame):
         self.time_label.place(x=340, y=235)
 
         config.hunting_data = load_data(config.hunting_data)
-
+        self.label.lift()
         self.update_frame()
 
     def start_controller(self):
