@@ -1,5 +1,6 @@
 from nxbt import Nxbt, PRO_CONTROLLER, Buttons, Sticks
 import time
+import concurrent.futures
 
 class SwitchController:
     def __init__(self):
@@ -18,14 +19,25 @@ class SwitchController:
         self.connected = True
         print("Controller connected!")
 
-    def press_button(self, button, hold_time=0.05):
+    def press_button(self, button, hold_time=0.05, timeout=0.5, max_retries=3):
         if not self.connected or self.controller_index is None:
             print("Controller not connected!")
             return
-        # press_buttons presses AND releases automatically
-        print("push")
-        self.nx.press_buttons(self.controller_index, [button], down=hold_time)
-        print("release")
+
+        for attempt in range(1, max_retries + 1):
+            print(f"push (attempt {attempt})")
+
+            with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
+                future = executor.submit(self.nx.press_buttons, self.controller_index, [button], down=hold_time)
+                try:
+                    future.result(timeout=timeout)
+                    print("release")
+                    return True
+                except concurrent.futures.TimeoutError:
+                    print(f"Timed out after {timeout}s, retrying...")
+
+        print(f"Failed to press {button} after {max_retries} attempts")
+        return False
 
 
     def press_a(self):

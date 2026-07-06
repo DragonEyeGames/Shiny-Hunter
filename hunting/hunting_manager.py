@@ -164,9 +164,15 @@ class HuntingManager:
         start_time = time.time()
         last_ratio = 0.0
         while time.time() - start_time < timeout:
-            ret, frame = cap.read()
-            if not ret:
+            try:
+                ret, frame = cap.read()
+            except cv2.error as e:
+                # corrupt/truncated JPEG frame from the capture card - skip it, don't crash
                 continue
+
+            if not ret or frame is None:
+                continue
+
             x, y, w, h = self.get_roi_pixels(frame, roi)
             roi_crop = frame[y:y+h, x:x+w]
             is_white, ratio = self.is_roi_mostly_white(roi_crop, brightness_threshold, white_percentage)
@@ -175,6 +181,7 @@ class HuntingManager:
                 elapsed = time.time() - start_time
                 print(f"White flash detected! ({ratio:.2%} white) after {elapsed:.3f}s")
                 return True, ratio, elapsed
+
         elapsed = time.time() - start_time
         print(f"No white flash detected in {elapsed:.3f}s (last ratio: {last_ratio:.2%})")
         return False, last_ratio, elapsed

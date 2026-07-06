@@ -110,7 +110,7 @@ class CaptureCard(tk.Frame):
             self.callback()
 
     def update_frame(self):
-        if(self.initialize_time!=self.start_time):
+        if(self.initialize_time!=self.start_time and config.status!="Shiny Detected!" and config.status != "Ending Hunt"):
             config.hunting_data[config.pokemon_name]['time_spent']+=(time.time()-self.start_time)
             config.current_reset_time+=(time.time()-self.start_time)
             self.start_time=time.time()
