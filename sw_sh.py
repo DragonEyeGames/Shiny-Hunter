@@ -22,7 +22,7 @@ class SwShScreen(tk.Frame):
         label = tk.Label(
             self,
             text="Sword and Shield",
-            font=("Dejavu Sans", 30),
+            font=("Droid Sans Fallback", 35),
             bg="#2b2b2b",
             fg="white"
         )
@@ -31,12 +31,12 @@ class SwShScreen(tk.Frame):
         #Text for the user to select a pokemon
         label = tk.Label(
             self,
-            text="Select the pokemon you want to hunt:",
-            font=("Arial", 24),
+            text="Select a Pokémon to Hunt",
+            font=("C052", 20),
             bg="#2b2b2b",
             fg="white"
         )
-        label.place(x=70, y=80)
+        label.pack(pady=20)
 
         self.border_box = tk.Frame(self, bg="black", width=702, height=202, relief="groove")
         self.border_box.pack_propagate(False)
@@ -46,25 +46,25 @@ class SwShScreen(tk.Frame):
         self.color_box.pack_propagate(False)
         self.color_box.place(x = 53, y = 140)
 
-        self.create_pokemon_button(63, 150, self.regirock, "Regirock", boot_screen)
-        self.create_pokemon_button(163, 150, self.regice, "Regice", boot_screen)
-        self.create_pokemon_button(263, 150, self.registeel, "Registeel", boot_screen)
-        self.create_pokemon_button(363, 150, self.regidrago, "Regidrago", boot_screen)
-        self.create_pokemon_button(463, 150, self.regieleki, "Regieleki", boot_screen)
-        self.create_pokemon_button(563, 150, self.virizon, "Virizion", boot_screen)
-        self.create_pokemon_button(663, 150, self.terrakion, "Terrakion", boot_screen)
-        self.create_pokemon_button(63, 250, self.cobalion, "Cobalion", boot_screen)
-        self.create_pokemon_button(163, 250, self.arctovish, "Arctovish", boot_screen)
-        self.create_pokemon_button(263, 250, self.arctozolt, "Arctozolt", boot_screen)
-        self.create_pokemon_button(363, 250, self.dracovish, "Dracovish", boot_screen)
-        self.create_pokemon_button(463, 250, self.dracozolt, "Dracozolt", boot_screen)
+        self.create_pokemon_button(113, 150, self.regirock, "Regirock", boot_screen)
+        self.create_pokemon_button(213, 150, self.regice, "Regice", boot_screen)
+        self.create_pokemon_button(313, 150, self.registeel, "Registeel", boot_screen)
+        self.create_pokemon_button(413, 150, self.regidrago, "Regidrago", boot_screen)
+        self.create_pokemon_button(513, 150, self.regieleki, "Regieleki", boot_screen)
+        self.create_pokemon_button(613, 150, self.virizon, "Virizion", boot_screen)
+        self.create_pokemon_button(113, 150, self.terrakion, "Terrakion", boot_screen)
+        self.create_pokemon_button(213, 250, self.cobalion, "Cobalion", boot_screen)
+        self.create_pokemon_button(313, 250, self.arctovish, "Arctovish", boot_screen)
+        self.create_pokemon_button(413, 250, self.arctozolt, "Arctozolt", boot_screen)
+        self.create_pokemon_button(513, 250, self.dracovish, "Dracovish", boot_screen)
+        self.create_pokemon_button(613, 250, self.dracozolt, "Dracozolt", boot_screen)
 
         #Back button
 
         back_button = tk.Button(
             self,
             text="Back",
-            font=("Arial", 20),
+            font=("C052", 20),
             command=back_callback
         )
         back_button.place(x=340, y=420, width=100, height=40)
@@ -77,6 +77,11 @@ class SwShScreen(tk.Frame):
 
     #Pokemon creation script
     def create_pokemon_button(self, x, y, image, name, boot_screen):
+
+        border_box = tk.Frame(self, bg="black", width=74, height=74, relief="groove")
+        border_box.pack_propagate(False)
+        border_box.place(x = x, y = y)
+
         button = tk.Button(
             self,
             image=image,
@@ -85,12 +90,12 @@ class SwShScreen(tk.Frame):
             command=lambda: self.start_hunt(name, boot_screen),
             borderwidth=0
         )
-        button.place(x=x, y=y, width=74, height=74)
+        button.place(x=x+2, y=y+2, width=70, height=70)
 
         label = tk.Label(
             self,
             text=name,
-            font=("Arial", 10),
+            font=("C052", 10),
             fg="black",
             bg="white"
         )
