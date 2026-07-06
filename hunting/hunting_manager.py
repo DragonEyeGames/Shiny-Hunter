@@ -45,8 +45,11 @@ class HuntingManager:
         restarting = False
         
         if action == "a":
+            print("Pressing A")
             self.controller.press_a()
+            print("Pressed A")
         elif action == "white_a":
+            print("LOOKING FOR WHITE THINGY")
             self.controller.press_a()
             config.status = "Loading Encounter"
             detected, ratio, elapsed = self.wait_for_white_flash(self.cap, config.full, timeout=delay-1)
