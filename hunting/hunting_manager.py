@@ -16,10 +16,10 @@ class HuntingManager:
 
     def run_script(self, script):
         self.script = script
-        print("Starting script loop...")
+        #print("Starting script loop...")
         # Use an outer infinite loop so the script can truly reset from the beginning
         while True:
-            print("Loop")
+           # print("Loop")
             if config.status == "Ending Hunt":
                 return
                 
@@ -29,9 +29,9 @@ class HuntingManager:
                         return
                         
                     current_time = time.time()
-                    print(f"Executing action '{action}' with delay {delay}s")
+                    #print(f"Executing action '{action}' with delay {delay}s")
                     self.execute(action, delay)
-                    print(f"Executed action '{action}' with delay {delay}s")
+                    #print(f"Executed action '{action}' with delay {delay}s")
                     time_to_wait = delay - (time.time() - current_time)
                     if time_to_wait < 0:
                         time_to_wait = 0
@@ -45,18 +45,18 @@ class HuntingManager:
         restarting = False
         
         if action == "a":
-            print("Pressing A")
+            #print("Pressing A")
             self.controller.press_a()
-            print("Pressed A")
+            #print("Pressed A")
         elif action == "white_a":
-            print("LOOKING FOR WHITE THINGY")
+            #print("LOOKING FOR WHITE THINGY")
             self.controller.press_a()
             config.status = "Loading Encounter"
             detected, ratio, elapsed = self.wait_for_white_flash(self.cap, config.full, timeout=delay-1)
             if detected:
                 config.status = "Encounter Loaded"
             else:
-                config.status = "No Encounter Detected, Restarting"
+                config.status = "Encounter Not Loaded"
                 restarting = True
         elif action == "b":
             self.controller.press_b()
@@ -78,12 +78,12 @@ class HuntingManager:
         if restarting:
             if config.status == "Ending Hunt": return
             self.controller.press_home()
-            time.sleep(2.5)
+            time.sleep(2.0)
             
             if config.status == "Ending Hunt": return
             config.status = "Closing + Rebooting Game"
             self.controller.press_x()
-            time.sleep(1.5)
+            time.sleep(1.0)
             
             if config.status == "Ending Hunt": return
             self.controller.press_a()
@@ -94,14 +94,14 @@ class HuntingManager:
             config.hunting_data[config.pokemon_name]['resets'] += 1
             
             self.controller.press_a()
-            time.sleep(1.0)
+            time.sleep(0.5)
             self.controller.press_a()
-            time.sleep(1.0)
+            time.sleep(0.5)
             self.controller.press_a()
-            time.sleep(1.0)
+            time.sleep(1)
             
             config.status = "Waiting for Game to Load"
-            time.sleep(12.5)
+            time.sleep(11.5)
             
             if config.status == "Ending Hunt": return
             self.controller.press_a()
