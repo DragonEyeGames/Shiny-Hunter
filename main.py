@@ -5,6 +5,7 @@ from fr_lg import FrLgScreen
 from lg import LGScreen
 from capture_card import CaptureCard
 import config
+from save_manager import save_data
 
 #Initialize the main window
 root = tk.Tk()
@@ -21,6 +22,10 @@ root.configure(bg="#4a4a4a")
 def open_capture_screen():
     config.start_camera=True
     switch_screen.tkraise()
+
+def close_project():
+    save_data(config.hunting_data)
+    root.destroy()
 
 main_menu = tk.Frame(root, bg="#4a4a4a")
 main_menu.place(x=0, y=0, relwidth=1, relheight=1)
@@ -39,6 +44,9 @@ frlg.place(x=0, y=0, relwidth=1, relheight=1)
 
 lgep = LGScreen(root, lambda: main_menu.tkraise())
 lgep.place(x=0, y=0, relwidth=1, relheight=1)
+
+end_button = tk.Button(root, text="Quit Program", font=("Arial", 16), command=close_project)
+end_button.place(x=300, y=370, width=100, height=40)
 
 main_menu.tkraise()
 
