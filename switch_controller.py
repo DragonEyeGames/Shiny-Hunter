@@ -27,7 +27,9 @@ class SwitchController:
 
 
     def press_a(self):
+        print("A")
         self.press_button(Buttons.A)
+        print("Finished A")
 
     def press_b(self):
         self.press_button(Buttons.B)
