@@ -1,3 +1,5 @@
+import threading
+
 pokemon_name="(loading)"
 game_name="(loading)"
 start_camera=False
@@ -9,6 +11,9 @@ hunting_data = { "Registeel": {"resets": 0, "time_spent": 0.000}, "(loading)": {
 
 current_reset_time=0.000
 last_reset_time=0.000
+
+cap = None
+cap_lock = threading.Lock()
 
 roi = {
     "x": 0.8703125,

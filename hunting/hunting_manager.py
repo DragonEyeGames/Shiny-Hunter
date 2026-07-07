@@ -12,9 +12,8 @@ class RestartScriptException(Exception):
     pass
 
 class HuntingManager:
-    def __init__(self, controller, cap):
+    def __init__(self, controller):
         self.controller = controller
-        self.cap = cap
         self.script = []
         self.frame_count=0
 
@@ -46,7 +45,7 @@ class HuntingManager:
         elif action == "white_a": 
             self.controller.press_a() 
             config.status = "Checking Encounter" 
-            detected, ratio, elapsed = self.wait_for_white_flash(self.cap, config.full, timeout=delay-1) 
+            detected, ratio, elapsed = self.wait_for_white_flash(config.cap, config.full, timeout=delay-1) 
             
             if detected: 
                 config.status = "Encounter Loaded" 
@@ -70,7 +69,7 @@ class HuntingManager:
             save_data(config.hunting_data) 
             config.status = "Searching" 
             
-            detected, ratio, elapsed = self.wait_for_white_flash(self.cap, config.roi, timeout=0.8) 
+            detected, ratio, elapsed = self.wait_for_white_flash(config.cap, config.roi, timeout=0.8) 
             if detected: 
                 config.status = "Not Shiny, Restarting" 
                 military_time = datetime.now().strftime("%H:%M") 
@@ -88,11 +87,11 @@ class HuntingManager:
                 config.status = "Shiny Detected!" 
                 military_time = datetime.now().strftime("%H:%M") 
                 send_shiny_notification("Shiny Detected!", f"@everyone Shiny Detected in {config.hunting_data[config.pokemon_name]['resets']} Resets! Timestamp: {military_time}.", 14406663) 
-                while config.status == "Shiny Detected!": 
+                while True: # config.status == "Shiny Detected!": 
                     time.sleep(1.0) 
-                if(config.status== "False Positive"):
-                    self.trigger_soft_reset()
-                    raise RestartScriptException() 
+                #if(config.status== "False Positive"):
+                   # self.trigger_soft_reset()
+                   # raise RestartScriptException() 
 
     def find_home(self):
         self.home = False 
@@ -101,7 +100,7 @@ class HuntingManager:
             self.controller.press_home() 
             if config.status == "Ending Hunt": return 
             config.status = "Looking for Home" 
-            detected, ratio, elapsed = self.wait_for_white_flash(self.cap, config.home, timeout=3, brightness_threshold=230, white_percentage=.99) 
+            detected, ratio, elapsed = self.wait_for_white_flash(config.cap, config.home, timeout=3, brightness_threshold=230, white_percentage=.99) 
             if config.status == "Ending Hunt": return 
             if not detected: 
                 config.status = "Home Not Found" 
@@ -119,7 +118,7 @@ class HuntingManager:
             self.controller.press_a() 
             if config.status == "Ending Hunt": return 
             config.status = "Finding Loader" 
-            detected, ratio, elapsed = self.wait_for_black_flash(self.cap, config.load, timeout=3) 
+            detected, ratio, elapsed = self.wait_for_black_flash(config.cap, config.load, timeout=3) 
             if config.status == "Ending Hunt": return 
             if not detected: 
                 config.status = "No Loading Screen" 

@@ -19,7 +19,6 @@ class CaptureCard(tk.Frame):
         self.callback=back_callback
 
         self.frame_count = 0
-        self.cap = None
         self.camera_started=False
 
         self.start_time = time.time()
@@ -73,6 +72,7 @@ class CaptureCard(tk.Frame):
 
         self.label.lift()
         self.update_frame()
+        self.last_good_frame=time.time()
 
     def pokemon_names(self, pokemon_name):
         if(pokemon_name=="Registeel"):
@@ -87,7 +87,7 @@ class CaptureCard(tk.Frame):
             self.controller.connect()
             self.start_time = time.time()
             config.status="Initializing Hunt"
-            hunting_manager = hm.HuntingManager(self.controller, self.cap)
+            hunting_manager = hm.HuntingManager(self.controller)
             self.controller.press_home()
             time.sleep(1.5)
             self.controller.press_a()
@@ -102,27 +102,24 @@ class CaptureCard(tk.Frame):
 
     def start_camera(self):
         if not self.camera_started:
-            self.cap = cv2.VideoCapture(0)
+            self.last_good_frame = time.time()
+            config.cap = cv2.VideoCapture(0)
 
-            #Make sure the card works.
-            if not self.cap or not self.cap.isOpened():
+            if not config.cap or not config.cap.isOpened():
                 config.status = "Finding Capture Card"
                 print("[ERROR] Capture card index 0 failed to open.")
-                
-                # Clean up the bad object so it doesn't cause loop errors
-                if self.cap:
-                    self.cap.release()
-                self.cap = None
-                return  # HALT execution here. Do not start the controller.
+                if config.cap:
+                    config.cap.release()
+                config.cap = None
+                return
 
-            config.status="Booted up Screen"
-            self.camera_started=True
-            self.start_controller()
+            config.status = "Booted up Screen"
+            self.camera_started = True
 
     def stop_camera(self):
         if self.camera_started:
-            self.cap.release()
-            self.cap = None
+            config.cap.release()
+            config.cap = None
             self.camera_started=False
             config.start_camera=False
             self.remove_controller()
@@ -146,11 +143,12 @@ class CaptureCard(tk.Frame):
             self.reset_time_label.configure(text=f"Average Time/Reset: {(config.hunting_data[config.pokemon_name]['time_spent']-config.current_reset_time)/config.hunting_data[config.pokemon_name]['resets']:.3f}")
         if config.start_camera and not self.camera_started:
             self.start_camera()
+            self.start_controller()
         if self.camera_started:
             self.frame_count+=1
             if self.frame_count % 2 == 0:
                 try:
-                    ret, frame = self.cap.read()
+                    ret, frame = config.cap.read()
                     if ret and frame is not None:
                         width = 300
                         height = 180
@@ -165,6 +163,23 @@ class CaptureCard(tk.Frame):
 
                         self.label.imgtk = imgtk
                         self.label.configure(image=imgtk)
+
+                    if not ret:
+                        if time.time() - self.last_good_frame > 5:
+                            print("Capture stalled, reconnecting...")
+                            config.status="Reconnecting Cap Card"
+                            if config.cap:
+                                config.cap.release()
+                            config.cap = None
+                            self.camera_started = False   # <-- required so start_camera() actually runs
+                            time.sleep(1)
+                            config.status="Removed Old Card"
+                            self.start_camera()
+                            config.status="Added New Card"
+                            self.last_good_frame = time.time()
+                    else:
+                        self.last_good_frame = time.time()
+
                 except cv2.error as e:
                     print(f"Skipping corrupt frame: {e}")
 
@@ -172,8 +187,8 @@ class CaptureCard(tk.Frame):
         self.after(16, self.update_frame)
 
     def release(self):
-        if self.cap and self.cap.isOpened():
-            self.cap.release()
+        if config.cap and config.cap.isOpened():
+            config.cap.release()
 
     def convert_seconds(self, total_seconds):
              # Using local variables instead of self.
