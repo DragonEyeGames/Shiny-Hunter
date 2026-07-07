@@ -19,43 +19,43 @@ class SwitchController:
         self.connected = True
         print("Controller connected!")
 
-def press_button(self, button, hold_time=0.05, timeout=0.5, max_retries=3):
-    if not self.connected or self.controller_index is None:
-        print("Controller not connected!")
-        return False
+    def press_button(self, button, hold_time=0.05, timeout=0.5, max_retries=3):
+        if not self.connected or self.controller_index is None:
+            print("Controller not connected!")
+            return False
 
-    executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
+        executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
 
-    try:
-        for attempt in range(1, max_retries + 1):
-            print(f"push (attempt {attempt})")
+        try:
+            for attempt in range(1, max_retries + 1):
+                print(f"push (attempt {attempt})")
 
-            future = executor.submit(
-                self.nx.press_buttons,
-                self.controller_index,
-                [button],
-                down=hold_time
-            )
+                future = executor.submit(
+                    self.nx.press_buttons,
+                    self.controller_index,
+                    [button],
+                    down=hold_time
+                )
 
-            try:
-                future.result(timeout=timeout)
-                print("release")
-                return True
+                try:
+                    future.result(timeout=timeout)
+                    print("release")
+                    return True
 
-            except concurrent.futures.TimeoutError:
-                print(f"Timed out after {timeout}s, retrying...")
+                except concurrent.futures.TimeoutError:
+                    print(f"Timed out after {timeout}s, retrying...")
 
-                # Don't wait for the stuck thread.
-                executor.shutdown(wait=False, cancel_futures=True)
+                    # Don't wait for the stuck thread.
+                    executor.shutdown(wait=False, cancel_futures=True)
 
-                # Start a fresh worker for the next attempt.
-                executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
+                    # Start a fresh worker for the next attempt.
+                    executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
 
-        print(f"Failed to press {button} after {max_retries} attempts")
-        return False
+            print(f"Failed to press {button} after {max_retries} attempts")
+            return False
 
-    finally:
-        executor.shutdown(wait=False, cancel_futures=True)
+        finally:
+            executor.shutdown(wait=False, cancel_futures=True)
 
 
     def press_a(self):
