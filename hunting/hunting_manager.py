@@ -91,7 +91,7 @@ class HuntingManager:
                 restarting = True
             else:
                 config.status = "Shiny Detected!"
-                send_rich_embed(f"Shiny Detected in {config.hunting_data[config.pokemon_name]['resets']} Resets!", 14406663)
+                send_rich_embed(f"Shiny Detected!", "@everyone Shiny Detected in {config.hunting_data[config.pokemon_name]['resets']} Resets!", 14406663)
                 while config.status == "Shiny Detected!":
                     time.sleep(1.0) 
 

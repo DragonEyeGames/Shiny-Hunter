@@ -21,5 +21,4 @@ def send_rich_embed(title, description, color=3447003):
     }
     requests.post(WEBHOOK_URL, json=payload)
 
-send_discord_update("Not shiny, restarting...")
-send_rich_embed("Shiny Found!", "Detected after 907 resets and 4 hours.", color=15158332)
+send_discord_update("Restarting Hunt")
