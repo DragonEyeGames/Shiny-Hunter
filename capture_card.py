@@ -132,7 +132,7 @@ class CaptureCard(tk.Frame):
             self.frame_count+=1
             if self.frame_count % 2 == 0:
                 try:
-                    ret, frame = cap.read()
+                    ret, frame = self.cap.read()
                 except cv2.error as e:
                     print(f"Skipping corrupt frame: {e}")
                     self.after(16, self.update_frame)
