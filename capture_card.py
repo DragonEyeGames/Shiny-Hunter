@@ -133,25 +133,23 @@ class CaptureCard(tk.Frame):
             if self.frame_count % 2 == 0:
                 try:
                     ret, frame = self.cap.read()
+                    if not (ret or frame is None):
+                        width = 300
+                        height = 180
+
+                        if width > 1 and height > 1:
+                            frame = cv2.resize(frame, (width, height))
+
+                        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+                        img = Image.fromarray(frame)
+                        imgtk = ImageTk.PhotoImage(img)
+
+                        self.label.imgtk = imgtk
+                        self.label.configure(image=imgtk)
                 except cv2.error as e:
                     print(f"Skipping corrupt frame: {e}")
-                    self.after(16, self.update_frame)
-                    return 
 
-                if not ret or frame is None:
-                    width = 300
-                    height = 180
-
-                    if width > 1 and height > 1:
-                        frame = cv2.resize(frame, (width, height))
-
-                    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-
-                    img = Image.fromarray(frame)
-                    imgtk = ImageTk.PhotoImage(img)
-
-                    self.label.imgtk = imgtk
-                    self.label.configure(image=imgtk)
 
         self.after(16, self.update_frame)
 
