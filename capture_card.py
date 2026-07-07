@@ -62,7 +62,7 @@ class CaptureCard(tk.Frame):
         self.time_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text=f"Last Reset Time: {config.last_reset_time:.3f}")
         self.time_label.place(x=340, y=250)
 
-        self.reset_time_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text=f"Average Time/Reset: {config.hunting_data[config.pokemon_name]['time_spent']/config.hunting_data[config.pokemon_name]['resets']:.3f}")
+        self.reset_time_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text="Average Time/Reset: Loading")
         self.reset_time_label.place(x=340, y=280)
 
         config.hunting_data = load_data(config.hunting_data)
@@ -129,7 +129,8 @@ class CaptureCard(tk.Frame):
         self.status_label.configure(text=f"Status: {config.status}")
         self.spent_label.configure(text=f"Time Spent: {self.convert_seconds(int(config.hunting_data[config.pokemon_name]['time_spent']))}")
         self.time_label.configure(text=f"Last Reset Time: {config.last_reset_time:.3f}")
-        self.reset_time_label.configure(text=f"Average Time/Reset: {config.hunting_data[config.pokemon_name]['time_spent']/config.hunting_data[config.pokemon_name]['resets']:.3f}")
+        if(config.hunting_data[config.pokemon_name]['resets']!=0):
+            self.reset_time_label.configure(text=f"Average Time/Reset: {config.hunting_data[config.pokemon_name]['time_spent']/config.hunting_data[config.pokemon_name]['resets']:.3f}")
         if config.start_camera and not self.camera_started:
             self.start_camera()
         if self.camera_started:
