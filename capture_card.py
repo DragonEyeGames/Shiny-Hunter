@@ -5,7 +5,11 @@ import config
 from switch_controller import SwitchController
 import threading
 import time
+
+#Hunting imports
 from hunting.sw_sh_registeel import commands as registeel_commands
+from hunting.sw_sh_regirock import commands as regirock_commands
+
 import hunting.hunting_manager as hm
 from save_manager import save_data, load_data
 
@@ -69,6 +73,12 @@ class CaptureCard(tk.Frame):
         self.label.lift()
         self.update_frame()
 
+    def pokemon_names(self, pokemon_name):
+        if(pokemon_name=="Registeel"):
+            return registeel_commands
+        elif(pokemon_name=="Regirock"):
+            return regirock_commands
+
     def start_controller(self):
          def run():
             config.status="Pairing with Switch"
@@ -82,7 +92,7 @@ class CaptureCard(tk.Frame):
             self.controller.press_a()
             time.sleep(1.5)
             config.status="Hunting"
-            hunting_manager.run_script(registeel_commands)
+            hunting_manager.run_script(self.pokemon_names(config.pokemon_name))
 
          threading.Thread(target=run, daemon=True).start()
 
