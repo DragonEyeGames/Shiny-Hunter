@@ -4,7 +4,7 @@ import cv2
 import numpy as np 
 import threading 
 from save_manager import save_data
-from discord_webhook import send_discord_update, send_rich_embed
+from discord_webhook import send_discord_update, send_shiny_notification
 from datetime import datetime
 
 # Create a custom exception to cleanly break out of nested execution loops
@@ -103,7 +103,7 @@ class HuntingManager:
             else: 
                 config.status = "Shiny Detected!" 
                 military_time = datetime.now().strftime("%H:%M") 
-                send_rich_embed("Shiny Detected!", f"@everyone Shiny Detected in {config.hunting_data[config.pokemon_name]['resets']} Resets! Timestamp: {military_time}.", 14406663) 
+                send_shiny_notification("Shiny Detected!", f"@everyone Shiny Detected in {config.hunting_data[config.pokemon_name]['resets']} Resets! Timestamp: {military_time}.", 14406663) 
                 while config.status == "Shiny Detected!": 
                     time.sleep(1.0) 
                 if(config.status== "False Positive"):
