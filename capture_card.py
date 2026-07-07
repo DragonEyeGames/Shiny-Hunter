@@ -51,7 +51,7 @@ class CaptureCard(tk.Frame):
         config.status="Idle"
 
         self.status_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 20), text=f"Status: {config.status}")
-        self.status_label.place(x=340, y=165)
+        self.status_label.place(x=340, y=155)
 
         self.resets_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 18), text=f"Resets: {config.hunting_data[config.pokemon_name]['resets']}")
         self.resets_label.place(x=340, y=190)
@@ -130,7 +130,7 @@ class CaptureCard(tk.Frame):
         self.spent_label.configure(text=f"Time Spent: {self.convert_seconds(int(config.hunting_data[config.pokemon_name]['time_spent']))}")
         self.time_label.configure(text=f"Last Reset Time: {config.last_reset_time:.3f}")
         if(config.hunting_data[config.pokemon_name]['resets']!=0):
-            self.reset_time_label.configure(text=f"Average Time/Reset: {config.hunting_data[config.pokemon_name]['time_spent']/config.hunting_data[config.pokemon_name]['resets']:.3f}")
+            self.reset_time_label.configure(text=f"Average Time/Reset: {(config.hunting_data[config.pokemon_name]['time_spent']-config.current_reset_time)/config.hunting_data[config.pokemon_name]['resets']:.3f}")
         if config.start_camera and not self.camera_started:
             self.start_camera()
         if self.camera_started:
