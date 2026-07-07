@@ -16,6 +16,7 @@ class HuntingManager:
         self.controller = controller
         self.cap = cap
         self.script = []
+        self.frame_count=0
 
     def run_script(self, script): 
         self.script = script 
@@ -104,7 +105,7 @@ class HuntingManager:
                     self.trigger_soft_reset()
                     raise RestartScriptException() 
 
-    def trigger_soft_reset(self):
+    def find_home(self):
         self.home = False 
         while not self.home: 
             if config.status == "Ending Hunt": return 
@@ -120,6 +121,31 @@ class HuntingManager:
                 config.status = "Home Found" 
                 self.home = True 
                 time.sleep(.2) 
+
+    def find_loader(self):
+        self.load = False 
+        attempts=0
+        while not self.load and attempts<3: 
+            if config.status == "Ending Hunt": return 
+            self.controller.press_a() 
+            if config.status == "Ending Hunt": return 
+            config.status = "Finding Loader" 
+            detected, ratio, elapsed = self.wait_for_black_flash(self.cap, config.load, timeout=3) 
+            if config.status == "Ending Hunt": return 
+            if not detected: 
+                config.status = "No Loading Screen" 
+            else: 
+                config.status = "Loading Screen Found" 
+                self.load = True 
+            attempts+=1
+            time.sleep(1)
+        if attempts>=3: #Couldn't find load menu in reasonable time
+            self.find_home() #Assume we didn't make it home
+            self.find_loader() #Try to find home again
+
+    def trigger_soft_reset(self):
+
+        self.find_home()
                 
         if config.status == "Ending Hunt": return 
         config.status = "Rebooting Game" 
@@ -135,20 +161,7 @@ class HuntingManager:
         self.controller.press_a() 
         time.sleep(1) 
         
-        self.load = False 
-        while not self.load: 
-            if config.status == "Ending Hunt": return 
-            self.controller.press_a() 
-            if config.status == "Ending Hunt": return 
-            config.status = "Finding Loader" 
-            detected, ratio, elapsed = self.wait_for_black_flash(self.cap, config.load, timeout=3) 
-            if config.status == "Ending Hunt": return 
-            if not detected: 
-                config.status = "No Loading Screen" 
-            else: 
-                config.status = "Loading Screen Found" 
-                self.load = True 
-            time.sleep(1) 
+        self.find_loader()
             
         if config.status == "Ending Hunt": return 
         config.status = "Loading Game" 
@@ -184,6 +197,9 @@ class HuntingManager:
         start_time = time.time()
         last_ratio = 0.0
         while time.time() - start_time < timeout:
+            self.frame_count+=1
+            if self.frame_count % 2 != 0:
+                continue #Skipping every other frame to save resources
             try:
                 ret, frame = cap.read()
             except cv2.error as e:
@@ -210,6 +226,9 @@ class HuntingManager:
         start_time = time.time()
         last_ratio = 0.0
         while time.time() - start_time < timeout:
+            self.frame_count+=1
+            if self.frame_count % 2 != 0:
+                continue #Skipping every other frame to save resources
             try:
                 ret, frame = cap.read()
             except cv2.error as e:
