@@ -55,8 +55,13 @@ class HuntingManager:
                 # Recovery attempts
                 self.controller.press_a() 
                 time.sleep(0.1) 
+                config.status = "Recovering Encounter" 
                 self.controller.press_a() 
                 time.sleep(0.1) 
+                self.controller.press_a() 
+                time.sleep(0.1) 
+                self.controller.press_a() 
+                time.sleep(0.1)
                 self.controller.press_a() 
                 time.sleep(0.1) 
                 self.controller.press_a() 
