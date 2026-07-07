@@ -35,4 +35,4 @@ def send_failure_notification(title, description, color=3447003):
     }
     requests.post(ERROR_URL, json=payload)
 
-send_discord_update("Restarting Hunt")
+#send_discord_update("Restarting Hunt")
