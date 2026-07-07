@@ -19,25 +19,43 @@ class SwitchController:
         self.connected = True
         print("Controller connected!")
 
-    def press_button(self, button, hold_time=0.05, timeout=0.5, max_retries=3):
-        if not self.connected or self.controller_index is None:
-            print("Controller not connected!")
-            return
+def press_button(self, button, hold_time=0.05, timeout=0.5, max_retries=3):
+    if not self.connected or self.controller_index is None:
+        print("Controller not connected!")
+        return False
 
+    executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
+
+    try:
         for attempt in range(1, max_retries + 1):
             print(f"push (attempt {attempt})")
 
-            with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
-                future = executor.submit(self.nx.press_buttons, self.controller_index, [button], down=hold_time)
-                try:
-                    future.result(timeout=timeout)
-                    print("release")
-                    return True
-                except concurrent.futures.TimeoutError:
-                    print(f"Timed out after {timeout}s, retrying...")
+            future = executor.submit(
+                self.nx.press_buttons,
+                self.controller_index,
+                [button],
+                down=hold_time
+            )
+
+            try:
+                future.result(timeout=timeout)
+                print("release")
+                return True
+
+            except concurrent.futures.TimeoutError:
+                print(f"Timed out after {timeout}s, retrying...")
+
+                # Don't wait for the stuck thread.
+                executor.shutdown(wait=False, cancel_futures=True)
+
+                # Start a fresh worker for the next attempt.
+                executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
 
         print(f"Failed to press {button} after {max_retries} attempts")
         return False
+
+    finally:
+        executor.shutdown(wait=False, cancel_futures=True)
 
 
     def press_a(self):
