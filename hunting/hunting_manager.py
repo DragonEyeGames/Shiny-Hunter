@@ -74,8 +74,14 @@ class HuntingManager:
             if detected: 
                 config.status = "Not Shiny, Restarting" 
                 military_time = datetime.now().strftime("%H:%M") 
-                send_discord_update(f"Not Shiny. Currently at {config.hunting_data[config.pokemon_name]['resets']} Resets. Timestamp: {military_time}.") 
-                #Restart the script
+
+                #Send discord notification as a seperate thread. It seems to be blocking things right now.
+                threading.Thread(
+                    target=send_discord_update,
+                    args=(f"Not Shiny. Currently at {config.hunting_data[config.pokemon_name]['resets']} Resets. Timestamp: {military_time}.",),
+                    daemon=True
+                ).start()
+
                 self.trigger_soft_reset()
                 raise RestartScriptException() 
             else: 
