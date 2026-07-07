@@ -13,7 +13,11 @@ root.title("Shiny Hunter")
 root.geometry("800x480")
 
 root.attributes('-fullscreen', True)
-root.bind('<Escape>', lambda e: root.attributes('-fullscreen', False))
+
+def toggle_fullscreen(event=None):
+    root.attributes("-fullscreen", not root.attributes("-fullscreen"))
+
+root.bind("<Escape>", toggle_fullscreen)
 
 root.configure(bg="#2b2b2b")
 

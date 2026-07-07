@@ -3,6 +3,7 @@ import config
 import cv2 
 import numpy as np 
 import threading 
+from save_manager import save_data
 
 # Create a custom exception to cleanly break out of nested execution loops
 class RestartScriptException(Exception):
@@ -56,8 +57,21 @@ class HuntingManager:
             if detected:
                 config.status = "Encounter Loaded"
             else:
-                config.status = "Encounter Not Loaded"
-                restarting = True
+                config.status = "Encounter Not Loaded" #We didn't find it. So save time, we will try to recover it.
+                self.controller.press_a()
+                time.sleep(0.1)
+                self.controller.press_a()
+                time.sleep(0.1)
+                self.controller.press_a()
+                time.sleep(0.1)
+                self.controller.press_a()
+                time.sleep(0.1)
+                detected, ratio, elapsed = self.wait_for_white_flash(self.cap, config.full, timeout=delay-1)
+                if(detected):
+                    config.status="Encounter Loaded"
+                else:
+                    config.status="Restarting Encounter"
+                    restarting = True
         elif action == "b":
             self.controller.press_b()
         elif action == "left_up":
@@ -65,6 +79,10 @@ class HuntingManager:
         elif action == "left_left":
             self.controller.left_left()
         elif action == "search":
+            config.hunting_data[config.pokemon_name]['resets'] += 1
+            config.last_reset_time = config.current_reset_time
+            config.current_reset_time = 0
+            save_data(config.hunting_data)
             config.status = "Searching"
             detected, ratio, elapsed = self.wait_for_white_flash(self.cap, config.roi, timeout=0.5)
             if detected:
@@ -82,7 +100,7 @@ class HuntingManager:
                 self.controller.press_home()
                 if config.status == "Ending Hunt": return
                 config.status="Looking for Home"
-                detected, ratio, elapsed = self.wait_for_white_flash(self.cap, config.home, timeout=3, brightness_threshold=225)
+                detected, ratio, elapsed = self.wait_for_white_flash(self.cap, config.home, timeout=3, brightness_threshold=230, white_percentage = .99)
                 if config.status == "Ending Hunt": return
                 if(not detected):
                     config.status="Home Not Found"
@@ -101,10 +119,6 @@ class HuntingManager:
             if config.status == "Ending Hunt": return
             self.controller.press_a()
             time.sleep(1.0)
-            
-            config.last_reset_time = config.current_reset_time
-            config.current_reset_time = 0
-            config.hunting_data[config.pokemon_name]['resets'] += 1
             
             self.controller.press_a()
             time.sleep(0.5)
