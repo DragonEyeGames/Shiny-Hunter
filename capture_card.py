@@ -131,8 +131,14 @@ class CaptureCard(tk.Frame):
         if self.camera_started:
             self.frame_count+=1
             if self.frame_count % 2 == 0:
-                ret, frame = self.cap.read()
-                if ret:
+                try:
+                    ret, frame = cap.read()
+                except cv2.error as e:
+                    print(f"Skipping corrupt frame: {e}")
+                    self.after(16, self.update_frame)
+                    return 
+
+                if not ret or frame is None:
                     width = 300
                     height = 180
 

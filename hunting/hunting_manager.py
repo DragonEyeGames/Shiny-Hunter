@@ -187,7 +187,7 @@ class HuntingManager:
             try:
                 ret, frame = cap.read()
             except cv2.error as e:
-                # corrupt/truncated JPEG frame from the capture card - skip it, don't crash
+                print("Skipping corrupt frame")
                 continue
 
             if not ret or frame is None:
@@ -210,8 +210,13 @@ class HuntingManager:
         start_time = time.time()
         last_ratio = 0.0
         while time.time() - start_time < timeout:
-            ret, frame = cap.read()
-            if not ret:
+            try:
+                ret, frame = cap.read()
+            except cv2.error as e:
+                print("Skipping corrupt frame")
+                continue
+
+            if not ret or frame is None:
                 continue
             x, y, w, h = self.get_roi_pixels(frame, roi)
             roi_crop = frame[y:y+h, x:x+w]
