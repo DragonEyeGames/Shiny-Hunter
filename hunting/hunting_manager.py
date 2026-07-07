@@ -51,7 +51,7 @@ class HuntingManager:
         elif action == "white_a":
             #print("LOOKING FOR WHITE THINGY")
             self.controller.press_a()
-            config.status = "Loading Encounter"
+            config.status = "Checking Encounter"
             detected, ratio, elapsed = self.wait_for_white_flash(self.cap, config.full, timeout=delay-1)
             if detected:
                 config.status = "Encounter Loaded"
@@ -81,20 +81,20 @@ class HuntingManager:
                 if config.status == "Ending Hunt": return
                 self.controller.press_home()
                 if config.status == "Ending Hunt": return
-                config.status="Looking for Home Screen"
+                config.status="Looking for Home"
                 detected, ratio, elapsed = self.wait_for_white_flash(self.cap, config.home, timeout=3, brightness_threshold=225)
                 if config.status == "Ending Hunt": return
                 if(not detected):
-                    config.status="Home Screen Not Found"
+                    config.status="Home Not Found"
                     time.sleep(.2)
                 else:
-                    config.status="Home Screen Found"
+                    config.status="Home Found"
                     self.home=True
 
             time.sleep(.2)
             
             if config.status == "Ending Hunt": return
-            config.status = "Closing + Rebooting Game"
+            config.status = "Rebooting Game"
             self.controller.press_x()
             time.sleep(1.0)
             
@@ -119,21 +119,24 @@ class HuntingManager:
                 if config.status == "Ending Hunt": return
                 self.controller.press_a()
                 if config.status == "Ending Hunt": return
-                config.status="Looking for Loading Screen"
+                config.status="Finding Loader"
                 detected, ratio, elapsed = self.wait_for_black_flash(self.cap, config.load, timeout=3)
                 if config.status == "Ending Hunt": return
                 if(not detected):
-                    config.status="Loading Screen Not Found"
+                    config.status="No Loading Screen"
                 else:
                     config.status="Loading Screen Found"
                     self.load=True
-            time.sleep(10)
+            time.sleep(1)
+            if config.status == "Ending Hunt": return
+            config.status="Loading Game"
+            time.sleep(9)
             
             if config.status == "Ending Hunt": return
             self.controller.press_a()
             time.sleep(3.5)
             
-            config.status = "Hunting"
+            config.status = "Starting Encounter"
             
             # Instead of calling self.run_script inside here, raise the exception
             raise RestartScriptException()
