@@ -133,7 +133,7 @@ class CaptureCard(tk.Frame):
             if self.frame_count % 2 == 0:
                 try:
                     ret, frame = self.cap.read()
-                    if not (ret or frame is None):
+                    if ret and frame is not None:
                         width = 300
                         height = 180
 
