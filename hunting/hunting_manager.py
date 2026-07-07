@@ -4,7 +4,7 @@ import cv2
 import numpy as np 
 import threading 
 from save_manager import save_data
-
+from discord_webhook import send_discord_update, send_rich_embed
 # Create a custom exception to cleanly break out of nested execution loops
 class RestartScriptException(Exception):
     pass
@@ -87,9 +87,11 @@ class HuntingManager:
             detected, ratio, elapsed = self.wait_for_white_flash(self.cap, config.roi, timeout=0.5)
             if detected:
                 config.status = "Not Shiny, Restarting"
+                send_discord_update(f"Not Shiny. Currently at {config.hunting_data[config.pokemon_name]['resets']} Resets.")
                 restarting = True
             else:
                 config.status = "Shiny Detected!"
+                send_rich_embed(f"Shiny Detected in {config.hunting_data[config.pokemon_name]['resets']} Resets!", 14406663)
                 while config.status == "Shiny Detected!":
                     time.sleep(1.0) 
 
