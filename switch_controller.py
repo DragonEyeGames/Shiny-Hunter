@@ -1,6 +1,8 @@
 from nxbt import Nxbt, PRO_CONTROLLER, Buttons, Sticks
 import time
 import concurrent.futures
+import config
+from discord_webhook import send_rich_embed
 
 class SwitchController:
     def __init__(self):
@@ -19,7 +21,7 @@ class SwitchController:
         self.connected = True
         print("Controller connected!")
 
-    def press_button(self, button, hold_time=0.05, timeout=0.5, max_retries=3):
+    def press_button(self, button, hold_time=0.05, timeout=0.5, max_retries=2):
         if not self.connected or self.controller_index is None:
             print("Controller not connected!")
             return False
@@ -28,7 +30,7 @@ class SwitchController:
 
         try:
             for attempt in range(1, max_retries + 1):
-                print(f"push (attempt {attempt})")
+                #print(f"push (attempt {attempt})")
 
                 future = executor.submit(
                     self.nx.press_buttons,
@@ -39,7 +41,7 @@ class SwitchController:
 
                 try:
                     future.result(timeout=timeout)
-                    print("release")
+                    #print("release")
                     return True
 
                 except concurrent.futures.TimeoutError:
@@ -52,6 +54,8 @@ class SwitchController:
                     executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
 
             print(f"Failed to press {button} after {max_retries} attempts")
+            config.status="Ending Hunt"
+            send_rich_embed("Help Needed!", "@everyone Failed to Push Buttons! NXBT Controller Restart Required!", 13701636 )
             return False
 
         finally:
