@@ -141,12 +141,10 @@ class HuntingManager:
             time.sleep(1)
         if attempts>=3: #Couldn't find load menu in reasonable time
             self.find_home() #Assume we didn't make it home
+            self.reboot_game() # Kill the game
             self.find_loader() #Try to find home again
 
-    def trigger_soft_reset(self):
-
-        self.find_home()
-                
+    def reboot_game(self):
         if config.status == "Ending Hunt": return 
         config.status = "Rebooting Game" 
         self.controller.press_x() 
@@ -160,6 +158,12 @@ class HuntingManager:
         time.sleep(0.5) 
         self.controller.press_a() 
         time.sleep(1) 
+
+    def trigger_soft_reset(self):
+
+        self.find_home()
+                
+        self.reboot_game()
         
         self.find_loader()
             
