@@ -50,31 +50,9 @@ class HuntingManager:
             
             if detected: 
                 config.status = "Encounter Loaded" 
-            else: 
-                config.status = "Encounter Not Loaded" 
-                # Recovery attempts
-                self.controller.press_a() 
-                time.sleep(0.1) 
-                config.status = "Recovering Encounter" 
-                self.controller.press_a() 
-                time.sleep(0.1) 
-                self.controller.press_a() 
-                time.sleep(0.1) 
-                self.controller.press_a() 
-                time.sleep(0.1)
-                self.controller.press_a() 
-                time.sleep(0.1) 
-                self.controller.press_a() 
-                time.sleep(0.1) 
-                
-                detected, ratio, elapsed = self.wait_for_white_flash(self.cap, config.full, timeout=delay-1) 
-                if detected: 
-                    config.status = "Encounter Loaded" 
-                else: 
-                    config.status = "Restarting Encounter" 
-                    #Super fried. Retry
-                    self.trigger_soft_reset() 
-                    raise RestartScriptException() 
+            else: #I attempted adding in recovery steps, but the timings would be too innacurate. This is the way
+               self.trigger_soft_reset() 
+               raise RestartScriptException() 
 
         elif action == "b": 
             self.controller.press_b() 
