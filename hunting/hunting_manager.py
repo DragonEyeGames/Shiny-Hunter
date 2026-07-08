@@ -69,7 +69,7 @@ class HuntingManager:
             save_data(config.hunting_data) 
             config.status = "Searching" 
             
-            detected, ratio, elapsed = self.wait_for_white_flash(config.roi, timeout=1) 
+            detected, ratio, elapsed = self.wait_for_white_flash(config.roi, timeout=.8) 
             if detected: 
                 config.status = "Not Shiny, Restarting" 
                 military_time = datetime.now().strftime("%H:%M") 
