@@ -189,6 +189,8 @@ class HuntingManager:
         start_time = time.time()
         last_ratio = 0.0
         while time.time() - start_time < timeout:
+            if(cap==None):
+                continue
             self.frame_count+=1
             if self.frame_count % 2 != 0:
                 continue #Skipping every other frame to save resources
@@ -219,6 +221,8 @@ class HuntingManager:
         last_ratio = 0.0
         while time.time() - start_time < timeout:
             self.frame_count+=1
+            if(cap==None):
+                continue
             if self.frame_count % 2 != 0:
                 continue #Skipping every other frame to save resources
             try:
