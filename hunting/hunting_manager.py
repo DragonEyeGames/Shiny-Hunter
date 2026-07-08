@@ -45,7 +45,7 @@ class HuntingManager:
         elif action == "white_a": 
             self.controller.press_a() 
             config.status = "Checking Encounter" 
-            detected, ratio, elapsed = self.wait_for_white_flash(config.cap, config.full, timeout=delay-1) 
+            detected, ratio, elapsed = self.wait_for_white_flash(config.full, timeout=delay-1) 
             
             if detected: 
                 config.status = "Encounter Loaded" 
@@ -69,7 +69,7 @@ class HuntingManager:
             save_data(config.hunting_data) 
             config.status = "Searching" 
             
-            detected, ratio, elapsed = self.wait_for_white_flash(config.cap, config.roi, timeout=0.8) 
+            detected, ratio, elapsed = self.wait_for_white_flash(config.roi, timeout=1) 
             if detected: 
                 config.status = "Not Shiny, Restarting" 
                 military_time = datetime.now().strftime("%H:%M") 
@@ -100,7 +100,7 @@ class HuntingManager:
             self.controller.press_home() 
             if config.status == "Ending Hunt": return 
             config.status = "Looking for Home" 
-            detected, ratio, elapsed = self.wait_for_white_flash(config.cap, config.home, timeout=3, brightness_threshold=230, white_percentage=.99) 
+            detected, ratio, elapsed = self.wait_for_white_flash(config.home, timeout=3, brightness_threshold=230, white_percentage=.99) 
             if config.status == "Ending Hunt": return 
             if not detected: 
                 config.status = "Home Not Found" 
@@ -118,7 +118,7 @@ class HuntingManager:
             self.controller.press_a() 
             if config.status == "Ending Hunt": return 
             config.status = "Finding Loader" 
-            detected, ratio, elapsed = self.wait_for_black_flash(config.cap, config.load, timeout=3) 
+            detected, ratio, elapsed = self.wait_for_black_flash(config.load, timeout=3) 
             if config.status == "Ending Hunt": return 
             if not detected: 
                 config.status = "No Loading Screen" 
@@ -185,20 +185,28 @@ class HuntingManager:
         ratio = black_pixels / total_pixels
         return ratio >= black_percentage, ratio
 
-    def wait_for_white_flash(self, cap, roi, timeout=0.5, brightness_threshold=240, white_percentage=0.95):
+    def wait_for_white_flash(self, roi, timeout=0.5, brightness_threshold=240, white_percentage=0.95):
         start_time = time.time()
         last_ratio = 0.0
+        cap = config.cap
         while time.time() - start_time < timeout:
             if(cap==None):
                 continue
             self.frame_count+=1
             if self.frame_count % 2 != 0:
                 continue #Skipping every other frame to save resources
-            try:
-                ret, frame = cap.read()
-            except cv2.error as e:
-                print("Skipping corrupt frame")
-                continue
+            
+            ret, frame = False, None
+
+            with config.cap_lock:
+                cap = config.cap
+                if cap is not None:
+                    try:
+                        ret, frame = cap.read()
+                    except cv2.error:
+                        ret, frame = False, None
+                else:
+                    ret, frame = False, None
 
             if not ret or frame is None:
                 continue
@@ -216,23 +224,32 @@ class HuntingManager:
         print(f"No white flash detected in {elapsed:.3f}s (last ratio: {last_ratio:.2%})")
         return False, last_ratio, elapsed
 
-    def wait_for_black_flash(self, cap, roi, timeout=0.5, darkness_threshold=10, black_percentage=0.95):
+    def wait_for_black_flash(self, roi, timeout=0.5, darkness_threshold=10, black_percentage=0.95):
         start_time = time.time()
         last_ratio = 0.0
+        cap = config.cap
         while time.time() - start_time < timeout:
             self.frame_count+=1
             if(cap==None):
                 continue
             if self.frame_count % 2 != 0:
                 continue #Skipping every other frame to save resources
-            try:
-                ret, frame = cap.read()
-            except cv2.error as e:
-                print("Skipping corrupt frame")
-                continue
+            
+            ret, frame = False, None
+
+            with config.cap_lock:
+                cap = config.cap
+                if cap is not None:
+                    try:
+                        ret, frame = cap.read()
+                    except cv2.error:
+                        ret, frame = False, None
+                else:
+                    ret, frame = False, None
 
             if not ret or frame is None:
                 continue
+
             x, y, w, h = self.get_roi_pixels(frame, roi)
             roi_crop = frame[y:y+h, x:x+w]
             is_black, ratio = self.is_roi_mostly_black(roi_crop, darkness_threshold, black_percentage)

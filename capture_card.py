@@ -103,25 +103,28 @@ class CaptureCard(tk.Frame):
     def start_camera(self):
         if not self.camera_started:
             self.last_good_frame = time.time()
-            config.cap = cv2.VideoCapture(0)
-
-            if not config.cap or not config.cap.isOpened():
+            with config.cap_lock:
+                config.cap = cv2.VideoCapture(0)
+                opened = config.cap.isOpened()
+                if not opened:
+                    if config.cap:
+                        config.cap.release()
+                    config.cap = None
+            if not opened:
                 config.status = "Finding Capture Card"
                 print("[ERROR] Capture card index 0 failed to open.")
-                if config.cap:
-                    config.cap.release()
-                config.cap = None
                 return
-
             config.status = "Booted up Screen"
             self.camera_started = True
 
     def stop_camera(self):
         if self.camera_started:
-            config.cap.release()
-            config.cap = None
-            self.camera_started=False
-            config.start_camera=False
+            with config.cap_lock:
+                if config.cap:
+                    config.cap.release()
+                config.cap = None
+            self.camera_started = False
+            config.start_camera = False
             self.remove_controller()
             self.callback()
 
@@ -148,7 +151,16 @@ class CaptureCard(tk.Frame):
             self.frame_count+=1
             if self.frame_count % 2 == 0:
                 try:
-                    ret, frame = config.cap.read()
+                    ret, frame = False, None
+                    with config.cap_lock:
+                        cap = config.cap
+                        if cap is not None:
+                            try:
+                                ret, frame = config.cap.read()
+                            except cv2.error as e:
+                                ret, frame = False, None
+                        else:
+                            ret, frame = False, None
                     if ret and frame is not None:
                         width = 300
                         height = 180
@@ -167,15 +179,14 @@ class CaptureCard(tk.Frame):
                     if not ret:
                         if time.time() - self.last_good_frame > 5:
                             print("Capture stalled, reconnecting...")
-                            config.status="Reconnecting Cap Card"
-                            if config.cap:
-                                config.cap.release()
-                            config.cap = None
-                            self.camera_started = False   # <-- required so start_camera() actually runs
+                            config.status = "Reconnecting Cap Card"
+                            with config.cap_lock:
+                                if config.cap:
+                                    config.cap.release()
+                                config.cap = None
+                            self.camera_started = False
                             time.sleep(1)
-                            config.status="Removed Old Card"
-                            self.start_camera()
-                            config.status="Added New Card"
+                            self.start_camera()  # this itself locks internally now
                             self.last_good_frame = time.time()
                     else:
                         self.last_good_frame = time.time()
@@ -187,8 +198,9 @@ class CaptureCard(tk.Frame):
         self.after(16, self.update_frame)
 
     def release(self):
-        if config.cap and config.cap.isOpened():
-            config.cap.release()
+        with config.cap_lock:
+            if config.cap and config.cap.isOpened():
+                config.cap.release()
 
     def convert_seconds(self, total_seconds):
              # Using local variables instead of self.
