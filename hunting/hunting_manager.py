@@ -77,7 +77,7 @@ class HuntingManager:
                 #Send discord notification as a seperate thread. It seems to be blocking things right now.
                 threading.Thread(
                     target=send_discord_update,
-                    args=(f"Not Shiny. Currently at {config.hunting_data[config.pokemon_name]['resets']} Resets. Timestamp: {military_time}.",),
+                    args=(f"Non-Shiny {config.pokemon_name}. Currently at {config.hunting_data[config.pokemon_name]['resets']} Resets. Timestamp: {military_time}.",),
                     daemon=True
                 ).start()
 
@@ -86,7 +86,7 @@ class HuntingManager:
             else: 
                 config.status = "Shiny Detected!" 
                 military_time = datetime.now().strftime("%H:%M") 
-                send_shiny_notification("Shiny Detected!", f"@everyone Shiny Detected in {config.hunting_data[config.pokemon_name]['resets']} Resets! Timestamp: {military_time}.", 14406663) 
+                send_shiny_notification("Shiny Detected!", f"Shiny {config.pokemon_name} Detected in {config.hunting_data[config.pokemon_name]['resets']} Resets! Timestamp: {military_time}.", 14406663) 
                 while True: # config.status == "Shiny Detected!": 
                     time.sleep(1.0) 
                 #if(config.status== "False Positive"):

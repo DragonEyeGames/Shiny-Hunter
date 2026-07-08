@@ -55,7 +55,7 @@ class SwitchController:
 
             print(f"Failed to press {button} after {max_retries} attempts")
             config.status="Ending Hunt"
-            send_failure_notification("Help Needed!", "@everyone Failed to Push Buttons! NXBT Controller Restart Required!", 13701636 )
+            send_failure_notification("Help Needed!", "Failed to Push Buttons! NXBT Controller Restart Required!", 13701636 )
             return False
 
         finally:
