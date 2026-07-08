@@ -101,21 +101,25 @@ class CaptureCard(tk.Frame):
         self.controller.disconnect()
 
     def start_camera(self):
-        if not self.camera_started:
-            self.last_good_frame = time.time()
-            with config.cap_lock:
-                config.cap = cv2.VideoCapture(0)
-                opened = config.cap.isOpened()
+
+        def run(): #Threading so GUI doesn't freeze up
+            if not self.camera_started:
+                self.last_good_frame = time.time()
+                with config.cap_lock:
+                    config.cap = cv2.VideoCapture(0)
+                    opened = config.cap.isOpened()
+                    if not opened:
+                        if config.cap:
+                            config.cap.release()
+                        config.cap = None
                 if not opened:
-                    if config.cap:
-                        config.cap.release()
-                    config.cap = None
-            if not opened:
-                config.status = "Finding Capture Card"
-                print("[ERROR] Capture card index 0 failed to open.")
-                return
-            config.status = "Booted up Screen"
-            self.camera_started = True
+                    config.status = "Finding Capture Card"
+                    print("[ERROR] Capture card index 0 failed to open.")
+                    return
+                config.status = "Booted up Screen"
+                self.camera_started = True
+
+        threading.Thread(target=run, daemon=True).start()
 
     def stop_camera(self):
         if self.camera_started:
