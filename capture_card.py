@@ -21,6 +21,8 @@ class CaptureCard(tk.Frame):
         self.frame_count = 0
         self.camera_started=False
 
+        self.connecting=False
+
         self.start_time = time.time()
         self.initialize_time = self.start_time
 
@@ -101,9 +103,12 @@ class CaptureCard(tk.Frame):
         self.controller.disconnect()
 
     def start_camera(self):
+        if self.camera_started or self.connecting:
+            return
+        self.connecting = True
 
-        def run(): #Threading so GUI doesn't freeze up
-            if not self.camera_started:
+        def run():
+            try:
                 self.last_good_frame = time.time()
                 with config.cap_lock:
                     config.cap = cv2.VideoCapture(0)
@@ -118,6 +123,8 @@ class CaptureCard(tk.Frame):
                     return
                 config.status = "Booted up Screen"
                 self.camera_started = True
+            finally:
+                self.connecting = False
 
         threading.Thread(target=run, daemon=True).start()
 
