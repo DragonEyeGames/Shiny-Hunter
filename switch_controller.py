@@ -21,7 +21,7 @@ class SwitchController:
         self.connected = True
         print("Controller connected!")
 
-    def press_button(self, button, hold_time=0.05, timeout=0.5, max_retries=2):
+    def press_button(self, button, hold_time=0.05, timeout=1, max_retries=2):
         if not self.connected or self.controller_index is None:
             print("Controller not connected!")
             return False
