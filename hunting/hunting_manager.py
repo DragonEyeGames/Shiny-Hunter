@@ -65,7 +65,7 @@ class HuntingManager:
                 while True:
                     detected, ratio, elapsed = self.wait_for_white_flash(
                         config.full,
-                        timeout=delay - 1
+                        timeout=.2
                     )
 
                     if not detected:
