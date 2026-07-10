@@ -130,7 +130,7 @@ class HuntingManager:
             self.controller.press_home() 
             if config.status == "Ending Hunt": return 
             config.status = "Looking for Home" 
-            detected, ratio, elapsed = self.wait_for_white_flash(config.home, timeout=3, brightness_threshold=230, white_percentage=.99) 
+            detected, ratio, elapsed = self.wait_for_white_flash(config.home, timeout=3, brightness_threshold=230, white_percentage=.95) 
             if config.status == "Ending Hunt": return 
             if not detected: 
                 config.status = "Home Not Found" 
@@ -193,13 +193,13 @@ class HuntingManager:
             
         if config.status == "Ending Hunt": return 
         config.status = "Loading Game" 
-        time.sleep(9) 
+        time.sleep(21) 
+        if config.status == "Ending Hunt": return 
+        self.controller.press_a() 
+        time.sleep(5) 
         if config.status == "Ending Hunt": return 
         self.controller.press_a() 
         time.sleep(.2) 
-        if config.status == "Ending Hunt": return 
-        self.controller.press_a() 
-        time.sleep(3.5) 
         config.status = "Starting Encounter"
 
     def sword_and_shield_reset(self):
