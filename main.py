@@ -40,7 +40,7 @@ switch_screen.place(x=0, y=0, relwidth=1, relheight=1)
 swsh = SwShScreen(root, lambda: main_menu.tkraise(), open_capture_screen)
 swsh.place(x=0, y=0, relwidth=1, relheight=1)
 
-bdsp = BdSpScreen(root, lambda: main_menu.tkraise())
+bdsp = BdSpScreen(root, lambda: main_menu.tkraise(), open_capture_screen)
 bdsp.place(x=0, y=0, relwidth=1, relheight=1)
 
 frlg = FrLgScreen(root, lambda: main_menu.tkraise())
