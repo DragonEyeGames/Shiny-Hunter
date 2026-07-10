@@ -61,23 +61,23 @@ class HuntingManager:
             
             if detected: 
                 config.status = "Encounter Loading" 
+                 #If we properly found it, we will wait for it to go away.
+                while True:
+                    detected, ratio, elapsed = self.wait_for_white_flash(
+                        config.full,
+                        timeout=delay - 1
+                    )
+
+                    if detected:
+                        config.status = "Encounter Loading"
+                        break
+
+                    # Recovery
+                config.status="Encounter Loaded"
             else:
                self.trigger_soft_reset() 
                raise RestartScriptException() 
 
-            #If we properly found it, we will wait for it to go away.
-            while True:
-                detected, ratio, elapsed = self.wait_for_white_flash(
-                    config.full,
-                    timeout=delay - 1
-                )
-
-                if detected:
-                    config.status = "Encounter Loading"
-                    break
-
-                # Recovery
-            config.status="Encounter Loaded"
 
 
         elif action == "b": 
