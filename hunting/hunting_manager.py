@@ -193,7 +193,7 @@ class HuntingManager:
             
         if config.status == "Ending Hunt": return 
         config.status = "Loading Game" 
-        time.sleep(21) 
+        time.sleep(20) 
         if config.status == "Ending Hunt": return 
         self.controller.press_a() 
         time.sleep(.2) 
@@ -207,7 +207,7 @@ class HuntingManager:
         self.controller.press_a() 
         time.sleep(.2) 
         self.controller.press_a() 
-        time.sleep(5) 
+        time.sleep(10) 
         config.status = "Starting Encounter"
 
     def sword_and_shield_reset(self):
