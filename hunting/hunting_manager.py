@@ -68,7 +68,7 @@ class HuntingManager:
                         timeout=delay - 1
                     )
 
-                    if detected:
+                    if not detected:
                         config.status = "Encounter Loading"
                         break
 
