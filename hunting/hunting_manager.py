@@ -53,6 +53,33 @@ class HuntingManager:
                self.trigger_soft_reset() 
                raise RestartScriptException() 
 
+        elif action == "bd_sp_a": 
+            self.controller.press_a() 
+            config.status = "Checking Encounter" 
+            time.sleep(1.5)
+            detected, ratio, elapsed = self.wait_for_white_flash(config.full, timeout=delay-1) 
+            
+            if detected: 
+                config.status = "Encounter Loading" 
+            else:
+               self.trigger_soft_reset() 
+               raise RestartScriptException() 
+
+            #If we properly found it, we will wait for it to go away.
+            while True:
+                detected, ratio, elapsed = self.wait_for_white_flash(
+                    config.full,
+                    timeout=delay - 1
+                )
+
+                if detected:
+                    config.status = "Encounter Loading"
+                    break
+
+                # Recovery
+            config.status="Encounter Loaded"
+
+
         elif action == "b": 
             self.controller.press_b() 
             
