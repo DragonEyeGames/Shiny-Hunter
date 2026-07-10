@@ -160,6 +160,9 @@ class HuntingManager:
         time.sleep(9) 
         if config.status == "Ending Hunt": return 
         self.controller.press_a() 
+        time.sleep(.2) 
+        if config.status == "Ending Hunt": return 
+        self.controller.press_a() 
         time.sleep(3.5) 
         config.status = "Starting Encounter"
 
