@@ -324,9 +324,11 @@ class HuntingManager:
         last_ratio = 0.0
         cap = config.cap
 
-        # HSV red range
-        lower_red = np.array([0, 120, 170])
-        upper_red = np.array([5, 180, 230])
+        lower_red1 = np.array([0, 80, 50])
+        upper_red1 = np.array([10, 255, 255])
+
+        lower_red2 = np.array([170, 80, 50])
+        upper_red2 = np.array([180, 255, 255])
 
         while time.time() - start_time < timeout:
             self.frame_count += 1
@@ -358,7 +360,10 @@ class HuntingManager:
             hsv = cv2.cvtColor(roi_crop, cv2.COLOR_BGR2HSV)
 
             # Create red mask
-            red_mask = cv2.inRange(hsv, lower_red, upper_red)
+            mask1 = cv2.inRange(hsv, lower_red1, upper_red1)
+            mask2 = cv2.inRange(hsv, lower_red2, upper_red2)
+
+            red_mask = mask1 | mask2
 
             # Calculate percentage of red pixels
             total_pixels = roi_crop.shape[0] * roi_crop.shape[1]
