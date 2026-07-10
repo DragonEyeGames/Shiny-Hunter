@@ -198,8 +198,12 @@ class HuntingManager:
         self.controller.press_a() 
         time.sleep(.2) 
         self.controller.press_a() 
+        time.sleep(.2) 
+        self.controller.press_a() 
         time.sleep(5) 
         if config.status == "Ending Hunt": return 
+        self.controller.press_a() 
+        time.sleep(.2) 
         self.controller.press_a() 
         time.sleep(.2) 
         self.controller.press_a() 
