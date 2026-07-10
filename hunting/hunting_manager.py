@@ -148,7 +148,31 @@ class HuntingManager:
         time.sleep(1) 
 
     def trigger_soft_reset(self):
+        if config.game_name=="Sword and Shield":
+            self.sword_and_shield_reset()
+        if config.game_name=="Brilliant Diamond and Shining Pearl":
+            self.bd_sp_reset()
 
+
+    def bd_sp_reset(self):
+        self.find_home()
+                
+        self.reboot_game()
+        
+        self.find_loader()
+            
+        if config.status == "Ending Hunt": return 
+        config.status = "Loading Game" 
+        time.sleep(9) 
+        if config.status == "Ending Hunt": return 
+        self.controller.press_a() 
+        time.sleep(.2) 
+        if config.status == "Ending Hunt": return 
+        self.controller.press_a() 
+        time.sleep(3.5) 
+        config.status = "Starting Encounter"
+
+    def sword_and_shield_reset(self):
         self.find_home()
                 
         self.reboot_game()

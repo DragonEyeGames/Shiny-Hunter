@@ -1,113 +1,97 @@
 import tkinter as tk
+import config
 
 class BdSpScreen(tk.Frame):
-    def __init__(self, parent, back_callback):
-        super().__init__(parent, bg="#4a4a4a")
+    def __init__(self, parent, back_callback, boot_screen):
+        super().__init__(parent, bg="#2b2b2b")
 
-        self.turtwig= tk.PhotoImage(file="images/turtwig.png")
-        self.chimchar= tk.PhotoImage(file="images/chimchar.png")
-        self.piplup= tk.PhotoImage(file="images/piplup.png")
-        self.uxie= tk.PhotoImage(file="images/uxie.png")
-        self.mesprit= tk.PhotoImage(file="images/mesprit.png")
-        self.azelf= tk.PhotoImage(file="images/azelf.png")
-        self.dialga= tk.PhotoImage(file="images/dialga.png")
-        self.palkia= tk.PhotoImage(file="images/palkia.png")
-        self.giratina= tk.PhotoImage(file="images/giratina.png")
-        self.regigigas= tk.PhotoImage(file="images/regigigas.png")
-        self.heatran= tk.PhotoImage(file="images/heatran.png")
-        self.regirock = tk.PhotoImage(file="images/regirock.png")
-        self.regice = tk.PhotoImage(file="images/regice.png")
-        self.registeel = tk.PhotoImage(file="images/registeel.png")
-        self.raikou= tk.PhotoImage(file="images/raikou.png")
-        self.entei= tk.PhotoImage(file="images/entei.png")
-        self.suicune= tk.PhotoImage(file="images/suicune.png")
-        self.articuno= tk.PhotoImage(file="images/articuno.png")
-        self.zapdos= tk.PhotoImage(file="images/zapdos.png")
-        self.moltres= tk.PhotoImage(file="images/moltres.png")
-        self.ho_oh= tk.PhotoImage(file="images/ho-oh.png")
-        self.lugia=tk.PhotoImage(file="images/lugia.png")
-        self.latios=tk.PhotoImage(file="images/latios.png")
-        self.latias=tk.PhotoImage(file="images/latias.png")
-        self.groudon=tk.PhotoImage(file="images/groudon.png")
-        self.kyogre=tk.PhotoImage(file="images/kyogre.png")
-        self.rayquaza=tk.PhotoImage(file="images/rayquaza.png")
-        self.mewtwo=tk.PhotoImage(file="images/mewtwo.png")
+        self.giratina = tk.PhotoImage(file="images/giratina.png")
 
         #Game title
         label = tk.Label(
             self,
-            text="Brilliant Diamon and Shining Pearl",
-            font=("Arial", 30),
-            bg="#4a4a4a"
+            text="Brilliant Diamond and Shining Pearl",
+            font=("Droid Sans Fallback", 35),
+            bg="#2b2b2b",
+            fg="white"
         )
         label.pack(pady=20)
 
         #Text for the user to select a pokemon
         label = tk.Label(
             self,
-            text="Select the pokemon you want to hunt:",
-            font=("Arial", 24),
-            bg="#4a4a4a"
+            text="Select a Pokemon to Hunt",
+            font=("C052", 20),
+            bg="#2b2b2b",
+            fg="white"
         )
-        label.place(x=70, y=80)
+        label.pack()
 
-        self.create_pokemon_button(50, 150, self.regirock, "Regirock")
-        self.create_pokemon_button(150, 150, self.regice, "Regice")
-        self.create_pokemon_button(250, 150, self.registeel, "Registeel")
-        self.create_pokemon_button(350, 150, self.turtwig, "Turtwig")
-        self.create_pokemon_button(450, 150, self.chimchar, "Chimchar")
-        self.create_pokemon_button(550, 150, self.piplup, "Piplup")
-        self.create_pokemon_button(50, 250, self.uxie, "Uxie")
-        self.create_pokemon_button(150, 250, self.mesprit, "Mesprit")
-        self.create_pokemon_button(250, 250, self.azelf, "Azelf")
-        self.create_pokemon_button(350, 250, self.dialga, "Dialga")
-        self.create_pokemon_button(450, 250, self.palkia, "Palkia")
-        self.create_pokemon_button(550, 250, self.giratina, "Giratina")
-        self.create_pokemon_button(650, 250, self.regigigas, "Regigigas")
-        self.create_pokemon_button(50, 350, self.heatran, "Heatran")
-        self.create_pokemon_button(150, 350, self.raikou, "Raikou")
-        self.create_pokemon_button(250, 350, self.entei, "Entei")
-        self.create_pokemon_button(350, 350, self.suicune, "Suicune")
-        self.create_pokemon_button(450, 350, self.articuno, "Articuno")
-        self.create_pokemon_button(550, 350, self.zapdos, "Zapdos")
-        self.create_pokemon_button(650, 350, self.moltres, "Moltres")
-        self.create_pokemon_button(50, 450, self.ho_oh, "Ho-oh")
-        self.create_pokemon_button(150, 450, self.lugia, "Lugia")
-        self.create_pokemon_button(250, 450, self.latios, "Latios")
-        self.create_pokemon_button(350, 450, self.latias, "Latias")
-        self.create_pokemon_button(450, 450, self.groudon, "Groudon")
-        self.create_pokemon_button(550, 450, self.kyogre, "Kyogre")
-        self.create_pokemon_button(650, 450, self.rayquaza, "Rayquaza")
-        self.create_pokemon_button(50, 550, self.mewtwo, "Mewtwo")
+        self.border_box = tk.Frame(self, bg="black", width=602, height=202, relief="groove")
+        self.border_box.pack_propagate(False)
+        self.border_box.place(x = 99, y = 166)
+
+        self.color_box = tk.Frame(self, bg="#5e5e5e", width=594, height=194, relief="groove")
+        self.color_box.pack_propagate(False)
+        self.color_box.place(x = 103, y = 170)
+
+        self.create_pokemon_button(113, 180, self.giratina, "Giratina", boot_screen)
+        #self.create_pokemon_button(213, 180, self.regice, "Regice", boot_screen)
+        #self.create_pokemon_button(313, 180, self.registeel, "Registeel", boot_screen)
+        #self.create_pokemon_button(413, 180, self.regidrago, "Regidrago", boot_screen)
+        #self.create_pokemon_button(513, 180, self.regieleki, "Regieleki", boot_screen)
+        #self.create_pokemon_button(613, 180, self.virizon, "Virizion", boot_screen)
+        #self.create_pokemon_button(113, 280, self.terrakion, "Terrakion", boot_screen)
+        #self.create_pokemon_button(213, 280, self.cobalion, "Cobalion", boot_screen)
+        #self.create_pokemon_button(313, 280, self.arctovish, "Arctovish", boot_screen)
+        #self.create_pokemon_button(413, 280, self.arctozolt, "Arctozolt", boot_screen)
+        #self.create_pokemon_button(513, 280, self.dracovish, "Dracovish", boot_screen)
+        #self.create_pokemon_button(613, 280, self.dracozolt, "Dracozolt", boot_screen)
 
         #Back button
 
         back_button = tk.Button(
             self,
             text="Back",
-            font=("Arial", 20),
+            font=("C052", 20),
             command=back_callback
         )
         back_button.place(x=340, y=420, width=100, height=40)
 
+    #Initializes the hunt
+    def start_hunt(self, pokemon_name, boot_screen):
+        config.game_name="Brilliant Diamond and Shining Pearl"
+        config.pokemon_name = pokemon_name
+        boot_screen()
+
     #Pokemon creation script
-    def create_pokemon_button(self, x, y, image, name):
+    def create_pokemon_button(self, x, y, image, name, boot_screen):
+
+        border_box = tk.Frame(self, bg="black", width=74, height=74, relief="groove")
+        border_box.pack_propagate(False)
+        border_box.place(x = x, y = y)
+
         button = tk.Button(
             self,
             image=image,
             bg="#8f8d8d",
             activebackground="#bfbfbf",
+            command=lambda: self.start_hunt(name, boot_screen),
             borderwidth=0
         )
-        button.place(x=x, y=y, width=74, height=74)
+        button.place(x=x+2, y=y+2, width=70, height=70)
+
+        border_box = tk.Frame(self, bg="black", width=66, height=16, relief="groove")
+        border_box.pack_propagate(False)
+        border_box.place(x = x+4, y = y+54)
 
         label = tk.Label(
             self,
             text=name,
-            font=("Arial", 10),
+            font=("C052", 9),
             fg="black",
             bg="white"
         )
-        label.place(x=x+4, y=y + 54, width=66, height=16)
+        label.place(x=x+5, y=y + 55, width=64, height=14)
 
         return button, label
