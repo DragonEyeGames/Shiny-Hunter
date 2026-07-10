@@ -1,33 +1,18 @@
+from switch_controller import SwitchController
 import time
-import nxbt
 
-def test_background_reconnect():
-    nx = nxbt.Nxbt()
-    print("Initializing testing controller...")
-    
-    index = nx.create_controller(nxbt.PRO_CONTROLLER)
+sc = SwitchController()
+sc.connect()
 
-    nx.wait_for_connection(index)
-    
-    time.sleep(2)
-    
-    nx.press_buttons(index, [nxbt.Buttons.DPAD_DOWN])
-    time.sleep(2)
-    
-    nx.disconnect(index)
-    
-    time.sleep(3)
-    
-    print("!!! ATTEMPTING BACKGROUND RECONNECT !!!")
-    nx.connect(index)
-    
-    time.sleep(3)
+print("Connected. Cached address:", sc.switch_address)
+input("Press Enter to simulate a dead connection and trigger reconnect()...")
 
-    print("Testing post-reconnect input: Pressing UP...")
-    nx.press_buttons(index, [nxbt.Buttons.DPAD_UP])
-    time.sleep(2)
-    
-    print("Test complete. If the cursor moved UP, background recovery works!")
+# Simulate what press_button sees after repeated timeouts
+sc.connected = False
 
-if __name__ == "__main__":
-    test_background_reconnect()
+success = sc.reconnect()
+print("Reconnect result:", success)
+
+if success:
+    sc.press_a()
+    print("Sent a test press after reconnecting.")

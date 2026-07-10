@@ -4,22 +4,92 @@ import concurrent.futures
 import config
 from discord_webhook import send_failure_notification
 
+
 class SwitchController:
     def __init__(self):
         self.nx = Nxbt()
         self.controller_index = None
         self.connected = False
+        self.switch_address = None  # cached MAC of the paired Switch, once known
 
-    def connect(self):
+    def connect(self, timeout=60):
+        """Initial connect. Requires the Switch to be on the
+        'Change Grip/Order' screen the first time you ever pair
+        with this host machine."""
         if self.connected:
             print("Already connected.")
-            return
+            return True
+
         print("Creating controller...")
         self.controller_index = self.nx.create_controller(PRO_CONTROLLER)
         print("Put Switch in 'Change Grip/Order' screen now...")
-        self.nx.wait_for_connection(self.controller_index)
+
+        try:
+            self.nx.wait_for_connection(self.controller_index)
+        except Exception as e:
+            print(f"Failed to connect: {e}")
+            self.connected = False
+            return False
+
         self.connected = True
         print("Controller connected!")
+
+        # Cache the Switch's address so future reconnects skip the menu
+        try:
+            addrs = self.nx.get_switch_addresses()
+            if addrs:
+                self.switch_address = addrs[0]
+        except Exception as e:
+            print(f"Could not cache switch address: {e}")
+
+        return True
+
+    def reconnect(self, timeout=60, attempts=3):
+        """Recover a dead connection without needing the Switch menu,
+        by reconnecting to the cached MAC address. Falls back to a
+        fresh connect() (which needs the menu) if no address is cached
+        or all reconnect attempts fail."""
+        print("Attempting to reconnect...")
+
+        # Tear down the old controller if it still exists
+        if self.controller_index is not None:
+            try:
+                self.nx.remove_controller(self.controller_index)
+            except Exception as e:
+                print(f"Error removing stale controller: {e}")
+
+        self.controller_index = None
+        self.connected = False
+
+        if self.switch_address is None:
+            print("No cached Switch address, falling back to full connect() "
+                  "(menu required).")
+            return self.connect(timeout=timeout)
+
+        for attempt in range(1, attempts + 1):
+            print(f"Reconnect attempt {attempt}/{attempts}...")
+            try:
+                self.controller_index = self.nx.create_controller(
+                    PRO_CONTROLLER,
+                    reconnect_address=[self.switch_address]
+                )
+                self.nx.wait_for_connection(self.controller_index)
+                self.connected = True
+                print("Reconnected successfully!")
+                return True
+            except Exception as e:
+                print(f"Reconnect attempt {attempt} failed: {e}")
+                if self.controller_index is not None:
+                    try:
+                        self.nx.remove_controller(self.controller_index)
+                    except Exception:
+                        pass
+                    self.controller_index = None
+                time.sleep(5)
+
+        print("All reconnect attempts failed.")
+        self.connected = False
+        return False
 
     def press_button(self, button, hold_time=0.05, timeout=1, max_retries=2):
         if not self.connected or self.controller_index is None:
@@ -27,40 +97,41 @@ class SwitchController:
             return False
 
         executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
-
         try:
             for attempt in range(1, max_retries + 1):
-                #print(f"push (attempt {attempt})")
-
                 future = executor.submit(
                     self.nx.press_buttons,
                     self.controller_index,
                     [button],
                     down=hold_time
                 )
-
                 try:
                     future.result(timeout=timeout)
-                    #print("release")
                     return True
-
                 except concurrent.futures.TimeoutError:
                     print(f"Timed out after {timeout}s, retrying...")
-
                     # Don't wait for the stuck thread.
                     executor.shutdown(wait=False, cancel_futures=True)
-
                     # Start a fresh worker for the next attempt.
                     executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
 
             print(f"Failed to press {button} after {max_retries} attempts")
-            config.status="Ending Hunt"
-            send_failure_notification("Help Needed!", "Failed to Push Buttons! NXBT Controller Restart Required!", 13701636 )
-            return False
+            config.status = "Attempting Reconnect"
 
+            if self.reconnect():
+                config.status = "Hunting"
+                print("Recovered from failure, resuming hunt.")
+                return False  # caller decides whether to retry the press
+            else:
+                config.status = "Ending Hunt"
+                send_failure_notification(
+                    "Help Needed!",
+                    "Failed to Push Buttons! NXBT Controller Restart Required!",
+                    13701636
+                )
+                return False
         finally:
             executor.shutdown(wait=False, cancel_futures=True)
-
 
     def press_a(self):
         self.press_button(Buttons.A)
