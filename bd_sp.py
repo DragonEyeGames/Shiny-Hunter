@@ -11,7 +11,7 @@ class BdSpScreen(tk.Frame):
         label = tk.Label(
             self,
             text="Brilliant Diamond and Shining Pearl",
-            font=("Droid Sans Fallback", 35),
+            font=("Droid Sans Fallback", 30),
             bg="#2b2b2b",
             fg="white"
         )
