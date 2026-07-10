@@ -62,7 +62,7 @@ class HuntingManager:
         elif action == "left_left": 
             self.controller.left_left() 
             
-        elif action == "search": 
+        elif action == "sw-sh_search": 
             config.hunting_data[config.pokemon_name]['resets'] += 1 
             config.last_reset_time = config.current_reset_time 
             config.current_reset_time = 0 
@@ -70,6 +70,36 @@ class HuntingManager:
             config.status = "Searching" 
             
             detected, ratio, elapsed = self.wait_for_white_flash(config.roi, timeout=.8) 
+            if detected: 
+                config.status = "Not Shiny, Restarting" 
+                military_time = datetime.now().strftime("%H:%M") 
+
+                #Send discord notification as a seperate thread. It seems to be blocking things right now.
+                threading.Thread(
+                    target=send_discord_update,
+                    args=(f"Non-Shiny {config.pokemon_name}. Currently at {config.hunting_data[config.pokemon_name]['resets']} Resets. Timestamp: {military_time}.",),
+                    daemon=True
+                ).start()
+
+                self.trigger_soft_reset()
+                raise RestartScriptException() 
+            else: 
+                config.status = "Shiny Detected!" 
+                military_time = datetime.now().strftime("%H:%M") 
+                send_shiny_notification("Shiny Detected!", f"Shiny {config.pokemon_name} Detected in {config.hunting_data[config.pokemon_name]['resets']} Resets! Timestamp: {military_time}.", 14406663) 
+                while True: # config.status == "Shiny Detected!": 
+                    time.sleep(1.0) 
+                #if(config.status== "False Positive"):
+                   # self.trigger_soft_reset()
+                   # raise RestartScriptException() 
+        elif action == "bd-sp_search": 
+            config.hunting_data[config.pokemon_name]['resets'] += 1 
+            config.last_reset_time = config.current_reset_time 
+            config.current_reset_time = 0 
+            save_data(config.hunting_data) 
+            config.status = "Searching" 
+            
+            detected, ratio, elapsed = self.wait_for_red(config.bd_sp_menu, timeout=.8) 
             if detected: 
                 config.status = "Not Shiny, Restarting" 
                 military_time = datetime.now().strftime("%H:%M") 
@@ -287,4 +317,61 @@ class HuntingManager:
                 return True, ratio, elapsed
         elapsed = time.time() - start_time
         print(f"No white black detected in {elapsed:.3f}s (last ratio: {last_ratio:.2%})")
+        return False, last_ratio, elapsed
+
+    def wait_for_red(self, roi, timeout=0.5, red_percentage=0.90):
+        start_time = time.time()
+        last_ratio = 0.0
+        cap = config.cap
+
+        # HSV red range
+        lower_red = np.array([0, 120, 170])
+        upper_red = np.array([5, 180, 230])
+
+        while time.time() - start_time < timeout:
+            self.frame_count += 1
+
+            if cap is None:
+                continue
+
+            # Skip every other frame
+            if self.frame_count % 2 != 0:
+                continue
+
+            ret, frame = False, None
+
+            with config.cap_lock:
+                cap = config.cap
+                if cap is not None:
+                    try:
+                        ret, frame = cap.read()
+                    except cv2.error:
+                        ret, frame = False, None
+
+            if not ret or frame is None:
+                continue
+
+            x, y, w, h = self.get_roi_pixels(frame, roi)
+            roi_crop = frame[y:y+h, x:x+w]
+
+            # Convert BGR -> HSV
+            hsv = cv2.cvtColor(roi_crop, cv2.COLOR_BGR2HSV)
+
+            # Create red mask
+            red_mask = cv2.inRange(hsv, lower_red, upper_red)
+
+            # Calculate percentage of red pixels
+            total_pixels = roi_crop.shape[0] * roi_crop.shape[1]
+            red_pixels = cv2.countNonZero(red_mask)
+
+            ratio = red_pixels / total_pixels
+            last_ratio = ratio
+
+            if ratio >= red_percentage:
+                elapsed = time.time() - start_time
+                print(f"Red detected! ({ratio:.2%} red) after {elapsed:.3f}s")
+                return True, ratio, elapsed
+
+        elapsed = time.time() - start_time
+        print(f"No red detected in {elapsed:.3f}s (last ratio: {last_ratio:.2%})")
         return False, last_ratio, elapsed
