@@ -134,7 +134,7 @@ class SwitchController:
             executor.shutdown(wait=False, cancel_futures=True)
 
     def press_a(self):
-        self.press_button(Buttons.A)
+        return self.press_button(Buttons.A)
 
     def press_b(self):
         self.press_button(Buttons.B)
