@@ -49,7 +49,7 @@ class CaptureCard(tk.Frame):
         self.end_button = tk.Button(self, text="End Hunt", font=("C052", 16), command=lambda: end_hunt())
         self.end_button.place(x=295, y=420, width=110, height=40)
 
-        self.hunting = tk.Label(self, bg="#2b2b2b", fg="white", font=("Droid Sans Fallback", 25), text=f"Hunting {config.pokemon_name} in {config.game_name}")
+        self.hunting = tk.Label(self, bg="#2b2b2b", fg="white", font=("Droid Sans Fallback", 30), text=f"Hunting {config.pokemon_name}")#" in {config.game_name}")
         self.hunting.pack(pady=35)
 
         config.status="Idle"
@@ -141,7 +141,7 @@ class CaptureCard(tk.Frame):
             self.start_time=time.time()
         if(config.pokemon_name not in config.hunting_data):
             config.hunting_data[config.pokemon_name] = 0
-        self.hunting.configure(text=f"Hunting {config.pokemon_name} in {config.game_name}")
+        self.hunting.configure(text=f"Hunting {config.pokemon_name}")#" in {config.game_name}")
         self.resets_label.configure(text=f"Resets: {config.hunting_data[config.pokemon_name]['resets']}")
         self.status_label.configure(text=f"Status: {config.status}")
         self.spent_label.configure(text=f"Time Spent: {self.convert_seconds(int(config.hunting_data[config.pokemon_name]['time_spent']))}")
