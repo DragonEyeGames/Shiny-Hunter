@@ -81,6 +81,7 @@ class CaptureCard(tk.Frame):
         elif(pokemon_name=="Regirock"):
             return regirock_commands
         elif(pokemon_name=="Giratina"):
+            print("Working")
             return giratina_commands
 
     def start_controller(self):
