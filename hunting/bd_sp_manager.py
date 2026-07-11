@@ -170,7 +170,7 @@ class HuntingManager:
     def find_loader(self):
         self.load = False 
         attempts=0
-        while not self.load and attempts<3: 
+        while not self.load and attempts<2: 
             if config.status == "Ending Hunt": return 
             self.controller.press_a() 
             if config.status == "Ending Hunt": return 

@@ -1,6 +1,6 @@
 import tkinter as tk
 
-class LGScreen(tk.Frame):
+class LgeScreen(tk.Frame):
     def __init__(self, parent, back_callback):
         super().__init__(parent, bg="#4a4a4a")
 
@@ -9,7 +9,7 @@ class LGScreen(tk.Frame):
         #Game title
         label = tk.Label(
             self,
-            text="Let's go Eevee and Pikachu",
+            text="Pokemon Let's Go Eevee",
             font=("Arial", 30),
             bg="#4a4a4a"
         )

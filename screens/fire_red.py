@@ -1,12 +1,12 @@
 import tkinter as tk
 
-class FrLgScreen(tk.Frame):
+class FrScreen(tk.Frame):
     def __init__(self, parent, back_callback):
         super().__init__(parent, bg="#4a4a4a")
 
         label = tk.Label(
             self,
-            text="Fire Red and Leaf Green",
+            text="Pokemon Fire Red",
             font=("Arial", 30),
             bg="#4a4a4a"
         )
