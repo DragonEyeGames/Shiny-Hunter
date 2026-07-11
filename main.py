@@ -107,14 +107,14 @@ lets_go_eevee_button.place(x=100, y=160, width=100, height=100)
 lets_go_pikachu_button = tk.Button(main_menu, text="Let's Go", bg="#bfbfbf", fg="black", font=("C052", 18), command=on_click_lets_go_pikachu)
 lets_go_pikachu_button.place(x=100, y=310, width=100, height=100)
 
-sword_button = tk.Button(main_menu, text="Sword", bg="#bfbfbf", fg="black", font=("C052", 18), command=on_click_sword)
+sword_button = tk.Button(main_menu, text="SW/SH", bg="#bfbfbf", fg="black", font=("C052", 18), command=on_click_sword)
 sword_button.place(x=250, y=160, width=100, height=100)
 
-shield_button = tk.Button(main_menu, text="Shield", bg="#bfbfbf", fg="black", font=("C052", 18), command=on_click_shield)
+shield_button = tk.Button(main_menu, text="SW/SH", bg="#bfbfbf", fg="black", font=("C052", 18), command=on_click_sword)
 shield_button.place(x=250, y=310, width=100, height=100)
 
-brilliant_diamond_button = tk.Button(main_menu, text="BD/SP", bg="#bfbfbf", fg="black", font=("C052", 18), command=on_click_brilliant_diamond)
-brilliant_diamond_button.place(x=400, y=160, width=100, height=100)
+diamond_pearl_button = tk.Button(main_menu, text="Bd/Sp", bg="#bfbfbf", fg="black", font=("C052", 18), command=on_click_brilliant_diamond)
+diamond_pearl_button.place(x=400, y=160, width=100, height=100)
 
 red_green_button = tk.Button(main_menu, text="Fr/Lg", bg="#bfbfbf", fg="black", font=("C052", 18), command=on_click_fire_red)
 red_green_button.place(x=550, y=160, width=100, height=100)
