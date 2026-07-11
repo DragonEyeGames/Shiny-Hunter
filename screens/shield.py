@@ -1,7 +1,7 @@
 import tkinter as tk
 import config
 
-class SwShScreen(tk.Frame):
+class ShScreen(tk.Frame):
     def __init__(self, parent, back_callback, boot_screen):
         super().__init__(parent, bg="#2b2b2b")
 
