@@ -11,8 +11,7 @@ from hunting.sw_sh_registeel import commands as registeel_commands
 from hunting.sw_sh_regirock import commands as regirock_commands
 from hunting.bd_sp_giratina import commands as giratina_commands
 
-import hunting.sw_sh_manager as sw_sh_hm
-import hunting.bd_sp_manager as bd_sp_hm
+import hunting.hunting_manager as hm
 from save_manager import save_data, load_data
 
 class CaptureCard(tk.Frame):
@@ -50,7 +49,7 @@ class CaptureCard(tk.Frame):
         self.end_button = tk.Button(self, text="End Hunt", font=("C052", 16), command=lambda: end_hunt())
         self.end_button.place(x=295, y=420, width=110, height=40)
 
-        self.hunting = tk.Label(self, bg="#2b2b2b", fg="white", font=("Droid Sans Fallback", 35), text=f"Hunting {config.pokemon_name} in {config.game_name}")
+        self.hunting = tk.Label(self, bg="#2b2b2b", fg="white", font=("Droid Sans Fallback", 35), text=f"Hunting {config.pokemon_name}")#" in {config.game_name}")
         self.hunting.pack(pady=35)
 
         config.status="Idle"
@@ -92,11 +91,7 @@ class CaptureCard(tk.Frame):
             self.controller.connect()
             self.start_time = time.time()
             config.status="Initializing Hunt"
-            hunting_manager=None
-            if("Diamond" in config.game_name or "Pearl" in config.game_name):
-                hunting_manager = bd_sp_hm.HuntingManager(self.controller)
-            if("Sword" in config.game_name or "Shield" in config.game_name):
-                hunting_manager = sw_sh_hm.HuntingManager(self.controller)
+            hunting_manager = hm.HuntingManager(self.controller)
             self.controller.press_home()
             time.sleep(1.5)
             self.controller.press_a()
@@ -146,7 +141,7 @@ class CaptureCard(tk.Frame):
             self.start_time=time.time()
         if(config.pokemon_name not in config.hunting_data):
             config.hunting_data[config.pokemon_name] = 0
-        self.hunting.configure(text=f"Hunting {config.pokemon_name} in {config.game_name}")
+        self.hunting.configure(text=f"Hunting {config.pokemon_name}")#" in {config.game_name}")
         self.resets_label.configure(text=f"Resets: {config.hunting_data[config.pokemon_name]['resets']}")
         self.status_label.configure(text=f"Status: {config.status}")
         self.spent_label.configure(text=f"Time Spent: {self.convert_seconds(int(config.hunting_data[config.pokemon_name]['time_spent']))}")

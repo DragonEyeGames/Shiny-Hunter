@@ -1,17 +1,28 @@
 import tkinter as tk
 import config
 
-class BdScreen(tk.Frame):
+class SwShScreen(tk.Frame):
     def __init__(self, parent, back_callback, boot_screen):
         super().__init__(parent, bg="#2b2b2b")
 
-        self.giratina = tk.PhotoImage(file="images/giratina.png")
+        self.regirock = tk.PhotoImage(file="images/regirock.png")
+        self.regice = tk.PhotoImage(file="images/regice.png")
+        self.registeel = tk.PhotoImage(file="images/registeel.png")
+        self.regidrago = tk.PhotoImage(file="images/regidrago.png")
+        self.regieleki = tk.PhotoImage(file="images/regieleki.png")
+        self.virizon = tk.PhotoImage(file="images/virizion.png")
+        self.terrakion = tk.PhotoImage(file="images/terrakion.png")
+        self.cobalion = tk.PhotoImage(file="images/cobalion.png")
+        self.arctovish= tk.PhotoImage(file="images/arctovish.png")
+        self.arctozolt= tk.PhotoImage(file="images/arctozolt.png")
+        self.dracovish= tk.PhotoImage(file="images/dracovish.png")
+        self.dracozolt= tk.PhotoImage(file="images/dracozolt.png")
 
         #Game title
         label = tk.Label(
             self,
-            text="Pokemon Brilliant Diamond",
-            font=("Droid Sans Fallback", 30),
+            text="Sword and Shield",
+            font=("Droid Sans Fallback", 35),
             bg="#2b2b2b",
             fg="white"
         )
@@ -35,18 +46,18 @@ class BdScreen(tk.Frame):
         self.color_box.pack_propagate(False)
         self.color_box.place(x = 103, y = 170)
 
-        self.create_pokemon_button(113, 180, self.giratina, "Giratina", boot_screen)
-        #self.create_pokemon_button(213, 180, self.regice, "Regice", boot_screen)
-        #self.create_pokemon_button(313, 180, self.registeel, "Registeel", boot_screen)
-        #self.create_pokemon_button(413, 180, self.regidrago, "Regidrago", boot_screen)
-        #self.create_pokemon_button(513, 180, self.regieleki, "Regieleki", boot_screen)
-        #self.create_pokemon_button(613, 180, self.virizon, "Virizion", boot_screen)
-        #self.create_pokemon_button(113, 280, self.terrakion, "Terrakion", boot_screen)
-        #self.create_pokemon_button(213, 280, self.cobalion, "Cobalion", boot_screen)
-        #self.create_pokemon_button(313, 280, self.arctovish, "Arctovish", boot_screen)
-        #self.create_pokemon_button(413, 280, self.arctozolt, "Arctozolt", boot_screen)
-        #self.create_pokemon_button(513, 280, self.dracovish, "Dracovish", boot_screen)
-        #self.create_pokemon_button(613, 280, self.dracozolt, "Dracozolt", boot_screen)
+        self.create_pokemon_button(113, 180, self.regirock, "Regirock", boot_screen)
+        self.create_pokemon_button(213, 180, self.regice, "Regice", boot_screen)
+        self.create_pokemon_button(313, 180, self.registeel, "Registeel", boot_screen)
+        self.create_pokemon_button(413, 180, self.regidrago, "Regidrago", boot_screen)
+        self.create_pokemon_button(513, 180, self.regieleki, "Regieleki", boot_screen)
+        self.create_pokemon_button(613, 180, self.virizon, "Virizion", boot_screen)
+        self.create_pokemon_button(113, 280, self.terrakion, "Terrakion", boot_screen)
+        self.create_pokemon_button(213, 280, self.cobalion, "Cobalion", boot_screen)
+        self.create_pokemon_button(313, 280, self.arctovish, "Arctovish", boot_screen)
+        self.create_pokemon_button(413, 280, self.arctozolt, "Arctozolt", boot_screen)
+        self.create_pokemon_button(513, 280, self.dracovish, "Dracovish", boot_screen)
+        self.create_pokemon_button(613, 280, self.dracozolt, "Dracozolt", boot_screen)
 
         #Back button
 
@@ -60,12 +71,12 @@ class BdScreen(tk.Frame):
 
     #Initializes the hunt
     def start_hunt(self, pokemon_name, boot_screen):
-        config.game_name="Brilliant Diamond"
+        config.game_name="Sword and Shield"
         config.pokemon_name = pokemon_name
         boot_screen()
 
     #Pokemon creation script
-    def create_pokemon_button(self, x, y, image, name, boot_screen, disabled=False):
+    def create_pokemon_button(self, x, y, image, name, boot_screen):
 
         border_box = tk.Frame(self, bg="black", width=74, height=74, relief="groove")
         border_box.pack_propagate(False)
@@ -79,8 +90,6 @@ class BdScreen(tk.Frame):
             command=lambda: self.start_hunt(name, boot_screen),
             borderwidth=0
         )
-        if(disabled):
-            button.config(state=tk.DISABLED)
         button.place(x=x+2, y=y+2, width=70, height=70)
 
         border_box = tk.Frame(self, bg="black", width=66, height=16, relief="groove")
