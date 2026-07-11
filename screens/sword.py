@@ -5,18 +5,18 @@ class SwScreen(tk.Frame):
     def __init__(self, parent, back_callback, boot_screen):
         super().__init__(parent, bg="#2b2b2b")
 
-        self.regirock = tk.PhotoImage(file="pokemon/regirock.png")
-        self.regice = tk.PhotoImage(file="pokemon/regice.png")
-        self.registeel = tk.PhotoImage(file="pokemon/registeel.png")
-        self.regidrago = tk.PhotoImage(file="pokemon/regidrago.png")
-        self.regieleki = tk.PhotoImage(file="pokemon/regieleki.png")
-        self.virizon = tk.PhotoImage(file="pokemon/virizion.png")
-        self.terrakion = tk.PhotoImage(file="pokemon/terrakion.png")
-        self.cobalion = tk.PhotoImage(file="pokemon/cobalion.png")
-        self.arctovish= tk.PhotoImage(file="pokemon/arctovish.png")
-        self.arctozolt= tk.PhotoImage(file="pokemon/arctozolt.png")
-        self.dracovish= tk.PhotoImage(file="pokemon/dracovish.png")
-        self.dracozolt= tk.PhotoImage(file="pokemon/dracozolt.png")
+        self.regirock = tk.PhotoImage(file="images/regirock.png")
+        self.regice = tk.PhotoImage(file="images/regice.png")
+        self.registeel = tk.PhotoImage(file="images/registeel.png")
+        self.regidrago = tk.PhotoImage(file="images/regidrago.png")
+        self.regieleki = tk.PhotoImage(file="images/regieleki.png")
+        self.virizon = tk.PhotoImage(file="images/virizion.png")
+        self.terrakion = tk.PhotoImage(file="images/terrakion.png")
+        self.cobalion = tk.PhotoImage(file="images/cobalion.png")
+        self.arctovish= tk.PhotoImage(file="images/arctovish.png")
+        self.arctozolt= tk.PhotoImage(file="images/arctozolt.png")
+        self.dracovish= tk.PhotoImage(file="images/dracovish.png")
+        self.dracozolt= tk.PhotoImage(file="images/dracozolt.png")
 
         #Game title
         label = tk.Label(
