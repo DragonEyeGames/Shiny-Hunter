@@ -5,7 +5,7 @@ class BdScreen(tk.Frame):
     def __init__(self, parent, back_callback, boot_screen):
         super().__init__(parent, bg="#2b2b2b")
 
-        self.giratina = tk.PhotoImage(file="images/giratina.png")
+        self.giratina = tk.PhotoImage(file="pokemon/giratina.png")
 
         #Game title
         label = tk.Label(
