@@ -21,7 +21,7 @@ class SwScreen(tk.Frame):
         #Game title
         label = tk.Label(
             self,
-            text="Sword and Shield",
+            text="Pokemon Sword",
             font=("Droid Sans Fallback", 35),
             bg="#2b2b2b",
             fg="white"
@@ -71,7 +71,7 @@ class SwScreen(tk.Frame):
 
     #Initializes the hunt
     def start_hunt(self, pokemon_name, boot_screen):
-        config.game_name="Sword and Shield"
+        config.game_name="Sword"
         config.pokemon_name = pokemon_name
         boot_screen()
 

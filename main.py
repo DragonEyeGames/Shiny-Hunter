@@ -110,7 +110,7 @@ sword_button = tk.Button(main_menu, text="Sword", bg="#bfbfbf", fg="black", font
 sword_button.place(x=250, y=160, width=100, height=100)
 
 shield_button = tk.Button(main_menu, text="Shield", bg="#bfbfbf", fg="black", font=("C052", 18), command=on_click_shield)
-shield_button.place(x=250, y=310, width=100, height=100)
+shield_button.place(x=250, y=280, width=100, height=100)
 
 diamond_pearl_button = tk.Button(main_menu, text="Bd/Sp", bg="#bfbfbf", fg="black", font=("C052", 18), command=on_click_brilliant_diamond)
 diamond_pearl_button.place(x=400, y=160, width=100, height=100)

@@ -51,7 +51,7 @@ class CaptureCard(tk.Frame):
         self.end_button = tk.Button(self, text="End Hunt", font=("C052", 16), command=lambda: end_hunt())
         self.end_button.place(x=295, y=420, width=110, height=40)
 
-        self.hunting = tk.Label(self, bg="#2b2b2b", fg="white", font=("Droid Sans Fallback", 35), text=f"Hunting {config.pokemon_name}")#" in {config.game_name}")
+        self.hunting = tk.Label(self, bg="#2b2b2b", fg="white", font=("Droid Sans Fallback", 35), text=f"Hunting {config.pokemon_name} in {config.game_name}")
         self.hunting.pack(pady=35)
 
         config.status="Idle"
@@ -59,10 +59,10 @@ class CaptureCard(tk.Frame):
         self.status_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 20), text=f"Status: {config.status}")
         self.status_label.place(x=340, y=155)
 
-        self.resets_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 18), text=f"Resets: {config.hunting_data[config.pokemon_name]['resets']}")
+        self.resets_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 18), text=f"Resets: {config.hunting_data[config.pokemon_name][config.game_name]['resets']}")
         self.resets_label.place(x=340, y=190)
 
-        self.spent_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text=f"Time Spent: {self.convert_seconds(int(config.hunting_data[config.pokemon_name]['time_spent']))}")
+        self.spent_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text=f"Time Spent: {self.convert_seconds(int(config.hunting_data[config.pokemon_name][config.game_name]['time_spent']))}")
         self.spent_label.place(x=340, y=220)
 
         self.time_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text=f"Last Reset Time: {config.last_reset_time:.3f}")
@@ -71,7 +71,7 @@ class CaptureCard(tk.Frame):
         self.reset_time_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text="Average Time/Reset: Loading")
         self.reset_time_label.place(x=340, y=280)
 
-        config.hunting_data = load_data(config.hunting_data)
+        #config.hunting_data = load_data(config.hunting_data)
 
         self.label.lift()
         self.update_frame()
@@ -85,7 +85,6 @@ class CaptureCard(tk.Frame):
         elif(pokemon_name=="Regidrago"):
             return regidrago_commands
         elif(pokemon_name=="Giratina"):
-            print("Working")
             return giratina_commands
 
     def start_controller(self):
@@ -137,21 +136,17 @@ class CaptureCard(tk.Frame):
             self.callback()
 
     def update_frame(self):
-        if(not config.pokemon_name in config.hunting_data):
-            config.hunting_data[config.pokemon_name]={"resets": 0, "time_spent": 0.000}
         if(self.initialize_time!=self.start_time and config.status!="Shiny Detected!" and config.status != "Ending Hunt"):
-            config.hunting_data[config.pokemon_name]['time_spent']+=(time.time()-self.start_time)
+            config.hunting_data[config.pokemon_name][config.game_name]['time_spent']+=(time.time()-self.start_time)
             config.current_reset_time+=(time.time()-self.start_time)
             self.start_time=time.time()
-        if(config.pokemon_name not in config.hunting_data):
-            config.hunting_data[config.pokemon_name] = 0
-        self.hunting.configure(text=f"Hunting {config.pokemon_name}")#" in {config.game_name}")
-        self.resets_label.configure(text=f"Resets: {config.hunting_data[config.pokemon_name]['resets']}")
+        self.hunting.configure(text=f"Hunting {config.pokemon_name} in {config.game_name}")
+        self.resets_label.configure(text=f"Resets: {config.hunting_data[config.pokemon_name][config.game_name]['resets']}")
         self.status_label.configure(text=f"Status: {config.status}")
-        self.spent_label.configure(text=f"Time Spent: {self.convert_seconds(int(config.hunting_data[config.pokemon_name]['time_spent']))}")
+        self.spent_label.configure(text=f"Time Spent: {self.convert_seconds(int(config.hunting_data[config.pokemon_name][config.game_name]['time_spent']))}")
         self.time_label.configure(text=f"Last Reset Time: {config.last_reset_time:.3f}")
         if(config.hunting_data[config.pokemon_name]['resets']!=0):
-            self.reset_time_label.configure(text=f"Average Time/Reset: {(config.hunting_data[config.pokemon_name]['time_spent']-config.current_reset_time)/config.hunting_data[config.pokemon_name]['resets']:.3f}")
+            self.reset_time_label.configure(text=f"Average Time/Reset: {(config.hunting_data[config.pokemon_name][config.game_name]['time_spent']-config.current_reset_time)/config.hunting_data[config.pokemon_name][config.game_name]['resets']:.3f}")
         if config.start_camera and not self.camera_started:
             self.start_camera()
             self.start_controller()

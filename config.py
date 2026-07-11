@@ -6,7 +6,98 @@ start_camera=False
 
 status="Idle"
 
-hunting_data = { "Registeel": {"resets": 0, "time_spent": 0.000}, "(loading)": {"resets": 0, "time_spent": 0.000} }
+hunting_data = {
+    "Registeel": {
+        "Sword": {
+            "resets": 0,
+            "time_spent": 0.000
+        },
+        "Shield": {
+            "resets": 0,
+            "time_spent": 0.000
+        },
+        "Brilliant Diamond": {
+            "resets": 0,
+            "time_spent": 0.000
+        },
+        "Shining Pearl": {
+            "resets": 0,
+            "time_spent": 0.000
+        }
+    },
+    "Regirock": {
+        "Sword": {
+            "resets": 0,
+            "time_spent": 0.000
+        },
+        "Shield": {
+            "resets": 0,
+            "time_spent": 0.000
+        },
+        "Brilliant Diamond": {
+            "resets": 0,
+            "time_spent": 0.000
+        },
+        "Shining Pearl": {
+            "resets": 0,
+            "time_spent": 0.000
+        }
+    },
+    "Regice": {
+        "Sword": {
+            "resets": 0,
+            "time_spent": 0.000
+        },
+        "Shield": {
+            "resets": 0,
+            "time_spent": 0.000
+        },
+        "Brilliant Diamond": {
+            "resets": 0,
+            "time_spent": 0.000
+        },
+        "Shining Pearl": {
+            "resets": 0,
+            "time_spent": 0.000
+        }
+    },
+    "Regidrago": {
+        "Sword": {
+            "resets": 0,
+            "time_spent": 0.000
+        },
+        "Shield": {
+            "resets": 0,
+            "time_spent": 0.000
+        }
+    },
+    #"Regieleki": {
+     #   "Sword": {
+      #      "resets": 0,
+       #     "time_spent": 0.000
+       # },
+       # "Shield": {
+       #     "resets": 0,
+       #     "time_spent": 0.000
+       # }
+    #},
+    "Giratina": {
+        "Brilliant Diamond": {
+            "resets": 0,
+            "time_spent": 0.000
+        },
+        "Shiing Pearl": {
+            "resets": 0,
+            "time_spent": 0.000
+        }
+    },
+    "(loading)": {
+        "(loading)": {
+            "resets": 0,
+            "time_spent": 0.000
+        }
+    }
+}
 
 
 
