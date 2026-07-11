@@ -71,7 +71,7 @@ class CaptureCard(tk.Frame):
         self.reset_time_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text="Average Time/Reset: Loading")
         self.reset_time_label.place(x=340, y=280)
 
-        #config.hunting_data = load_data(config.hunting_data)
+        config.hunting_data = load_data(config.hunting_data)
 
         self.label.lift()
         self.update_frame()
