@@ -9,6 +9,8 @@ import time
 #Hunting imports
 from hunting.sw_sh_registeel import commands as registeel_commands
 from hunting.sw_sh_regirock import commands as regirock_commands
+from hunting.sw_sh_regidrago import commands as regidrago_commands
+
 from hunting.bd_sp_giratina import commands as giratina_commands
 
 import hunting.hunting_manager as hm
@@ -80,6 +82,8 @@ class CaptureCard(tk.Frame):
             return registeel_commands
         elif(pokemon_name=="Regirock"):
             return regirock_commands
+        elif(pokemon_name=="Regidrago"):
+            return regidrago_commands
         elif(pokemon_name=="Giratina"):
             print("Working")
             return giratina_commands

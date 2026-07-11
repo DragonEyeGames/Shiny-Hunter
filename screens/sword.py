@@ -1,17 +1,28 @@
 import tkinter as tk
 import config
 
-class BdSpScreen(tk.Frame):
+class SwShScreen(tk.Frame):
     def __init__(self, parent, back_callback, boot_screen):
         super().__init__(parent, bg="#2b2b2b")
 
-        self.giratina = tk.PhotoImage(file="images/giratina.png")
+        self.regirock = tk.PhotoImage(file="pokemon/regirock.png")
+        self.regice = tk.PhotoImage(file="pokemon/regice.png")
+        self.registeel = tk.PhotoImage(file="pokemon/registeel.png")
+        self.regidrago = tk.PhotoImage(file="pokemon/regidrago.png")
+        self.regieleki = tk.PhotoImage(file="pokemon/regieleki.png")
+        self.virizon = tk.PhotoImage(file="pokemon/virizion.png")
+        self.terrakion = tk.PhotoImage(file="pokemon/terrakion.png")
+        self.cobalion = tk.PhotoImage(file="pokemon/cobalion.png")
+        self.arctovish= tk.PhotoImage(file="pokemon/arctovish.png")
+        self.arctozolt= tk.PhotoImage(file="pokemon/arctozolt.png")
+        self.dracovish= tk.PhotoImage(file="pokemon/dracovish.png")
+        self.dracozolt= tk.PhotoImage(file="pokemon/dracozolt.png")
 
         #Game title
         label = tk.Label(
             self,
-            text="Brilliant Diamond and Shining Pearl",
-            font=("Droid Sans Fallback", 30),
+            text="Sword and Shield",
+            font=("Droid Sans Fallback", 35),
             bg="#2b2b2b",
             fg="white"
         )
@@ -35,18 +46,18 @@ class BdSpScreen(tk.Frame):
         self.color_box.pack_propagate(False)
         self.color_box.place(x = 103, y = 170)
 
-        self.create_pokemon_button(113, 180, self.giratina, "Giratina", boot_screen)
-        #self.create_pokemon_button(213, 180, self.regice, "Regice", boot_screen)
-        #self.create_pokemon_button(313, 180, self.registeel, "Registeel", boot_screen)
-        #self.create_pokemon_button(413, 180, self.regidrago, "Regidrago", boot_screen)
-        #self.create_pokemon_button(513, 180, self.regieleki, "Regieleki", boot_screen)
-        #self.create_pokemon_button(613, 180, self.virizon, "Virizion", boot_screen)
-        #self.create_pokemon_button(113, 280, self.terrakion, "Terrakion", boot_screen)
-        #self.create_pokemon_button(213, 280, self.cobalion, "Cobalion", boot_screen)
-        #self.create_pokemon_button(313, 280, self.arctovish, "Arctovish", boot_screen)
-        #self.create_pokemon_button(413, 280, self.arctozolt, "Arctozolt", boot_screen)
-        #self.create_pokemon_button(513, 280, self.dracovish, "Dracovish", boot_screen)
-        #self.create_pokemon_button(613, 280, self.dracozolt, "Dracozolt", boot_screen)
+        self.create_pokemon_button(113, 180, self.regirock, "Regirock", boot_screen)
+        self.create_pokemon_button(213, 180, self.regice, "Regice", boot_screen)
+        self.create_pokemon_button(313, 180, self.registeel, "Registeel", boot_screen)
+        self.create_pokemon_button(413, 180, self.regidrago, "Regidrago", boot_screen)
+        self.create_pokemon_button(513, 180, self.regieleki, "Regieleki", boot_screen)
+        self.create_pokemon_button(613, 180, self.virizon, "Virizion", boot_screen)
+        self.create_pokemon_button(113, 280, self.terrakion, "Terrakion", boot_screen)
+        self.create_pokemon_button(213, 280, self.cobalion, "Cobalion", boot_screen)
+        self.create_pokemon_button(313, 280, self.arctovish, "Arctovish", boot_screen)
+        self.create_pokemon_button(413, 280, self.arctozolt, "Arctozolt", boot_screen)
+        self.create_pokemon_button(513, 280, self.dracovish, "Dracovish", boot_screen)
+        self.create_pokemon_button(613, 280, self.dracozolt, "Dracozolt", boot_screen)
 
         #Back button
 
@@ -60,7 +71,7 @@ class BdSpScreen(tk.Frame):
 
     #Initializes the hunt
     def start_hunt(self, pokemon_name, boot_screen):
-        config.game_name="Brilliant Diamond and Shining Pearl"
+        config.game_name="Sword and Shield"
         config.pokemon_name = pokemon_name
         boot_screen()
 
