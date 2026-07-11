@@ -11,7 +11,8 @@ from hunting.sw_sh_registeel import commands as registeel_commands
 from hunting.sw_sh_regirock import commands as regirock_commands
 from hunting.bd_sp_giratina import commands as giratina_commands
 
-import hunting.hunting_manager as hm
+import hunting.sw_sh_manager as sw_sh_hm
+import hunting.bd_sp_manager as bd_sp_hm
 from save_manager import save_data, load_data
 
 class CaptureCard(tk.Frame):
@@ -91,7 +92,11 @@ class CaptureCard(tk.Frame):
             self.controller.connect()
             self.start_time = time.time()
             config.status="Initializing Hunt"
-            hunting_manager = hm.HuntingManager(self.controller)
+            hunting_manager=None
+            if("Diamond" in config.game_name or "Pearl" in config.game_name):
+                hunting_manager = bd_sp_hm.HuntingManager(self.controller)
+            if("Sword" in config.game_name or "Shield" in config.game_name):
+                hunting_manager = sw_sh_hm.HuntingManager(self.controller)
             self.controller.press_home()
             time.sleep(1.5)
             self.controller.press_a()
