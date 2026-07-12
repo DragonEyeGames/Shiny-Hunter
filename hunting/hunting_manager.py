@@ -6,6 +6,7 @@ import threading
 from save_manager import save_data
 from discord_webhook import send_discord_update, send_shiny_notification
 from datetime import datetime
+import traceback
 
 # Create a custom exception to cleanly break out of nested execution loops
 class RestartScriptException(Exception):
@@ -37,6 +38,9 @@ class HuntingManager:
             except RestartScriptException: 
                 print("Restarting script loop from the beginning...") 
                 continue 
+            except Exception as e:
+                traceback.print_exc()
+                raise
 
     def execute(self, action, delay): 
         if action == "a": 
@@ -120,7 +124,7 @@ class HuntingManager:
                    # self.trigger_soft_reset()
                    # raise RestartScriptException() 
         elif action == "bd-sp_search": 
-            config.hunting_data[config.pokemon_name]['resets'] += 1 
+            config.hunting_data[config.pokemon_name][config.game_name]['resets'] += 1 
             config.last_reset_time = config.current_reset_time 
             config.current_reset_time = 0 
             save_data(config.hunting_data) 
