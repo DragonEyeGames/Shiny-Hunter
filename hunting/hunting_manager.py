@@ -17,18 +17,12 @@ class HuntingManager:
         self.controller = controller
         self.script = []
         self.frame_count=0
-        self.running=False
 
     def run_script(self, script): 
         self.script = script 
 
-        print("run_script started", threading.get_ident())
-        if(self.running==True):
-            print("Dupe found!")
-            return
-        self.running=True
         while True: 
-            print("Looping")
+            print("looping")
             if config.status == "Ending Hunt": 
                 return 
             try: 
@@ -216,9 +210,9 @@ class HuntingManager:
         time.sleep(1) 
 
     def trigger_soft_reset(self):
-        if config.game_name=="Sword and Shield":
+        if config.game_name=="Sword" or config.game_name=="Shield":
             self.sword_and_shield_reset()
-        if config.game_name=="Brilliant Diamond and Shining Pearl":
+        if config.game_name=="Brilliant Diamond" or config.game_name=="Shining Pearl":
             self.bd_sp_reset()
 
 
