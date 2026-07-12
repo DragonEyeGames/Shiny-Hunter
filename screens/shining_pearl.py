@@ -10,7 +10,7 @@ class SpScreen(tk.Frame):
         #Game title
         label = tk.Label(
             self,
-            text="Brilliant Diamond and Shining Pearl",
+            text="Pokemon Shining Pearl",
             font=("Droid Sans Fallback", 30),
             bg="#2b2b2b",
             fg="white"
@@ -60,7 +60,7 @@ class SpScreen(tk.Frame):
 
     #Initializes the hunt
     def start_hunt(self, pokemon_name, boot_screen):
-        config.game_name="Brilliant Diamond and Shining Pearl"
+        config.game_name="Shining Pearl"
         config.pokemon_name = pokemon_name
         boot_screen()
 
