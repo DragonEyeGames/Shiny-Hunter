@@ -17,11 +17,18 @@ class HuntingManager:
         self.controller = controller
         self.script = []
         self.frame_count=0
+        self.running=False
 
     def run_script(self, script): 
         self.script = script 
-        
+
+        print("run_script started", threading.get_ident())
+        if(self.running==True):
+            print("Dupe found!")
+            return
+        self.running=True
         while True: 
+            print("Looping")
             if config.status == "Ending Hunt": 
                 return 
             try: 
