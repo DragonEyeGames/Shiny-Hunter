@@ -118,7 +118,10 @@ class HuntingManager:
             else: 
                 config.status = "Shiny Detected!" 
                 military_time = datetime.now().strftime("%H:%M") 
-                send_shiny_notification("Shiny Detected!", f"Shiny {config.pokemon_name} Detected in {config.hunting_data[config.pokemon_name][config.game_name]['resets']} Resets! Timestamp: {military_time}.", 14406663) 
+                ret, frame = False, None
+                with config.cap_lock:
+                    ret, frame = config.cap.read()
+                send_shiny_notification("Shiny Detected!", f"Shiny {config.pokemon_name} Detected in {config.hunting_data[config.pokemon_name][config.game_name]['resets']} Resets! Timestamp: {military_time}.", frame, 14406663) 
                 while True: # config.status == "Shiny Detected!": 
                     time.sleep(1.0) 
                 #if(config.status== "False Positive"):
@@ -148,7 +151,10 @@ class HuntingManager:
             else: 
                 config.status = "Shiny Detected!" 
                 military_time = datetime.now().strftime("%H:%M") 
-                send_shiny_notification("Shiny Detected!", f"Shiny {config.pokemon_name} Detected in {config.hunting_data[config.pokemon_name][config.game_name]['resets']} Resets! Timestamp: {military_time}.", 14406663) 
+                ret, frame = False, None
+                with config.cap_lock:
+                    ret, frame = config.cap.read()
+                send_shiny_notification("Shiny Detected!", f"Shiny {config.pokemon_name} Detected in {config.hunting_data[config.pokemon_name][config.game_name]['resets']} Resets! Timestamp: {military_time}.", frame, 14406663) 
                 while True: # config.status == "Shiny Detected!": 
                     time.sleep(1.0) 
                 #if(config.status== "False Positive"):
