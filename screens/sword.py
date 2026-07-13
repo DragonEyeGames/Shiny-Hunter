@@ -37,7 +37,7 @@ class SwScreen(ctk.CTkFrame):
 
 
         # Outline box
-        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=615,height=194,corner_radius=15, border_width=5, border_color="black")
+        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=614,height=194,corner_radius=15, border_width=5, border_color="black")
 
         self.color_box.place(x=93,y=170)
 
