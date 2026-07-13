@@ -150,10 +150,10 @@ selected_leaf_green = ctk.CTkImage(light_image=Image.open("logos/selected_leaf_g
 title = ctk.CTkLabel(
     main_menu,
     text="Pokémon Shiny Hunter",
-    font=("Arial",34,"bold")
+    font=("Arial",40,"bold")
 )
 
-title.pack(pady=(20,5))
+title.pack(pady=(25,5))
 
 subtitle = ctk.CTkLabel(
     main_menu,
@@ -165,24 +165,24 @@ subtitle.pack()
 
 #Create the game buttons with a consistent theme in mind.
 
-create_game_button(main_menu, 100, 130, eevee, selected_eevee, on_click_lets_go_eevee)
+create_game_button(main_menu, 100, 140, eevee, selected_eevee, on_click_lets_go_eevee)
 
-create_game_button(main_menu, 100, 250, pikachu, selected_pikachu, on_click_lets_go_pikachu)
+create_game_button(main_menu, 100, 260, pikachu, selected_pikachu, on_click_lets_go_pikachu)
 
-create_game_button(main_menu, 250, 130, sword, selected_sword, on_click_sword)
+create_game_button(main_menu, 250, 140, sword, selected_sword, on_click_sword)
 
-create_game_button(main_menu, 250, 250, shield, selected_shield, on_click_shield)
+create_game_button(main_menu, 250, 260, shield, selected_shield, on_click_shield)
 
-create_game_button(main_menu, 400, 130, brilliant_diamond, selected_brilliant_diamond, on_click_brilliant_diamond)
+create_game_button(main_menu, 400, 140, brilliant_diamond, selected_brilliant_diamond, on_click_brilliant_diamond)
 
-create_game_button(main_menu, 400, 250, shining_pearl, selected_shining_pearl, on_click_shining_pearl)
+create_game_button(main_menu, 400, 260, shining_pearl, selected_shining_pearl, on_click_shining_pearl)
 
-create_game_button(main_menu, 550, 130, fire_red, selected_fire_red, on_click_fire_red)
+create_game_button(main_menu, 550, 140, fire_red, selected_fire_red, on_click_fire_red)
 
-create_game_button(main_menu, 550, 250, leaf_green, selected_leaf_green, on_click_leaf_green)
+create_game_button(main_menu, 550, 260, leaf_green, selected_leaf_green, on_click_leaf_green)
 
 #The button to close down the program
-end_button = ctk.CTkButton(main_menu,text="Quit Program",width=230,height=40,fg_color="#C0392B",hover_color="#96281B",font=("Arial",16,"bold"),command=close_project)
+end_button = ctk.CTkButton(main_menu,text="Quit Program",width=230,height=40,fg_color="#C0392B",hover_color="#96281B", border_width=3,corner_radius=12,font=("Arial",16,"bold"),command=close_project)
 end_button.place(x=285, y=420)
 
 
