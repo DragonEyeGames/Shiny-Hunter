@@ -183,22 +183,32 @@ class HuntingManager:
             
         if config.status == "Ending Hunt": return 
         config.status = "Loading Game" 
-        time.sleep(19) 
+
+        #time.sleep(19)
+        self.wait_for_game() #Wait for the black screen to go away
+
         if config.status == "Ending Hunt": return 
         self.controller.press_a() 
         time.sleep(.2) 
         self.controller.press_a() 
         time.sleep(.2) 
         self.controller.press_a() 
-        time.sleep(3) 
-        if config.status == "Ending Hunt": return 
-        self.controller.press_a() 
-        time.sleep(.2) 
-        self.controller.press_a() 
-        time.sleep(.2) 
-        self.controller.press_a() 
-        time.sleep(14) 
+        time.sleep(3)
+        self.wait_for_game() #Wait for the black screen to go away
         config.status = "Starting Encounter" 
+
+    def wait_for_game(self):
+        while True:
+            if config.status == "Ending Hunt": return 
+            self.controller.press_a() 
+            if config.status == "Ending Hunt": return 
+            config.status = "Finding Loader" 
+            detected, ratio, elapsed = self.wait_for_black_flash(config.load, timeout=3) 
+            if config.status == "Ending Hunt": return 
+            if not detected: 
+                config.status = "Loaded" 
+                break
+        time.sleep(1)
 
     def get_roi_pixels(self, frame, normalized_roi):
         h, w = frame.shape[:2]
