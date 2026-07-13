@@ -4,7 +4,7 @@ from PIL import Image
 import config
 
 
-class BdScreen(ctk.CTkFrame):
+class SwScreen(ctk.CTkFrame):
 
     def __init__(self, parent, back_callback, boot_screen):
         super().__init__( parent, fg_color="#050c15" )
