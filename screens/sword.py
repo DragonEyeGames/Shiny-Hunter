@@ -45,16 +45,16 @@ class SwScreen(ctk.CTkFrame):
         # Pokemon buttons
         self.create_pokemon_button(113,180,self.regirock,"Regirock",boot_screen)
         self.create_pokemon_button(213,180,self.regice,"Regice",boot_screen)
-        self.create_pokemon_button(113,180,self.registeel,"Registeel",boot_screen)
-        self.create_pokemon_button(213,180,self.regidrago,"Regidrago",boot_screen)
-        self.create_pokemon_button(113,180,self.regieleki,"Regieleki",boot_screen)
-        self.create_pokemon_button(213,180,self.virizion,"Virizion",boot_screen)
-        self.create_pokemon_button(113,180,self.terrakion,"Terrakion",boot_screen)
-        self.create_pokemon_button(213,180,self.cobalion,"Cobalion",boot_screen)
-        self.create_pokemon_button(213,180,self.arctovish,"Arctovish",boot_screen)
-        self.create_pokemon_button(113,180,self.arctozolt,"Arctozolt",boot_screen)
-        self.create_pokemon_button(213,180,self.dracovish,"Dracovish",boot_screen)
-        self.create_pokemon_button(113,180,self.dracozolt,"Dracozolt",boot_screen)
+        self.create_pokemon_button(313,180,self.registeel,"Registeel",boot_screen)
+        self.create_pokemon_button(413,180,self.regidrago,"Regidrago",boot_screen)
+        self.create_pokemon_button(513,180,self.regieleki,"Regieleki",boot_screen)
+        self.create_pokemon_button(613,180,self.virizion,"Virizion",boot_screen)
+        self.create_pokemon_button(113,280,self.terrakion,"Terrakion",boot_screen)
+        self.create_pokemon_button(213,280,self.cobalion,"Cobalion",boot_screen)
+        self.create_pokemon_button(313,280,self.arctovish,"Arctovish",boot_screen)
+        self.create_pokemon_button(413,280,self.arctozolt,"Arctozolt",boot_screen)
+        self.create_pokemon_button(513,280,self.dracovish,"Dracovish",boot_screen)
+        self.create_pokemon_button(613,280,self.dracozolt,"Dracozolt",boot_screen)
 
 
         # Back button
