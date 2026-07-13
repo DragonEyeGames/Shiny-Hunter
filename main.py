@@ -111,7 +111,7 @@ def create_game_button(parent, x, y, image, hover_image, command):
         border_color="black",
         bg_color="#21344a",
         border_width=3,
-        corner_radius=12,
+        corner_radius=0,
         command=command
     )
 
