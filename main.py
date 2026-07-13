@@ -28,7 +28,7 @@ def toggle_fullscreen(event=None):
 
 root.bind("<Escape>", toggle_fullscreen)
 
-root.configure(bg="#2b2b2b")
+root.configure(bg="#050c15")
 
 #Boot up screens
 

@@ -7,7 +7,7 @@ import config
 class BdScreen(ctk.CTkFrame):
 
     def __init__(self, parent, back_callback, boot_screen):
-        super().__init__( parent, fg_color="#2b2b2b" )
+        super().__init__( parent, fg_color="#050c15" )
 
         # Images
         self.giratina = ctk.CTkImage(light_image=Image.open("pokemon/giratina.png"),dark_image=Image.open("pokemon/giratina.png"),size=(70,70))
@@ -16,13 +16,13 @@ class BdScreen(ctk.CTkFrame):
 
 
         # Title
-        title = ctk.CTkLabel(self,text="Pokemon Brilliant Diamond",font=("Arial", 30, "bold"),text_color="white")
+        title = ctk.CTkLabel(self,text="Pokemon Brilliant Diamond",font=("Arial", 35, "bold"),text_color="white")
 
-        title.pack(pady=20)
+        title.pack(pady=(25, 10))
 
 
         # Subtitle
-        label = ctk.CTkLabel(self,text="Select a Pokemon to Hunt",font=("Arial",20),text_color="white")
+        label = ctk.CTkLabel(self,text="Select a Pokemon to Hunt",font=("Arial", 20),text_color="white")
 
         label.pack()
 
@@ -65,28 +65,22 @@ class BdScreen(ctk.CTkFrame):
     # Pokemon button creation
     def create_pokemon_button(self,x,y,image,name,boot_screen):
 
-        # Border
-        border_box = ctk.CTkFrame(self,fg_color="black",width=74,height=74,corner_radius=0)
-
-        border_box.place(x=x,y=y)
-
-
         # Button
-        button = ctk.CTkButton(self,image=image,text="",width=70,height=70,fg_color="#8f8d8d",hover_color="#bfbfbf",corner_radius=0,command=lambda: self.start_hunt(name,boot_screen))
+        button = ctk.CTkButton(self, image=image, text="", width=70, height=70, fg_color="#8f8d8d", hover_color="#bfbfbf", border_width=2, border_color="black", corner_radius=5, command=lambda: self.start_hunt(name,boot_screen))
 
-        button.place(x=x+2,y=y+2)
+        button.place(x=x,y=y)
 
 
         # Name box
         label_box = ctk.CTkFrame(self,fg_color="black",width=66,height=16,corner_radius=0)
 
-        label_box.place(x=x+4,y=y+54)
+        label_box.place(x=x+2,y=y+52)
 
 
         # Name
         label = ctk.CTkLabel(self,text=name,font=("Arial",9),text_color="black",fg_color="white",width=64,height=14,corner_radius=0)
 
-        label.place(x=x+5,y=y+55)
+        label.place(x=x+1,y=y+53)
 
 
         return button, label
