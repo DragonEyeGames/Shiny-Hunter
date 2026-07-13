@@ -164,27 +164,23 @@ subtitle = ctk.CTkLabel(
 
 subtitle.pack()
 
-color_box = ctk.CTkFrame(main_menu,fg_color="#21344a",width=620,height=372,corner_radius=15, border_width=5, border_color="black")
+color_box = ctk.CTkFrame(main_menu,fg_color="#21344a",width=570,height=240,corner_radius=15, border_width=5, border_color="black")
 
-color_box.place(x=90,y=130)
+color_box.place(x=115,y=130)
 
 #Create the game buttons with a consistent theme in mind.
 
-create_game_button(main_menu, 100, 140, eevee, selected_eevee, on_click_lets_go_eevee)
+create_game_button(main_menu, 125, 140, eevee, selected_eevee, on_click_lets_go_eevee)
+create_game_button(main_menu, 125, 260, pikachu, selected_pikachu, on_click_lets_go_pikachu)
 
-create_game_button(main_menu, 100, 260, pikachu, selected_pikachu, on_click_lets_go_pikachu)
+create_game_button(main_menu, 275, 140, sword, selected_sword, on_click_sword)
+create_game_button(main_menu, 275, 260, shield, selected_shield, on_click_shield)
 
-create_game_button(main_menu, 250, 140, sword, selected_sword, on_click_sword)
+create_game_button(main_menu, 425, 140, brilliant_diamond, selected_brilliant_diamond, on_click_brilliant_diamond)
+create_game_button(main_menu, 425, 260, shining_pearl, selected_shining_pearl, on_click_shining_pearl)
 
-create_game_button(main_menu, 250, 260, shield, selected_shield, on_click_shield)
-
-create_game_button(main_menu, 400, 140, brilliant_diamond, selected_brilliant_diamond, on_click_brilliant_diamond)
-
-create_game_button(main_menu, 400, 260, shining_pearl, selected_shining_pearl, on_click_shining_pearl)
-
-create_game_button(main_menu, 550, 140, fire_red, selected_fire_red, on_click_fire_red)
-
-create_game_button(main_menu, 550, 260, leaf_green, selected_leaf_green, on_click_leaf_green)
+create_game_button(main_menu, 575, 140, fire_red, selected_fire_red, on_click_fire_red)
+create_game_button(main_menu, 575, 260, leaf_green, selected_leaf_green, on_click_leaf_green)
 
 #The button to close down the program
 end_button = ctk.CTkButton(main_menu,text="Quit Program",width=230,height=40,fg_color="#C0392B",hover_color="#96281B", border_width=2, border_color="black", corner_radius=12,font=("Arial",16,"bold"),command=close_project)
