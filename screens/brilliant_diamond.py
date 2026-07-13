@@ -66,13 +66,13 @@ class BdScreen(ctk.CTkFrame):
 
 
         # Name box
-        label_box = ctk.CTkFrame(self,fg_color="black",width=76,height=16,corner_radius=3)
+        label_box = ctk.CTkFrame(self,fg_color="black",bg_color="transparent",width=76,height=16,corner_radius=3)
 
         label_box.place(x=x+8,y=y+62)
 
 
         # Name
-        label = ctk.CTkLabel(master=label_box,text=name,font=("Arial",9),text_color="black",fg_color="white",bg_color="transparent",width=64,height=14,corner_radius=3)
+        label = ctk.CTkLabel(master=label_box,text=name,font=("Arial",9),text_color="black",fg_color="white",width=64,height=14,corner_radius=3)
 
         label.place(x=5,y=1)
 
