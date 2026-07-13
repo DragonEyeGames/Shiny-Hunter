@@ -21,7 +21,6 @@ ctk.set_default_color_theme("blue")
 root = ctk.CTk()
 root.title("Shiny Hunter")
 root.geometry("800x480")
-root.attributes("-fullscreen", True)
 
 def toggle_fullscreen(event=None):
     root.attributes("-fullscreen", not root.attributes("-fullscreen"))
@@ -29,6 +28,8 @@ def toggle_fullscreen(event=None):
 root.bind("<Escape>", toggle_fullscreen)
 
 root.configure(bg="black")
+
+root.attributes("-fullscreen", True)
 
 #Boot up screens
 
@@ -105,8 +106,8 @@ def create_game_button(parent, x, y, image, hover_image, command):
         image=image,
         text="",
         anchor="center",
-        width=100,
-        height=100,
+        width=110,
+        height=110,
         fg_color="#bfbfbf",
         hover_color="#bfbfbf",
         border_color="black",
