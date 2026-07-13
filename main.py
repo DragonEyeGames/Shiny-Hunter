@@ -167,31 +167,31 @@ subtitle = ctk.CTkLabel(
 
 subtitle.pack()
 
-color_box = ctk.CTkFrame(main_menu,fg_color="#21344a",width=600,height=290,corner_radius=15, border_width=5, border_color="black")
+color_box = ctk.CTkFrame(main_menu,fg_color="#21344a",width=596,height=280,corner_radius=15, border_width=5, border_color="black")
 
-color_box.place(x=115,y=125)
+color_box.place(x=100,y=125)
 
 #Create the game buttons with a consistent theme in mind.
 
-create_game_button(main_menu, 125, 135, eevee, selected_eevee, on_click_lets_go_eevee)
+create_game_button(main_menu, 110, 135, eevee, selected_eevee, on_click_lets_go_eevee)
 
-create_game_button(main_menu, 125, 285, pikachu, selected_pikachu, on_click_lets_go_pikachu)
+create_game_button(main_menu, 110, 275, pikachu, selected_pikachu, on_click_lets_go_pikachu)
 
-create_game_button(main_menu, 275, 135, sword, selected_sword, on_click_sword)
+create_game_button(main_menu, 260, 135, sword, selected_sword, on_click_sword)
 
-create_game_button(main_menu, 275, 285, shield, selected_shield, on_click_shield)
+create_game_button(main_menu, 260, 275, shield, selected_shield, on_click_shield)
 
-create_game_button(main_menu, 425, 135, brilliant_diamond, selected_brilliant_diamond, on_click_brilliant_diamond)
+create_game_button(main_menu, 410, 135, brilliant_diamond, selected_brilliant_diamond, on_click_brilliant_diamond)
 
-create_game_button(main_menu, 425, 285, shining_pearl, selected_shining_pearl, on_click_shining_pearl)
+create_game_button(main_menu, 410, 275, shining_pearl, selected_shining_pearl, on_click_shining_pearl)
 
-create_game_button(main_menu, 575, 135, fire_red, selected_fire_red, on_click_fire_red)
+create_game_button(main_menu, 560, 135, fire_red, selected_fire_red, on_click_fire_red)
 
-create_game_button(main_menu, 575, 285, leaf_green, selected_leaf_green, on_click_leaf_green)
+create_game_button(main_menu, 560, 275, leaf_green, selected_leaf_green, on_click_leaf_green)
 
 #The button to close down the program
 end_button = ctk.CTkButton(main_menu,text="Quit Program",width=230,height=40,fg_color="#C0392B",hover_color="#96281B", border_width=2, border_color="black", corner_radius=12,font=("Arial",16,"bold"),command=close_project)
-end_button.place(x=285, y=425)
+end_button.place(x=285, y=420)
 
 
 root.mainloop()
