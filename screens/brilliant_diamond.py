@@ -22,7 +22,7 @@ class BdScreen(ctk.CTkFrame):
 
 
         # Subtitle
-        label = ctk.CTkLabel(self,text="Select a Pokémon to Hunt",font=("Arial", 20),text_color="white")
+        label = ctk.CTkLabel(self,text="Select a Pokemon to Hunt",font=("Arial", 20),text_color="white")
 
         label.pack()
 
