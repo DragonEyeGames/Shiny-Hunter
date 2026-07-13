@@ -106,7 +106,9 @@ selected_shield = tk.PhotoImage(file="logos/selected_shield.png")
 brilliant_diamond = tk.PhotoImage(file="logos/brilliant_diamond.png")
 selected_brilliant_diamond = tk.PhotoImage(file="logos/selected_brilliant_diamond.png")
 
+
 shining_pearl = tk.PhotoImage(file="logos/shining_pearl.png")
+selected_shining_pearl = tk.PhotoImage(file="logos/selected_shining_pearl.png")
 
 eevee = tk.PhotoImage(file="logos/eevee.png")
 selected_eevee = tk.PhotoImage(file="logos/selected_eevee.png")
@@ -115,7 +117,10 @@ pikachu = tk.PhotoImage(file="logos/pikachu.png")
 selected_pikachu = tk.PhotoImage(file="logos/selected_pikachu.png")
 
 fire_red = tk.PhotoImage(file="logos/fire_red.png")
+selected_fire_red = tk.PhotoImage(file="logos/selected_fire_red.png")
+
 leaf_green = tk.PhotoImage(file="logos/leaf_green.png")
+selected_leaf_green = tk.PhotoImage(file="logos/selected_leaf_green.png")
 
 label = tk.Label(main_menu, text="Pokemon Shiny Hunter", font=("Droid Sans Fallback", 35), bg="#2b2b2b", fg="white")
 label.pack(pady=18)
@@ -157,11 +162,20 @@ brilliant_diamond_button.bind("<Leave>", lambda event: brilliant_diamond_button.
 shining_pearl_button = tk.Button(main_menu, text="Sp", bg="#bfbfbf", image=shining_pearl, command=on_click_shining_pearl)
 shining_pearl_button.place(x=400, y=280, width=100, height=100)
 
+shining_pearl_button.bind("<Enter>", lambda event: shining_pearl_button.config(image=selected_shining_pearl))
+shining_pearl_button.bind("<Leave>", lambda event: shining_pearl_button.config(image=shining_pearl))
+
 red_button = tk.Button(main_menu, bg="#bfbfbf", image=fire_red, command=on_click_fire_red)
 red_button.place(x=550, y=160, width=100, height=100)
 
+red_button.bind("<Enter>", lambda event: red_button.config(image=selected_fire_red))
+red_button.bind("<Leave>", lambda event: red_button.config(image=fire_red))
+
 green_button = tk.Button(main_menu, bg="#bfbfbf", image=leaf_green, command=on_click_leaf_green)
 green_button.place(x=550, y=280, width=100, height=100)
+
+green_button.bind("<Enter>", lambda event: green_button.config(image=selected_leaf_green))
+green_button.bind("<Leave>", lambda event: green_button.config(image=leaf_green))
 
 end_button = tk.Button(main_menu, text="Quit Program", font=("C052", 16), command=close_project)
 end_button.place(x=265, y=420, width=230, height=40)
