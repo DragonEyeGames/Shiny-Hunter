@@ -173,9 +173,9 @@ color_box.place(x=115,y=130)
 
 create_game_button(main_menu, 125, 140, eevee, selected_eevee, on_click_lets_go_eevee)
 
-create_game_button(main_menu, 125, 246, pikachu, selected_pikachu, on_click_lets_go_pikachu)
+create_game_button(main_menu, 125, 252, pikachu, selected_pikachu, on_click_lets_go_pikachu)
 
-create_game_button(main_menu, 231, 140, sword, selected_sword, on_click_sword)
+create_game_button(main_menu, 237, 140, sword, selected_sword, on_click_sword)
 
 create_game_button(main_menu, 275, 260, shield, selected_shield, on_click_shield)
 
