@@ -19,6 +19,9 @@ ctk.set_appearance_mode("Dark")
 ctk.set_default_color_theme("blue")
 
 root = ctk.CTk()
+
+root.withdraw()
+
 root.title("Shiny Hunter")
 root.geometry("800x480")
 
@@ -28,8 +31,6 @@ def toggle_fullscreen(event=None):
 root.bind("<Escape>", toggle_fullscreen)
 
 root.configure(bg="black")
-
-root.after(100, lambda: root.attributes("-fullscreen", True))
 
 #Boot up screens
 
@@ -193,5 +194,9 @@ create_game_button(main_menu, 560, 275, leaf_green, selected_leaf_green, on_clic
 end_button = ctk.CTkButton(main_menu,text="Quit Program",width=230,height=40,fg_color="#C0392B",hover_color="#96281B", border_width=2, border_color="black", corner_radius=12,font=("Arial",16,"bold"),command=close_project)
 end_button.place(x=285, y=420)
 
+root.update_idletasks()
+root.deiconify()
+
+root.attributes("-fullscreen", True)
 
 root.mainloop()
