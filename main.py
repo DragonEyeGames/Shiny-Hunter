@@ -98,11 +98,22 @@ def on_click_leaf_green():
 #Populate the main window with widgets
 
 sword = tk.PhotoImage(file="logos/sword.png")
+selected_sword = tk.PhotoImage(file="logos/selected_sword.png")
+
 shield = tk.PhotoImage(file="logos/shield.png")
+selected_shield = tk.PhotoImage(file="logos/selected_shield.png")
+
 brilliant_diamond = tk.PhotoImage(file="logos/brilliant_diamond.png")
+selected_brilliant_diamond = tk.PhotoImage(file="logos/selected_brilliant_diamond.png")
+
 shining_pearl = tk.PhotoImage(file="logos/shining_pearl.png")
-lets_go_eevee = tk.PhotoImage(file="logos/lets_go_eevee.png")
-lets_go_pikachu = tk.PhotoImage(file="logos/lets_go_pikachu.png")
+
+lets_go_eevee = tk.PhotoImage(file="logos/eevee.png")
+selected_lets_go_eevee = tk.PhotoImage(file="logos/selected_eevee.png")
+
+lets_go_pikachu = tk.PhotoImage(file="logos/pikachu.png")
+selected_lets_go_pikachu = tk.PhotoImage(file="logos/selected_pikachu.png")
+
 fire_red = tk.PhotoImage(file="logos/fire_red.png")
 leaf_green = tk.PhotoImage(file="logos/leaf_green.png")
 
@@ -118,8 +129,11 @@ lets_go_eevee_button.place(x=100, y=160, width=100, height=100)
 lets_go_pikachu_button = tk.Button(main_menu, image=lets_go_pikachu, bg="#bfbfbf", fg="black", font=("C052", 18), command=on_click_lets_go_pikachu)
 lets_go_pikachu_button.place(x=100, y=280, width=100, height=100)
 
-sword_button = tk.Button(main_menu, bg="#bfbfbf", image=sword, fg="black", font=("C052", 18), command=on_click_sword)
+sword_button = tk.Button(main_menu, bg="#bfbfbf", image=sword, command=on_click_sword)
 sword_button.place(x=250, y=160, width=100, height=100)
+# 3. Bind the hover events (swapping the images)
+sword_button.bind("<Enter>", lambda event: sword_button.config(image=selected_sword))
+sword_button.bind("<Leave>", lambda event: sword_button.config(image=sword))
 
 shield_button = tk.Button(main_menu, bg="#bfbfbf", fg="black", image=shield, font=("C052", 18), command=on_click_shield)
 shield_button.place(x=250, y=280, width=100, height=100)
