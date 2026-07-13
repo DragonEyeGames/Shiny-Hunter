@@ -1,4 +1,5 @@
-import tkinter as tk
+import customtkinter as ctk
+from PIL import Image
 
 from screens.sword import SwScreen
 from screens.shield import ShScreen
@@ -14,11 +15,13 @@ import config
 from save_manager import save_data
 
 #Initialize the main window
-root = tk.Tk()
+ctk.set_appearance_mode("Dark")
+ctk.set_default_color_theme("blue")
+
+root = ctk.CTk()
 root.title("Shiny Hunter")
 root.geometry("800x480")
-
-root.attributes('-fullscreen', True)
+root.attributes("-fullscreen", True)
 
 def toggle_fullscreen(event=None):
     root.attributes("-fullscreen", not root.attributes("-fullscreen"))
@@ -37,7 +40,7 @@ def close_project():
     save_data(config.hunting_data)
     root.destroy()
 
-main_menu = tk.Frame(root, bg="#2b2b2b")
+main_menu = ctk.CTkFrame(root,fg_color="#1e1e1e",corner_radius=0)
 main_menu.place(x=0, y=0, relwidth=1, relheight=1)
 
 switch_screen = CaptureCard(root, lambda: main_menu.tkraise(), camera_index=0)
@@ -95,90 +98,89 @@ def on_click_fire_red():
 def on_click_leaf_green():
     lg.tkraise()
 
+def create_game_button(parent, x, y, image, hover_image, command):
+    button = ctk.CTkButton(
+        parent,
+        image=image,
+        text="",
+        width=100,
+        height=100,
+        fg_color="#2b2b2b",
+        hover_color="#404040",
+        corner_radius=12,
+        command=command
+    )
+
+    button.place(x=x, y=y)
+
+    button.bind("<Enter>", lambda e: button.configure(image=hover_image))
+    button.bind("<Leave>", lambda e: button.configure(image=image))
+
+    return button
+
 #Populate the main window with widgets
 
-sword = tk.PhotoImage(file="logos/sword.png")
-selected_sword = tk.PhotoImage(file="logos/selected_sword.png")
+sword = ctk.CTkImage(light_image=Image.open("logos/sword.png"), dark_image=Image.open("logos/sword.png"), size=(100,100) )
+selected_sword = ctk.CTkImage(light_image=Image.open("logos/selected_sword.png"), dark_image=Image.open("logos/selected_sword.png"), size=(100,100) )
 
-shield = tk.PhotoImage(file="logos/shield.png")
-selected_shield = tk.PhotoImage(file="logos/selected_shield.png")
+shield = ctk.CTkImage(light_image=Image.open("logos/shield.png"), dark_image=Image.open("logos/shield.png"), size=(100,100) )
+selected_shield = ctk.CTkImage(light_image=Image.open("logos/selected_shield.png"), dark_image=Image.open("logos/selected_shield.png"), size=(100,100) )
 
-brilliant_diamond = tk.PhotoImage(file="logos/brilliant_diamond.png")
-selected_brilliant_diamond = tk.PhotoImage(file="logos/selected_brilliant_diamond.png")
+brilliant_diamond = ctk.CTkImage(light_image=Image.open("logos/brilliant_diamond.png"), dark_image=Image.open("logos/brilliant_diamond.png"), size=(100,100) )
+selected_brilliant_diamond = ctk.CTkImage(light_image=Image.open("logos/selected_brilliant_diamond.png"), dark_image=Image.open("logos/selected_brilliant_diamond.png"), size=(100,100) )
 
+shining_pearl = ctk.CTkImage(light_image=Image.open("logos/shining_pearl.png"), dark_image=Image.open("logos/shining_pearl.png"), size=(100,100) )
+selected_shining_pearl = ctk.CTkImage(light_image=Image.open("logos/selected_shining_pearl.png"), dark_image=Image.open("logos/selected_shining_pearl.png"), size=(100,100) )
 
-shining_pearl = tk.PhotoImage(file="logos/shining_pearl.png")
-selected_shining_pearl = tk.PhotoImage(file="logos/selected_shining_pearl.png")
+eevee = ctk.CTkImage(light_image=Image.open("logos/eevee.png"), dark_image=Image.open("logos/eevee.png"), size=(100,100) )
+selected_eevee = ctk.CTkImage(light_image=Image.open("logos/selected_eevee.png"), dark_image=Image.open("logos/selected_eevee.png"), size=(100,100) )
 
-eevee = tk.PhotoImage(file="logos/eevee.png")
-selected_eevee = tk.PhotoImage(file="logos/selected_eevee.png")
+pikachu = ctk.CTkImage(light_image=Image.open("logos/pikachu.png"),dark_image=Image.open("logos/pikachu.png"),size=(100,100))
+selected_pikachu = ctk.CTkImage(light_image=Image.open("logos/selected_pikachu.png"),dark_image=Image.open("logos/selected_pikachu.png"),size=(100,100))
 
-pikachu = tk.PhotoImage(file="logos/pikachu.png")
-selected_pikachu = tk.PhotoImage(file="logos/selected_pikachu.png")
+fire_red = ctk.CTkImage(light_image=Image.open("logos/fire_red.png"),dark_image=Image.open("logos/fire_red.png"),size=(100,100))
+selected_fire_red = ctk.CTkImage(light_image=Image.open("logos/selected_fire_red.png"),dark_image=Image.open("logos/selected_fire_red.png"),size=(100,100))
 
-fire_red = tk.PhotoImage(file="logos/fire_red.png")
-selected_fire_red = tk.PhotoImage(file="logos/selected_fire_red.png")
+leaf_green = ctk.CTkImage(light_image=Image.open("logos/leaf_green.png"),dark_image=Image.open("logos/leaf_green.png"),size=(100,100))
+selected_leaf_green = ctk.CTkImage(light_image=Image.open("logos/selected_leaf_green.png"),dark_image=Image.open("logos/selected_leaf_green.png"),size=(100,100))
 
-leaf_green = tk.PhotoImage(file="logos/leaf_green.png")
-selected_leaf_green = tk.PhotoImage(file="logos/selected_leaf_green.png")
+title = ctk.CTkLabel(
+    main_menu,
+    text="Pokémon Shiny Hunter",
+    font=("Arial",34,"bold")
+)
 
-label = tk.Label(main_menu, text="Pokemon Shiny Hunter", font=("Droid Sans Fallback", 35), bg="#2b2b2b", fg="white")
-label.pack(pady=18)
+title.pack(pady=(20,5))
 
-label = tk.Label(main_menu, text="Pick a Game to Hunt In", font=("Droid Sans Fallback", 24), bg="#2b2b2b", fg="white")
-label.pack()
+subtitle = ctk.CTkLabel(
+    main_menu,
+    text="Select a Game",
+    font=("Arial",20)
+)
 
-lets_go_eevee_button = tk.Button(main_menu, image=eevee, bg="#bfbfbf", command=on_click_lets_go_eevee)
-lets_go_eevee_button.place(x=100, y=160, width=100, height=100)
+subtitle.pack()
 
-lets_go_eevee_button.bind("<Enter>", lambda event: lets_go_eevee_button.config(image=selected_eevee))
-lets_go_eevee_button.bind("<Leave>", lambda event: lets_go_eevee_button.config(image=eevee))
+#Create the game buttons with a consistent theme in mind.
 
-lets_go_pikachu_button = tk.Button(main_menu, image=pikachu, bg="#bfbfbf", command=on_click_lets_go_pikachu)
-lets_go_pikachu_button.place(x=100, y=280, width=100, height=100)
+create_game_button(main_menu, 100, 160, eevee, selected_eevee, on_click_lets_go_eevee)
 
-lets_go_pikachu_button.bind("<Enter>", lambda event: lets_go_pikachu_button.config(image=selected_pikachu))
-lets_go_pikachu_button.bind("<Leave>", lambda event: lets_go_pikachu_button.config(image=pikachu))
+create_game_button(main_menu, 100, 280, pikachu, selected_pikachu, on_click_lets_go_pikachu)
 
-sword_button = tk.Button(main_menu, bg="#bfbfbf", image=sword, command=on_click_sword)
-sword_button.place(x=250, y=160, width=100, height=100)
+create_game_button(main_menu, 250, 160, sword, selected_sword, on_click_sword)
 
-sword_button.bind("<Enter>", lambda event: sword_button.config(image=selected_sword))
-sword_button.bind("<Leave>", lambda event: sword_button.config(image=sword))
+create_game_button(main_menu, 250, 280, shield, selected_shield, on_click_shield)
 
-shield_button = tk.Button(main_menu, bg="#bfbfbf", image=shield, command=on_click_shield)
-shield_button.place(x=250, y=280, width=100, height=100)
+create_game_button(main_menu, 400, 160, brilliant_diamond, selected_brilliant_diamond, on_click_brilliant_diamond)
 
-shield_button.bind("<Enter>", lambda event: shield_button.config(image=selected_shield))
-shield_button.bind("<Leave>", lambda event: shield_button.config(image=shield))
+create_game_button(main_menu, 400, 280, shining_pearl, selected_shining_pearl, on_click_shining_pearl)
 
+create_game_button(main_menu, 550, 160, fire_red, selected_fire_red, on_click_fire_red)
 
-brilliant_diamond_button = tk.Button(main_menu, bg="#bfbfbf", image=brilliant_diamond, command=on_click_brilliant_diamond)
-brilliant_diamond_button.place(x=400, y=160, width=100, height=100)
+create_game_button(main_menu, 550, 280, leaf_green, selected_leaf_green, on_click_leaf_green)
 
-brilliant_diamond_button.bind("<Enter>", lambda event: brilliant_diamond_button.config(image=selected_brilliant_diamond))
-brilliant_diamond_button.bind("<Leave>", lambda event: brilliant_diamond_button.config(image=brilliant_diamond))
-
-shining_pearl_button = tk.Button(main_menu, text="Sp", bg="#bfbfbf", image=shining_pearl, command=on_click_shining_pearl)
-shining_pearl_button.place(x=400, y=280, width=100, height=100)
-
-shining_pearl_button.bind("<Enter>", lambda event: shining_pearl_button.config(image=selected_shining_pearl))
-shining_pearl_button.bind("<Leave>", lambda event: shining_pearl_button.config(image=shining_pearl))
-
-red_button = tk.Button(main_menu, bg="#bfbfbf", image=fire_red, command=on_click_fire_red)
-red_button.place(x=550, y=160, width=100, height=100)
-
-red_button.bind("<Enter>", lambda event: red_button.config(image=selected_fire_red))
-red_button.bind("<Leave>", lambda event: red_button.config(image=fire_red))
-
-green_button = tk.Button(main_menu, bg="#bfbfbf", image=leaf_green, command=on_click_leaf_green)
-green_button.place(x=550, y=280, width=100, height=100)
-
-green_button.bind("<Enter>", lambda event: green_button.config(image=selected_leaf_green))
-green_button.bind("<Leave>", lambda event: green_button.config(image=leaf_green))
-
-end_button = tk.Button(main_menu, text="Quit Program", font=("C052", 16), command=close_project)
-end_button.place(x=265, y=420, width=230, height=40)
+#The button to close down the program
+end_button = ctk.CTkButton(main_menu,text="Quit Program",width=230,height=40,fg_color="#C0392B",hover_color="#96281B",font=("Arial",16,"bold"),command=close_project)
+end_button.place(x=285, y=420)
 
 
 root.mainloop()
