@@ -98,6 +98,7 @@ def on_click_fire_red():
 def on_click_leaf_green():
     lg.tkraise()
 
+#Button helper function
 def create_game_button(parent, x, y, image, hover_image, command):
     button = ctk.CTkButton(
         parent,
@@ -105,8 +106,10 @@ def create_game_button(parent, x, y, image, hover_image, command):
         text="",
         width=100,
         height=100,
-        fg_color="#2b2b2b",
-        hover_color="#404040",
+        fg_color="#bfbfbf",
+        hover_color="#bfbfbf",
+        border_color="black",
+        border_width=3,
         corner_radius=12,
         command=command
     )
@@ -162,21 +165,21 @@ subtitle.pack()
 
 #Create the game buttons with a consistent theme in mind.
 
-create_game_button(main_menu, 100, 160, eevee, selected_eevee, on_click_lets_go_eevee)
+create_game_button(main_menu, 100, 120, eevee, selected_eevee, on_click_lets_go_eevee)
 
-create_game_button(main_menu, 100, 280, pikachu, selected_pikachu, on_click_lets_go_pikachu)
+create_game_button(main_menu, 100, 240, pikachu, selected_pikachu, on_click_lets_go_pikachu)
 
-create_game_button(main_menu, 250, 160, sword, selected_sword, on_click_sword)
+create_game_button(main_menu, 250, 120, sword, selected_sword, on_click_sword)
 
-create_game_button(main_menu, 250, 280, shield, selected_shield, on_click_shield)
+create_game_button(main_menu, 250, 240, shield, selected_shield, on_click_shield)
 
-create_game_button(main_menu, 400, 160, brilliant_diamond, selected_brilliant_diamond, on_click_brilliant_diamond)
+create_game_button(main_menu, 400, 120, brilliant_diamond, selected_brilliant_diamond, on_click_brilliant_diamond)
 
-create_game_button(main_menu, 400, 280, shining_pearl, selected_shining_pearl, on_click_shining_pearl)
+create_game_button(main_menu, 400, 240, shining_pearl, selected_shining_pearl, on_click_shining_pearl)
 
-create_game_button(main_menu, 550, 160, fire_red, selected_fire_red, on_click_fire_red)
+create_game_button(main_menu, 550, 120, fire_red, selected_fire_red, on_click_fire_red)
 
-create_game_button(main_menu, 550, 280, leaf_green, selected_leaf_green, on_click_leaf_green)
+create_game_button(main_menu, 550, 240, leaf_green, selected_leaf_green, on_click_leaf_green)
 
 #The button to close down the program
 end_button = ctk.CTkButton(main_menu,text="Quit Program",width=230,height=40,fg_color="#C0392B",hover_color="#96281B",font=("Arial",16,"bold"),command=close_project)
