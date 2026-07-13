@@ -80,8 +80,7 @@ class BdScreen(ctk.CTkFrame):
         # Name box
         label_box = ctk.CTkFrame(self,fg_color="black",width=66,height=16,corner_radius=0)
 
-        label_box.place(x=x+4,=y+54
-)
+        label_box.place(x=x+4,y=y+54)
 
 
         # Name
