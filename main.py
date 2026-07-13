@@ -182,7 +182,7 @@ create_game_button(main_menu, 550, 140, fire_red, selected_fire_red, on_click_fi
 create_game_button(main_menu, 550, 260, leaf_green, selected_leaf_green, on_click_leaf_green)
 
 #The button to close down the program
-end_button = ctk.CTkButton(main_menu,text="Quit Program",width=230,height=40,fg_color="#C0392B",hover_color="#96281B", border_width=3,corner_radius=12,font=("Arial",16,"bold"),command=close_project)
+end_button = ctk.CTkButton(main_menu,text="Quit Program",width=230,height=40,fg_color="#C0392B",hover_color="#96281B", border_width=2, border_color="black", corner_radius=12,font=("Arial",16,"bold"),command=close_project)
 end_button.place(x=285, y=420)
 
 
