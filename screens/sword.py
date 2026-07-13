@@ -37,7 +37,7 @@ class SwScreen(ctk.CTkFrame):
 
 
         # Outline box
-        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=605,height=194,corner_radius=15, border_width=5, border_color="black")
+        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=615,height=194,corner_radius=15, border_width=5, border_color="black")
 
         self.color_box.place(x=93,y=170)
 
@@ -49,12 +49,12 @@ class SwScreen(ctk.CTkFrame):
         self.create_pokemon_button(403,180,self.regidrago,"Regidrago",boot_screen)
         self.create_pokemon_button(503,180,self.regieleki,"Regieleki",boot_screen)
         self.create_pokemon_button(603,180,self.virizion,"Virizion",boot_screen)
-        self.create_pokemon_button(103,260,self.terrakion,"Terrakion",boot_screen)
-        self.create_pokemon_button(203,260,self.cobalion,"Cobalion",boot_screen)
-        self.create_pokemon_button(303,260,self.arctovish,"Arctovish",boot_screen)
-        self.create_pokemon_button(403,260,self.arctozolt,"Arctozolt",boot_screen)
-        self.create_pokemon_button(503,260,self.dracovish,"Dracovish",boot_screen)
-        self.create_pokemon_button(603,260,self.dracozolt,"Dracozolt",boot_screen)
+        self.create_pokemon_button(103,270,self.terrakion,"Terrakion",boot_screen)
+        self.create_pokemon_button(203,270,self.cobalion,"Cobalion",boot_screen)
+        self.create_pokemon_button(303,270,self.arctovish,"Arctovish",boot_screen)
+        self.create_pokemon_button(403,270,self.arctozolt,"Arctozolt",boot_screen)
+        self.create_pokemon_button(503,270,self.dracovish,"Dracovish",boot_screen)
+        self.create_pokemon_button(603,270,self.dracozolt,"Dracozolt",boot_screen)
 
 
         # Back button
