@@ -16,7 +16,7 @@ class BdScreen(ctk.CTkFrame):
 
 
         # Title
-        title = ctk.CTkLabel(self,text="Pokémon Brilliant Diamond",font=("Arial", 35, "bold"),text_color="#2b89d9")
+        title = ctk.CTkLabel(self,text="Pokemon Brilliant Diamond",font=("Arial", 35, "bold"),text_color="#2b89d9")
 
         title.pack(pady=(25, 10))
 

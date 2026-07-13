@@ -25,7 +25,7 @@ class BdScreen(ctk.CTkFrame):
 
 
         # Title
-        title = ctk.CTkLabel(self,text="Pokémon Sword",font=("Arial", 35, "bold"),text_color="#2b89d9")
+        title = ctk.CTkLabel(self,text="Pokemon Sword",font=("Arial", 35, "bold"),text_color="#2b89d9")
 
         title.pack(pady=(25, 10))
 
