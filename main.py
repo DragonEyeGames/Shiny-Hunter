@@ -29,7 +29,7 @@ root.bind("<Escape>", toggle_fullscreen)
 
 root.configure(bg="black")
 
-root.after(10, lambda: root.attributes("-fullscreen", True))
+root.after(100, lambda: root.attributes("-fullscreen", True))
 
 #Boot up screens
 
