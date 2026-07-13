@@ -60,7 +60,7 @@ class BdScreen(ctk.CTkFrame):
     def create_pokemon_button(self,x,y,image,name,boot_screen):
 
         # Button
-        button = ctk.CTkButton(self, image=image, text="", width=80, height=80, fg_color="#5e5e5e", hover_color="#bfbfbf", border_width=3, border_color="black", corner_radius=10, command=lambda: self.start_hunt(name,boot_screen))
+        button = ctk.CTkButton(self, image=image, text="", width=80, height=80, fg_color="#5e5e5e", bg_color="#21344a", hover_color="#bfbfbf", border_width=3, border_color="black", corner_radius=10, command=lambda: self.start_hunt(name,boot_screen))
 
         button.place(x=x,y=y)
 
@@ -68,11 +68,11 @@ class BdScreen(ctk.CTkFrame):
         # Name box
         label_box = ctk.CTkFrame(self,fg_color="black",width=76,height=16,corner_radius=3)
 
-        label_box.place(x=x+14,y=y+67)
+        label_box.place(x=x+8,y=y+62)
 
 
         # Name
-        label = ctk.CTkLabel(master=label_box,text=name,font=("Arial",9),text_color="black",fg_color="white",width=64,height=14,corner_radius=3)
+        label = ctk.CTkLabel(master=label_box,text=name,font=("Arial",9),text_color="black",fg_color="white",bg_color="transparent",width=64,height=14,corner_radius=3)
 
         label.place(x=5,y=1)
 
