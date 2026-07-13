@@ -151,7 +151,7 @@ title = ctk.CTkLabel(
     main_menu,
     text="Pokémon Shiny Hunter",
     font=("Arial",40,"bold"),
-    text_color="#1a75c2"
+    text_color="#2b89d9"
 )
 
 title.pack(pady=(25,5))
@@ -159,10 +159,14 @@ title.pack(pady=(25,5))
 subtitle = ctk.CTkLabel(
     main_menu,
     text="Select a Game",
-    font=("Arial",20)
+    font=("Arial",25)
 )
 
 subtitle.pack()
+
+self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=620,height=372,corner_radius=15, border_size=5, border_color="black")
+
+self.color_box.place(x=90,y=130)
 
 #Create the game buttons with a consistent theme in mind.
 

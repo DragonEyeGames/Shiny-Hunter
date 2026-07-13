@@ -16,7 +16,7 @@ class BdScreen(ctk.CTkFrame):
 
 
         # Title
-        title = ctk.CTkLabel(self,text="Pokemon Brilliant Diamond",font=("Arial", 35, "bold"),text_color="#1a75c2")
+        title = ctk.CTkLabel(self,text="Pokemon Brilliant Diamond",font=("Arial", 35, "bold"),text_color="#2b89d9")
 
         title.pack(pady=(25, 10))
 
@@ -27,14 +27,8 @@ class BdScreen(ctk.CTkFrame):
         label.pack()
 
 
-        # Pokemon box border
-        self.border_box = ctk.CTkFrame(self,fg_color="black",width=602,height=202,corner_radius=0)
-
-        self.border_box.place(x=99,y=166)
-
-
-        # Inner box
-        self.color_box = ctk.CTkFrame(self,fg_color="#5e5e5e",width=594,height=194,corner_radius=0)
+        # Outline box
+        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=594,height=194,corner_radius=15, border_size=5, border_color="black")
 
         self.color_box.place(x=103,y=170)
 
@@ -66,7 +60,7 @@ class BdScreen(ctk.CTkFrame):
     def create_pokemon_button(self,x,y,image,name,boot_screen):
 
         # Button
-        button = ctk.CTkButton(self, image=image, text="", width=70, height=70, fg_color="#0b131d", hover_color="#bfbfbf", border_width=2, border_color="black", corner_radius=5, command=lambda: self.start_hunt(name,boot_screen))
+        button = ctk.CTkButton(self, image=image, text="", width=70, height=70, fg_color="#5e5e5e", hover_color="#bfbfbf", border_width=2, border_color="black", corner_radius=5, command=lambda: self.start_hunt(name,boot_screen))
 
         button.place(x=x,y=y)
 
