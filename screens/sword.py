@@ -18,7 +18,7 @@ class SwScreen(ctk.CTkFrame):
         self.virizion = ctk.CTkImage(light_image=Image.open("pokemon/virizion.png"),dark_image=Image.open("pokemon/virizion.png"),size=(70,70))
         self.terrakion = ctk.CTkImage(light_image=Image.open("pokemon/terrakion.png"),dark_image=Image.open("pokemon/terrakion.png"),size=(70,70))
         self.cobalion = ctk.CTkImage(light_image=Image.open("pokemon/cobalion.png"),dark_image=Image.open("pokemon/cobalion.png"),size=(70,70))
-        self.arctovish = ctk.CTkImage(light_image=Image.open("pokemon/arctovish"),dark_image=Image.open("pokemon/arctovish.png"),size=(70,70))
+        self.arctovish = ctk.CTkImage(light_image=Image.open("pokemon/arctovish.png"),dark_image=Image.open("pokemon/arctovish.png"),size=(70,70))
         self.arctozolt = ctk.CTkImage(light_image=Image.open("pokemon/arctozolt.png"),dark_image=Image.open("pokemon/arctozolt.png"),size=(70,70))
         self.dracovish = ctk.CTkImage(light_image=Image.open("pokemon/dracovish.png"),dark_image=Image.open("pokemon/dracovish.png"),size=(70,70))
         self.dracozolt = ctk.CTkImage(light_image=Image.open("pokemon/dracozolt.png"),dark_image=Image.open("pokemon/dracozolt.png"),size=(70,70))
