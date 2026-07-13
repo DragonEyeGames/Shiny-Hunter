@@ -130,13 +130,13 @@ brilliant_diamond_button.place(x=400, y=160, width=100, height=100)
 shining_pearl_button = tk.Button(main_menu, text="Sp", bg="#bfbfbf", fg="black", font=("C052", 18), image=shining_pearl, command=on_click_shining_pearl)
 shining_pearl_button.place(x=400, y=280, width=100, height=100)
 
-red_button = tk.Button(main_menu, bg="#bfbfbf", fg="black", font=("C052", 18), command=on_click_fire_red)
+red_button = tk.Button(main_menu, bg="#bfbfbf", fg="black", font=("C052", 18), image=fire_red, command=on_click_fire_red)
 red_button.place(x=550, y=160, width=100, height=100)
 
-green_button = tk.Button(main_menu, bg="#bfbfbf", fg="black", font=("C052", 18), image=fire_red, command=on_click_leaf_green)
+green_button = tk.Button(main_menu, bg="#bfbfbf", fg="black", font=("C052", 18), image=leaf_green, command=on_click_leaf_green)
 green_button.place(x=550, y=280, width=100, height=100)
 
-end_button = tk.Button(main_menu, text="Quit Program", font=("C052", 16), image=leaf_green, command=close_project)
+end_button = tk.Button(main_menu, text="Quit Program", font=("C052", 16), command=close_project)
 end_button.place(x=265, y=420, width=230, height=40)
 
 
