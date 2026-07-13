@@ -106,8 +106,8 @@ def create_game_button(parent, x, y, image, hover_image, command):
         image=image,
         text="",
         anchor="center",
-        width=110,
-        height=110,
+        width=120,
+        height=120,
         fg_color="#bfbfbf",
         hover_color="#bfbfbf",
         border_color="black",
@@ -167,7 +167,7 @@ subtitle = ctk.CTkLabel(
 
 subtitle.pack()
 
-color_box = ctk.CTkFrame(main_menu,fg_color="#21344a",width=620,height=350,corner_radius=15, border_width=5, border_color="black")
+color_box = ctk.CTkFrame(main_menu,fg_color="#21344a",width=620,height=220,corner_radius=15, border_width=5, border_color="black")
 
 color_box.place(x=115,y=130)
 
