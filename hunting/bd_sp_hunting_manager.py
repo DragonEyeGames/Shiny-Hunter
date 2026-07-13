@@ -202,8 +202,8 @@ class HuntingManager:
             if config.status == "Ending Hunt": return 
             self.controller.press_a() 
             if config.status == "Ending Hunt": return 
-            config.status = "Finding Loader" 
-            detected, ratio, elapsed = self.wait_for_black_flash(config.load, timeout=3) 
+            config.status = "Loading Game" 
+            detected, ratio, elapsed = self.wait_for_black_flash(config.load, timeout=.5) 
             if config.status == "Ending Hunt": return 
             if not detected: 
                 config.status = "Loaded" 
