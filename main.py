@@ -103,7 +103,7 @@ def create_game_button(parent, x, y, image, hover_image, command):
     button = ctk.CTkButton(
         parent,
         image=image,
-        #text="",
+        text="",
         width=100,
         height=100,
         compound="center",
