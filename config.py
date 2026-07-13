@@ -86,7 +86,17 @@ hunting_data = {
             "resets": 0,
             "time_spent": 0.000
         },
-        "Shiing Pearl": {
+        "Shining Pearl": {
+            "resets": 0,
+            "time_spent": 0.000
+        }
+    },
+    "Arceus": {
+        "Brilliant Diamond": {
+            "resets": 0,
+            "time_spent": 0.000
+        },
+        "Shining Pearl": {
             "resets": 0,
             "time_spent": 0.000
         }
