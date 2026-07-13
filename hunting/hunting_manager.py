@@ -46,7 +46,8 @@ class HuntingManager:
     def execute(self, action, delay): 
         if action == "a": 
             self.controller.press_a() 
-            
+        if action == "up":
+            self.controller.press_up()
         elif action == "white_a": 
             self.controller.press_a() 
             config.status = "Checking Encounter" 

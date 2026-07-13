@@ -6,6 +6,7 @@ class BdScreen(tk.Frame):
         super().__init__(parent, bg="#2b2b2b")
 
         self.giratina = tk.PhotoImage(file="pokemon/giratina.png")
+        self.arceus = tk.PhotoImage(file="pokemon/arceus.png")
 
         #Game title
         label = tk.Label(
@@ -36,7 +37,7 @@ class BdScreen(tk.Frame):
         self.color_box.place(x = 103, y = 170)
 
         self.create_pokemon_button(113, 180, self.giratina, "Giratina", boot_screen)
-        #self.create_pokemon_button(213, 180, self.regice, "Regice", boot_screen)
+        self.create_pokemon_button(213, 180, self.arceus, "Arceus", boot_screen)
         #self.create_pokemon_button(313, 180, self.registeel, "Registeel", boot_screen)
         #self.create_pokemon_button(413, 180, self.regidrago, "Regidrago", boot_screen)
         #self.create_pokemon_button(513, 180, self.regieleki, "Regieleki", boot_screen)

@@ -145,6 +145,9 @@ class SwitchController:
     def press_y(self):
         self.press_button(Buttons.Y)
 
+    def press_up(self):
+        self.press_button(Buttons.DPAD_UP)
+
     def press_home(self):
         self.press_button(Buttons.HOME)
 
