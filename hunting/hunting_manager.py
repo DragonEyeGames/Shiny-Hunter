@@ -232,14 +232,14 @@ class HuntingManager:
             
         if config.status == "Ending Hunt": return 
         config.status = "Loading Game" 
-        time.sleep(20) 
+        time.sleep(19) 
         if config.status == "Ending Hunt": return 
         self.controller.press_a() 
         time.sleep(.2) 
         self.controller.press_a() 
         time.sleep(.2) 
         self.controller.press_a() 
-        time.sleep(5) 
+        time.sleep(4) 
         if config.status == "Ending Hunt": return 
         self.controller.press_a() 
         time.sleep(.2) 
