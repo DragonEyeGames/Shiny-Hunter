@@ -108,11 +108,11 @@ selected_brilliant_diamond = tk.PhotoImage(file="logos/selected_brilliant_diamon
 
 shining_pearl = tk.PhotoImage(file="logos/shining_pearl.png")
 
-lets_go_eevee = tk.PhotoImage(file="logos/eevee.png")
-selected_lets_go_eevee = tk.PhotoImage(file="logos/selected_eevee.png")
+eevee = tk.PhotoImage(file="logos/eevee.png")
+selected_eevee = tk.PhotoImage(file="logos/selected_eevee.png")
 
-lets_go_pikachu = tk.PhotoImage(file="logos/pikachu.png")
-selected_lets_go_pikachu = tk.PhotoImage(file="logos/selected_pikachu.png")
+pikachu = tk.PhotoImage(file="logos/pikachu.png")
+selected_pikachu = tk.PhotoImage(file="logos/selected_pikachu.png")
 
 fire_red = tk.PhotoImage(file="logos/fire_red.png")
 leaf_green = tk.PhotoImage(file="logos/leaf_green.png")
@@ -123,31 +123,44 @@ label.pack(pady=18)
 label = tk.Label(main_menu, text="Pick a Game to Hunt In", font=("Droid Sans Fallback", 24), bg="#2b2b2b", fg="white")
 label.pack()
 
-lets_go_eevee_button = tk.Button(main_menu, image=lets_go_eevee, bg="#bfbfbf", fg="black", font=("C052", 18), command=on_click_lets_go_eevee)
+lets_go_eevee_button = tk.Button(main_menu, image=eevee, bg="#bfbfbf", command=on_click_lets_go_eevee)
 lets_go_eevee_button.place(x=100, y=160, width=100, height=100)
 
-lets_go_pikachu_button = tk.Button(main_menu, image=lets_go_pikachu, bg="#bfbfbf", fg="black", font=("C052", 18), command=on_click_lets_go_pikachu)
+lets_go_eevee_button.bind("<Enter>", lambda event: lets_go_eevee_button.config(image=selected_eevee))
+lets_go_eevee_button.bind("<Leave>", lambda event: lets_go_eevee_button.config(image=eevee))
+
+lets_go_pikachu_button = tk.Button(main_menu, image=pikachu, bg="#bfbfbf", command=on_click_lets_go_pikachu)
 lets_go_pikachu_button.place(x=100, y=280, width=100, height=100)
+
+lets_go_pikachu_button.bind("<Enter>", lambda event: lets_go_pikachu_button.config(image=selected_pikachu))
+lets_go_pikachu_button.bind("<Leave>", lambda event: lets_go_pikachu_button.config(image=pikachu))
 
 sword_button = tk.Button(main_menu, bg="#bfbfbf", image=sword, command=on_click_sword)
 sword_button.place(x=250, y=160, width=100, height=100)
-# 3. Bind the hover events (swapping the images)
+
 sword_button.bind("<Enter>", lambda event: sword_button.config(image=selected_sword))
 sword_button.bind("<Leave>", lambda event: sword_button.config(image=sword))
 
-shield_button = tk.Button(main_menu, bg="#bfbfbf", fg="black", image=shield, font=("C052", 18), command=on_click_shield)
+shield_button = tk.Button(main_menu, bg="#bfbfbf", image=shield, command=on_click_shield)
 shield_button.place(x=250, y=280, width=100, height=100)
 
-brilliant_diamond_button = tk.Button(main_menu, bg="#bfbfbf", fg="black", image=brilliant_diamond, font=("C052", 18), command=on_click_brilliant_diamond)
+shield_button.bind("<Enter>", lambda event: shield_button.config(image=selected_shield))
+shield_button.bind("<Leave>", lambda event: shield_button.config(image=shield))
+
+
+brilliant_diamond_button = tk.Button(main_menu, bg="#bfbfbf", image=brilliant_diamond, command=on_click_brilliant_diamond)
 brilliant_diamond_button.place(x=400, y=160, width=100, height=100)
 
-shining_pearl_button = tk.Button(main_menu, text="Sp", bg="#bfbfbf", fg="black", font=("C052", 18), image=shining_pearl, command=on_click_shining_pearl)
+brilliant_diamond_button.bind("<Enter>", lambda event: brilliant_diamond_button.config(image=selected_brilliant_diamond))
+brilliant_diamond_button.bind("<Leave>", lambda event: brilliant_diamond_button.config(image=brilliant_diamond))
+
+shining_pearl_button = tk.Button(main_menu, text="Sp", bg="#bfbfbf", image=shining_pearl, command=on_click_shining_pearl)
 shining_pearl_button.place(x=400, y=280, width=100, height=100)
 
-red_button = tk.Button(main_menu, bg="#bfbfbf", fg="black", font=("C052", 18), image=fire_red, command=on_click_fire_red)
+red_button = tk.Button(main_menu, bg="#bfbfbf", image=fire_red, command=on_click_fire_red)
 red_button.place(x=550, y=160, width=100, height=100)
 
-green_button = tk.Button(main_menu, bg="#bfbfbf", fg="black", font=("C052", 18), image=leaf_green, command=on_click_leaf_green)
+green_button = tk.Button(main_menu, bg="#bfbfbf", image=leaf_green, command=on_click_leaf_green)
 green_button.place(x=550, y=280, width=100, height=100)
 
 end_button = tk.Button(main_menu, text="Quit Program", font=("C052", 16), command=close_project)
