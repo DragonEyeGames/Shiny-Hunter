@@ -40,7 +40,7 @@ def close_project():
     save_data(config.hunting_data)
     root.destroy()
 
-main_menu = ctk.CTkFrame(root,fg_color="#1e1e1e",corner_radius=0)
+main_menu = ctk.CTkFrame(root,fg_color="#050c15",corner_radius=0)
 main_menu.place(x=0, y=0, relwidth=1, relheight=1)
 
 switch_screen = CaptureCard(root, lambda: main_menu.tkraise(), camera_index=0)
@@ -150,7 +150,8 @@ selected_leaf_green = ctk.CTkImage(light_image=Image.open("logos/selected_leaf_g
 title = ctk.CTkLabel(
     main_menu,
     text="Pokémon Shiny Hunter",
-    font=("Arial",40,"bold")
+    font=("Arial",40,"bold"),
+    text_color="#1a75c2"
 )
 
 title.pack(pady=(25,5))
