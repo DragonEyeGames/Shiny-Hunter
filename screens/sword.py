@@ -1,108 +1,98 @@
-import tkinter as tk
+import customtkinter as ctk
+from PIL import Image
+
 import config
 
-class SwScreen(tk.Frame):
+
+class BdScreen(ctk.CTkFrame):
+
     def __init__(self, parent, back_callback, boot_screen):
-        super().__init__(parent, bg="#2b2b2b")
+        super().__init__( parent, fg_color="#050c15" )
 
-        self.regirock = tk.PhotoImage(file="pokemon/regirock.png")
-        self.regice = tk.PhotoImage(file="pokemon/regice.png")
-        self.registeel = tk.PhotoImage(file="pokemon/registeel.png")
-        self.regidrago = tk.PhotoImage(file="pokemon/regidrago.png")
-        self.regieleki = tk.PhotoImage(file="pokemon/regieleki.png")
-        self.virizon = tk.PhotoImage(file="pokemon/virizion.png")
-        self.terrakion = tk.PhotoImage(file="pokemon/terrakion.png")
-        self.cobalion = tk.PhotoImage(file="pokemon/cobalion.png")
-        self.arctovish= tk.PhotoImage(file="pokemon/arctovish.png")
-        self.arctozolt= tk.PhotoImage(file="pokemon/arctozolt.png")
-        self.dracovish= tk.PhotoImage(file="pokemon/dracovish.png")
-        self.dracozolt= tk.PhotoImage(file="pokemon/dracozolt.png")
+        # Images
+        self.regirock = ctk.CTkImage(light_image=Image.open("pokemon/regirock.png"),dark_image=Image.open("pokemon/regirock.png"),size=(70,70))
+        self.registeel = ctk.CTkImage(light_image=Image.open("pokemon/registeel.png"),dark_image=Image.open("pokemon/registeel.png"),size=(70,70))
+        self.regice = ctk.CTkImage(light_image=Image.open("pokemon/regice.png"),dark_image=Image.open("pokemon/regice.png"),size=(70,70))
+        self.regidrago = ctk.CTkImage(light_image=Image.open("pokemon/regidrago.png"),dark_image=Image.open("pokemon/regidrago.png"),size=(70,70))
+        self.regieleki = ctk.CTkImage(light_image=Image.open("pokemon/regieleki.png"),dark_image=Image.open("pokemon/regieleki.png"),size=(70,70))
+        self.virizion = ctk.CTkImage(light_image=Image.open("pokemon/virizion.png"),dark_image=Image.open("pokemon/virizion.png"),size=(70,70))
+        self.terrakion = ctk.CTkImage(light_image=Image.open("pokemon/terrakion.png"),dark_image=Image.open("pokemon/terrakion.png"),size=(70,70))
+        self.cobalion = ctk.CTkImage(light_image=Image.open("pokemon/cobalion.png"),dark_image=Image.open("pokemon/cobalion.png"),size=(70,70))
+        self.arctovish = ctk.CTkImage(light_image=Image.open("pokemon/arctovish"),dark_image=Image.open("pokemon/arctovish.png"),size=(70,70))
+        self.arctozolt = ctk.CTkImage(light_image=Image.open("pokemon/arctozolt.png"),dark_image=Image.open("pokemon/arctozolt.png"),size=(70,70))
+        self.dracovish = ctk.CTkImage(light_image=Image.open("pokemon/dracovish.png"),dark_image=Image.open("pokemon/dracovish.png"),size=(70,70))
+        self.dracozolt = ctk.CTkImage(light_image=Image.open("pokemon/dracozolt.png"),dark_image=Image.open("pokemon/dracozolt.png"),size=(70,70))
 
-        #Game title
-        label = tk.Label(
-            self,
-            text="Pokemon Sword",
-            font=("Droid Sans Fallback", 35),
-            bg="#2b2b2b",
-            fg="white"
-        )
-        label.pack(pady=20)
 
-        #Text for the user to select a pokemon
-        label = tk.Label(
-            self,
-            text="Select a Pokemon to Hunt",
-            font=("C052", 20),
-            bg="#2b2b2b",
-            fg="white"
-        )
+        # Title
+        title = ctk.CTkLabel(self,text="Pokémon Sword",font=("Arial", 35, "bold"),text_color="#2b89d9")
+
+        title.pack(pady=(25, 10))
+
+
+        # Subtitle
+        label = ctk.CTkLabel(self,text="Select a Pokémon to Hunt",font=("Arial", 20),text_color="white")
+
         label.pack()
 
-        self.border_box = tk.Frame(self, bg="black", width=602, height=202, relief="groove")
-        self.border_box.pack_propagate(False)
-        self.border_box.place(x = 99, y = 166)
 
-        self.color_box = tk.Frame(self, bg="#5e5e5e", width=594, height=194, relief="groove")
-        self.color_box.pack_propagate(False)
-        self.color_box.place(x = 103, y = 170)
+        # Outline box
+        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=594,height=194,corner_radius=15, border_width=5, border_color="black")
 
-        self.create_pokemon_button(113, 180, self.regirock, "Regirock", boot_screen)
-        self.create_pokemon_button(213, 180, self.regice, "Regice", boot_screen)
-        self.create_pokemon_button(313, 180, self.registeel, "Registeel", boot_screen)
-        self.create_pokemon_button(413, 180, self.regidrago, "Regidrago", boot_screen)
-        self.create_pokemon_button(513, 180, self.regieleki, "Regieleki", boot_screen)
-        self.create_pokemon_button(613, 180, self.virizon, "Virizion", boot_screen)
-        self.create_pokemon_button(113, 280, self.terrakion, "Terrakion", boot_screen)
-        self.create_pokemon_button(213, 280, self.cobalion, "Cobalion", boot_screen)
-        self.create_pokemon_button(313, 280, self.arctovish, "Arctovish", boot_screen)
-        self.create_pokemon_button(413, 280, self.arctozolt, "Arctozolt", boot_screen)
-        self.create_pokemon_button(513, 280, self.dracovish, "Dracovish", boot_screen)
-        self.create_pokemon_button(613, 280, self.dracozolt, "Dracozolt", boot_screen)
+        self.color_box.place(x=103,y=170)
 
-        #Back button
 
-        back_button = tk.Button(
-            self,
-            text="Back",
-            font=("C052", 20),
-            command=back_callback
-        )
-        back_button.place(x=340, y=420, width=100, height=40)
+        # Pokemon buttons
+        self.create_pokemon_button(113,180,self.regirock,"Regirock",boot_screen)
+        self.create_pokemon_button(213,180,self.regice,"Regice",boot_screen)
+        self.create_pokemon_button(113,180,self.registeel,"Registeel",boot_screen)
+        self.create_pokemon_button(213,180,self.regidrago,"Regidrago",boot_screen)
+        self.create_pokemon_button(113,180,self.regieleki,"Regieleki",boot_screen)
+        self.create_pokemon_button(213,180,self.virizion,"Virizion",boot_screen)
+        self.create_pokemon_button(113,180,self.terrakion,"Terrakion",boot_screen)
+        self.create_pokemon_button(213,180,self.cobalion,"Cobalion",boot_screen)
+        self.create_pokemon_button(213,180,self.arctovish,"Arctovish",boot_screen)
+        self.create_pokemon_button(113,180,self.arctozolt,"Arctozolt",boot_screen)
+        self.create_pokemon_button(213,180,self.dracovish,"Dracovish",boot_screen)
+        self.create_pokemon_button(113,180,self.dracozolt,"Dracozolt",boot_screen)
 
-    #Initializes the hunt
+
+        # Back button
+        back_button = ctk.CTkButton(self,text="Back",font=("Arial",20),width=100,height=40,fg_color="#3b3b3b",hover_color="#505050",command=back_callback)
+
+        back_button.place(x=340,y=420)
+
+
+
+    # Start hunt
     def start_hunt(self, pokemon_name, boot_screen):
-        config.game_name="Sword"
+
+        config.game_name = "Sword"
         config.pokemon_name = pokemon_name
+
         boot_screen()
 
-    #Pokemon creation script
-    def create_pokemon_button(self, x, y, image, name, boot_screen):
 
-        border_box = tk.Frame(self, bg="black", width=74, height=74, relief="groove")
-        border_box.pack_propagate(False)
-        border_box.place(x = x, y = y)
 
-        button = tk.Button(
-            self,
-            image=image,
-            bg="#8f8d8d",
-            activebackground="#bfbfbf",
-            command=lambda: self.start_hunt(name, boot_screen),
-            borderwidth=0
-        )
-        button.place(x=x+2, y=y+2, width=70, height=70)
+    # Pokemon button creation
+    def create_pokemon_button(self,x,y,image,name,boot_screen):
 
-        border_box = tk.Frame(self, bg="black", width=66, height=16, relief="groove")
-        border_box.pack_propagate(False)
-        border_box.place(x = x+4, y = y+54)
+        # Button
+        button = ctk.CTkButton(self, image=image, text="", width=80, height=80, fg_color="#5e5e5e", bg_color="#21344a", hover_color="#bfbfbf", border_width=3, border_color="black", corner_radius=10, command=lambda: self.start_hunt(name,boot_screen))
 
-        label = tk.Label(
-            self,
-            text=name,
-            font=("C052", 9),
-            fg="black",
-            bg="white"
-        )
-        label.place(x=x+5, y=y + 55, width=64, height=14)
+        button.place(x=x,y=y)
+
+
+        # Name box
+        label_box = ctk.CTkFrame(self,fg_color="black",bg_color="#5e5e5e",width=76,height=16,corner_radius=2)
+
+        label_box.place(x=x+8,y=y+60)
+
+
+        # Name
+        label = ctk.CTkLabel(master=label_box,text=name,font=("Arial",9),text_color="black",fg_color="white",width=74,height=14,corner_radius=3)
+
+        label.place(x=1,y=1)
+
 
         return button, label
