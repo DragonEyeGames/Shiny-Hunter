@@ -51,17 +51,6 @@ class HuntingManager:
         elif action == "white_a": 
             self.controller.press_a() 
             config.status = "Checking Encounter" 
-            detected, ratio, elapsed = self.wait_for_white_flash(config.full, timeout=delay-1) 
-            
-            if detected: 
-                config.status = "Encounter Loaded" 
-            else: #I attempted adding in recovery steps, but the timings would be too innacurate. This is the way
-               self.trigger_soft_reset() 
-               raise RestartScriptException() 
-
-        elif action == "bd_sp_a": 
-            self.controller.press_a() 
-            config.status = "Checking Encounter" 
             time.sleep(1.5)
             detected, ratio, elapsed = self.wait_for_white_flash(config.full, timeout=delay-1) 
             
@@ -84,8 +73,6 @@ class HuntingManager:
                self.trigger_soft_reset() 
                raise RestartScriptException() 
 
-
-
         elif action == "b": 
             self.controller.press_b() 
             
@@ -95,40 +82,7 @@ class HuntingManager:
         elif action == "left_left": 
             self.controller.left_left() 
             
-        elif action == "sw-sh_search": 
-            config.hunting_data[config.pokemon_name][config.game_name]['resets'] += 1 
-            config.last_reset_time = config.current_reset_time 
-            config.current_reset_time = 0 
-            save_data(config.hunting_data) 
-            config.status = "Searching" 
-            
-            detected, ratio, elapsed = self.wait_for_white_flash(config.roi, timeout=.8) 
-            if detected: 
-                config.status = "Not Shiny, Restarting" 
-                military_time = datetime.now().strftime("%H:%M") 
-
-                #Send discord notification as a seperate thread. It seems to be blocking things right now.
-                threading.Thread(
-                    target=send_discord_update,
-                    args=(f"Non-Shiny {config.pokemon_name}. Currently at {config.hunting_data[config.pokemon_name][config.game_name]['resets']} Resets. Timestamp: {military_time}.",),
-                    daemon=True
-                ).start()
-
-                self.trigger_soft_reset()
-                raise RestartScriptException() 
-            else: 
-                config.status = "Shiny Detected!" 
-                military_time = datetime.now().strftime("%H:%M") 
-                ret, frame = False, None
-                with config.cap_lock:
-                    ret, frame = config.cap.read()
-                send_shiny_notification("Shiny Detected!", f"Shiny {config.pokemon_name} Detected in {config.hunting_data[config.pokemon_name][config.game_name]['resets']} Resets! Timestamp: {military_time}.", frame, 14406663) 
-                while True: # config.status == "Shiny Detected!": 
-                    time.sleep(1.0) 
-                #if(config.status== "False Positive"):
-                   # self.trigger_soft_reset()
-                   # raise RestartScriptException() 
-        elif action == "bd-sp_search": 
+        elif action == "search": 
             config.hunting_data[config.pokemon_name][config.game_name]['resets'] += 1 
             config.last_reset_time = config.current_reset_time 
             config.current_reset_time = 0 
@@ -217,13 +171,10 @@ class HuntingManager:
         time.sleep(1) 
 
     def trigger_soft_reset(self):
-        if config.game_name=="Sword" or config.game_name=="Shield":
-            self.sword_and_shield_reset()
-        if config.game_name=="Brilliant Diamond" or config.game_name=="Shining Pearl":
-            self.bd_sp_reset()
+        self.reset()
 
 
-    def bd_sp_reset(self):
+    def reset(self):
         self.find_home()
                 
         self.reboot_game()
@@ -247,25 +198,7 @@ class HuntingManager:
         time.sleep(.2) 
         self.controller.press_a() 
         time.sleep(14) 
-        config.status = "Starting Encounter"
-
-    def sword_and_shield_reset(self):
-        self.find_home()
-                
-        self.reboot_game()
-        
-        self.find_loader()
-            
-        if config.status == "Ending Hunt": return 
-        config.status = "Loading Game" 
-        time.sleep(9) 
-        if config.status == "Ending Hunt": return 
-        self.controller.press_a() 
-        time.sleep(.2) 
-        if config.status == "Ending Hunt": return 
-        self.controller.press_a() 
-        time.sleep(3.5) 
-        config.status = "Starting Encounter"
+        config.status = "Starting Encounter" 
 
     def get_roi_pixels(self, frame, normalized_roi):
         h, w = frame.shape[:2]

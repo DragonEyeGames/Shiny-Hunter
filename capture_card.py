@@ -14,7 +14,9 @@ from hunting.sw_sh_regidrago import commands as regidrago_commands
 from hunting.bd_sp_giratina import commands as giratina_commands
 from hunting.bd_sp_arceus import commands as arceus_commands
 
-import hunting.hunting_manager as hm
+import hunting.bd_sp_hunting_manager as bd_sp_hm
+import hunting.sw_sh_hunting_manager as sw_sh_hm
+
 from save_manager import save_data, load_data
 
 class CaptureCard(tk.Frame):
@@ -97,6 +99,11 @@ class CaptureCard(tk.Frame):
             self.controller.connect()
             self.start_time = time.time()
             config.status="Initializing Hunt"
+            hm = None
+            if(config.game_name=="Sword" or config.game_name=="Shield"):
+                hm=sw_sh_hm
+            elif(config.game_name=="Brilliant Diamond" or config.game_name=="Shining Pearl"):
+                hm=bd_sp_hm
             hunting_manager = hm.HuntingManager(self.controller)
             self.controller.press_home()
             time.sleep(1.5)
