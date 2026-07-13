@@ -37,24 +37,24 @@ class SwScreen(ctk.CTkFrame):
 
 
         # Outline box
-        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=594,height=194,corner_radius=15, border_width=5, border_color="black")
+        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=605,height=194,corner_radius=15, border_width=5, border_color="black")
 
-        self.color_box.place(x=103,y=170)
+        self.color_box.place(x=93,y=170)
 
 
         # Pokemon buttons
-        self.create_pokemon_button(113,180,self.regirock,"Regirock",boot_screen)
-        self.create_pokemon_button(213,180,self.regice,"Regice",boot_screen)
-        self.create_pokemon_button(313,180,self.registeel,"Registeel",boot_screen)
-        self.create_pokemon_button(413,180,self.regidrago,"Regidrago",boot_screen)
-        self.create_pokemon_button(513,180,self.regieleki,"Regieleki",boot_screen)
-        self.create_pokemon_button(613,180,self.virizion,"Virizion",boot_screen)
-        self.create_pokemon_button(113,280,self.terrakion,"Terrakion",boot_screen)
-        self.create_pokemon_button(213,280,self.cobalion,"Cobalion",boot_screen)
-        self.create_pokemon_button(313,280,self.arctovish,"Arctovish",boot_screen)
-        self.create_pokemon_button(413,280,self.arctozolt,"Arctozolt",boot_screen)
-        self.create_pokemon_button(513,280,self.dracovish,"Dracovish",boot_screen)
-        self.create_pokemon_button(613,280,self.dracozolt,"Dracozolt",boot_screen)
+        self.create_pokemon_button(103,180,self.regirock,"Regirock",boot_screen)
+        self.create_pokemon_button(203,180,self.regice,"Regice",boot_screen)
+        self.create_pokemon_button(303,180,self.registeel,"Registeel",boot_screen)
+        self.create_pokemon_button(403,180,self.regidrago,"Regidrago",boot_screen)
+        self.create_pokemon_button(503,180,self.regieleki,"Regieleki",boot_screen)
+        self.create_pokemon_button(603,180,self.virizion,"Virizion",boot_screen)
+        self.create_pokemon_button(103,260,self.terrakion,"Terrakion",boot_screen)
+        self.create_pokemon_button(203,260,self.cobalion,"Cobalion",boot_screen)
+        self.create_pokemon_button(303,260,self.arctovish,"Arctovish",boot_screen)
+        self.create_pokemon_button(403,260,self.arctozolt,"Arctozolt",boot_screen)
+        self.create_pokemon_button(503,260,self.dracovish,"Dracovish",boot_screen)
+        self.create_pokemon_button(603,260,self.dracozolt,"Dracozolt",boot_screen)
 
 
         # Back button
