@@ -164,9 +164,9 @@ subtitle = ctk.CTkLabel(
 
 subtitle.pack()
 
-self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=620,height=372,corner_radius=15, border_size=5, border_color="black")
+color_box = ctk.CTkFrame(main_menu,fg_color="#21344a",width=620,height=372,corner_radius=15, border_width=5, border_color="black")
 
-self.color_box.place(x=90,y=130)
+color_box.place(x=90,y=130)
 
 #Create the game buttons with a consistent theme in mind.
 
