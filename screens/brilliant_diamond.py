@@ -52,22 +52,22 @@ class BdScreen(ctk.CTkFrame):
 
         # Pokemon buttons
         self.create_pokemon_button(50,135,self.dialga,"Dialga",boot_screen, True)
-        self.create_pokemon_button(150,135,self.uxie,"Uxie",boot_screen)
-        self.create_pokemon_button(250,135,self.mesprit,"Mesprit",boot_screen)
+        self.create_pokemon_button(150,135,self.uxie,"Uxie",boot_screen, True)
+        self.create_pokemon_button(250,135,self.mesprit,"Mesprit",boot_screen, True)
         self.create_pokemon_button(350,135,self.azelf,"Azelf",boot_screen, True)
         self.create_pokemon_button(450,135,self.heatran,"Heatran",boot_screen, True)
         self.create_pokemon_button(550,135,self.regigigas,"Regigigas",boot_screen, True)
-        self.create_pokemon_button(650,135,self.giratina,"Giratina",boot_screen, True)
+        self.create_pokemon_button(650,135,self.giratina,"Giratina",boot_screen)
         self.create_pokemon_button(50,225,self.arceus,"Arceus",boot_screen)
-        self.create_pokemon_button(150,225,self.regirock,"Regirock",boot_screen)
-        self.create_pokemon_button(250,225,self.registeel,"Registeel",boot_screen)
+        self.create_pokemon_button(150,225,self.regirock,"Regirock",boot_screen, True)
+        self.create_pokemon_button(250,225,self.registeel,"Registeel",boot_screen, True)
         self.create_pokemon_button(350,225,self.regice,"Regice",boot_screen, True)
         self.create_pokemon_button(450,225,self.raikou,"Raikou",boot_screen, True)
         self.create_pokemon_button(550,225,self.entei,"Entei",boot_screen, True)
         self.create_pokemon_button(650,225,self.suicune,"Suicune",boot_screen, True)
-        self.create_pokemon_button(50,315,self.latias,"Latias",boot_screen)
-        self.create_pokemon_button(150,315,self.latios,"Latios",boot_screen)
-        self.create_pokemon_button(250,315,self.ho_oh,"Ho-Oh",boot_screen)
+        self.create_pokemon_button(50,315,self.latias,"Latias",boot_screen, True)
+        self.create_pokemon_button(150,315,self.latios,"Latios",boot_screen, True)
+        self.create_pokemon_button(250,315,self.ho_oh,"Ho-Oh",boot_screen, True)
         self.create_pokemon_button(350,315,self.kyogre,"Kyogre",boot_screen, True)
         self.create_pokemon_button(450,315,self.groudon,"Groudon",boot_screen, True)
         self.create_pokemon_button(550,315,self.rayquaza,"Rayquaza",boot_screen, True)
@@ -91,13 +91,15 @@ class BdScreen(ctk.CTkFrame):
 
 
     # Pokemon button creation
-    def create_pokemon_button(self,x,y,image,name,boot_screen):
+    def create_pokemon_button(self,x,y,image,name,boot_screen, disabled=False):
 
         # Button
         button = ctk.CTkButton(self, image=image, text="", width=80, height=80, fg_color="#5e5e5e", bg_color="#21344a", hover_color="#bfbfbf", border_width=3, border_color="black", corner_radius=10, command=lambda: self.start_hunt(name,boot_screen))
 
         button.place(x=x,y=y)
 
+        if(disabled):
+            button.configure(state="disabled")
 
         # Name box
         label_box = ctk.CTkFrame(self,fg_color="black",bg_color="#5e5e5e",width=76,height=16,corner_radius=2)
