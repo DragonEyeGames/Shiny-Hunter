@@ -45,33 +45,33 @@ class BdScreen(ctk.CTkFrame):
 
 
         # Outline box
-        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=594,height=194,corner_radius=15, border_width=5, border_color="black")
+        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=705,height=294,corner_radius=15, border_width=5, border_color="black")
 
-        self.color_box.place(x=103,y=170)
+        self.color_box.place(x=45,y=125)
 
 
         # Pokemon buttons
-        self.create_pokemon_button(50,135,self.dialga,"Dialga",boot_screen, True)
-        self.create_pokemon_button(150,135,self.uxie,"Uxie",boot_screen, True)
-        self.create_pokemon_button(250,135,self.mesprit,"Mesprit",boot_screen, True)
-        self.create_pokemon_button(350,135,self.azelf,"Azelf",boot_screen, True)
-        self.create_pokemon_button(450,135,self.heatran,"Heatran",boot_screen, True)
-        self.create_pokemon_button(550,135,self.regigigas,"Regigigas",boot_screen, True)
-        self.create_pokemon_button(650,135,self.giratina,"Giratina",boot_screen)
-        self.create_pokemon_button(50,225,self.arceus,"Arceus",boot_screen)
-        self.create_pokemon_button(150,225,self.regirock,"Regirock",boot_screen, True)
-        self.create_pokemon_button(250,225,self.registeel,"Registeel",boot_screen, True)
-        self.create_pokemon_button(350,225,self.regice,"Regice",boot_screen, True)
-        self.create_pokemon_button(450,225,self.raikou,"Raikou",boot_screen, True)
-        self.create_pokemon_button(550,225,self.entei,"Entei",boot_screen, True)
-        self.create_pokemon_button(650,225,self.suicune,"Suicune",boot_screen, True)
-        self.create_pokemon_button(50,315,self.latias,"Latias",boot_screen, True)
-        self.create_pokemon_button(150,315,self.latios,"Latios",boot_screen, True)
-        self.create_pokemon_button(250,315,self.ho_oh,"Ho-Oh",boot_screen, True)
-        self.create_pokemon_button(350,315,self.kyogre,"Kyogre",boot_screen, True)
-        self.create_pokemon_button(450,315,self.groudon,"Groudon",boot_screen, True)
-        self.create_pokemon_button(550,315,self.rayquaza,"Rayquaza",boot_screen, True)
-        self.create_pokemon_button(650,315,self.mewtwo,"Mewtwo",boot_screen, True)
+        self.create_pokemon_button(55,135,self.dialga,"Dialga",boot_screen, True)
+        self.create_pokemon_button(155,135,self.uxie,"Uxie",boot_screen, True)
+        self.create_pokemon_button(255,135,self.mesprit,"Mesprit",boot_screen, True)
+        self.create_pokemon_button(355,135,self.azelf,"Azelf",boot_screen, True)
+        self.create_pokemon_button(455,135,self.heatran,"Heatran",boot_screen, True)
+        self.create_pokemon_button(555,135,self.regigigas,"Regigigas",boot_screen, True)
+        self.create_pokemon_button(655,135,self.giratina,"Giratina",boot_screen)
+        self.create_pokemon_button(55,225,self.arceus,"Arceus",boot_screen)
+        self.create_pokemon_button(155,225,self.regirock,"Regirock",boot_screen, True)
+        self.create_pokemon_button(255,225,self.registeel,"Registeel",boot_screen, True)
+        self.create_pokemon_button(355,225,self.regice,"Regice",boot_screen, True)
+        self.create_pokemon_button(455,225,self.raikou,"Raikou",boot_screen, True)
+        self.create_pokemon_button(555,225,self.entei,"Entei",boot_screen, True)
+        self.create_pokemon_button(655,225,self.suicune,"Suicune",boot_screen, True)
+        self.create_pokemon_button(55,315,self.latias,"Latias",boot_screen, True)
+        self.create_pokemon_button(155,315,self.latios,"Latios",boot_screen, True)
+        self.create_pokemon_button(255,315,self.ho_oh,"Ho-Oh",boot_screen, True)
+        self.create_pokemon_button(355,315,self.kyogre,"Kyogre",boot_screen, True)
+        self.create_pokemon_button(455,315,self.groudon,"Groudon",boot_screen, True)
+        self.create_pokemon_button(555,315,self.rayquaza,"Rayquaza",boot_screen, True)
+        self.create_pokemon_button(655,315,self.mewtwo,"Mewtwo",boot_screen, True)
 
         # Back button
         back_button = ctk.CTkButton(self,text="Back",font=("Arial",20),width=100,height=40,fg_color="#3b3b3b",hover_color="#505050",command=back_callback)
@@ -108,7 +108,7 @@ class BdScreen(ctk.CTkFrame):
 
 
         # Name
-        label = ctk.CTkLabel(master=label_box,text=name,font=("Arial",9),text_color="black",fg_color="white",width=74,height=14,corner_radius=3)
+        label = ctk.CTkLabel(master=label_box,text=name,font=("Arial",10),text_color="black",fg_color="white",width=74,height=14,corner_radius=3)
 
         label.place(x=1,y=1)
 
