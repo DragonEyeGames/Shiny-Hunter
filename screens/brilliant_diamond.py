@@ -10,6 +10,7 @@ class BdScreen(ctk.CTkFrame):
         super().__init__( parent, fg_color="#050c15" )
 
         # Images
+        self.dialga = ctk.CTkImage(light_image=Image.open("pokemon/dialga.png"),dark_image=Image.open("pokemon/dialga.png"),size=(70,70))
         self.giratina = ctk.CTkImage(light_image=Image.open("pokemon/giratina.png"),dark_image=Image.open("pokemon/giratina.png"),size=(70,70))
         self.arceus = ctk.CTkImage(light_image=Image.open("pokemon/arceus.png"),dark_image=Image.open("pokemon/arceus.png"),size=(70,70))
         self.azelf = ctk.CTkImage(light_image=Image.open("pokemon/azelf.png"),dark_image=Image.open("pokemon/azelf.png"),size=(70,70))
@@ -50,10 +51,27 @@ class BdScreen(ctk.CTkFrame):
 
 
         # Pokemon buttons
-        self.create_pokemon_button(113,180,self.giratina,"Giratina",boot_screen)
-
-        self.create_pokemon_button(213,180,self.arceus,"Arceus",boot_screen)
-
+        self.create_pokemon_button(50,135,self.dialga,"Dialga",boot_screen, True)
+        self.create_pokemon_button(150,135,self.uxie,"Uxie",boot_screen)
+        self.create_pokemon_button(250,135,self.mesprit,"Mesprit",boot_screen)
+        self.create_pokemon_button(350,135,self.azelf,"Azelf",boot_screen, True)
+        self.create_pokemon_button(450,135,self.heatran,"Heatran",boot_screen, True)
+        self.create_pokemon_button(550,135,self.regigigas,"Regigigas",boot_screen, True)
+        self.create_pokemon_button(650,135,self.giratina,"Giratina",boot_screen, True)
+        self.create_pokemon_button(50,225,self.arceus,"Arceus",boot_screen)
+        self.create_pokemon_button(150,225,self.regirock,"Regirock",boot_screen)
+        self.create_pokemon_button(250,225,self.registeel,"Registeel",boot_screen)
+        self.create_pokemon_button(350,225,self.regice,"Regice",boot_screen, True)
+        self.create_pokemon_button(450,225,self.raikou,"Raikou",boot_screen, True)
+        self.create_pokemon_button(550,225,self.entei,"Entei",boot_screen, True)
+        self.create_pokemon_button(650,225,self.suicune,"Suicune",boot_screen, True)
+        self.create_pokemon_button(50,315,self.latias,"Latias",boot_screen)
+        self.create_pokemon_button(150,315,self.latios,"Latios",boot_screen)
+        self.create_pokemon_button(250,315,self.ho_oh,"Ho-Oh",boot_screen)
+        self.create_pokemon_button(350,315,self.kyogre,"Kyogre",boot_screen, True)
+        self.create_pokemon_button(450,315,self.groudon,"Groudon",boot_screen, True)
+        self.create_pokemon_button(550,315,self.rayquaza,"Rayquaza",boot_screen, True)
+        self.create_pokemon_button(650,315,self.mewtwo,"Mewtwo",boot_screen, True)
 
         # Back button
         back_button = ctk.CTkButton(self,text="Back",font=("Arial",20),width=100,height=40,fg_color="#3b3b3b",hover_color="#505050",command=back_callback)
