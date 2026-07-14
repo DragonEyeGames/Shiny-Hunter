@@ -11,9 +11,25 @@ class BdScreen(ctk.CTkFrame):
 
         # Images
         self.giratina = ctk.CTkImage(light_image=Image.open("pokemon/giratina.png"),dark_image=Image.open("pokemon/giratina.png"),size=(70,70))
-
         self.arceus = ctk.CTkImage(light_image=Image.open("pokemon/arceus.png"),dark_image=Image.open("pokemon/arceus.png"),size=(70,70))
-
+        self.azelf = ctk.CTkImage(light_image=Image.open("pokemon/azelf.png"),dark_image=Image.open("pokemon/azelf.png"),size=(70,70))
+        self.heatran = ctk.CTkImage(light_image=Image.open("pokemon/heatran.png"),dark_image=Image.open("pokemon/heatran.png"),size=(70,70))
+        self.uxie = ctk.CTkImage(light_image=Image.open("pokemon/uxie.png"),dark_image=Image.open("pokemon/uxie.png"),size=(70,70))
+        self.mesprit = ctk.CTkImage(light_image=Image.open("pokemon/mesprit.png"),dark_image=Image.open("pokemon/mesprit.png"),size=(70,70))
+        self.regigigas = ctk.CTkImage(light_image=Image.open("pokemon/regigigas.png"),dark_image=Image.open("pokemon/regigigas.png"),size=(70,70))
+        self.regirock = ctk.CTkImage(light_image=Image.open("pokemon/regirock.png"),dark_image=Image.open("pokemon/regirock.png"),size=(70,70))
+        self.regice = ctk.CTkImage(light_image=Image.open("pokemon/regice.png"),dark_image=Image.open("pokemon/regice.png"),size=(70,70))
+        self.registeel = ctk.CTkImage(light_image=Image.open("pokemon/registeel.png"),dark_image=Image.open("pokemon/registeel.png"),size=(70,70))
+        self.raikou = ctk.CTkImage(light_image=Image.open("pokemon/raikou.png"),dark_image=Image.open("pokemon/raikou.png"),size=(70,70))
+        self.entei = ctk.CTkImage(light_image=Image.open("pokemon/entei.png"),dark_image=Image.open("pokemon/entei.png"),size=(70,70))
+        self.suicune = ctk.CTkImage(light_image=Image.open("pokemon/suicune.png"),dark_image=Image.open("pokemon/suicune.png"),size=(70,70))
+        self.latias = ctk.CTkImage(light_image=Image.open("pokemon/latias.png"),dark_image=Image.open("pokemon/latias.png"),size=(70,70))
+        self.latios = ctk.CTkImage(light_image=Image.open("pokemon/latios.png"),dark_image=Image.open("pokemon/latios.png"),size=(70,70))
+        self.ho_oh = ctk.CTkImage(light_image=Image.open("pokemon/ho-oh.png"),dark_image=Image.open("pokemon/ho-oh.png"),size=(70,70))
+        self.kyogre = ctk.CTkImage(light_image=Image.open("pokemon/kyogre.png"),dark_image=Image.open("pokemon/kyogre.png"),size=(70,70))
+        self.groudon = ctk.CTkImage(light_image=Image.open("pokemon/groudon.png"),dark_image=Image.open("pokemon/groudon.png"),size=(70,70))
+        self.rayquaza = ctk.CTkImage(light_image=Image.open("pokemon/rayquaza.png"),dark_image=Image.open("pokemon/rayquaza.png"),size=(70,70))
+        self.mewtwo = ctk.CTkImage(light_image=Image.open("pokemon/mewtwo.png"),dark_image=Image.open("pokemon/mewtwo.png"),size=(70,70))
 
         # Title
         title = ctk.CTkLabel(self,text="Pokemon Brilliant Diamond",font=("Arial", 35, "bold"),text_color="#2b89d9")

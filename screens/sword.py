@@ -44,17 +44,17 @@ class SwScreen(ctk.CTkFrame):
 
         # Pokemon buttons
         self.create_pokemon_button(103,180,self.regirock,"Regirock",boot_screen)
-        self.create_pokemon_button(203,180,self.regice,"Regice",boot_screen)
+        self.create_pokemon_button(203,180,self.regice,"Regice",boot_screen, True)
         self.create_pokemon_button(303,180,self.registeel,"Registeel",boot_screen)
-        self.create_pokemon_button(403,180,self.regidrago,"Regidrago",boot_screen)
-        self.create_pokemon_button(503,180,self.regieleki,"Regieleki",boot_screen)
-        self.create_pokemon_button(603,180,self.virizion,"Virizion",boot_screen)
-        self.create_pokemon_button(103,270,self.terrakion,"Terrakion",boot_screen)
-        self.create_pokemon_button(203,270,self.cobalion,"Cobalion",boot_screen)
-        self.create_pokemon_button(303,270,self.arctovish,"Arctovish",boot_screen)
-        self.create_pokemon_button(403,270,self.arctozolt,"Arctozolt",boot_screen)
-        self.create_pokemon_button(503,270,self.dracovish,"Dracovish",boot_screen)
-        self.create_pokemon_button(603,270,self.dracozolt,"Dracozolt",boot_screen)
+        self.create_pokemon_button(403,180,self.regidrago,"Regidrago",boot_screen, True)
+        self.create_pokemon_button(503,180,self.regieleki,"Regieleki",boot_screen, True)
+        self.create_pokemon_button(603,180,self.virizion,"Virizion",boot_screen, True)
+        self.create_pokemon_button(103,270,self.terrakion,"Terrakion",boot_screen, True)
+        self.create_pokemon_button(203,270,self.cobalion,"Cobalion",boot_screen, True)
+        self.create_pokemon_button(303,270,self.arctovish,"Arctovish",boot_screen, True)
+        self.create_pokemon_button(403,270,self.arctozolt,"Arctozolt",boot_screen, True)
+        self.create_pokemon_button(503,270,self.dracovish,"Dracovish",boot_screen, True)
+        self.create_pokemon_button(603,270,self.dracozolt,"Dracozolt",boot_screen, True)
 
 
         # Back button
@@ -75,13 +75,15 @@ class SwScreen(ctk.CTkFrame):
 
 
     # Pokemon button creation
-    def create_pokemon_button(self,x,y,image,name,boot_screen):
+    def create_pokemon_button(self,x,y,image,name,boot_screen, disabled=False):
 
         # Button
         button = ctk.CTkButton(self, image=image, text="", width=80, height=80, fg_color="#5e5e5e", bg_color="#21344a", hover_color="#bfbfbf", border_width=3, border_color="black", corner_radius=10, command=lambda: self.start_hunt(name,boot_screen))
 
         button.place(x=x,y=y)
 
+        if(disabled):
+            button.configure(state="disabled")
 
         # Name box
         label_box = ctk.CTkFrame(self,fg_color="black",bg_color="#5e5e5e",width=76,height=16,corner_radius=2)
