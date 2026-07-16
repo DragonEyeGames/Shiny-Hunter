@@ -433,6 +433,10 @@ class HuntingManager:
                 print(f"Image match found! (score {max_val:.3f}) after {elapsed:.3f}s")
                 return True, max_val, elapsed
 
+            if ret:
+                cv2.imwrite("captured_frame.png", frame)
+                print(f"Saved captured_frame.png ({frame.shape[1]}x{frame.shape[0]})")
+
         elapsed = time.time() - start_time
         print(f"No image match in {elapsed:.3f}s (best score: {last_score:.3f})")
         return False, last_score, elapsed
