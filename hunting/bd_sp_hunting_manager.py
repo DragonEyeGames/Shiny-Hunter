@@ -17,7 +17,7 @@ class HuntingManager:
         self.controller = controller
         self.script = []
         self.frame_count=0
-        self.bd_template = self.load_template("logos/bd_logo.png")
+        self.bd_template = self.load_template("games/bd_logo.png")
 
     def run_script(self, script): 
         self.script = script 
