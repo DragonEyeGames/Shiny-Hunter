@@ -382,57 +382,57 @@ class HuntingManager:
         print(f"No red detected in {elapsed:.3f}s (last ratio: {last_ratio:.2%})")
         return False, last_ratio, elapsed
 
-def load_template(self, path, grayscale=True): #Loads the template to check against the roi
-    flag = cv2.IMREAD_GRAYSCALE if grayscale else cv2.IMREAD_COLOR
-    template = cv2.imread(path, flag)
-    if template is None:
-        raise FileNotFoundError(f"Could not load template image: {path}")
-    return template
+    def load_template(self, path, grayscale=True): #Loads the template to check against the roi
+        flag = cv2.IMREAD_GRAYSCALE if grayscale else cv2.IMREAD_COLOR
+        template = cv2.imread(path, flag)
+        if template is None:
+            raise FileNotFoundError(f"Could not load template image: {path}")
+        return template
 
-def wait_for_image(self, roi, template, timeout=0.5, match_threshold=0.85, grayscale=True): #Looks for the template inside of the roi
-    start_time = time.time()
-    last_score = 0.0
-    cap = config.cap
+    def wait_for_image(self, roi, template, timeout=0.5, match_threshold=0.85, grayscale=True): #Looks for the template inside of the roi
+        start_time = time.time()
+        last_score = 0.0
+        cap = config.cap
 
-    while time.time() - start_time < timeout:
-        self.frame_count += 1
-        if cap is None:
-            continue
-        if self.frame_count % 2 != 0:
-            continue  # Skip every other frame
+        while time.time() - start_time < timeout:
+            self.frame_count += 1
+            if cap is None:
+                continue
+            if self.frame_count % 2 != 0:
+                continue  # Skip every other frame
 
-        ret, frame = False, None
-        with config.cap_lock:
-            cap = config.cap
-            if cap is not None:
-                try:
-                    ret, frame = cap.read()
-                except cv2.error:
-                    ret, frame = False, None
+            ret, frame = False, None
+            with config.cap_lock:
+                cap = config.cap
+                if cap is not None:
+                    try:
+                        ret, frame = cap.read()
+                    except cv2.error:
+                        ret, frame = False, None
 
-        if not ret or frame is None:
-            continue
+            if not ret or frame is None:
+                continue
 
-        x, y, w, h = self.get_roi_pixels(frame, roi)
-        roi_crop = frame[y:y+h, x:x+w]
+            x, y, w, h = self.get_roi_pixels(frame, roi)
+            roi_crop = frame[y:y+h, x:x+w]
 
-        if grayscale:
-            roi_crop = cv2.cvtColor(roi_crop, cv2.COLOR_BGR2GRAY)
+            if grayscale:
+                roi_crop = cv2.cvtColor(roi_crop, cv2.COLOR_BGR2GRAY)
 
-        # Guard: template must be smaller than or equal to ROI
-        th, tw = template.shape[:2]
-        if roi_crop.shape[0] < th or roi_crop.shape[1] < tw:
-            continue
+            # Guard: template must be smaller than or equal to ROI
+            th, tw = template.shape[:2]
+            if roi_crop.shape[0] < th or roi_crop.shape[1] < tw:
+                continue
 
-        result = cv2.matchTemplate(roi_crop, template, cv2.TM_CCOEFF_NORMED)
-        _, max_val, _, _ = cv2.minMaxLoc(result)
-        last_score = max_val
+            result = cv2.matchTemplate(roi_crop, template, cv2.TM_CCOEFF_NORMED)
+            _, max_val, _, _ = cv2.minMaxLoc(result)
+            last_score = max_val
 
-        if max_val >= match_threshold:
-            elapsed = time.time() - start_time
-            print(f"Image match found! (score {max_val:.3f}) after {elapsed:.3f}s")
-            return True, max_val, elapsed
+            if max_val >= match_threshold:
+                elapsed = time.time() - start_time
+                print(f"Image match found! (score {max_val:.3f}) after {elapsed:.3f}s")
+                return True, max_val, elapsed
 
-    elapsed = time.time() - start_time
-    print(f"No image match in {elapsed:.3f}s (best score: {last_score:.3f})")
-    return False, last_score, elapsed
+        elapsed = time.time() - start_time
+        print(f"No image match in {elapsed:.3f}s (best score: {last_score:.3f})")
+        return False, last_score, elapsed
