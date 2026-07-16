@@ -23,7 +23,6 @@ class HuntingManager:
         self.script = script 
 
         while True: 
-            print("looping")
             if config.status == "Ending Hunt": 
                 return 
             try: 
@@ -47,11 +46,14 @@ class HuntingManager:
     def execute(self, action, delay): 
         if action == "a": 
             self.controller.press_a() 
+            print("a")
         if action == "up":
             self.controller.press_up()
+            print("up")
         elif action == "white_a": 
             self.controller.press_a() 
             config.status = "Checking Encounter" 
+            print("looking for white")
             time.sleep(1.5)
             detected, ratio, elapsed = self.wait_for_white_flash(config.full, timeout=delay-1) 
             
@@ -76,6 +78,7 @@ class HuntingManager:
 
         elif action == "b": 
             self.controller.press_b() 
+            print("b")
             
         elif action == "left_up": 
             self.controller.left_up() 
@@ -84,6 +87,7 @@ class HuntingManager:
             self.controller.left_left() 
             
         elif action == "search": 
+            print("shiny hunting")
             config.hunting_data[config.pokemon_name][config.game_name]['resets'] += 1 
             config.last_reset_time = config.current_reset_time 
             config.current_reset_time = 0 
@@ -314,10 +318,10 @@ class HuntingManager:
             last_ratio = ratio
             if is_black:
                 elapsed = time.time() - start_time
-                print(f"Black flash detected! ({ratio:.2%} black) after {elapsed:.3f}s")
+                #print(f"Black flash detected! ({ratio:.2%} black) after {elapsed:.3f}s")
                 return True, ratio, elapsed
         elapsed = time.time() - start_time
-        print(f"No white black detected in {elapsed:.3f}s (last ratio: {last_ratio:.2%})")
+        print(f"No black flash detected in {elapsed:.3f}s (last ratio: {last_ratio:.2%})")
         return False, last_ratio, elapsed
 
     def wait_for_red(self, roi, timeout=0.5, red_percentage=0.90):
@@ -432,10 +436,6 @@ class HuntingManager:
                 elapsed = time.time() - start_time
                 print(f"Image match found! (score {max_val:.3f}) after {elapsed:.3f}s")
                 return True, max_val, elapsed
-
-            if ret:
-                cv2.imwrite("captured_frame.png", frame)
-                print(f"Saved captured_frame.png ({frame.shape[1]}x{frame.shape[0]})")
 
         elapsed = time.time() - start_time
         print(f"No image match in {elapsed:.3f}s (best score: {last_score:.3f})")
