@@ -425,9 +425,11 @@ class HuntingManager:
                 continue
 
             result = cv2.matchTemplate(roi_crop, template, cv2.TM_CCOEFF_NORMED)
-            _, max_val, _, _ = cv2.minMaxLoc(result)
-            last_score = max_val
-
+            _, max_val, _, max_loc = cv2.minMaxLoc(result)
+            th, tw = template.shape[:2]
+            debug_img = cv2.cvtColor(roi_crop, cv2.COLOR_GRAY2BGR)
+            cv2.rectangle(debug_img, max_loc, (max_loc[0]+tw, max_loc[1]+th), (0,0,255), 2)
+            cv2.imwrite("debug_match_location.png", debug_img)
             if max_val >= match_threshold:
                 elapsed = time.time() - start_time
                 print(f"Image match found! (score {max_val:.3f}) after {elapsed:.3f}s")
