@@ -30,6 +30,9 @@ class CaptureCard(tk.Frame):
         self.start_time = time.time()
         self.initialize_time = self.start_time
 
+        #Load up the templates for finding the home screen
+        self.bd_template = cv2.imread("games/bd_logo.png", cv2.IMREAD_GRAYSCALE)
+
         def end_hunt():
             print("ending hunt")
             config.status="Ending Hunt"
