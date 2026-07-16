@@ -46,7 +46,7 @@ class SwScreen(ctk.CTkFrame):
         self.create_pokemon_button(103,180,self.regirock,"Regirock",boot_screen)
         self.create_pokemon_button(203,180,self.regice,"Regice",boot_screen, True)
         self.create_pokemon_button(303,180,self.registeel,"Registeel",boot_screen)
-        self.create_pokemon_button(403,180,self.regidrago,"Regidrago",boot_screen, True)
+        self.create_pokemon_button(403,180,self.regidrago,"Regidrago",boot_screen)
         self.create_pokemon_button(503,180,self.regieleki,"Regieleki",boot_screen, True)
         self.create_pokemon_button(603,180,self.virizion,"Virizion",boot_screen, True)
         self.create_pokemon_button(103,270,self.terrakion,"Terrakion",boot_screen, True)

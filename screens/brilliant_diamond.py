@@ -45,7 +45,7 @@ class BdScreen(ctk.CTkFrame):
 
 
         # Outline box
-        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=715,height=284,corner_radius=15, border_width=5, border_color="black")
+        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=714,height=282,corner_radius=15, border_width=5, border_color="black")
 
         self.color_box.place(x=45,y=125)
 

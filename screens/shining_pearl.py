@@ -10,10 +10,27 @@ class SpScreen(ctk.CTkFrame):
         super().__init__( parent, fg_color="#050c15" )
 
         # Images
+        self.palkia = ctk.CTkImage(light_image=Image.open("pokemon/palkia.png"),dark_image=Image.open("pokemon/palkia.png"),size=(70,70))
         self.giratina = ctk.CTkImage(light_image=Image.open("pokemon/giratina.png"),dark_image=Image.open("pokemon/giratina.png"),size=(70,70))
-
         self.arceus = ctk.CTkImage(light_image=Image.open("pokemon/arceus.png"),dark_image=Image.open("pokemon/arceus.png"),size=(70,70))
-
+        self.azelf = ctk.CTkImage(light_image=Image.open("pokemon/azelf.png"),dark_image=Image.open("pokemon/azelf.png"),size=(70,70))
+        self.heatran = ctk.CTkImage(light_image=Image.open("pokemon/heatran.png"),dark_image=Image.open("pokemon/heatran.png"),size=(70,70))
+        self.uxie = ctk.CTkImage(light_image=Image.open("pokemon/uxie.png"),dark_image=Image.open("pokemon/uxie.png"),size=(70,70))
+        self.mesprit = ctk.CTkImage(light_image=Image.open("pokemon/mesprit.png"),dark_image=Image.open("pokemon/mesprit.png"),size=(70,70))
+        self.regigigas = ctk.CTkImage(light_image=Image.open("pokemon/regigigas.png"),dark_image=Image.open("pokemon/regigigas.png"),size=(70,70))
+        self.regirock = ctk.CTkImage(light_image=Image.open("pokemon/regirock.png"),dark_image=Image.open("pokemon/regirock.png"),size=(70,70))
+        self.regice = ctk.CTkImage(light_image=Image.open("pokemon/regice.png"),dark_image=Image.open("pokemon/regice.png"),size=(70,70))
+        self.registeel = ctk.CTkImage(light_image=Image.open("pokemon/registeel.png"),dark_image=Image.open("pokemon/registeel.png"),size=(70,70))
+        self.zapdos = ctk.CTkImage(light_image=Image.open("pokemon/zapdos.png"),dark_image=Image.open("pokemon/zapdos.png"),size=(70,70))
+        self.moltres = ctk.CTkImage(light_image=Image.open("pokemon/moltres.png"),dark_image=Image.open("pokemon/moltres.png"),size=(70,70))
+        self.articuno = ctk.CTkImage(light_image=Image.open("pokemon/articuno.png"),dark_image=Image.open("pokemon/articuno.png"),size=(70,70))
+        self.latias = ctk.CTkImage(light_image=Image.open("pokemon/latias.png"),dark_image=Image.open("pokemon/latias.png"),size=(70,70))
+        self.latios = ctk.CTkImage(light_image=Image.open("pokemon/latios.png"),dark_image=Image.open("pokemon/latios.png"),size=(70,70))
+        self.lugia = ctk.CTkImage(light_image=Image.open("pokemon/lugia.png"),dark_image=Image.open("pokemon/lugia.png"),size=(70,70))
+        self.kyogre = ctk.CTkImage(light_image=Image.open("pokemon/kyogre.png"),dark_image=Image.open("pokemon/kyogre.png"),size=(70,70))
+        self.groudon = ctk.CTkImage(light_image=Image.open("pokemon/groudon.png"),dark_image=Image.open("pokemon/groudon.png"),size=(70,70))
+        self.rayquaza = ctk.CTkImage(light_image=Image.open("pokemon/rayquaza.png"),dark_image=Image.open("pokemon/rayquaza.png"),size=(70,70))
+        self.mewtwo = ctk.CTkImage(light_image=Image.open("pokemon/mewtwo.png"),dark_image=Image.open("pokemon/mewtwo.png"),size=(70,70))
 
         # Title
         title = ctk.CTkLabel(self,text="Pokemon Shining Pearl",font=("Arial", 35, "bold"),text_color="#2b89d9")
@@ -28,16 +45,33 @@ class SpScreen(ctk.CTkFrame):
 
 
         # Outline box
-        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=594,height=194,corner_radius=15, border_width=5, border_color="black")
+        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=714,height=282,corner_radius=15, border_width=5, border_color="black")
 
-        self.color_box.place(x=103,y=170)
+        self.color_box.place(x=45,y=125)
 
 
         # Pokemon buttons
-        self.create_pokemon_button(113,180,self.giratina,"Giratina",boot_screen)
-
-        self.create_pokemon_button(213,180,self.arceus,"Arceus",boot_screen)
-
+        self.create_pokemon_button(55,135,self.palkia,"Palkia",boot_screen, True)
+        self.create_pokemon_button(155,135,self.uxie,"Uxie",boot_screen, True)
+        self.create_pokemon_button(255,135,self.mesprit,"Mesprit",boot_screen, True)
+        self.create_pokemon_button(355,135,self.azelf,"Azelf",boot_screen, True)
+        self.create_pokemon_button(455,135,self.heatran,"Heatran",boot_screen, True)
+        self.create_pokemon_button(555,135,self.regigigas,"Regigigas",boot_screen, True)
+        self.create_pokemon_button(655,135,self.giratina,"Giratina",boot_screen)
+        self.create_pokemon_button(55,225,self.arceus,"Arceus",boot_screen)
+        self.create_pokemon_button(155,225,self.regirock,"Regirock",boot_screen, True)
+        self.create_pokemon_button(255,225,self.registeel,"Registeel",boot_screen, True)
+        self.create_pokemon_button(355,225,self.regice,"Regice",boot_screen, True)
+        self.create_pokemon_button(455,225,self.zapdos,"Zapdos",boot_screen, True)
+        self.create_pokemon_button(555,225,self.moltres,"Moltres",boot_screen, True)
+        self.create_pokemon_button(655,225,self.articuno,"Articuno",boot_screen, True)
+        self.create_pokemon_button(55,315,self.latias,"Latias",boot_screen, True)
+        self.create_pokemon_button(155,315,self.latios,"Latios",boot_screen, True)
+        self.create_pokemon_button(255,315,self.lugia, "Lugia",boot_screen, True)
+        self.create_pokemon_button(355,315,self.kyogre,"Kyogre",boot_screen, True)
+        self.create_pokemon_button(455,315,self.groudon,"Groudon",boot_screen, True)
+        self.create_pokemon_button(555,315,self.rayquaza,"Rayquaza",boot_screen, True)
+        self.create_pokemon_button(655,315,self.mewtwo,"Mewtwo",boot_screen, True)
 
         # Back button
         back_button = ctk.CTkButton(self,text="Back",font=("Arial",20),width=100,height=40,fg_color="#3b3b3b",hover_color="#505050",command=back_callback)
@@ -57,13 +91,15 @@ class SpScreen(ctk.CTkFrame):
 
 
     # Pokemon button creation
-    def create_pokemon_button(self,x,y,image,name,boot_screen):
+    def create_pokemon_button(self,x,y,image,name,boot_screen, disabled=False):
 
         # Button
         button = ctk.CTkButton(self, image=image, text="", width=80, height=80, fg_color="#5e5e5e", bg_color="#21344a", hover_color="#bfbfbf", border_width=3, border_color="black", corner_radius=10, command=lambda: self.start_hunt(name,boot_screen))
 
         button.place(x=x,y=y)
 
+        if(disabled):
+            button.configure(state="disabled")
 
         # Name box
         label_box = ctk.CTkFrame(self,fg_color="black",bg_color="#5e5e5e",width=76,height=16,corner_radius=2)
@@ -72,7 +108,7 @@ class SpScreen(ctk.CTkFrame):
 
 
         # Name
-        label = ctk.CTkLabel(master=label_box,text=name,font=("Arial",9),text_color="black",fg_color="white",width=74,height=14,corner_radius=3)
+        label = ctk.CTkLabel(master=label_box,text=name,font=("Arial",10),text_color="black",fg_color="white",width=74,height=14,corner_radius=3)
 
         label.place(x=1,y=1)
 
