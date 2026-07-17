@@ -163,7 +163,7 @@ class MasudaHunt(tk.Frame):
         self.eggs+=1
         print("Egg Acquired")
 
-    def check_gray(frame, roi):
+    def check_gray(self, frame, roi):
         h, w = frame.shape[:2]
 
         x = int(roi['x'] * w)
