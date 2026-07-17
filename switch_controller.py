@@ -152,6 +152,15 @@ class SwitchController:
     def press_up(self):
         self.press_button(Buttons.DPAD_UP)
 
+    def press_down(self):
+        self.press_button(Buttons.DPAD_DOWN)
+
+    def press_left(self):
+        self.press_button(Buttons.DPAD_LEFT)
+
+    def press_right(self):
+        self.press_button(Buttons.DPAD_RIGHT)
+
     def press_home(self):
         self.press_button(Buttons.HOME)
 
@@ -160,6 +169,9 @@ class SwitchController:
 
     def press_l(self):
         self.press_button(Buttons.L)
+
+    def press_r(self):
+        self.press_button(Buttons.R)
 
     def tilt_stick(self, stick, x, y, hold_time=0.05):
         if not self.connected or self.controller_index is None:
