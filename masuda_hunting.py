@@ -75,6 +75,13 @@ class MasudaHunt(tk.Frame):
             config.status="Initializing Hunt"
             self.initialize_time=time.time()
 
+            time.sleep(1.5)
+
+            while True:
+                self.controller.left_down(15)
+                time.sleep(1)
+                self.controller.left_up(17)
+
          threading.Thread(target=run, daemon=True).start()
 
     def remove_controller(self):

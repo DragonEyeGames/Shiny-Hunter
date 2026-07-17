@@ -161,11 +161,14 @@ class SwitchController:
             return
         self.nx.tilt_stick(self.controller_index, stick, x, y, tilted=hold_time)
 
-    def left_up(self):
-        self.tilt_stick(Sticks.LEFT_STICK, 0, 100)
+    def left_up(self, hold_time=0.05):
+        self.tilt_stick(Sticks.LEFT_STICK, 0, 100, hold_time)
 
-    def left_left(self):
-        self.tilt_stick(Sticks.LEFT_STICK, -100, 0)
+    def left_down(self, hold_time=0.05):
+        self.tilt_stick(Sticks.LEFT_STICK, 0, -100, hold_time)
+
+    def left_left(self, hold_time=0.05):
+        self.tilt_stick(Sticks.LEFT_STICK, -100, 0, hold_time)
 
     def disconnect(self):
         if self.controller_index is not None:
