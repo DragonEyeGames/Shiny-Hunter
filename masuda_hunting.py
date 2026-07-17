@@ -87,7 +87,8 @@ class MasudaHunt(tk.Frame):
                 self.controller.press_plus()
                 time.sleep(.5)
                 config.status="Going Right"
-                self.controller.left_right(18.5)
+                for _ in range(18):
+                    self.controller.left_right(1)
                 config.status="Swapping Bike"
                 time.sleep(.1)
                 self.controller.press_plus()
@@ -97,7 +98,8 @@ class MasudaHunt(tk.Frame):
                 self.controller.press_plus()
                 time.sleep(.5)
                 config.status="Going Left"
-                self.controller.left_left(19)
+                for _ in range(19):
+                    self.controller.left_left(1)
                 config.status="Going Up"
                 self.controller.press_plus()
                 time.sleep(1)
@@ -120,6 +122,7 @@ class MasudaHunt(tk.Frame):
         time.sleep(2)
         self.controller.press_a()
         time.sleep(.5)
+        self.eggs+=1
         print("Egg Acquired")
 
 
