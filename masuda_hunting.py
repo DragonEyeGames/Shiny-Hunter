@@ -76,35 +76,37 @@ class MasudaHunt(tk.Frame):
             config.status="Initializing Hunt"
             self.initialize_time=time.time()
 
-            time.sleep(1.5)
-            self.controller.press_l()
-            config.status="Going Down"
-            self.controller.left_down(.5)
-            time.sleep(.1)
-            self.controller.left_right(.1)
-            time.sleep(.1)
-            self.controller.press_plus()
-            time.sleep(.5)
-            config.status="Going Right"
-            self.controller.left_right(18)
-            time.sleep(.1)
-            self.controller.press_plus()
-            time.sleep(1)
-            self.controller.left_left()
-            time.sleep(.1)
-            self.controller.press_plus()
-            time.sleep(.5)
-            config.status="Going Left"
-            self.controller.left_left(18)
+            while True:
+                time.sleep(1.5)
+                config.status="Going Down"
+                self.controller.left_down(.5)
+                time.sleep(.1)
+                config.status="Boarding Bike"
+                self.controller.left_right(.1)
+                time.sleep(.1)
+                self.controller.press_plus()
+                time.sleep(.5)
+                config.status="Going Right"
+                self.controller.left_right(18)
+                config.status="Swapping Bike"
+                time.sleep(.1)
+                self.controller.press_plus()
+                time.sleep(1)
+                self.controller.left_left()
+                time.sleep(.1)
+                self.controller.press_plus()
+                time.sleep(.5)
+                config.status="Going Left"
+                self.controller.left_left(18)
+                config.status="Going Up"
+                self.controller.left_up(.5)
+                self.get_egg()
 
          threading.Thread(target=run, daemon=True).start()
 
     def get_egg(self):
         config.status="Acquiring Egg"
         print("Getting egg")
-        self.cycles=0
-        self.controller.left_left()
-        time.sleep(.1)
         self.controller.press_a()
         time.sleep(.8)
         self.controller.press_a()
@@ -115,11 +117,6 @@ class MasudaHunt(tk.Frame):
         time.sleep(2)
         self.controller.press_a()
         time.sleep(.5)
-        self.controller.left_down()
-        self.controller.left_up()
-        self.controller.left_up()
-        self.controller.left_up()
-        self.controller.press_l()
         print("Egg Acquired")
 
 
