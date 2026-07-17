@@ -115,7 +115,7 @@ class MasudaHunt(tk.Frame):
                 self.egg_check()
                 self.controller.left_up(1)
                 self.egg_check()
-                for _ in range(3):
+                for _ in range(5):
                     self.controller.left_diagonal_right(1)
                     self.egg_check()
                 if(self.eggs<5):
@@ -132,7 +132,7 @@ class MasudaHunt(tk.Frame):
                             ret, frame = cap.read()
                         except cv2.error:
                             ret, frame = False, None
-                 if(frame!=None):
+                 if ret and frame is not None:
                     egg=self.check_gray(frame, config.sw_sh_egg)
                     if(egg and self.hatched_egg==False):
                         self.hatched_egg=True
