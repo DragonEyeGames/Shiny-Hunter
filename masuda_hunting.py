@@ -1,5 +1,6 @@
 import tkinter as tk
 import cv2
+import numpy as np
 from PIL import Image, ImageTk
 import config
 from switch_controller import SwitchController
@@ -20,6 +21,8 @@ class MasudaHunt(tk.Frame):
         self.initialize_time = self.start_time
         self.eggs=0
         self.cycles=0
+
+        self.hatched_egg=False
 
         def end_hunt():
             print("ending hunt")
@@ -89,25 +92,60 @@ class MasudaHunt(tk.Frame):
                 config.status="Going Right"
                 for _ in range(18):
                     self.controller.left_right(1)
+                    self.egg_check()
                 config.status="Swapping Bike"
                 time.sleep(.1)
+                self.egg_check()
                 self.controller.press_plus()
                 time.sleep(1)
                 self.controller.left_left()
                 time.sleep(.1)
+                self.egg_check()
                 self.controller.press_plus()
                 time.sleep(.5)
+                self.egg_check()
                 config.status="Going Left"
                 for _ in range(19):
                     self.controller.left_left(1)
+                    self.egg_check()
                 config.status="Going Up"
                 self.controller.press_plus()
+                self.egg_check()
                 time.sleep(1)
+                self.egg_check()
                 self.controller.left_up(1)
-                self.controller.left_diagonal_right(3)
-                self.get_egg()
+                self.egg_check()
+                for _ in range(3):
+                    self.controller.left_diagonal_right(1)
+                    self.egg_check()
+                if(self.eggs<5):
+                    self.get_egg()
+
+         def check_for_egg():
+             while True:
+                 time.sleep(.5)
+                 ret, frame = False, None
+                 with config.cap_lock:
+                    cap = config.cap
+                    if cap is not None:
+                        try:
+                            ret, frame = cap.read()
+                        except cv2.error:
+                            ret, frame = False, None
+                 if(frame!=None):
+                    egg=self.check_gray(frame, config.sw_sh_egg)
+                    if(egg and self.hatched_egg==False):
+                        self.hatched_egg=True
+                 print(self.hatched_egg)
+
 
          threading.Thread(target=run, daemon=True).start()
+         threading.Thread(target=check_for_egg, daemon=True).start()
+
+    def egg_check():
+        pass
+        #while hatched_egg():
+
 
     def get_egg(self):
         config.status="Acquiring Egg"
@@ -125,6 +163,24 @@ class MasudaHunt(tk.Frame):
         self.eggs+=1
         print("Egg Acquired")
 
+    def check_gray(frame, roi):
+        h, w = frame.shape[:2]
+
+        x = int(roi['x'] * w)
+        y = int(roi['y'] * h)
+        rw = int(roi['w'] * w)
+        rh = int(roi['h'] * h)
+
+        region = frame[y:y+rh, x:x+rw]
+
+        lower = np.array([44, 44, 44], dtype=np.uint8)
+        upper = np.array([52, 52, 52], dtype=np.uint8)
+
+        mask = cv2.inRange(region, lower, upper)
+
+        fill = cv2.countNonZero(mask) / (rw * rh)
+
+        return fill >= 0.90
 
     def remove_controller(self):
         self.controller.disconnect()
