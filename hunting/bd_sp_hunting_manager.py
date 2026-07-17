@@ -84,7 +84,7 @@ class HuntingManager:
 
         elif action == "white_skip": 
             time.sleep(1.5)
-            detected, ratio, elapsed = self.wait_for_white_flash(config.full, timeout=delay-1) 
+            detected, ratio, elapsed = self.wait_for_white_flash(config.full, timeout=10) 
             
             if detected: 
                 current_time=time.time()
