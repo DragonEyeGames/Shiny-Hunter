@@ -182,7 +182,7 @@ class SwitchController:
     def left_diagonal_left(self, hold_time=0.05):
         self.tilt_stick(Sticks.LEFT_STICK, -50, 50, hold_time)
 
-    def left_diagonal_left(self, hold_time=0.05):
+    def left_diagonal_right(self, hold_time=0.05):
         self.tilt_stick(Sticks.LEFT_STICK, 50, 50, hold_time)
 
     def left_right(self, hold_time=0.05):
