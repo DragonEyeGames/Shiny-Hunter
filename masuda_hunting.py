@@ -86,7 +86,7 @@ class MasudaHunt(tk.Frame):
                 time.sleep(.1)
                 self.controller.press_plus()
                 time.sleep(.1)
-                self.controller.left_down(10)
+                self.controller.left_down(15)
                 time.sleep(1)
                 config.status="Returning"
                 self.controller.press_plus()
@@ -97,11 +97,20 @@ class MasudaHunt(tk.Frame):
                 time.sleep(.1)
                 self.controller.press_plus()
                 time.sleep(.1)
-                self.controller.left_up(10.2)
+                self.controller.left_up(15.2)
                 time.sleep(.1)
                 self.controller.press_plus()
+                time.sleep(.5)
+                self.get_egg()
 
          threading.Thread(target=run, daemon=True).start()
+
+    def get_egg(self):
+        self.controller.press_a()
+        time.sleep(.8)
+        self.controller.press_a()
+        time.sleep(.5)
+
 
     def remove_controller(self):
         self.controller.disconnect()
