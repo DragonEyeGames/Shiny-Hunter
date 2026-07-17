@@ -166,7 +166,7 @@ class MasudaHunt(tk.Frame):
         #Open up the boxes
         time.sleep(.5)
         self.controller.press_x()
-        time.sleep(.2)
+        time.sleep(.5)
         self.controller.press_a()
         time.sleep(1)
         self.controller.press_r()
