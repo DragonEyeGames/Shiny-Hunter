@@ -124,6 +124,7 @@ class MasudaHunt(tk.Frame):
         time.sleep(2)
         self.controller.press_a()
         time.sleep(.5)
+        self.controller.left_down(.1)
         print("Egg Acquired")
 
 
