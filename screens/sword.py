@@ -58,12 +58,12 @@ class SwScreen(ctk.CTkFrame):
 
         #Masuda selection screen
         self.egg_button = ctk.CTkButton(self, image=self.egg, text="Masuda Method", width=170, height=50, fg_color="#5e5e5e", bg_color="#050c15", hover_color="#bfbfbf", border_width=3, border_color="black", corner_radius=10)
-        self.egg_button.place(x=300, y=354)
+        self.egg_button.place(x=315, y=354)
 
         # Back button
         back_button = ctk.CTkButton(self,text="Back",font=("Arial",20),width=100,height=40,fg_color="#3b3b3b",hover_color="#505050",border_color="black",border_width=3,command=back_callback)
 
-        back_button.place(x=315,y=420)
+        back_button.place(x=350,y=420)
 
 
 
