@@ -87,7 +87,7 @@ class MasudaHunt(tk.Frame):
                 self.controller.press_plus()
                 time.sleep(.5)
                 config.status="Going Right"
-                self.controller.left_right(18)
+                self.controller.left_right(19)
                 config.status="Swapping Bike"
                 time.sleep(.1)
                 self.controller.press_plus()
@@ -97,8 +97,10 @@ class MasudaHunt(tk.Frame):
                 self.controller.press_plus()
                 time.sleep(.5)
                 config.status="Going Left"
-                self.controller.left_left(18)
+                self.controller.left_left(19)
                 config.status="Going Up"
+                self.controller.press_plus()
+                time.sleep(1)
                 self.controller.left_up(.5)
                 self.get_egg()
 
