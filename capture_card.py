@@ -163,7 +163,7 @@ class CaptureCard(tk.Frame):
         self.time_label.configure(text=f"Last Reset Time: {config.last_reset_time:.3f}")
         if(config.hunting_data[config.pokemon_name][config.game_name]['resets']!=0):
             self.reset_time_label.configure(text=f"Average Time/Reset: {(config.hunting_data[config.pokemon_name][config.game_name]['time_spent']-config.current_reset_time)/config.hunting_data[config.pokemon_name][config.game_name]['resets']:.3f}")
-        if config.start_camera and not self.camera_started:
+        if config.start_camera and not self.camera_started and not config.egg_hunt:
             self.start_camera()
             self.start_controller()
         if self.camera_started:

@@ -127,7 +127,7 @@ class MasudaHunt(tk.Frame):
                 self.reset_time_label.configure(text=f"Average Time/Egg: {(time.time()-self.initialize_time())/self.eggs:.3f}")
 
         #Starting the Camera
-        if config.start_camera and not self.camera_started:
+        if config.start_camera and not self.camera_started and config.egg_hunt:
             self.start_camera()
             self.start_controller()
 

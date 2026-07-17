@@ -40,6 +40,7 @@ def open_capture_screen():
     switch_screen.tkraise()
 
 def open_egg_screen():
+    config.egg_hunt=True
     config.start_camera=True
     egg_screen.tkraise()
 
