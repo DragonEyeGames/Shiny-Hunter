@@ -78,7 +78,7 @@ class MasudaHunt(tk.Frame):
 
             time.sleep(1.5)
             while True:
-                self.controller.right_down()
+                self.controller.press_l()
                 config.status="Going Down"
                 time.sleep(1)
                 self.controller.left_left()
@@ -125,8 +125,9 @@ class MasudaHunt(tk.Frame):
         time.sleep(2)
         self.controller.press_a()
         time.sleep(.5)
-        self.controller.left_down(.1)
-        self.controller.right_down(.2)
+        self.controller.left_down()
+        self.controller.left_up(.2)
+        self.controller.press_l()
         print("Egg Acquired")
 
 
