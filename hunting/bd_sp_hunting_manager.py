@@ -76,8 +76,11 @@ class HuntingManager:
                 computed_time=finished_time-current_time
                 print(computed_time)
 
-
-                config.status="Encounter Loaded"
+                if(computed_time<1):
+                    self.trigger_soft_reset() 
+                    raise RestartScriptException() 
+                else:
+                    config.status="Encounter Loaded"
             else:
                self.trigger_soft_reset() 
                raise RestartScriptException() 
