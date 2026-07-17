@@ -87,7 +87,7 @@ class MasudaHunt(tk.Frame):
                 time.sleep(.1)
                 self.controller.press_plus()
                 time.sleep(.1)
-                self.controller.left_down(12)
+                self.controller.left_down(8)
                 time.sleep(1)
                 config.status="Returning"
                 self.controller.press_plus()
@@ -98,7 +98,7 @@ class MasudaHunt(tk.Frame):
                 time.sleep(.1)
                 self.controller.press_plus()
                 time.sleep(.1)
-                self.controller.left_up(12.2)
+                self.controller.left_up(8.2)
                 time.sleep(.1)
                 self.controller.press_plus()
                 time.sleep(.5)
