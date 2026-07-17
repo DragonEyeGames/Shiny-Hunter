@@ -103,6 +103,9 @@ class MasudaHunt(tk.Frame):
                 self.controller.press_plus()
                 time.sleep(.5)
                 self.controller.left_diagonal_left(.1)
+                self.controller.press_l()
+                self.controller.left_diagonal_right(.1)
+                self.controller.press_l()
                 self.cycles+=1
                 if(self.cycles==2):
                     self.get_egg()
