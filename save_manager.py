@@ -31,6 +31,6 @@ def load_address(default_data):
     if not os.path.exists(ADDRESSNAME):
         return default_data
         
-    with open(FILENAME, "r") as file:
+    with open(ADDRESSNAME, "r") as file:
         loaded_data = json.load(file)
         return loaded_data["saved_string"]
