@@ -80,14 +80,20 @@ class MasudaHunt(tk.Frame):
             while True:
                 config.status="Going Down"
                 self.controller.left_down(.1)
+                time.sleep(.1)
                 self.controller.press_plus()
-                self.controller.left_down(15)
+                time.sleep(.1)
+                self.controller.left_down(10)
                 time.sleep(1)
                 config.status="Returning"
                 self.controller.press_plus()
+                time.sleep(.1)
                 self.controller.left_up(.1)
+                time.sleep(.1)
                 self.controller.press_plus()
-                self.controller.left_up(15)
+                time.sleep(.1)
+                self.controller.left_up(10)
+                time.sleep(.1)
                 self.controller.press_plus()
 
          threading.Thread(target=run, daemon=True).start()
