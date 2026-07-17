@@ -19,7 +19,13 @@ class MasudaHunt(tk.Frame):
 
         self.start_time = time.time()
         self.initialize_time = self.start_time
+
+        #The eggs in party
         self.eggs=0
+
+        #The hatched pokemon in party
+        #self.pokemon=0
+
         self.cycles=0
 
         self.hatched_egg=False
@@ -136,15 +142,65 @@ class MasudaHunt(tk.Frame):
                     egg=self.check_gray(frame, config.sw_sh_egg)
                     if(egg and self.hatched_egg==False):
                         self.hatched_egg=True
+                        self.hatch_egg()
                  print(self.hatched_egg)
 
 
          threading.Thread(target=run, daemon=True).start()
          threading.Thread(target=check_for_egg, daemon=True).start()
 
+    def hatch_egg(self):
+        config.status="Hatching Egg"
+        time.sleep(.1)
+        self.controller.press_a()
+        time.sleep(15)
+        self.controller.press_a()
+        time.sleep(5)
+        self.controller.press_b()
+        time.sleep(1)
+        self.check_shiny()
+        self.hatched_egg=False
+        self.eggs-=1
+
+    def check_shiny(self):
+        #Open up the boxes
+        time.sleep(.5)
+        self.controller.press_x()
+        time.sleep(.2)
+        self.controller.press_a()
+        time.sleep(1)
+        self.controller.press_r()
+        time.sleep(3.5)
+        #View the pokemon we want
+        self.controller.dpad_left()
+        time.sleep(.1)
+        self.controller.dpad_down()
+        time.sleep(.1)
+        #Kill it if non-shiny
+        self.controller.press_a()
+        time.sleep(.1)
+        self.controller.dpad_up()
+        time.sleep(.1)
+        self.controller.dpad_up()
+        time.sleep(.1)
+        self.controller.press_a()
+        time.sleep(.6)
+        self.controller.dpad_up()
+        time.sleep(.1)
+        self.controller.press_a()
+        time.sleep(1)
+        self.controller.press_a()
+        time.sleep(.1)
+        #Exit boxes
+        self.controller.press_b()
+        time.sleep(3)
+        self.controller.press_b()
+        time.sleep(1)
+        self.controller.press_b()
+
     def egg_check(self):
-        pass
-        #while hatched_egg():
+        while self.hatched_egg==True:
+            time.sleep(.5)
 
 
     def get_egg(self):
