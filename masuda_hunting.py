@@ -109,7 +109,11 @@ class MasudaHunt(tk.Frame):
          threading.Thread(target=run, daemon=True).start()
 
     def get_egg(self):
+        config.status="Acquiring Egg"
+        print("Getting egg")
         self.cycles=0
+        self.controller.left_right(.5)
+        time.sleep(.1)
         self.controller.press_a()
         time.sleep(.8)
         self.controller.press_a()
@@ -120,6 +124,7 @@ class MasudaHunt(tk.Frame):
         time.sleep(2)
         self.controller.press_a()
         time.sleep(.5)
+        print("Egg Acquired")
 
 
     def remove_controller(self):
