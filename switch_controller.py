@@ -3,16 +3,19 @@ import time
 import concurrent.futures
 import config
 from discord_webhook import send_failure_notification
-
+from save_manager import save_address, load_address
 
 class SwitchController:
     def __init__(self):
         self.nx = Nxbt()
         self.controller_index = None
         self.connected = False
-        self.switch_address = None  # cached MAC of the paired Switch, once known
+        self.switch_address = load_address(None)#None  # cached MAC of the paired Switch, once known
 
     def connect(self, timeout=60):
+        if(self.switch_address!=None):
+            if(self.reconnect()):
+                return True
         """Initial connect. Requires the Switch to be on the
         'Change Grip/Order' screen the first time you ever pair
         with this host machine."""
@@ -39,6 +42,7 @@ class SwitchController:
             addrs = self.nx.get_switch_addresses()
             if addrs:
                 self.switch_address = addrs[0]
+                save_address(self.switch_address)
         except Exception as e:
             print(f"Could not cache switch address: {e}")
 

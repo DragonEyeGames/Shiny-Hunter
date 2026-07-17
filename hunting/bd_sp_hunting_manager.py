@@ -54,7 +54,6 @@ class HuntingManager:
             self.controller.press_a() 
             config.status = "Checking Encounter" 
             print("looking for white")
-            time.sleep(1.5)
             detected, ratio, elapsed = self.wait_for_white_flash(config.full, timeout=delay-1) 
             
             if detected: 
@@ -79,6 +78,33 @@ class HuntingManager:
 
 
                 config.status="Encounter Loaded"
+            else:
+               self.trigger_soft_reset() 
+               raise RestartScriptException() 
+
+        elif action == "white_skip": 
+            time.sleep(1.5)
+            detected, ratio, elapsed = self.wait_for_white_flash(config.full, timeout=delay-1) 
+            
+            if detected: 
+                current_time=time.time()
+                finished_time=0
+                config.status = "Encounter Loading" 
+                 #If we properly found it, we will wait for it to go away.
+                while True:
+                    detected, ratio, elapsed = self.wait_for_white_flash(
+                        config.full,
+                        timeout=.1
+                    )
+
+                    if not detected:
+                        finished_time=time.time()
+                        break
+
+                #Check to see if the encounter was long enough
+                computed_time=finished_time-current_time
+                print(computed_time)
+
             else:
                self.trigger_soft_reset() 
                raise RestartScriptException() 
