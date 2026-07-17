@@ -76,10 +76,12 @@ class MasudaHunt(tk.Frame):
             self.initialize_time=time.time()
 
             time.sleep(1.5)
-            self.controller.right_down()
             while True:
+                self.controller.right_down()
                 config.status="Going Down"
                 time.sleep(1)
+                self.controller.left_left()
+                time.sleep(.1)
                 self.controller.left_down(.1)
                 time.sleep(.1)
                 self.controller.press_plus()
@@ -89,6 +91,8 @@ class MasudaHunt(tk.Frame):
                 config.status="Returning"
                 self.controller.press_plus()
                 time.sleep(1)
+                self.controller.left_right()
+                time.sleep(.1)
                 self.controller.left_up(.1)
                 time.sleep(.1)
                 self.controller.press_plus()
