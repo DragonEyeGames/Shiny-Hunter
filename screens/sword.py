@@ -22,7 +22,7 @@ class SwScreen(ctk.CTkFrame):
         self.arctozolt = ctk.CTkImage(light_image=Image.open("pokemon/arctozolt.png"),dark_image=Image.open("pokemon/arctozolt.png"),size=(70,70))
         self.dracovish = ctk.CTkImage(light_image=Image.open("pokemon/dracovish.png"),dark_image=Image.open("pokemon/dracovish.png"),size=(70,70))
         self.dracozolt = ctk.CTkImage(light_image=Image.open("pokemon/dracozolt.png"),dark_image=Image.open("pokemon/dracozolt.png"),size=(70,70))
-
+        self.egg = ctk.CTkImage(light_image=Image.open("pokemon/egg.png"),dark_image=Image.open("pokemon/egg.png"),size=(70,70))
 
         # Title
         title = ctk.CTkLabel(self,text="Pokemon Sword",font=("Arial", 35, "bold"),text_color="#2b89d9")
@@ -39,23 +39,26 @@ class SwScreen(ctk.CTkFrame):
         # Outline box
         self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=614,height=194,corner_radius=15, border_width=5, border_color="black")
 
-        self.color_box.place(x=93,y=140)
+        self.color_box.place(x=93,y=130)
 
 
         # Pokemon buttons
-        self.create_pokemon_button(103,150,self.regirock,"Regirock",boot_screen)
-        self.create_pokemon_button(203,150,self.regice,"Regice",boot_screen)
-        self.create_pokemon_button(303,150,self.registeel,"Registeel",boot_screen)
-        self.create_pokemon_button(403,150,self.regidrago,"Regidrago",boot_screen)
-        self.create_pokemon_button(503,150,self.regieleki,"Regieleki",boot_screen, True)
-        self.create_pokemon_button(603,150,self.virizion,"Virizion",boot_screen, True)
-        self.create_pokemon_button(103,240,self.terrakion,"Terrakion",boot_screen, True)
-        self.create_pokemon_button(203,240,self.cobalion,"Cobalion",boot_screen, True)
-        self.create_pokemon_button(303,240,self.arctovish,"Arctovish",boot_screen, True)
-        self.create_pokemon_button(403,240,self.arctozolt,"Arctozolt",boot_screen, True)
-        self.create_pokemon_button(503,240,self.dracovish,"Dracovish",boot_screen, True)
-        self.create_pokemon_button(603,240,self.dracozolt,"Dracozolt",boot_screen, True)
+        self.create_pokemon_button(103,140,self.regirock,"Regirock",boot_screen)
+        self.create_pokemon_button(203,140,self.regice,"Regice",boot_screen)
+        self.create_pokemon_button(303,140,self.registeel,"Registeel",boot_screen)
+        self.create_pokemon_button(403,140,self.regidrago,"Regidrago",boot_screen)
+        self.create_pokemon_button(503,140,self.regieleki,"Regieleki",boot_screen, True)
+        self.create_pokemon_button(603,140,self.virizion,"Virizion",boot_screen, True)
+        self.create_pokemon_button(103,230,self.terrakion,"Terrakion",boot_screen, True)
+        self.create_pokemon_button(203,230,self.cobalion,"Cobalion",boot_screen, True)
+        self.create_pokemon_button(303,230,self.arctovish,"Arctovish",boot_screen, True)
+        self.create_pokemon_button(403,230,self.arctozolt,"Arctozolt",boot_screen, True)
+        self.create_pokemon_button(503,230,self.dracovish,"Dracovish",boot_screen, True)
+        self.create_pokemon_button(603,230,self.dracozolt,"Dracozolt",boot_screen, True)
 
+        #Masuda selection screen
+        self.egg_button = ctk.CTkButton(self, image=self.egg, text="Masuda Method", width=200, height=80, fg_color="#5e5e5e", bg_color="#21344a", hover_color="#bfbfbf", border_width=3, border_color="black", corner_radius=10, command=lambda: self.start_hunt(name,boot_screen))
+        self.egg_button.place(x=300, y=334)
 
         # Back button
         back_button = ctk.CTkButton(self,text="Back",font=("Arial",20),width=100,height=40,fg_color="#3b3b3b",hover_color="#505050",border_color="black",border_width=3,command=back_callback)
