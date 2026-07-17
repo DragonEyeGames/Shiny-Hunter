@@ -86,16 +86,16 @@ class MasudaHunt(tk.Frame):
             self.controller.press_plus()
             time.sleep(.5)
             config.status="Going Right"
-            self.controller.left_right(17)
+            self.controller.left_right(18)
             time.sleep(.1)
             self.controller.press_plus()
-            time.sleep(.5)
+            time.sleep(1)
             self.controller.left_left()
             time.sleep(.1)
             self.controller.press_plus()
             time.sleep(.5)
             config.status="Going Left"
-            self.controller.left_left(17)
+            self.controller.left_left(18)
 
          threading.Thread(target=run, daemon=True).start()
 
