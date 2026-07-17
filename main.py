@@ -10,6 +10,7 @@ from screens.leaf_green import LgScreen
 from screens.lets_go_eevee import LgeScreen
 from screens.lets_go_pikachu import LgpScreen
 
+from masuda_hunting import MasudaHunt
 from capture_card import CaptureCard
 import config
 from save_manager import save_data
@@ -38,6 +39,10 @@ def open_capture_screen():
     config.start_camera=True
     switch_screen.tkraise()
 
+def open_egg_screen():
+    config.start_camera=True
+    egg_screen.tkraise()
+
 def close_project():
     save_data(config.hunting_data)
     root.destroy()
@@ -48,7 +53,10 @@ main_menu.place(x=0, y=0, relwidth=1, relheight=1)
 switch_screen = CaptureCard(root, lambda: main_menu.tkraise(), camera_index=0)
 switch_screen.place(x=0, y=0, relwidth=1, relheight=1)
 
-sw = SwScreen(root, lambda: main_menu.tkraise(), open_capture_screen)
+egg_screen = CaptureCard(root, lambda: main_menu.tkraise(), camera_index=0)
+egg_screen.place(x=0, y=0, relwidth=1, relheight=1)
+
+sw = SwScreen(root, lambda: main_menu.tkraise(), open_capture_screen, open_egg_screen)
 sw.place(x=0, y=0, relwidth=1, relheight=1)
 
 sh = ShScreen(root, lambda: main_menu.tkraise(), open_capture_screen)

@@ -6,7 +6,7 @@ import config
 
 class SwScreen(ctk.CTkFrame):
 
-    def __init__(self, parent, back_callback, boot_screen):
+    def __init__(self, parent, back_callback, boot_screen, egg_screen):
         super().__init__( parent, fg_color="#050c15" )
 
         # Images
@@ -57,8 +57,14 @@ class SwScreen(ctk.CTkFrame):
         self.create_pokemon_button(603,240,self.dracozolt,"Dracozolt",boot_screen, True)
 
         #Masuda selection screen
-        self.egg_button = ctk.CTkButton(self, image=self.egg, text="Masuda Method", width=170, height=50, fg_color="#5e5e5e", bg_color="#050c15", hover_color="#bfbfbf", border_width=3, border_color="black", corner_radius=10)
-        self.egg_button.place(x=315, y=354)
+        self.egg_button = ctk.CTkButton(self,
+                                        image=self.egg,
+                                        text="Masuda Method",
+                                        width=170, height=50,
+                                        fg_color="#5e5e5e", bg_color="#050c15", hover_color="#bfbfbf",
+                                        border_width=3, border_color="black", corner_radius=10,
+                                        command=lambda: self.start_egg(egg_screen))
+        self.egg_button.place(x=315, y=350)
 
         # Back button
         back_button = ctk.CTkButton(self,text="Back",font=("Arial",20),width=100,height=40,fg_color="#3b3b3b",hover_color="#505050",border_color="black",border_width=3,command=back_callback)
@@ -75,6 +81,8 @@ class SwScreen(ctk.CTkFrame):
 
         boot_screen()
 
+    def start_egg(self, egg_screen):
+        egg_screen()
 
 
     # Pokemon button creation
