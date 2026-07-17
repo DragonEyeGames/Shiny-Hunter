@@ -58,19 +58,26 @@ class HuntingManager:
             detected, ratio, elapsed = self.wait_for_white_flash(config.full, timeout=delay-1) 
             
             if detected: 
+                current_time=time.time()
+                finished_time=0
                 config.status = "Encounter Loading" 
                  #If we properly found it, we will wait for it to go away.
                 while True:
                     detected, ratio, elapsed = self.wait_for_white_flash(
                         config.full,
-                        timeout=.2
+                        timeout=.1
                     )
 
                     if not detected:
                         config.status = "Encounter Loading"
+                        finished_time=time.time()
                         break
 
-                    # Recovery
+                #Check to see if the encounter was long enough
+                computed_time=finished_time-current_time
+                print(computed_time)
+
+
                 config.status="Encounter Loaded"
             else:
                self.trigger_soft_reset() 
@@ -279,7 +286,7 @@ class HuntingManager:
             last_ratio = ratio
             if is_white:
                 elapsed = time.time() - start_time
-                print(f"White flash detected! ({ratio:.2%} white) after {elapsed:.3f}s")
+                #print(f"White flash detected! ({ratio:.2%} white) after {elapsed:.3f}s")
                 return True, ratio, elapsed
 
         elapsed = time.time() - start_time
