@@ -177,7 +177,7 @@ class SwitchController:
         self.tilt_stick(Sticks.LEFT_STICK, -100, 0, hold_time)
 
     def left_right(self, hold_time=0.05):
-        self.tilt_stick(Sticks.LEFT_STICK, -100, 0, hold_time)
+        self.tilt_stick(Sticks.LEFT_STICK, 100, 0, hold_time)
 
     def disconnect(self):
         if self.controller_index is not None:
