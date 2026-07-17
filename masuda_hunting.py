@@ -77,38 +77,25 @@ class MasudaHunt(tk.Frame):
             self.initialize_time=time.time()
 
             time.sleep(1.5)
-            while True:
-                self.controller.press_l()
-                config.status="Going Down"
-                time.sleep(1)
-                self.controller.left_left()
-                time.sleep(.1)
-                self.controller.left_down(.1)
-                time.sleep(.1)
-                self.controller.press_plus()
-                time.sleep(.1)
-                self.controller.left_down(8)
-                time.sleep(1)
-                config.status="Returning"
-                self.controller.press_plus()
-                time.sleep(1)
-                self.controller.left_right()
-                time.sleep(.1)
-                self.controller.left_up(.1)
-                time.sleep(.1)
-                self.controller.press_plus()
-                time.sleep(.1)
-                self.controller.left_up(8.2)
-                time.sleep(.1)
-                self.controller.press_plus()
-                time.sleep(.5)
-                self.controller.left_diagonal_left(.1)
-                self.controller.press_l()
-                self.controller.left_diagonal_right(.1)
-                self.controller.press_l()
-                self.cycles+=1
-                if(self.cycles==2):
-                    self.get_egg()
+            self.controller.press_l()
+            config.status="Going Down"
+            self.controller.left_down(.5)
+            time.sleep(.1)
+            self.controller.left_right(.1)
+            time.sleep(.1)
+            self.controller.press_plus()
+            time.sleep(.5)
+            config.status="Going Right"
+            self.controller.left_right(17)
+            time.sleep(.1)
+            self.controller.press_plus()
+            time.sleep(.5)
+            self.controller.left_left()
+            time.sleep(.1)
+            self.controller.press_plus()
+            time.sleep(.5)
+            config.status="Going Left"
+            self.controller.left_left(17)
 
          threading.Thread(target=run, daemon=True).start()
 
