@@ -19,6 +19,7 @@ class MasudaHunt(tk.Frame):
         self.start_time = time.time()
         self.initialize_time = self.start_time
         self.eggs=0
+        self.cycles=0
 
         def end_hunt():
             print("ending hunt")
@@ -101,13 +102,22 @@ class MasudaHunt(tk.Frame):
                 time.sleep(.1)
                 self.controller.press_plus()
                 time.sleep(.5)
-                self.get_egg()
+                self.cycles+=1
+                if(self.cycles==2):
+                    self.get_egg()
 
          threading.Thread(target=run, daemon=True).start()
 
     def get_egg(self):
+        self.cycles=0
         self.controller.press_a()
         time.sleep(.8)
+        self.controller.press_a()
+        time.sleep(3)
+        self.controller.press_a()
+        time.sleep(1.5)
+        self.controller.press_a()
+        time.sleep(2)
         self.controller.press_a()
         time.sleep(.5)
 
