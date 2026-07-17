@@ -142,7 +142,7 @@ class MasudaHunt(tk.Frame):
          threading.Thread(target=run, daemon=True).start()
          threading.Thread(target=check_for_egg, daemon=True).start()
 
-    def egg_check():
+    def egg_check(self):
         pass
         #while hatched_egg():
 
