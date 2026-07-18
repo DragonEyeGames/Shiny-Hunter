@@ -190,7 +190,7 @@ class MasudaHunt(tk.Frame):
         self.controller.press_a()
         time.sleep(2)
         self.controller.press_a()
-        time.sleep(.1)
+        time.sleep(1)
         #Exit boxes
         self.controller.press_b()
         time.sleep(3)
