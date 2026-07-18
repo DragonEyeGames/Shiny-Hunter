@@ -86,7 +86,8 @@ class MasudaHunt(tk.Frame):
             self.initialize_time=time.time()
 
             while True:
-                time.sleep(1.5)
+                print(self.shiny_egg())
+                """time.sleep(1.5)
                 config.status="Going Down"
                 self.controller.left_down(.5)
                 time.sleep(.1)
@@ -125,7 +126,7 @@ class MasudaHunt(tk.Frame):
                     self.controller.left_diagonal_right(1)
                     self.egg_check()
                 if(self.eggs<5):
-                    self.get_egg()
+                    self.get_egg()"""
 
          def check_for_egg():
              while True:
@@ -142,12 +143,11 @@ class MasudaHunt(tk.Frame):
                     egg=self.check_gray(frame, config.sw_sh_egg)
                     if(egg and self.hatched_egg==False):
                         self.hatched_egg=True
-                        self.hatch_egg()
-                 print(self.hatched_egg)
+                 #print(self.hatched_egg)
 
 
          threading.Thread(target=run, daemon=True).start()
-         threading.Thread(target=check_for_egg, daemon=True).start()
+         #threading.Thread(target=check_for_egg, daemon=True).start()
 
     def hatch_egg(self):
         config.status="Hatching Egg"
@@ -177,31 +177,37 @@ class MasudaHunt(tk.Frame):
         self.controller.press_down()
         time.sleep(.2)
         #Kill it if non-shiny
-        self.controller.press_a()
-        time.sleep(.2)
-        self.controller.press_up()
-        time.sleep(.1)
-        self.controller.press_up()
-        time.sleep(.1)
-        self.controller.press_a()
-        time.sleep(1)
-        self.controller.press_up()
-        time.sleep(.1)
-        self.controller.press_a()
-        time.sleep(2)
-        self.controller.press_a()
-        time.sleep(1)
-        #Exit boxes
-        self.controller.press_b()
-        time.sleep(3)
-        self.controller.press_b()
-        time.sleep(2)
-        self.controller.press_b()
-        time.sleep(1)
+
+        if(self.shiny_egg()):
+            self.controller.press_a()
+            time.sleep(.2)
+            self.controller.press_up()
+            time.sleep(.1)
+            self.controller.press_up()
+            time.sleep(.1)
+            self.controller.press_a()
+            time.sleep(1)
+            self.controller.press_up()
+            time.sleep(.1)
+            self.controller.press_a()
+            time.sleep(2)
+            self.controller.press_a()
+            time.sleep(1)
+            #Exit boxes
+            self.controller.press_b()
+            time.sleep(3)
+            self.controller.press_b()
+            time.sleep(2)
+            self.controller.press_b()
+            time.sleep(1)
+        else:
+            config.status="Shiny found!"
+            while True:
+                time.sleep(1)
 
     def egg_check(self):
-        while self.hatched_egg==True:
-            time.sleep(.5)
+        if self.hatched_egg:
+            self.hatch_egg()
 
 
     def get_egg(self):
@@ -219,6 +225,34 @@ class MasudaHunt(tk.Frame):
         time.sleep(.5)
         self.eggs+=1
         print("Egg Acquired")
+
+    def shiny_egg(self):
+         with config.cap_lock:
+            cap = config.cap
+            if cap is not None:
+                try:
+                    ret, frame = cap.read()
+                except cv2.error:
+                    ret, frame = False, None
+            if ret and frame is not None:
+                #egg=self.check_gray(frame)
+                h, w = frame.shape[:2]
+
+                x = int(config.shiny_egg['x'] * w)
+                y = int(config.shiny_egg['y'] * h)
+                rw = int(config.shiny_egg['w'] * w)
+                rh = int(config.shiny_egg['h'] * h)
+
+                region = frame[y:y+rh, x:x+rw]
+
+                lower = np.array([191, 191, 191], dtype=np.uint8)
+                upper = np.array([255, 255, 255], dtype=np.uint8)
+
+                mask = cv2.inRange(region, lower, upper)
+
+                fill = cv2.countNonZero(mask) / (rw * rh)
+                print(fill)
+                return fill >= 0.90
 
     def check_gray(self, frame, roi):
         h, w = frame.shape[:2]
@@ -238,6 +272,8 @@ class MasudaHunt(tk.Frame):
         fill = cv2.countNonZero(mask) / (rw * rh)
 
         return fill >= 0.90
+
+
 
     def remove_controller(self):
         self.controller.disconnect()
