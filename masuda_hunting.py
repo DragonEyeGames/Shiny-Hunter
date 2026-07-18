@@ -86,8 +86,7 @@ class MasudaHunt(tk.Frame):
             self.initialize_time=time.time()
 
             while True:
-                print(self.shiny_egg())
-                """time.sleep(1.5)
+                time.sleep(1.5)
                 config.status="Going Down"
                 self.controller.left_down(.5)
                 time.sleep(.1)
@@ -126,7 +125,7 @@ class MasudaHunt(tk.Frame):
                     self.controller.left_diagonal_right(1)
                     self.egg_check()
                 if(self.eggs<5):
-                    self.get_egg()"""
+                    self.get_egg()
 
          def check_for_egg():
              while True:
