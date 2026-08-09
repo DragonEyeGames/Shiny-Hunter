@@ -82,6 +82,7 @@ class SwScreen(ctk.CTkFrame):
         boot_screen()
 
     def start_egg(self, egg_screen):
+        config.game_name = "Sword"
         egg_screen()
 
 
