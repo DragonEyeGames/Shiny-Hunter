@@ -6,14 +6,8 @@ from switch_controller import SwitchController
 import threading
 import time
 
-#Hunting imports
-from hunting.sw_sh_registeel import commands as registeel_commands
-from hunting.sw_sh_regirock import commands as regirock_commands
-from hunting.sw_sh_regidrago import commands as regidrago_commands
-from hunting.sw_sh_regice import commands as regice_commands
-
-from hunting.bd_sp_giratina import commands as giratina_commands
-from hunting.bd_sp_arceus import commands as arceus_commands
+#Weather Types
+from hunting.sw_sh_thunderstorm import commands as thunderstorm_commands
 
 import hunting.bd_sp_hunting_manager as bd_sp_hm
 import hunting.sw_sh_hunting_manager as sw_sh_hm
@@ -84,20 +78,6 @@ class StrongHunt(tk.Frame):
         self.update_frame()
         self.last_good_frame=time.time()
 
-    def pokemon_names(self, pokemon_name):
-        if(pokemon_name=="Registeel"):
-            return registeel_commands
-        elif(pokemon_name=="Regirock"):
-            return regirock_commands
-        elif(pokemon_name=="Regice"):
-            return regice_commands
-        elif(pokemon_name=="Regidrago"):
-            return regidrago_commands
-        elif(pokemon_name=="Giratina"):
-            return giratina_commands
-        elif(pokemon_name=="Arceus"):
-            return arceus_commands
-
     def start_controller(self):
          def run():
             config.status="Pairing with Switch"
@@ -116,7 +96,7 @@ class StrongHunt(tk.Frame):
             self.controller.press_a()
             time.sleep(1.5)
             config.status="Hunting"
-            hunting_manager.run_script(self.pokemon_names(config.pokemon_name))
+            hunting_manager.run_script(thunderstorm_commands)
 
          threading.Thread(target=run, daemon=True).start()
 
