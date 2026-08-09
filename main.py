@@ -11,6 +11,7 @@ from screens.lets_go_eevee import LgeScreen
 from screens.lets_go_pikachu import LgpScreen
 
 from masuda_hunting import MasudaHunt
+from strong_hunting import StrongHunt
 from capture_card import CaptureCard
 import config
 from save_manager import save_data
@@ -54,7 +55,10 @@ main_menu.place(x=0, y=0, relwidth=1, relheight=1)
 switch_screen = CaptureCard(root, lambda: main_menu.tkraise(), camera_index=0)
 switch_screen.place(x=0, y=0, relwidth=1, relheight=1)
 
-egg_screen = MasudaHunt(root, lambda: main_menu.tkraise(), camera_index=0)
+#egg_screen = MasudaHunt(root, lambda: main_menu.tkraise(), camera_index=0)
+#egg_screen.place(x=0, y=0, relwidth=1, relheight=1)
+
+egg_screen = StrongHunt(root, lambda: main_menu.tkraise(), camera_index=0)
 egg_screen.place(x=0, y=0, relwidth=1, relheight=1)
 
 sw = SwScreen(root, lambda: main_menu.tkraise(), open_capture_screen, open_egg_screen)
