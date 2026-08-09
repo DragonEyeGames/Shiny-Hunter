@@ -96,6 +96,7 @@ class StrongHunt(tk.Frame):
             self.controller.press_a()
             time.sleep(1.5)
             config.status="Hunting"
+            hunting_manager.execute("reboot", .5)
             hunting_manager.run_script(thunderstorm_commands)
 
          threading.Thread(target=run, daemon=True).start()

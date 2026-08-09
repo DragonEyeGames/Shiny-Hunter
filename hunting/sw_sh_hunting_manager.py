@@ -45,7 +45,7 @@ class HuntingManager:
 
     def execute(self, action, delay): 
         if action == "reboot":
-            self.reboot_game()
+            self.trigger_soft_reset()
         if action == "a": 
             self.controller.press_a() 
         if action == "up":
