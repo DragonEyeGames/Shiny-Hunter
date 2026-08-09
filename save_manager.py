@@ -10,8 +10,9 @@ hunting_data = {
 }
 
 def save_data(data_to_save):
-    with open("hunting_data.json", "w") as file:
-        json.dump(data_to_save, file, indent=4)
+    #with open("hunting_data.json", "w") as file:
+        #json.dump(data_to_save, file, indent=4)
+    pass
 
 def load_data(default_data):
     # Check if the file exists before trying to open it

@@ -105,6 +105,10 @@ hunting_data = {
         "(loading)": {
             "resets": 0,
             "time_spent": 0.000
+        },
+        "Sword": {
+            "resets": 0,
+            "time_spent": 0.000
         }
     }
 }
