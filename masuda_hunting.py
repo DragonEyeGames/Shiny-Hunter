@@ -85,47 +85,7 @@ class MasudaHunt(tk.Frame):
             config.status="Initializing Hunt"
             self.initialize_time=time.time()
 
-            while True:
-                time.sleep(1.5)
-                config.status="Going Down"
-                self.controller.left_down(.5)
-                time.sleep(.1)
-                config.status="Boarding Bike"
-                self.controller.left_right(.1)
-                time.sleep(.1)
-                self.controller.press_plus()
-                time.sleep(.5)
-                config.status="Going Right"
-                for _ in range(18):
-                    self.controller.left_right(1)
-                    self.egg_check()
-                config.status="Swapping Bike"
-                time.sleep(.1)
-                self.egg_check()
-                self.controller.press_plus()
-                time.sleep(1)
-                self.controller.left_left()
-                time.sleep(.1)
-                self.egg_check()
-                self.controller.press_plus()
-                time.sleep(.5)
-                self.egg_check()
-                config.status="Going Left"
-                for _ in range(19):
-                    self.controller.left_left(1)
-                    self.egg_check()
-                config.status="Going Up"
-                self.controller.press_plus()
-                self.egg_check()
-                time.sleep(1)
-                self.egg_check()
-                self.controller.left_up(1)
-                self.egg_check()
-                for _ in range(5):
-                    self.controller.left_diagonal_right(1)
-                    self.egg_check()
-                if(self.eggs<5):
-                    self.get_egg()
+            self.egg_cycle()
 
          def check_for_egg():
              while True:
@@ -147,6 +107,44 @@ class MasudaHunt(tk.Frame):
 
          threading.Thread(target=run, daemon=True).start()
          #threading.Thread(target=check_for_egg, daemon=True).start()
+
+    def egg_cycle(self):
+        time.sleep(1.5)
+        config.status="Going Down"
+        self.egg_check()
+        self.controller.left_down(.5)
+        self.egg_check()
+        time.sleep(.1)
+        config.status="Boarding Bike"
+        self.controller.left_right(.1)
+        self.egg_check()
+        time.sleep(.1)
+        self.controller.press_plus()
+        time.sleep(.5)
+        config.status="Going Right"
+        self.controller.left_right(18)
+        self.egg_check()
+        config.status="Swapping Bike"
+        time.sleep(.1)
+        self.controller.press_plus()
+        time.sleep(1)
+        self.controller.left_left()
+        time.sleep(.1)
+        self.egg_check()
+        self.controller.press_plus()
+        time.sleep(.5)
+        config.status="Going Left"
+        self.controller.left_left(18.5)
+        self.egg_check()
+        config.status="Going Up"
+        self.controller.press_plus()
+        time.sleep(1)
+        self.controller.left_up(1)
+        self.egg_check()
+        self.controller.left_diagonal_right(1)
+        self.egg_check()
+        if(self.eggs<5):
+            self.get_egg()
 
     def hatch_egg(self):
         config.status="Hatching Egg"
