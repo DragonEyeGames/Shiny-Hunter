@@ -16,11 +16,12 @@ def save_data(data_to_save):
 
 def load_data(default_data):
     # Check if the file exists before trying to open it
-    if not os.path.exists(FILENAME):
-        return default_data
+    #if not os.path.exists(FILENAME):
+     #   return default_data
         
-    with open(FILENAME, "r") as file:
-        return json.load(file)
+    #with open(FILENAME, "r") as file:
+    #    return json.load(file)
+    pass
 
 def save_address(data_to_save):
     data_to_save = {"saved_string": data_to_save}
