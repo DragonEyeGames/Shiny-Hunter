@@ -21,7 +21,7 @@ def load_data(default_data):
         
     #with open(FILENAME, "r") as file:
     #    return json.load(file)
-    pass
+    return default_data
 
 def save_address(data_to_save):
     data_to_save = {"saved_string": data_to_save}
