@@ -232,6 +232,9 @@ create_game_button(main_menu, 560, 275, leaf_green, selected_leaf_green, on_clic
 end_button = ctk.CTkButton(main_menu,text="Quit Program",width=230,height=40,fg_color="#C0392B",hover_color="#96281B", border_width=2, border_color="black", corner_radius=12,font=("Arial",16,"bold"),command=close_project)
 end_button.place(x=285, y=420)
 
+manual_button = ctk.CTkButton(main_menu,text="Manual Control",width=150,height=40,fg_color="#7a7a7a",hover_color="#404040", border_width=2, border_color="black", corner_radius=12,font=("Arial",16,"bold"),command=close_project)
+manual_button.place(x=20, y=420)
+
 root.update_idletasks()
 root.deiconify()
 
