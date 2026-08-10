@@ -68,7 +68,7 @@ class ManualControl(tk.Frame):
             self.start_controller()
         if self.camera_started:
             self.frame_count+=1
-            if True:
+            if self.frame_count % 2 == 0:
                 try:
                     ret, frame = False, None
                     with config.cap_lock:
@@ -132,8 +132,45 @@ class ManualControl(tk.Frame):
     def setup_keyboard_bindings(self):
         root = self.winfo_toplevel()
         
-        # Bind any key press event globally to print details
-        root.bind("<Key>", lambda event: print(f"Key Pressed -> Char: {event.char} | Symbol: {event.keysym} | Code: {event.keycode}"))
+        # Map the exact symbols from your console output to specific methods
+        self.key_actions = {
+            "Up": lambda: self.up(),
+            "Down": lambda: self.down(),
+            "Left": lambda: self.left(),
+            "Right": lambda: self.right(),
+            "w": lambda: self.x(),
+            "a": lambda: self.y(),
+            "s": lambda: self.b(),
+            "d": lambda: self.a(),
+            "Return": lambda: self.a(),
+            "BackSpace": lambda: print("wait")
+        }
+        
+        # Bind a single listener that routes the keys
+        root.bind("<Key>", self.handle_keypress)
+
+    def a(self):
+        self.controller.press_a()
+    def x(self):
+        self.controller.press_x()
+    def b(self):
+        self.controller.press_b()
+    def y(self):
+        self.controller.press_y()
+    def up(self):
+        self.controller.press_up()
+    def down(self):
+        self.controller.press_down()
+    def left(self):
+        self.controller.press_left()
+    def right(self):
+        self.controller.press_right()
+
+    def handle_keypress(self, event):
+        symbol = event.keysym
+        
+        if symbol in self.key_actions:
+            self.key_actions[symbol]()  # Run the matched function
 
     def release(self):
         with config.cap_lock:
