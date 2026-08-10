@@ -81,6 +81,7 @@ def show_egg_hunt():
     current_screen.place(x=0, y=0, relwidth=1, relheight=1)
 
 def open_manual_control():
+    config.start_camera=True
     global current_screen
     if current_screen is not None:
         current_screen.destroy()
