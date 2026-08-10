@@ -172,10 +172,21 @@ class HuntingManager:
             
         if config.status == "Ending Hunt": return 
         config.status = "Loading Game" 
-        time.sleep(9) 
+        self.looping=True
+
+        #Waits for the loading screen to dissapear
+        while self.looping:
+            self.looping = self.wait_for_black_flash(config.load, timeout=1, black_percentage=.8)
+
         if config.status == "Ending Hunt": return 
         self.controller.press_a() 
-        time.sleep(.2) 
+        #Waits for the loading screen to appear and then dissapear again
+        self.looping=False
+        while not self.looping:
+            self.looping = self.wait_for_black_flash(config.load, timeout=1, black_percentage=.8)
+        self.looping=True
+        while self.looping:
+            self.looping = self.wait_for_black_flash(config.load, timeout=1, black_percentage=.8)
         if config.status == "Ending Hunt": return 
         self.controller.press_a() 
         time.sleep(3.5) 
