@@ -13,6 +13,7 @@ from screens.lets_go_pikachu import LgpScreen
 from masuda_hunting import MasudaHunt
 from strong_hunting import StrongHunt
 from capture_card import CaptureCard
+from manual_control import ManualControl
 import config
 from save_manager import save_data
 
@@ -77,6 +78,13 @@ def show_egg_hunt():
         current_screen.destroy()
     #current_screen = MasudaHunt(root, lambda: show_main_menu(), camera_index=0)
     current_screen = StrongHunt(root, lambda: show_main_menu(), camera_index=0)
+    current_screen.place(x=0, y=0, relwidth=1, relheight=1)
+
+def open_manual_control():
+    global current_screen
+    if current_screen is not None:
+        current_screen.destroy()
+    current_screen = ManualControl(root, lambda: show_main_menu(), camera_index=0)
     current_screen.place(x=0, y=0, relwidth=1, relheight=1)
 
 def show_main_menu():
@@ -232,8 +240,8 @@ create_game_button(main_menu, 560, 275, leaf_green, selected_leaf_green, on_clic
 end_button = ctk.CTkButton(main_menu,text="Quit Program",width=230,height=40,fg_color="#C0392B",hover_color="#96281B", border_width=2, border_color="black", corner_radius=12,font=("Arial",16,"bold"),command=close_project)
 end_button.place(x=285, y=420)
 
-manual_button = ctk.CTkButton(main_menu,text="Manual Control",width=150,height=40,fg_color="#7a7a7a",hover_color="#404040", border_width=2, border_color="black", corner_radius=12,font=("Arial",16,"bold"),command=close_project)
-manual_button.place(x=20, y=420)
+manual_button = ctk.CTkButton(main_menu,text="Manual Control",width=150,height=40,fg_color="#7a7a7a",hover_color="#404040", border_width=2, border_color="black", corner_radius=12,font=("Arial",16,"bold"),command=open_manual_control)
+manual_button.place(x=100, y=420)
 
 root.update_idletasks()
 root.deiconify()
