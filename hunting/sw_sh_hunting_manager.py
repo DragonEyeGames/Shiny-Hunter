@@ -180,7 +180,8 @@ class HuntingManager:
             self.looping = self.wait_for_black_flash(config.load, timeout=1, black_percentage=.8)
 
         if config.status == "Ending Hunt": return 
-        self.controller.press_a() 
+        self.controller.press_a()
+        time.sleep(1)
         #Waits for the loading screen to appear and then dissapear again
         self.black=False
         while not self.black:
@@ -188,7 +189,7 @@ class HuntingManager:
             self.black = self.wait_for_black_flash(config.load, timeout=1, black_percentage=.8)
         self.black=True
         while self.black:
-            print("Waiting for screen to dissapear")
+            print("Waiting for screen to dissapear v2")
             self.black = self.wait_for_black_flash(config.load, timeout=1, black_percentage=.8)
         if config.status == "Ending Hunt": return 
         self.controller.press_a() 
