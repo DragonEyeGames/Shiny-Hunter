@@ -185,8 +185,12 @@ class HuntingManager:
         #Waits for the loading screen to appear and then dissapear again
         self.black=False
         while not self.black:
-            print("Waiting for screen to appear")
-            self.black, last_ratio, elapsed = self.wait_for_black_flash(config.load, timeout=.1, black_percentage=.8)
+            self.controller.press_a()
+            for i in range(3):
+                print("Waiting for screen to appear")
+                self.black, last_ratio, elapsed = self.wait_for_black_flash(config.load, timeout=.1, black_percentage=.8)
+                if(self.black):
+                    break
         self.black=True
         while self.black:
             print("Waiting for screen to dissapear v2")
