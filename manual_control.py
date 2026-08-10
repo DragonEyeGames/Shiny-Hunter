@@ -19,7 +19,9 @@ class ManualControl(tk.Frame):
         self.label.place(relx=0, rely=0, relwidth=1, relheight=1)
 
         self.update_frame()
+        self.setup_keyboard_bindings()
         self.last_good_frame=time.time()
+
 
     def start_controller(self):
          def run():
@@ -66,7 +68,7 @@ class ManualControl(tk.Frame):
             self.start_controller()
         if self.camera_started:
             self.frame_count+=1
-            if self.frame_count % 2 == 0:
+            if True:
                 try:
                     ret, frame = False, None
                     with config.cap_lock:
@@ -126,6 +128,12 @@ class ManualControl(tk.Frame):
 
 
         self.after(16, self.update_frame)
+
+    def setup_keyboard_bindings(self):
+        root = self.winfo_toplevel()
+        
+        # Bind any key press event globally to print details
+        root.bind("<Key>", lambda event: print(f"Key Pressed -> Char: {event.char} | Symbol: {event.keysym} | Code: {event.keycode}"))
 
     def release(self):
         with config.cap_lock:
