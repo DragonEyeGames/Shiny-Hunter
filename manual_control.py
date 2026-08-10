@@ -15,6 +15,9 @@ class ManualControl(tk.Frame):
         self.frame_count = 0
         self.camera_started=False
 
+        self.label = tk.Label(self, bg="black")
+        self.label.place(relx=0, rely=0, relwidth=1, relheight=1)
+
         self.update_frame()
         self.last_good_frame=time.time()
 
@@ -23,21 +26,6 @@ class ManualControl(tk.Frame):
             config.status="Pairing with Switch"
             self.controller = SwitchController()
             self.controller.connect()
-            self.start_time = time.time()
-            config.status="Initializing Hunt"
-            hm = None
-            if(config.game_name=="Sword" or config.game_name=="Shield"):
-                hm=sw_sh_hm
-            elif(config.game_name=="Brilliant Diamond" or config.game_name=="Shining Pearl"):
-                hm=bd_sp_hm
-            hunting_manager = hm.HuntingManager(self.controller)
-            self.controller.press_home()
-            time.sleep(1.5)
-            self.controller.press_a()
-            time.sleep(1.5)
-            config.status="Hunting"
-            hunting_manager.execute("reboot", .5)
-            hunting_manager.run_script(thunderstorm_commands)
 
          threading.Thread(target=run, daemon=True).start()
 
