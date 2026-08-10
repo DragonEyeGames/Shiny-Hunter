@@ -75,7 +75,8 @@ def show_egg_hunt():
     global current_screen
     if current_screen is not None:
         current_screen.destroy()
-    current_screen = MasudaHunt(root, lambda: show_main_menu(), camera_index=0)
+    #current_screen = MasudaHunt(root, lambda: show_main_menu(), camera_index=0)
+    current_screen = StrongHunt(root, lambda: show_main_menu(), camera_index=0)
     current_screen.place(x=0, y=0, relwidth=1, relheight=1)
 
 def show_main_menu():
