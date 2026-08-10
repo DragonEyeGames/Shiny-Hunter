@@ -143,7 +143,7 @@ class ManualControl(tk.Frame):
             "s": lambda: self.b(),
             "d": lambda: self.a(),
             "Return": lambda: self.a(),
-            "BackSpace": lambda: print("wait")
+            "BackSpace": lambda: self.home()
         }
         
         # Bind a single listener that routes the keys
@@ -165,6 +165,8 @@ class ManualControl(tk.Frame):
         self.controller.press_left()
     def right(self):
         self.controller.press_right()
+    def home(self):
+        self.controller.press_home()
 
     def handle_keypress(self, event):
         symbol = event.keysym
