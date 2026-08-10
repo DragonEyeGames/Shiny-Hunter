@@ -38,12 +38,15 @@ root.configure(bg="black")
 
 def open_capture_screen():
     config.start_camera=True
-    switch_screen.tkraise()
+    show_normal_hunt()
 
 def open_egg_screen():
-    config.egg_hunt=True
     config.start_camera=True
-    egg_screen.tkraise()
+    show_egg_hunt()
+
+def open_strong_screen():
+    config.start_camera=True
+    show_strong_hunt()
 
 def close_project():
     save_data(config.hunting_data)
@@ -52,14 +55,35 @@ def close_project():
 main_menu = ctk.CTkFrame(root,fg_color="#050c15",corner_radius=0)
 main_menu.place(x=0, y=0, relwidth=1, relheight=1)
 
-switch_screen = CaptureCard(root, lambda: main_menu.tkraise(), camera_index=0)
-switch_screen.place(x=0, y=0, relwidth=1, relheight=1)
+current_screen = None
 
-#egg_screen = MasudaHunt(root, lambda: main_menu.tkraise(), camera_index=0)
-#egg_screen.place(x=0, y=0, relwidth=1, relheight=1)
+def show_normal_hunt():
+    global current_screen
+    if current_screen is not None:
+        current_screen.destroy()
+    current_screen = CaptureCard(root, lambda: show_main_menu(), camera_index=0)
+    current_screen.place(x=0, y=0, relwidth=1, relheight=1)
 
-egg_screen = StrongHunt(root, lambda: main_menu.tkraise(), camera_index=0)
-egg_screen.place(x=0, y=0, relwidth=1, relheight=1)
+def show_strong_hunt():
+    global current_screen
+    if current_screen is not None:
+        current_screen.destroy()
+    current_screen = StrongHunt(root, lambda: show_main_menu(), camera_index=0)
+    current_screen.place(x=0, y=0, relwidth=1, relheight=1)
+
+def show_egg_hunt():
+    global current_screen
+    if current_screen is not None:
+        current_screen.destroy()
+    current_screen = MasudaHunt(root, lambda: show_main_menu(), camera_index=0)
+    current_screen.place(x=0, y=0, relwidth=1, relheight=1)
+
+def show_main_menu():
+    global current_screen
+    if current_screen is not None:
+        current_screen.destroy()
+        current_screen = None
+    main_menu.tkraise()
 
 sw = SwScreen(root, lambda: main_menu.tkraise(), open_capture_screen, open_egg_screen)
 sw.place(x=0, y=0, relwidth=1, relheight=1)
