@@ -172,7 +172,7 @@ class HuntingManager:
             self.find_loader()
                 
             if config.status == "Ending Hunt": return 
-            config.status = "Loading Game" 
+            config.status = "Waiting for Load" 
 
             self.looping=True
             #Waits for the loading screen to dissapear
@@ -186,6 +186,7 @@ class HuntingManager:
             #Waits for the loading screen to appear and then dissapear again
             self.black=False
             count_number=0
+            config.status = "Waiting for Screen" 
             while not self.black:
                 self.controller.press_a()
                 count_number+=1
@@ -198,7 +199,7 @@ class HuntingManager:
                     break
             if(count_number==5):
                 continue
-            
+            config.status = "Waiting for Game" 
             self.black=True
             timeout_time=10
             while self.black:
