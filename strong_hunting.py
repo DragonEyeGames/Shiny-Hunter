@@ -25,9 +25,6 @@ class StrongHunt(tk.Frame):
         self.start_time = time.time()
         self.initialize_time = self.start_time
 
-        #Load up the templates for finding the home screen
-        self.bd_template = cv2.imread("games/bd_logo.png", cv2.IMREAD_GRAYSCALE)
-
         def end_hunt():
             print("ending hunt")
             config.status="Ending Hunt"
@@ -137,7 +134,7 @@ class StrongHunt(tk.Frame):
             config.hunting_data[config.pokemon_name][config.game_name]['time_spent']+=(time.time()-self.start_time)
             config.current_reset_time+=(time.time()-self.start_time)
             self.start_time=time.time()
-        self.hunting.configure(text=f"Hunting {config.pokemon_name} in {config.game_name}")
+        self.hunting.configure(text=f"Hunting Dragonite in {config.game_name}")
         self.resets_label.configure(text=f"Resets: {config.hunting_data[config.pokemon_name][config.game_name]['resets']}")
         self.status_label.configure(text=f"Status: {config.status}")
         self.spent_label.configure(text=f"Time Spent: {self.convert_seconds(int(config.hunting_data[config.pokemon_name][config.game_name]['time_spent']))}")

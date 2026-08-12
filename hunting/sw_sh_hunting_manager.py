@@ -164,40 +164,55 @@ class HuntingManager:
         self.reset()
 
     def reset(self):
-        self.find_home()
-                
-        self.reboot_game()
-        
-        self.find_loader()
+        while True:
+            self.find_home()
+                    
+            self.reboot_game()
             
-        if config.status == "Ending Hunt": return 
-        config.status = "Loading Game" 
+            self.find_loader()
+                
+            if config.status == "Ending Hunt": return 
+            config.status = "Loading Game" 
 
-        self.looping=True
-        #Waits for the loading screen to dissapear
-        while self.looping:
-            print("Waiting for screen to dissapear")
-            self.looping, last_ratio, elapsed = self.wait_for_black_flash(config.load, timeout=.1, black_percentage=.8)
+            self.looping=True
+            #Waits for the loading screen to dissapear
+            while self.looping:
+                print("Waiting for screen to dissapear")
+                self.looping, last_ratio, elapsed = self.wait_for_black_flash(config.load, timeout=.1, black_percentage=.8)
 
-        if config.status == "Ending Hunt": return 
-        self.controller.press_a()
-        time.sleep(1)
-        #Waits for the loading screen to appear and then dissapear again
-        self.black=False
-        while not self.black:
+            if config.status == "Ending Hunt": return 
             self.controller.press_a()
-            for i in range(3):
-                print("Waiting for screen to appear")
-                self.black, last_ratio, elapsed = self.wait_for_black_flash(config.load, timeout=.1, black_percentage=.8)
-                if(self.black):
+            time.sleep(1)
+            #Waits for the loading screen to appear and then dissapear again
+            self.black=False
+            count_number=0
+            while not self.black:
+                self.controller.press_a()
+                count_number+=1
+                for i in range(3):
+                    print("Waiting for screen to appear")
+                    self.black, last_ratio, elapsed = self.wait_for_black_flash(config.load, timeout=.1, black_percentage=.8)
+                    if(self.black):
+                        break
+                if(count_number==5):
                     break
-        self.black=True
-        while self.black:
-            print("Waiting for screen to dissapear v2")
-            self.black, last_ratio, elapsed = self.wait_for_black_flash(config.load, timeout=.1, black_percentage=.8)
-        if config.status == "Ending Hunt": return 
-        self.controller.press_a() 
-        config.status = "Starting Encounter"
+            if(count_number==5):
+                continue
+            
+            self.black=True
+            timeout_time=10
+            while self.black:
+                print("Waiting for screen to dissapear v2")
+                self.black, last_ratio, elapsed = self.wait_for_black_flash(config.load, timeout=.1, black_percentage=.8)
+                timeout_time-=elapsed
+                if(timeout_time<=0):
+                    break
+            if(timeout_time<=0):
+                continue
+            if config.status == "Ending Hunt": return 
+            self.controller.press_a() 
+            config.status = "Starting Encounter"
+            break
 
     def get_roi_pixels(self, frame, normalized_roi):
         h, w = frame.shape[:2]
