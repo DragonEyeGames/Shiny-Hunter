@@ -139,7 +139,7 @@ class HuntingManager:
                 config.status = "Loading Screen Found" 
                 self.load = True 
             attempts+=1
-            time.sleep(1)
+            time.sleep(.5)
         if attempts>=3: #Couldn't find load menu in reasonable time
             self.find_home() #Assume we didn't make it home
             self.reboot_game() # Kill the game
