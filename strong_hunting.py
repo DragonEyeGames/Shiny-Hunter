@@ -9,6 +9,7 @@ import time
 #Weather Types
 from hunting.sw_sh_thunderstorm import commands as thunderstorm_commands
 from hunting.sw_sh_corviknight import commands as corviknight_commands
+from hunting.sw_sh_lucario import commands as lucario_commands
 
 import hunting.bd_sp_hunting_manager as bd_sp_hm
 import hunting.sw_sh_hunting_manager as sw_sh_hm
@@ -96,7 +97,8 @@ class StrongHunt(tk.Frame):
             config.status="Hunting"
             hunting_manager.execute("reboot", .5)
             #hunting_manager.run_script(thunderstorm_commands)
-            hunting_manager.run_script(corviknight_commands)
+            #hunting_manager.run_script(corviknight_commands)
+            hunting_manager.run_script(lucario_commands)
 
          threading.Thread(target=run, daemon=True).start()
 
