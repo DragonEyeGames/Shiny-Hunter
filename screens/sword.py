@@ -91,14 +91,14 @@ class SwScreen(ctk.CTkFrame):
     def create_pokemon_button(self, x, y, image, name, boot_screen, disabled=False):
 
         # Button (80x80 size, placed at x+10, y+10)
-        button = ctk.CTkButton(self, image=image, text="", width=80, height=80, fg_color="#5e5e5e", bg_color="#21344a", hover_color="#bfbfbf", border_width=3, border_color="black", corner_radius=10, command=lambda: self.start_hunt(name,boot_screen))
+        button = ctk.CTkButton(self, image=image, text="", width=80, height=80, border_spacing=0, fg_color="#5e5e5e", bg_color="#21344a", hover_color="#bfbfbf", border_width=3, border_color="black", corner_radius=10, command=lambda: self.start_hunt(name,boot_screen))
         button.place(x=x+10, y=y+10)
 
         if disabled:
             button.configure(state="disabled")
 
         # Name box (Width matches the inner button area, perfectly centered at the bottom)
-        label_box = ctk.CTkFrame(self, fg_color="black", bg_color="#5e5e5e", width=74, height=18, border_spacing=0, corner_radius=5)
+        label_box = ctk.CTkFrame(self, fg_color="black", bg_color="#5e5e5e", width=74, height=18 corner_radius=5)
         label_box.place(x=x+23, y=y+70) # Centers horizontally, flushes close to the bottom border
 
         # Name (Fits snugly inside the black label_box frame)
