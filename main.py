@@ -203,11 +203,11 @@ selected_leaf_green = ctk.CTkImage(light_image=Image.open("logos/selected_leaf_g
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-FONT_PATH = os.path.join(SCRIPT_DIR, "fonts", "Risque-Regular.ttf")
+FONT_PATH = os.path.join(SCRIPT_DIR, "fonts", "Ranchers-Regular.ttf")
 
 ctk.FontManager.load_font(FONT_PATH)
 
-title_font = ctk.CTkFont(family="Risque", size=60)
+title_font = ctk.CTkFont(family="Ranchers", size=60)
 
 title = ctk.CTkLabel(
     main_menu,
