@@ -45,7 +45,7 @@ class ShScreen(ctk.CTkFrame):
         # Outline box
         self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=508,height=257,corner_radius=15, border_width=5, border_color="black")
 
-        self.color_box.place(x=146,y=155)
+        self.color_box.place(x=146,y=156)
 
 
         # Pokemon buttons
@@ -103,7 +103,7 @@ class ShScreen(ctk.CTkFrame):
         label_box.place(x=x+13, y=y+70) # Centers horizontally, flushes close to the bottom border
 
         # Name (Fits snugly inside the black label_box frame)
-        label = ctk.CTkLabel(master=label_box, text=name, font=("Basic",11), text_color="black", fg_color="white", width=72, height=18, corner_radius=3)
+        label = ctk.CTkLabel(master=label_box, text=name, font=("Basic",11), text_color="black", fg_color="white", width=72, height=18, corner_radius=5, border_width=2, border_color="black")
         label.place(x=1, y=1)
 
         return button, label
