@@ -49,14 +49,14 @@ class SwScreen(ctk.CTkFrame):
 
 
         # Pokemon buttons
-        self.create_pokemon_button(130,160,self.regirock,"Regirock",boot_screen)
-        self.create_pokemon_button(240,160,self.regice,"Regice",boot_screen)
-        self.create_pokemon_button(350,160,self.registeel,"Registeel",boot_screen)
-        self.create_pokemon_button(460,160,self.regieleki,"Regieleki",boot_screen)
-        self.create_pokemon_button(570,160,self.regidrago,"Regidrago",boot_screen, True)
-        self.create_pokemon_button(240,260,self.cobalion,"Cobalion",boot_screen, True)
-        self.create_pokemon_button(350,260,self.terrakion,"Terrakion",boot_screen, True)
-        self.create_pokemon_button(460,260,self.virizion,"Virizion",boot_screen, True)
+        self.create_pokemon_button(125,160,self.regirock,"Regirock",boot_screen)
+        self.create_pokemon_button(235,160,self.regice,"Regice",boot_screen)
+        self.create_pokemon_button(345,160,self.registeel,"Registeel",boot_screen)
+        self.create_pokemon_button(455,160,self.regieleki,"Regieleki",boot_screen)
+        self.create_pokemon_button(565,160,self.regidrago,"Regidrago",boot_screen, True)
+        self.create_pokemon_button(235,260,self.cobalion,"Cobalion",boot_screen, True)
+        self.create_pokemon_button(345,260,self.terrakion,"Terrakion",boot_screen, True)
+        self.create_pokemon_button(455,260,self.virizion,"Virizion",boot_screen, True)
 
         #Masuda selection screen
         self.egg_button = ctk.CTkButton(self,
