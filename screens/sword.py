@@ -105,4 +105,7 @@ class SwScreen(ctk.CTkFrame):
         label = ctk.CTkLabel(master=label_box, text=name, font=("Arial",11), text_color="black", fg_color="white", width=72, height=18, corner_radius=3)
         label.place(x=1, y=1)
 
+        self.update_idletasks()
+        print(button.winfo_width(), button.winfo_height())
+
         return button, label
