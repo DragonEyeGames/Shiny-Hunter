@@ -91,7 +91,18 @@ def open_manual_control():
     current_screen.place(x=0, y=0, relwidth=1, relheight=1)
 
 def show_main_menu():
-    os.execv(sys.executable, [sys.executable] + sys.argv)
+
+    config.pokemon_name=""
+    config.game_name=""
+    config.start_camera=False
+
+    config.status="Idle"
+
+    config.current_reset_time=0.000
+    config.last_reset_time=0.000
+
+    config.cap = None
+
     global current_screen
     if current_screen is not None:
         current_screen.destroy()
