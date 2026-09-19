@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from PIL import Image
 import os
+import sys
 
 from screens.sword import SwScreen
 from screens.shield import ShScreen
