@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from PIL import Image
+import os
 
 from screens.sword import SwScreen
 from screens.shield import ShScreen
@@ -199,7 +200,12 @@ selected_fire_red = ctk.CTkImage(light_image=Image.open("logos/selected_fire_red
 leaf_green = ctk.CTkImage(light_image=Image.open("logos/leaf_green.png"),dark_image=Image.open("logos/leaf_green.png"),size=(100,100))
 selected_leaf_green = ctk.CTkImage(light_image=Image.open("logos/selected_leaf_green.png"),dark_image=Image.open("logos/selected_leaf_green.png"),size=(100,100))
 
-ctk.FontManager.load_font(r"fonts\Risque-Regular.ttf")
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+FONT_PATH = os.path.join(SCRIPT_DIR, "fonts", "Risque-Regular.ttf")
+
+ctk.FontManager.load_font(FONT_PATH)
 
 title = ctk.CTkLabel(
     main_menu,
