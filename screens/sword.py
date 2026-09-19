@@ -43,7 +43,7 @@ class SwScreen(ctk.CTkFrame):
 
 
         # Outline box
-        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=580,height=215,corner_radius=15, border_width=5, border_color="black")
+        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=580,height=265,corner_radius=15, border_width=5, border_color="black")
 
         self.color_box.place(x=123,y=150)
 
@@ -60,13 +60,13 @@ class SwScreen(ctk.CTkFrame):
 
         #Masuda selection screen
         self.egg_button = ctk.CTkButton(self,
-            text="Overworld Encounters",
-            width=180, height=50,
+            text="Overworld Encounter",
+            width=180, height=40,
             fg_color="#5e5e5e", bg_color="#050c15", hover_color="#bfbfbf",
             border_width=3, border_color="black", corner_radius=10,
             font=("Arial", 20),
             command=lambda: self.start_egg(egg_screen))
-        self.egg_button.place(x=315, y=350)
+        self.egg_button.place(x=310, y=370)
 
         # Back button
         back_button = ctk.CTkButton(self,text="Back",font=("Arial",20),width=100,height=40,fg_color="#3b3b3b",hover_color="#505050",border_color="black",border_width=3,command=back_callback)
@@ -106,7 +106,7 @@ class SwScreen(ctk.CTkFrame):
 
 
         # Name
-        label = ctk.CTkLabel(master=label_box,text=name,font=("Arial",12),text_color="black",fg_color="white",width=84,height=20,corner_radius=3)
+        label = ctk.CTkLabel(master=label_box,text=name,font=("Arial",14),text_color="black",fg_color="white",width=84,height=20,corner_radius=3)
 
         label.place(x=1,y=1)
 
