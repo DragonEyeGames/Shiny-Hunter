@@ -99,7 +99,7 @@ class SwScreen(ctk.CTkFrame):
 
         # Name box (Width matches the inner button area, perfectly centered at the bottom)
         label_box = ctk.CTkFrame(self, fg_color="black", bg_color="#5e5e5e", width=74, height=18, corner_radius=5)
-        label_box.place(x=x+21, y=y+70) # Centers horizontally, flushes close to the bottom border
+        label_box.place(x=x+13, y=y+70) # Centers horizontally, flushes close to the bottom border
 
         # Name (Fits snugly inside the black label_box frame)
         label = ctk.CTkLabel(master=label_box, text=name, font=("Arial",11), text_color="black", fg_color="white", width=72, height=18, corner_radius=3)
