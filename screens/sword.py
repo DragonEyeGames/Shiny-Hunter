@@ -99,7 +99,7 @@ class SwScreen(ctk.CTkFrame):
             button.configure(state="disabled")
 
         # Name (Fits snugly inside the black label_box frame)
-        label = ctk.CTkLabel( text=name, font=("Basic",11), text_color="black", fg_color="white", width=72, height=18, corner_radius=5, border_width=2, border_color="black")
+        label = ctk.CTkLabel(self, text=name, font=("Basic",11), text_color="black", fg_color="white", width=72, height=18, corner_radius=5, border_width=2, border_color="black")
         label.place(x=14, y=71)
 
         return button, label

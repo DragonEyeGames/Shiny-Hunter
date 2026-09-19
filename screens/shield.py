@@ -70,7 +70,7 @@ class ShScreen(ctk.CTkFrame):
 
 
         # Back button
-        back_button = ctk.CTkButton(self,text="Back",font=("Basic",25),width=100,height=40,fg_color="#C0392B",hover_color="#96281B",border_color="black",border_width=3,command=back_callback)
+        back_button = ctk.CTkButton(self,text="Back",font=("Basic",25),width=100,height=40,fg_color="#C0392B",hover_color="#96281B",border_color="black",border_width=3,command=back_callback, corner_radius=4)
 
         back_button.place(x=350,y=430)
 
@@ -99,7 +99,7 @@ class ShScreen(ctk.CTkFrame):
             button.configure(state="disabled")
 
         # Name (Fits snugly inside the black label_box frame)
-        label = ctk.CTkLabel( text=name, font=("Basic",11), text_color="black", fg_color="white", width=72, height=18, corner_radius=5, border_width=2, border_color="black")
+        label = ctk.CTkLabel(self,text=name, font=("Basic",11), text_color="black", fg_color="white", width=72, height=18, corner_radius=5, border_width=2, border_color="black")
         label.place(x=14, y=71)
 
         return button, label
