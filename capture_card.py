@@ -133,6 +133,7 @@ class CaptureCard(tk.Frame):
             if not opened:
                 config.status = "Finding Capture Card"
                 print("[ERROR] Capture card index 0 failed to open.")
+                tk.messagebox.showerror("Error", "Capture Card Not Connected!")
                 return
             config.status = "Booted up Screen"
             self.camera_started = True
