@@ -1,4 +1,4 @@
-import tkinter as tk
+import customtkinter as ctk
 import cv2
 from PIL import Image, ImageTk
 import config
@@ -20,7 +20,7 @@ import hunting.sw_sh_hunting_manager as sw_sh_hm
 
 from save_manager import save_data, load_data
 
-class CaptureCard(tk.Frame):
+class CaptureCard(ctk.Frame):
     def __init__(self, parent, back_callback, camera_index=0):
         super().__init__(parent, bg="#050c15")
         self.callback=back_callback
@@ -40,42 +40,42 @@ class CaptureCard(tk.Frame):
             self.stop_camera()
 
 
-        self.border_box = tk.Frame(self, bg="black", width=788, height=208, relief="groove")
+        self.border_box = ctk.Frame(self, bg="black", width=788, height=208, relief="groove")
         self.border_box.pack_propagate(False)
         self.border_box.place(x = 6, y = 126)
 
-        self.color_box = tk.Frame(self, bg="#5e5e5e", width=780, height=200, relief="groove")
+        self.color_box = ctk.Frame(self, bg="#5e5e5e", width=780, height=200, relief="groove")
         self.color_box.pack_propagate(False)
         self.color_box.place(x = 10, y = 130)
 
-        self.border_box = tk.Frame(self, bg="black", width=306, height=186, relief="groove")
+        self.border_box = ctk.Frame(self, bg="black", width=306, height=186, relief="groove")
         self.border_box.pack_propagate(False)
         self.border_box.place(x = 17, y = 137)
 
-        self.label = tk.Label(self, bg="black")
+        self.label = ctk.Label(self, bg="black")
         self.label.place(x=20, y=140, width=300, height=180)
 
-        self.end_button = tk.Button(self, text="End Hunt", font=("C052", 16), command=lambda: end_hunt())
+        self.end_button = ctk.Button(self, text="End Hunt", font=("C052", 16), command=lambda: end_hunt())
         self.end_button.place(x=345, y=420, width=110, height=40)
 
-        self.hunting = tk.Label(self, bg="#2b2b2b", fg="white", font=("Droid Sans Fallback", 30), text=f"Hunting {config.pokemon_name} in {config.game_name}")
+        self.hunting = ctk.Label(self, bg="#2b2b2b", fg="white", font=("Droid Sans Fallback", 30), text=f"Hunting {config.pokemon_name} in {config.game_name}")
         self.hunting.pack(pady=35)
 
         config.status="Idle"
 
-        self.status_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 20), text=f"Status: {config.status}")
+        self.status_label = ctk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 20), text=f"Status: {config.status}")
         self.status_label.place(x=340, y=155)
 
-        self.resets_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 18), text=f"Resets: {config.resets}")
+        self.resets_label = ctk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 18), text=f"Resets: {config.resets}")
         self.resets_label.place(x=340, y=190)
 
-        self.spent_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text=f"Time Spent: {self.convert_seconds(int(config.time_spent))}")
+        self.spent_label = ctk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text=f"Time Spent: {self.convert_seconds(int(config.time_spent))}")
         self.spent_label.place(x=340, y=220)
 
-        self.time_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text=f"Last Reset Time: {config.last_reset_time:.3f}")
+        self.time_label = ctk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text=f"Last Reset Time: {config.last_reset_time:.3f}")
         self.time_label.place(x=340, y=250)
 
-        self.reset_time_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text="Average Time/Reset: Loading")
+        self.reset_time_label = ctk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text="Average Time/Reset: Loading")
         self.reset_time_label.place(x=340, y=280)
 
         self.label.lift()
