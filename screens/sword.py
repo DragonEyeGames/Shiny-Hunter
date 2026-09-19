@@ -43,18 +43,14 @@ class SwScreen(ctk.CTkFrame):
 
 
         # Pokemon buttons
-        self.create_pokemon_button(103,150,self.regirock,"Regirock",boot_screen)
-        self.create_pokemon_button(203,150,self.regice,"Regice",boot_screen)
-        self.create_pokemon_button(303,150,self.registeel,"Registeel",boot_screen)
-        self.create_pokemon_button(403,150,self.regidrago,"Regidrago",boot_screen)
-        self.create_pokemon_button(503,150,self.regieleki,"Regieleki",boot_screen, True)
-        self.create_pokemon_button(603,150,self.virizion,"Virizion",boot_screen, True)
-        self.create_pokemon_button(103,240,self.terrakion,"Terrakion",boot_screen, True)
+        self.create_pokemon_button(153,150,self.regirock,"Regirock",boot_screen)
+        self.create_pokemon_button(253,150,self.regice,"Regice",boot_screen)
+        self.create_pokemon_button(353,150,self.registeel,"Registeel",boot_screen)
+        self.create_pokemon_button(453,150,self.regieleki,"Regieleki",boot_screen)
+        self.create_pokemon_button(553,150,self.regidrago,"Regidrago",boot_screen, True)
         self.create_pokemon_button(203,240,self.cobalion,"Cobalion",boot_screen, True)
-        self.create_pokemon_button(303,240,self.arctovish,"Arctovish",boot_screen, True)
-        self.create_pokemon_button(403,240,self.arctozolt,"Arctozolt",boot_screen, True)
-        self.create_pokemon_button(503,240,self.dracovish,"Dracovish",boot_screen, True)
-        self.create_pokemon_button(603,240,self.dracozolt,"Dracozolt",boot_screen, True)
+        self.create_pokemon_button(303,240,self.terrakion,"Terrakion",boot_screen, True)
+        self.create_pokemon_button(403,240,self.virizion,"Virizion",boot_screen, True)
 
         #Masuda selection screen
         self.egg_button = ctk.CTkButton(self,

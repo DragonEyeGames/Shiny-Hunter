@@ -208,11 +208,11 @@ FONT_PATH = os.path.join(SCRIPT_DIR, "fonts", "Knewave-Regular.ttf")
 ctk.FontManager.load_font(FONT_PATH)
 
 title_font = ctk.CTkFont(family="Knewave", size=50)
-subtitle_font = ctk.CTkFont(family="Knewave", size=25)
+subtitle_font = ctk.CTkFont(family="Knewave", size=30)
 
 title = ctk.CTkLabel(
     main_menu,
-    text="Pokémon Shiny Hunter!",
+    text="Pokémon Shiny Hunter! ",
     font=title_font,
     text_color="#2b89d9"
 )
