@@ -88,21 +88,21 @@ class SwScreen(ctk.CTkFrame):
         egg_screen()
 
 
-def create_pokemon_button(self, x, y, image, name, boot_screen, disabled=False):
+    def create_pokemon_button(self, x, y, image, name, boot_screen, disabled=False):
 
-    # Button (80x80 size, placed at x+10, y+10)
-    button = ctk.CTkButton(self, image=image, text="", width=80, height=80, fg_color="#5e5e5e", bg_color="#21344a", hover_color="#bfbfbf", border_width=3, border_color="black", corner_radius=10, command=lambda: self.start_hunt(name,boot_screen))
-    button.place(x=x+10, y=y+10)
+        # Button (80x80 size, placed at x+10, y+10)
+        button = ctk.CTkButton(self, image=image, text="", width=80, height=80, fg_color="#5e5e5e", bg_color="#21344a", hover_color="#bfbfbf", border_width=3, border_color="black", corner_radius=10, command=lambda: self.start_hunt(name,boot_screen))
+        button.place(x=x+10, y=y+10)
 
-    if disabled:
-        button.configure(state="disabled")
+        if disabled:
+            button.configure(state="disabled")
 
-    # Name box (Width matches the inner button area, perfectly centered at the bottom)
-    label_box = ctk.CTkFrame(self, fg_color="black", bg_color="#5e5e5e", width=74, height=20, corner_radius=5)
-    label_box.place(x=x+13, y=y+67) # Centers horizontally, flushes close to the bottom border
+        # Name box (Width matches the inner button area, perfectly centered at the bottom)
+        label_box = ctk.CTkFrame(self, fg_color="black", bg_color="#5e5e5e", width=74, height=20, corner_radius=5)
+        label_box.place(x=x+13, y=y+67) # Centers horizontally, flushes close to the bottom border
 
-    # Name (Fits snugly inside the black label_box frame)
-    label = ctk.CTkLabel(master=label_box, text=name, font=("Arial",11), text_color="black", fg_color="white", width=72, height=18, corner_radius=3)
-    label.place(x=1, y=1)
+        # Name (Fits snugly inside the black label_box frame)
+        label = ctk.CTkLabel(master=label_box, text=name, font=("Arial",11), text_color="black", fg_color="white", width=72, height=18, corner_radius=3)
+        label.place(x=1, y=1)
 
-    return button, label
+        return button, label
