@@ -7,7 +7,7 @@ import config
 class BdScreen(ctk.CTkFrame):
 
     def __init__(self, parent, back_callback, boot_screen):
-        super().__init__( parent, fg_color="#050c15" )
+        super().__init__( parent, fg_color="#050c15", bg="#050c15" )
 
         # Images
         self.dialga = ctk.CTkImage(light_image=Image.open("pokemon/dialga.png"),dark_image=Image.open("pokemon/dialga.png"),size=(70,70))

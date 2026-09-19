@@ -54,7 +54,7 @@ def open_strong_screen():
 def close_project():
     root.destroy()
 
-main_menu = ctk.CTkFrame(root,fg_color="#050c15",corner_radius=0)
+main_menu = ctk.CTkFrame(root,fg_color="#050c15",bg="#050c15",corner_radius=0)
 main_menu.place(x=0, y=0, relwidth=1, relheight=1)
 
 current_screen = None
