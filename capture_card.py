@@ -51,8 +51,8 @@ class CaptureCard(ctk.CTkFrame):
         self.label = ctk.CTkLabel(self, fg_color="black", text="", width=300, height=180)
         self.label.place(x=20, y=160)
 
-        self.end_button = ctk.CTkButton(self, text="End Hunt", font=("C052", 16), width=110, height=40, command=lambda: end_hunt())
-        self.end_button.place(x=345, y=420)
+        self.end_button = ctk.CTkButton(self, text="End Hunt", font=("Basic", 20), width=110, height=40, command=lambda: end_hunt(), corner_radius=5, border_width=3, border_color="black")
+        self.end_button.place(x=345, y=410)
 
 
         title_font = ctk.CTkFont(family="Knewave", size=55)
