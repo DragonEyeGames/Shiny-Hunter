@@ -68,13 +68,14 @@ class SwScreen(ctk.CTkFrame):
             command=lambda: self.start_egg(egg_screen))
         self.overworld_button.place(x=295, y=364)
 
-        self.update_idletasks()
-        print(self.overworld_button.winfo_width(), self.overworld_button.winfo_height())
 
         # Back button
         back_button = ctk.CTkButton(self,text="Back",font=("Arial",20),width=100,height=40,fg_color="#3b3b3b",hover_color="#505050",border_color="black",border_width=3,command=back_callback)
 
         back_button.place(x=350,y=430)
+
+        self.update_idletasks()
+        print(back_button.winfo_width(), back_button.winfo_height())
 
 
 
