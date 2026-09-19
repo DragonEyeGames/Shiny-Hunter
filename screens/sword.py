@@ -14,7 +14,7 @@ class SwScreen(ctk.CTkFrame):
         self.size=(80, 80)
 
         self.regirock = ctk.CTkImage(light_image=Image.open("pokemon/regirock.png"),dark_image=Image.open("pokemon/regirock.png"),size=self.size)
-        self.registeel = ctk.CTkImage(light_image=Image.open("pokemon/registeel.png"),dark_image=Image.open("pokemon/registeel.png"),size=self.size))
+        self.registeel = ctk.CTkImage(light_image=Image.open("pokemon/registeel.png"),dark_image=Image.open("pokemon/registeel.png"),size=self.size)
         self.regice = ctk.CTkImage(light_image=Image.open("pokemon/regice.png"),dark_image=Image.open("pokemon/regice.png"),size=self.size)
         self.regidrago = ctk.CTkImage(light_image=Image.open("pokemon/regidrago.png"),dark_image=Image.open("pokemon/regidrago.png"),size=self.size)
         self.regieleki = ctk.CTkImage(light_image=Image.open("pokemon/regieleki.png"),dark_image=Image.open("pokemon/regieleki.png"),size=self.size)
