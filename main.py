@@ -207,7 +207,7 @@ FONT_PATH = os.path.join(SCRIPT_DIR, "fonts", "Risque-Regular.ttf")
 
 ctk.FontManager.load_font(FONT_PATH)
 
-title_font = ctk.CTkFont(family="Risque", size=40)
+title_font = ctk.CTkFont(family="Risque", size=60)
 
 title = ctk.CTkLabel(
     main_menu,
@@ -216,7 +216,7 @@ title = ctk.CTkLabel(
     text_color="#2b89d9"
 )
 
-title.pack(pady=(25,5))
+title.pack(pady=(40,10))
 
 subtitle = ctk.CTkLabel(
     main_menu,
