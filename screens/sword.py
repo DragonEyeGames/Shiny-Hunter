@@ -49,14 +49,14 @@ class SwScreen(ctk.CTkFrame):
 
 
         # Pokemon buttons
-        self.create_pokemon_button(150,160,self.regirock,"Regirock",boot_screen)
-        self.create_pokemon_button(250,160,self.regice,"Regice",boot_screen)
+        self.create_pokemon_button(130,160,self.regirock,"Regirock",boot_screen)
+        self.create_pokemon_button(240,160,self.regice,"Regice",boot_screen)
         self.create_pokemon_button(350,160,self.registeel,"Registeel",boot_screen)
-        self.create_pokemon_button(450,160,self.regieleki,"Regieleki",boot_screen)
-        self.create_pokemon_button(550,160,self.regidrago,"Regidrago",boot_screen, True)
-        self.create_pokemon_button(250,260,self.cobalion,"Cobalion",boot_screen, True)
+        self.create_pokemon_button(460,160,self.regieleki,"Regieleki",boot_screen)
+        self.create_pokemon_button(570,160,self.regidrago,"Regidrago",boot_screen, True)
+        self.create_pokemon_button(240,260,self.cobalion,"Cobalion",boot_screen, True)
         self.create_pokemon_button(350,260,self.terrakion,"Terrakion",boot_screen, True)
-        self.create_pokemon_button(450,260,self.virizion,"Virizion",boot_screen, True)
+        self.create_pokemon_button(460,260,self.virizion,"Virizion",boot_screen, True)
 
         #Masuda selection screen
         self.egg_button = ctk.CTkButton(self,
@@ -99,7 +99,7 @@ class SwScreen(ctk.CTkFrame):
 
         # Name box (Width matches the inner button area, perfectly centered at the bottom)
         label_box = ctk.CTkFrame(self, fg_color="black", bg_color="#5e5e5e", width=74, height=20, corner_radius=5)
-        label_box.place(x=x+13, y=y+67) # Centers horizontally, flushes close to the bottom border
+        label_box.place(x=x+23, y=y+72) # Centers horizontally, flushes close to the bottom border
 
         # Name (Fits snugly inside the black label_box frame)
         label = ctk.CTkLabel(master=label_box, text=name, font=("Arial",11), text_color="black", fg_color="white", width=72, height=18, corner_radius=3)
