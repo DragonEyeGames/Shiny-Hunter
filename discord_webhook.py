@@ -2,7 +2,7 @@ import json
 import cv2
 import requests
 
-NONSHINY_URL = "https://discord.com/api/webhooks/1524026707235962901/V18xvnObNPSTyu_hTA42l9OedNI2goqL354bgfgocbFCAQ-2EKNswEzBrKA9ntNFIDSM"
+NONSHINY_URL = "https://discord.com/api/webhooks/1524064922139496460/j-YTI6HA0f28obvb7IcSZz9vKA9V-Fa8rRTEDEAf0FB8OMWKn6xZEjWHZB__CCumiqf8"
 
 SHINY_URL = "https://discord.com/api/webhooks/1524064459033940131/DLA5vBhAQl_iyVv45qNBYtFugQaYBGeOVxwz1mttrYaTBj2vHndjP3lBte_7pwiycwcr"
 
