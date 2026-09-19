@@ -59,27 +59,27 @@ class CaptureCard(ctk.CTkFrame):
         self.end_button.place(x=345, y=420)
 
 
-        title_font = ctk.CTkFont(family="Knewave", size=60)
+        title_font = ctk.CTkFont(family="Knewave", size=50)
         subtitle_font = ctk.CTkFont(family="Knewave", size=30)
 
-        self.hunting = ctk.CTkLabel(self, text_color="#2b89d9", font=title_font, text=f" Hunting {config.pokemon_name} in {config.game_name} ")
-        self.hunting.pack(pady=35)
+        self.hunting = ctk.CTkLabel(self, text_color="#3d9beb", font=title_font, text=f" Hunting {config.pokemon_name} in {config.game_name} ")
+        self.hunting.pack(pady=10)
 
         config.status="Idle"
 
-        self.status_label = ctk.CTkLabel(self, fg_color="#5e5e5e", text_color="white", font=("C052", 20), text=f"Status: {config.status} ")
+        self.status_label = ctk.CTkLabel(self, fg_color="#5e5e5e", width=220, text_color="white", font=("C052", 20), text=f"Status: {config.status} ")
         self.status_label.place(x=340, y=155)
 
-        self.resets_label = ctk.CTkLabel(self, fg_color="#5e5e5e", text_color="white", font=("C052", 18), text=f"Resets: {config.resets} ")
+        self.resets_label = ctk.CTkLabel(self, fg_color="#5e5e5e", width=220, text_color="white", font=("C052", 18), text=f"Resets: {config.resets} ")
         self.resets_label.place(x=340, y=190)
 
-        self.spent_label = ctk.CTkLabel(self, fg_color="#5e5e5e", text_color="white", font=("C052", 16), text=f"Time Spent: {self.convert_seconds(int(config.time_spent))} " )
+        self.spent_label = ctk.CTkLabel(self, fg_color="#5e5e5e", width=220, text_color="white", font=("C052", 16), text=f"Time Spent: {self.convert_seconds(int(config.time_spent))} " )
         self.spent_label.place(x=340, y=220)
 
-        self.time_label = ctk.CTkLabel(self, fg_color="#5e5e5e", text_color="white", font=("C052", 16), text=f"Last Reset Time: {config.last_reset_time:.3f} ")
+        self.time_label = ctk.CTkLabel(self, fg_color="#5e5e5e", width=220, text_color="white", font=("C052", 16), text=f"Last Reset Time: {config.last_reset_time:.3f} ")
         self.time_label.place(x=340, y=250)
 
-        self.reset_time_label = ctk.CTkLabel(self, fg_color="#5e5e5e", text_color="white", font=("C052", 16), text="Average Time/Reset: Loading ")
+        self.reset_time_label = ctk.CTkLabel(self, fg_color="#5e5e5e", width=220, text_color="white", font=("C052", 16), text="Average Time/Reset: Loading ")
         self.reset_time_label.place(x=340, y=280)
 
         self.label.lift()
