@@ -40,9 +40,9 @@ class SwScreen(ctk.CTkFrame):
 
 
         # Outline box
-        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=614,height=194,corner_radius=15, border_width=5, border_color="black")
+        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=580,height=220,corner_radius=15, border_width=5, border_color="black")
 
-        self.color_box.place(x=93,y=140)
+        self.color_box.place(x=123,y=140)
 
 
         # Pokemon buttons
@@ -99,7 +99,7 @@ class SwScreen(ctk.CTkFrame):
         # Name box
         label_box = ctk.CTkFrame(self,fg_color="black",bg_color="#5e5e5e",width=86,height=22,corner_radius=2)
 
-        label_box.place(x=x+8,y=y+60)
+        label_box.place(x=x+8,y=y+70)
 
 
         # Name
