@@ -43,9 +43,9 @@ class SwScreen(ctk.CTkFrame):
 
 
         # Outline box
-        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=500,height=250,corner_radius=15, border_width=5, border_color="black")
+        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=508,height=258,corner_radius=15, border_width=5, border_color="black")
 
-        self.color_box.place(x=150,y=160)
+        self.color_box.place(x=146,y=154)
 
 
         # Pokemon buttons
@@ -66,7 +66,7 @@ class SwScreen(ctk.CTkFrame):
             border_width=3, border_color="black", corner_radius=10,
             font=("Arial", 20),
             command=lambda: self.start_egg(egg_screen))
-        self.egg_button.place(x=310, y=361)
+        self.egg_button.place(x=310, y=364)
 
         # Back button
         back_button = ctk.CTkButton(self,text="Back",font=("Arial",20),width=100,height=40,fg_color="#3b3b3b",hover_color="#505050",border_color="black",border_width=3,command=back_callback)
@@ -92,7 +92,7 @@ class SwScreen(ctk.CTkFrame):
 
         # Button (80x80 size, placed at x+10, y+10)
         button = ctk.CTkButton(self, image=image, text="", width=90, height=90, border_spacing=0, border_width=3, border_color="black", corner_radius=10, fg_color="#5e5e5e", bg_color="#21344a", hover_color="#bfbfbf", command=lambda: self.start_hunt(name,boot_screen))
-        button.place(x=x+5, y=y+5)
+        button.place(x=x+4, y=y+5)
 
         if disabled:
             button.configure(state="disabled")
