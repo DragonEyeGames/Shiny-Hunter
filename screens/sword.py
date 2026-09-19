@@ -69,7 +69,7 @@ class SwScreen(ctk.CTkFrame):
         self.overworld_button.place(x=310, y=364)
 
         self.update_idletasks()
-        print(overworld_button.winfo_width(), overworld_button.winfo_height())
+        print(self.overworld_button.winfo_width(), self.overworld_button.winfo_height())
 
         # Back button
         back_button = ctk.CTkButton(self,text="Back",font=("Arial",20),width=100,height=40,fg_color="#3b3b3b",hover_color="#505050",border_color="black",border_width=3,command=back_callback)
