@@ -204,7 +204,7 @@ ctk.FontManager.load_font("fonts\Risque-Regular.ttf")
 title = ctk.CTkLabel(
     main_menu,
     text="Pokémon Shiny Hunter!",
-    font=("Risque-Regular",40,"bold"),
+    font=("Risque",40,"bold"),
     text_color="#2b89d9"
 )
 
