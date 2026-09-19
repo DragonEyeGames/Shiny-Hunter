@@ -91,8 +91,8 @@ class SwScreen(ctk.CTkFrame):
     def create_pokemon_button(self, x, y, image, name, boot_screen, disabled=False):
 
         # Button (80x80 size, placed at x+10, y+10)
-        button = ctk.CTkButton(self, image=image, text="", width=90, height=90, border_spacing=0, fg_color="#5e5e5e", bg_color="#21344a", hover_color="#bfbfbf", command=lambda: self.start_hunt(name,boot_screen))
-        button.place(x=x+10, y=y+10)
+        button = ctk.CTkButton(self, image=image, text="", width=90, height=90, border_spacing=0, border_width=3, border_color=black, corner_radius=10, fg_color="#5e5e5e", bg_color="#21344a", hover_color="#bfbfbf", command=lambda: self.start_hunt(name,boot_screen))
+        button.place(x=x+5, y=y+5)
 
         if disabled:
             button.configure(state="disabled")
