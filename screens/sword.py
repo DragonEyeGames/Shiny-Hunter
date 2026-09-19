@@ -42,21 +42,37 @@ class SwScreen(ctk.CTkFrame):
         label.pack()
 
 
-        # Outline box
-        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=580,height=265,corner_radius=15, border_width=5, border_color="black")
+        box_x, box_y, box_w, box_h = 123, 150, 580, 265
+        self.color_box = ctk.CTkFrame(self, fg_color="#21344a", width=box_w, height=box_h,
+                                    corner_radius=15, border_width=5, border_color="black")
+        self.color_box.place(x=box_x, y=box_y)
 
-        self.color_box.place(x=123,y=150)
+        # Button grid geometry
+        btn_size = 90
+        spacing = 110   # center-to-center spacing between buttons
+        row_gap = 10    # vertical gap between the two rows
 
+        def row_start_x(n_buttons):
+            total_w = (n_buttons - 1) * spacing + btn_size
+            return box_x + (box_w - total_w) // 2
+
+        row1_x = row_start_x(5)   # -> 148
+        row2_x = row_start_x(3)   # -> 258
+
+        total_h = 2 * btn_size + row_gap
+        row1_y = box_y + (box_h - total_h) // 2   # -> ~188
+        row2_y = row1_y + btn_size + row_gap      # -> ~288
 
         # Pokemon buttons
-        self.create_pokemon_button(133,160,self.regirock,"Regirock",boot_screen)
-        self.create_pokemon_button(243,160,self.regice,"Regice",boot_screen)
-        self.create_pokemon_button(353,160,self.registeel,"Registeel",boot_screen)
-        self.create_pokemon_button(463,160,self.regieleki,"Regieleki",boot_screen)
-        self.create_pokemon_button(573,160,self.regidrago,"Regidrago",boot_screen, True)
-        self.create_pokemon_button(243,260,self.cobalion,"Cobalion",boot_screen, True)
-        self.create_pokemon_button(353,260,self.terrakion,"Terrakion",boot_screen, True)
-        self.create_pokemon_button(463,260,self.virizion,"Virizion",boot_screen, True)
+        self.create_pokemon_button(row1_x + 0*spacing, row1_y, self.regirock,   "Regirock",   boot_screen)
+        self.create_pokemon_button(row1_x + 1*spacing, row1_y, self.regice,     "Regice",     boot_screen)
+        self.create_pokemon_button(row1_x + 2*spacing, row1_y, self.registeel,  "Registeel",  boot_screen)
+        self.create_pokemon_button(row1_x + 3*spacing, row1_y, self.regieleki,  "Regieleki",  boot_screen)
+        self.create_pokemon_button(row1_x + 4*spacing, row1_y, self.regidrago,  "Regidrago",  boot_screen, True)
+
+        self.create_pokemon_button(row2_x + 0*spacing, row2_y, self.cobalion,   "Cobalion",   boot_screen, True)
+        self.create_pokemon_button(row2_x + 1*spacing, row2_y, self.terrakion,  "Terrakion",  boot_screen, True)
+        self.create_pokemon_button(row2_x + 2*spacing, row2_y, self.virizion,   "Virizion",   boot_screen, True)
 
         #Masuda selection screen
         self.egg_button = ctk.CTkButton(self,
@@ -102,7 +118,7 @@ class SwScreen(ctk.CTkFrame):
         # Name box
         label_box = ctk.CTkFrame(self,fg_color="black",bg_color="#5e5e5e",width=86,height=20,corner_radius=5)
 
-        label_box.place(x=x+8,y=y+67)
+        label_box.place(x=x+8,y=y+66)
 
 
         # Name
