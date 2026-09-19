@@ -1,6 +1,6 @@
 import customtkinter as ctk
 from PIL import Image
-
+import os
 import config
 
 
@@ -27,33 +27,43 @@ class SwScreen(ctk.CTkFrame):
         self.dracozolt = ctk.CTkImage(light_image=Image.open("pokemon/dracozolt.png"),dark_image=Image.open("pokemon/dracozolt.png"),size=self.size)
         self.egg = ctk.CTkImage(light_image=Image.open("pokemon/egg.png"),dark_image=Image.open("pokemon/egg.png"),size=(36,44))
 
+
+        SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+        FONT_PATH = os.path.join(SCRIPT_DIR, "fonts", "Knewave-Regular.ttf")
+
+        ctk.FontManager.load_font(FONT_PATH)
+
+        title_font = ctk.CTkFont(family="Knewave", size=50)
+        subtitle_font = ctk.CTkFont(family="Knewave", size=30)
+
         # Title
-        title = ctk.CTkLabel(self,text="Pokemon Sword",font=("Arial", 35, "bold"),text_color="#2b89d9")
+        title = ctk.CTkLabel(self,text="Pokémon Sword",font=title_font,text_color="#2b89d9")
 
         title.pack(pady=(25, 10))
 
 
         # Subtitle
-        label = ctk.CTkLabel(self,text="Select a Pokemon to Hunt",font=("Arial", 20),text_color="white")
+        label = ctk.CTkLabel(self,text="Select a Pokémon to Hunt",font=subtitle_font,text_color="white")
 
         label.pack()
 
 
         # Outline box
-        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=580,height=220,corner_radius=15, border_width=5, border_color="black")
+        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=580,height=215,corner_radius=15, border_width=5, border_color="black")
 
-        self.color_box.place(x=123,y=140)
+        self.color_box.place(x=123,y=130)
 
 
         # Pokemon buttons
-        self.create_pokemon_button(133,150,self.regirock,"Regirock",boot_screen)
-        self.create_pokemon_button(243,150,self.regice,"Regice",boot_screen)
-        self.create_pokemon_button(353,150,self.registeel,"Registeel",boot_screen)
-        self.create_pokemon_button(463,150,self.regieleki,"Regieleki",boot_screen)
-        self.create_pokemon_button(573,150,self.regidrago,"Regidrago",boot_screen, True)
-        self.create_pokemon_button(243,250,self.cobalion,"Cobalion",boot_screen, True)
-        self.create_pokemon_button(353,250,self.terrakion,"Terrakion",boot_screen, True)
-        self.create_pokemon_button(463,250,self.virizion,"Virizion",boot_screen, True)
+        self.create_pokemon_button(133,140,self.regirock,"Regirock",boot_screen)
+        self.create_pokemon_button(243,140,self.regice,"Regice",boot_screen)
+        self.create_pokemon_button(353,140,self.registeel,"Registeel",boot_screen)
+        self.create_pokemon_button(463,140,self.regieleki,"Regieleki",boot_screen)
+        self.create_pokemon_button(573,140,self.regidrago,"Regidrago",boot_screen, True)
+        self.create_pokemon_button(243,240,self.cobalion,"Cobalion",boot_screen, True)
+        self.create_pokemon_button(353,240,self.terrakion,"Terrakion",boot_screen, True)
+        self.create_pokemon_button(463,240,self.virizion,"Virizion",boot_screen, True)
 
         #Masuda selection screen
         self.egg_button = ctk.CTkButton(self,
@@ -97,9 +107,9 @@ class SwScreen(ctk.CTkFrame):
             button.configure(state="disabled")
 
         # Name box
-        label_box = ctk.CTkFrame(self,fg_color="black",bg_color="#5e5e5e",width=86,height=22,corner_radius=2)
+        label_box = ctk.CTkFrame(self,fg_color="black",bg_color="#5e5e5e",width=86,height=22,corner_radius=5)
 
-        label_box.place(x=x+8,y=y+70)
+        label_box.place(x=x+8,y=y+65)
 
 
         # Name
