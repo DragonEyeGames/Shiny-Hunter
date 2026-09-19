@@ -4,7 +4,7 @@ import os
 import config
 
 
-class SwScreen(ctk.CTkFrame):
+class ShScreen(ctk.CTkFrame):
 
     def __init__(self, parent, back_callback, boot_screen, egg_screen):
         super().__init__( parent, fg_color="#050c15" )
