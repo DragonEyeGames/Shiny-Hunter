@@ -97,10 +97,10 @@ def show_main_menu():
         current_screen = None
     main_menu.tkraise()
 
-sw = SwScreen(root, lambda: main_menu.tkraise(), open_capture_screen, open_egg_screen)
+sw = SwScreen(root, show_main_menu, open_capture_screen, open_egg_screen)
 sw.place(x=0, y=0, relwidth=1, relheight=1)
 
-sh = ShScreen(root, lambda: main_menu.tkraise(), open_capture_screen)
+sh = ShScreen(root, show_main_menu, open_capture_screen, open_egg_screen)
 sh.place(x=0, y=0, relwidth=1, relheight=1)
 
 bd = BdScreen(root, lambda: main_menu.tkraise(), open_capture_screen)
