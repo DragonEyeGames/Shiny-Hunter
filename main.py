@@ -91,8 +91,6 @@ def open_manual_control():
 
 def show_main_menu():
 
-    os.execv(sys.executable, [sys.executable] + sys.argv)
-
     config.pokemon_name=""
     config.game_name=""
     config.start_camera=False
