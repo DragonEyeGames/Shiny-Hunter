@@ -44,13 +44,13 @@ class SwScreen(ctk.CTkFrame):
 
         # Pokemon buttons
         self.create_pokemon_button(153,150,self.regirock,"Regirock",boot_screen)
-        self.create_pokemon_button(253,150,self.regice,"Regice",boot_screen)
-        self.create_pokemon_button(353,150,self.registeel,"Registeel",boot_screen)
-        self.create_pokemon_button(453,150,self.regieleki,"Regieleki",boot_screen)
-        self.create_pokemon_button(553,150,self.regidrago,"Regidrago",boot_screen, True)
-        self.create_pokemon_button(203,240,self.cobalion,"Cobalion",boot_screen, True)
-        self.create_pokemon_button(303,240,self.terrakion,"Terrakion",boot_screen, True)
-        self.create_pokemon_button(403,240,self.virizion,"Virizion",boot_screen, True)
+        self.create_pokemon_button(263,150,self.regice,"Regice",boot_screen)
+        self.create_pokemon_button(373,150,self.registeel,"Registeel",boot_screen)
+        self.create_pokemon_button(483,150,self.regieleki,"Regieleki",boot_screen)
+        self.create_pokemon_button(593,150,self.regidrago,"Regidrago",boot_screen, True)
+        self.create_pokemon_button(253,250,self.cobalion,"Cobalion",boot_screen, True)
+        self.create_pokemon_button(363,250,self.terrakion,"Terrakion",boot_screen, True)
+        self.create_pokemon_button(473,250,self.virizion,"Virizion",boot_screen, True)
 
         #Masuda selection screen
         self.egg_button = ctk.CTkButton(self,
@@ -86,7 +86,7 @@ class SwScreen(ctk.CTkFrame):
     def create_pokemon_button(self,x,y,image,name,boot_screen, disabled=False):
 
         # Button
-        button = ctk.CTkButton(self, image=image, text="", width=80, height=80, fg_color="#5e5e5e", bg_color="#21344a", hover_color="#bfbfbf", border_width=3, border_color="black", corner_radius=10, command=lambda: self.start_hunt(name,boot_screen))
+        button = ctk.CTkButton(self, image=image, text="", width=90, height=90, fg_color="#5e5e5e", bg_color="#21344a", hover_color="#bfbfbf", border_width=3, border_color="black", corner_radius=10, command=lambda: self.start_hunt(name,boot_screen))
 
         button.place(x=x,y=y)
 
@@ -94,13 +94,13 @@ class SwScreen(ctk.CTkFrame):
             button.configure(state="disabled")
 
         # Name box
-        label_box = ctk.CTkFrame(self,fg_color="black",bg_color="#5e5e5e",width=76,height=16,corner_radius=2)
+        label_box = ctk.CTkFrame(self,fg_color="black",bg_color="#5e5e5e",width=86,height=22,corner_radius=2)
 
         label_box.place(x=x+8,y=y+60)
 
 
         # Name
-        label = ctk.CTkLabel(master=label_box,text=name,font=("Arial",9),text_color="black",fg_color="white",width=74,height=14,corner_radius=3)
+        label = ctk.CTkLabel(master=label_box,text=name,font=("Arial",12),text_color="black",fg_color="white",width=84,height=20,corner_radius=3)
 
         label.place(x=1,y=1)
 
