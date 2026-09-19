@@ -70,7 +70,7 @@ class ShScreen(ctk.CTkFrame):
 
 
         # Back button
-         back_button = ctk.CTkButton(self,text="Back",font=("Basic",25),width=100,height=40,fg_color="#C0392B",hover_color="#96281B",border_color="black",border_width=3,command=back_callback)
+        back_button = ctk.CTkButton(self,text="Back",font=("Basic",25),width=100,height=40,fg_color="#C0392B",hover_color="#96281B",border_color="black",border_width=3,command=back_callback)
 
         back_button.place(x=350,y=430)
 
