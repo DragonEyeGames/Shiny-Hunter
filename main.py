@@ -199,7 +199,7 @@ selected_fire_red = ctk.CTkImage(light_image=Image.open("logos/selected_fire_red
 leaf_green = ctk.CTkImage(light_image=Image.open("logos/leaf_green.png"),dark_image=Image.open("logos/leaf_green.png"),size=(100,100))
 selected_leaf_green = ctk.CTkImage(light_image=Image.open("logos/selected_leaf_green.png"),dark_image=Image.open("logos/selected_leaf_green.png"),size=(100,100))
 
-customtkinter.FontManager.load_font("fonts\Risque-Regular.ttf")
+ctk.FontManager.load_font("fonts\Risque-Regular.ttf")
 
 title = ctk.CTkLabel(
     main_menu,
