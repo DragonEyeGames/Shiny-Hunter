@@ -66,7 +66,7 @@ class CaptureCard(ctk.CTkFrame):
 
         config.status="Idle"
 
-        self.status_label = ctk.CTkLabel(self, fg_color="#5e5e5e", anchor="w", width=220, text_color="white", font=("Basic", 20), text=f"Status: {config.status} ")
+        self.status_label = ctk.CTkLabel(self, fg_color="#5e5e5e", anchor="w", width=240, text_color="white", font=("Basic", 20), text=f"Status: {config.status} ")
         self.status_label.place(x=340, y=155)
 
         self.resets_label = ctk.CTkLabel(self, fg_color="#5e5e5e", anchor="w", width=220, text_color="white", font=("Basic", 18), text=f"Resets: {config.resets} ")
