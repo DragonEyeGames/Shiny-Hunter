@@ -100,6 +100,6 @@ class ShScreen(ctk.CTkFrame):
 
         # Name (Fits snugly inside the black label_box frame)
         label = ctk.CTkLabel(self,text=name, font=("Basic",11), text_color="black", fg_color="white", width=74, height=20, corner_radius=5, border_width=2, border_color="black")
-        label.place(x=x+13, y=x+70)
+        label.place(x=x+13, y=y+75)
 
         return button, label
