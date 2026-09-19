@@ -27,17 +27,17 @@ class SwScreen(ctk.CTkFrame):
         self.dracozolt = ctk.CTkImage(light_image=Image.open("pokemon/dracozolt.png"),dark_image=Image.open("pokemon/dracozolt.png"),size=self.size)
         self.egg = ctk.CTkImage(light_image=Image.open("pokemon/egg.png"),dark_image=Image.open("pokemon/egg.png"),size=(36,44))
 
-        title_font = ctk.CTkFont(family="Knewave", size=40)
-        subtitle_font = ctk.CTkFont(family="Knewave", size=20)
+        title_font = ctk.CTkFont(family="Knewave", size=50)
+        subtitle_font = ctk.CTkFont(family="Knewave", size=25)
 
         # Title
-        title = ctk.CTkLabel(self,text="Pokémon Sword",font=title_font,text_color="#2b89d9")
+        title = ctk.CTkLabel(self,text="Pokémon Sword ",font=title_font,text_color="#2b89d9")
 
-        title.pack(pady=(20, 10))
+        title.pack(pady=(10, 5))
 
 
         # Subtitle
-        label = ctk.CTkLabel(self,text="Select a Pokémon to Hunt",font=subtitle_font,text_color="white")
+        label = ctk.CTkLabel(self,text="Select a Pokémon to Hunt ",font=subtitle_font,text_color="white")
 
         label.pack()
 
