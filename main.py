@@ -229,7 +229,7 @@ subtitle.pack()
 
 color_box = ctk.CTkFrame(main_menu,fg_color="#21344a",width=596,height=140,corner_radius=15, border_width=5, border_color="black")
 
-color_box.place(x=100,y=195)
+color_box.place(x=100,y=205)
 
 #Create the game buttons with a consistent theme in mind.
 
@@ -237,13 +237,13 @@ color_box.place(x=100,y=195)
 
 #create_game_button(main_menu, 110, 275, pikachu, selected_pikachu, on_click_lets_go_pikachu)
 
-create_game_button(main_menu, 410, 205, sword, selected_sword, on_click_sword)
+create_game_button(main_menu, 410, 215, sword, selected_sword, on_click_sword)
 
-create_game_button(main_menu, 560, 205, shield, selected_shield, on_click_shield)
+create_game_button(main_menu, 560, 215, shield, selected_shield, on_click_shield)
 
-create_game_button(main_menu, 110, 205, brilliant_diamond, selected_brilliant_diamond, on_click_brilliant_diamond)
+create_game_button(main_menu, 110, 215, brilliant_diamond, selected_brilliant_diamond, on_click_brilliant_diamond)
 
-create_game_button(main_menu, 260, 205, shining_pearl, selected_shining_pearl, on_click_shining_pearl)
+create_game_button(main_menu, 260, 215, shining_pearl, selected_shining_pearl, on_click_shining_pearl)
 
 #create_game_button(main_menu, 560, 135, fire_red, selected_fire_red, on_click_fire_red)
 
