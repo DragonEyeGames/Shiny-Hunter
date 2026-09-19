@@ -10,18 +10,21 @@ class SwScreen(ctk.CTkFrame):
         super().__init__( parent, fg_color="#050c15" )
 
         # Images
-        self.regirock = ctk.CTkImage(light_image=Image.open("pokemon/regirock.png"),dark_image=Image.open("pokemon/regirock.png"),size=(70,70))
-        self.registeel = ctk.CTkImage(light_image=Image.open("pokemon/registeel.png"),dark_image=Image.open("pokemon/registeel.png"),size=(70,70))
-        self.regice = ctk.CTkImage(light_image=Image.open("pokemon/regice.png"),dark_image=Image.open("pokemon/regice.png"),size=(70,70))
-        self.regidrago = ctk.CTkImage(light_image=Image.open("pokemon/regidrago.png"),dark_image=Image.open("pokemon/regidrago.png"),size=(70,70))
-        self.regieleki = ctk.CTkImage(light_image=Image.open("pokemon/regieleki.png"),dark_image=Image.open("pokemon/regieleki.png"),size=(70,70))
-        self.virizion = ctk.CTkImage(light_image=Image.open("pokemon/virizion.png"),dark_image=Image.open("pokemon/virizion.png"),size=(70,70))
-        self.terrakion = ctk.CTkImage(light_image=Image.open("pokemon/terrakion.png"),dark_image=Image.open("pokemon/terrakion.png"),size=(70,70))
-        self.cobalion = ctk.CTkImage(light_image=Image.open("pokemon/cobalion.png"),dark_image=Image.open("pokemon/cobalion.png"),size=(70,70))
-        self.arctovish = ctk.CTkImage(light_image=Image.open("pokemon/arctovish.png"),dark_image=Image.open("pokemon/arctovish.png"),size=(70,70))
-        self.arctozolt = ctk.CTkImage(light_image=Image.open("pokemon/arctozolt.png"),dark_image=Image.open("pokemon/arctozolt.png"),size=(70,70))
-        self.dracovish = ctk.CTkImage(light_image=Image.open("pokemon/dracovish.png"),dark_image=Image.open("pokemon/dracovish.png"),size=(70,70))
-        self.dracozolt = ctk.CTkImage(light_image=Image.open("pokemon/dracozolt.png"),dark_image=Image.open("pokemon/dracozolt.png"),size=(70,70))
+
+        self.size=(80, 80)
+
+        self.regirock = ctk.CTkImage(light_image=Image.open("pokemon/regirock.png"),dark_image=Image.open("pokemon/regirock.png"),size=self.size)
+        self.registeel = ctk.CTkImage(light_image=Image.open("pokemon/registeel.png"),dark_image=Image.open("pokemon/registeel.png"),size=self.size))
+        self.regice = ctk.CTkImage(light_image=Image.open("pokemon/regice.png"),dark_image=Image.open("pokemon/regice.png"),size=self.size)
+        self.regidrago = ctk.CTkImage(light_image=Image.open("pokemon/regidrago.png"),dark_image=Image.open("pokemon/regidrago.png"),size=self.size)
+        self.regieleki = ctk.CTkImage(light_image=Image.open("pokemon/regieleki.png"),dark_image=Image.open("pokemon/regieleki.png"),size=self.size)
+        self.virizion = ctk.CTkImage(light_image=Image.open("pokemon/virizion.png"),dark_image=Image.open("pokemon/virizion.png"),size=self.size)
+        self.terrakion = ctk.CTkImage(light_image=Image.open("pokemon/terrakion.png"),dark_image=Image.open("pokemon/terrakion.png"),size=self.size)
+        self.cobalion = ctk.CTkImage(light_image=Image.open("pokemon/cobalion.png"),dark_image=Image.open("pokemon/cobalion.png"),size=self.size)
+        self.arctovish = ctk.CTkImage(light_image=Image.open("pokemon/arctovish.png"),dark_image=Image.open("pokemon/arctovish.png"),size=self.size)
+        self.arctozolt = ctk.CTkImage(light_image=Image.open("pokemon/arctozolt.png"),dark_image=Image.open("pokemon/arctozolt.png"),size=self.size)
+        self.dracovish = ctk.CTkImage(light_image=Image.open("pokemon/dracovish.png"),dark_image=Image.open("pokemon/dracovish.png"),size=self.size)
+        self.dracozolt = ctk.CTkImage(light_image=Image.open("pokemon/dracozolt.png"),dark_image=Image.open("pokemon/dracozolt.png"),size=self.size)
         self.egg = ctk.CTkImage(light_image=Image.open("pokemon/egg.png"),dark_image=Image.open("pokemon/egg.png"),size=(36,44))
 
         # Title
@@ -43,14 +46,14 @@ class SwScreen(ctk.CTkFrame):
 
 
         # Pokemon buttons
-        self.create_pokemon_button(153,150,self.regirock,"Regirock",boot_screen)
-        self.create_pokemon_button(263,150,self.regice,"Regice",boot_screen)
-        self.create_pokemon_button(373,150,self.registeel,"Registeel",boot_screen)
-        self.create_pokemon_button(483,150,self.regieleki,"Regieleki",boot_screen)
-        self.create_pokemon_button(593,150,self.regidrago,"Regidrago",boot_screen, True)
-        self.create_pokemon_button(253,250,self.cobalion,"Cobalion",boot_screen, True)
-        self.create_pokemon_button(363,250,self.terrakion,"Terrakion",boot_screen, True)
-        self.create_pokemon_button(473,250,self.virizion,"Virizion",boot_screen, True)
+        self.create_pokemon_button(133,150,self.regirock,"Regirock",boot_screen)
+        self.create_pokemon_button(243,150,self.regice,"Regice",boot_screen)
+        self.create_pokemon_button(353,150,self.registeel,"Registeel",boot_screen)
+        self.create_pokemon_button(463,150,self.regieleki,"Regieleki",boot_screen)
+        self.create_pokemon_button(573,150,self.regidrago,"Regidrago",boot_screen, True)
+        self.create_pokemon_button(243,250,self.cobalion,"Cobalion",boot_screen, True)
+        self.create_pokemon_button(353,250,self.terrakion,"Terrakion",boot_screen, True)
+        self.create_pokemon_button(463,250,self.virizion,"Virizion",boot_screen, True)
 
         #Masuda selection screen
         self.egg_button = ctk.CTkButton(self,
