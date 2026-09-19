@@ -207,7 +207,8 @@ FONT_PATH = os.path.join(SCRIPT_DIR, "fonts", "Knewave-Regular.ttf")
 
 ctk.FontManager.load_font(FONT_PATH)
 
-title_font = ctk.CTkFont(family="Knewave", size=60)
+title_font = ctk.CTkFont(family="Knewave", size=50)
+subtitle_font = ctk.CTkFont(family="Knewave", size=25)
 
 title = ctk.CTkLabel(
     main_menu,
@@ -221,7 +222,7 @@ title.pack(pady=(40,10))
 subtitle = ctk.CTkLabel(
     main_menu,
     text="Select a Game",
-    font=("Arial",25)
+    font=subtitle_font
 )
 
 subtitle.pack()
