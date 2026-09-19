@@ -22,7 +22,7 @@ from save_manager import save_data, load_data
 
 class CaptureCard(tk.Frame):
     def __init__(self, parent, back_callback, camera_index=0):
-        super().__init__(parent, fg_color="#050c15", bg="#050c15")
+        super().__init__(parent, bg="#050c15")
         self.callback=back_callback
 
         self.frame_count = 0
