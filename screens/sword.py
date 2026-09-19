@@ -59,14 +59,17 @@ class SwScreen(ctk.CTkFrame):
         self.create_pokemon_button(450,260,self.virizion,"Virizion",boot_screen, True)
 
         #Masuda selection screen
-        self.egg_button = ctk.CTkButton(self,
+        self.overworld_button = ctk.CTkButton(self,
             text="Overworld Encounter",
             width=180, height=40,
             fg_color="#5e5e5e", bg_color="#21344a", hover_color="#bfbfbf",
             border_width=3, border_color="black", corner_radius=10,
             font=("Arial", 20),
             command=lambda: self.start_egg(egg_screen))
-        self.egg_button.place(x=310, y=364)
+        self.overworld_button.place(x=310, y=364)
+
+        self.update_idletasks()
+        print(overworld_button.winfo_width(), overworld_button.winfo_height())
 
         # Back button
         back_button = ctk.CTkButton(self,text="Back",font=("Arial",20),width=100,height=40,fg_color="#3b3b3b",hover_color="#505050",border_color="black",border_width=3,command=back_callback)
