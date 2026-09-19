@@ -66,11 +66,11 @@ class CaptureCard(ctk.CTkFrame):
 
         config.status="Idle"
 
-        self.status_label = ctk.CTkLabel(self, fg_color="#5e5e5e", anchor="w", width=300, text_color="white", font=("Basic", 30), text=f"Status: {config.status} ")
-        self.status_label.place(x=340, y=155)
+        self.status_label = ctk.CTkLabel(self, fg_color="#5e5e5e", anchor="w", width=290, text_color="white", font=("Basic", 29), text=f"Status: {config.status} ")
+        self.status_label.place(x=340, y=150)
 
         self.resets_label = ctk.CTkLabel(self, fg_color="#5e5e5e", anchor="w", width=220, text_color="white", font=("Basic", 25), text=f"Resets: {config.resets} ")
-        self.resets_label.place(x=340, y=190)
+        self.resets_label.place(x=340, y=188)
 
         self.spent_label = ctk.CTkLabel(self, fg_color="#5e5e5e", anchor="w", width=220, text_color="white", font=("Basic", 20), text=f"Time Spent: {self.convert_seconds(int(config.time_spent))} " )
         self.spent_label.place(x=340, y=220)
