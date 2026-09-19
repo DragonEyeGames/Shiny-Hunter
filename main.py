@@ -89,6 +89,7 @@ def open_manual_control():
     current_screen.place(x=0, y=0, relwidth=1, relheight=1)
 
 def show_main_menu():
+    os.execv(sys.executable, ['python'] + sys.argv)
     global current_screen
     if current_screen is not None:
         current_screen.destroy()
@@ -108,16 +109,16 @@ sp = SpScreen(root, lambda: main_menu.tkraise(), open_capture_screen)
 sp.place(x=0, y=0, relwidth=1, relheight=1)
 
 fr = FrScreen(root, lambda: main_menu.tkraise())
-fr.place(x=0, y=0, relwidth=1, relheight=1)
+#fr.place(x=0, y=0, relwidth=1, relheight=1)
 
 lg = LgScreen(root, lambda: main_menu.tkraise())
-lg.place(x=0, y=0, relwidth=1, relheight=1)
+#lg.place(x=0, y=0, relwidth=1, relheight=1)
 
 lge = LgeScreen(root, lambda: main_menu.tkraise())
-lge.place(x=0, y=0, relwidth=1, relheight=1)
+#lge.place(x=0, y=0, relwidth=1, relheight=1)
 
 lgp = LgpScreen(root, lambda: main_menu.tkraise())
-lgp.place(x=0, y=0, relwidth=1, relheight=1)
+#lgp.place(x=0, y=0, relwidth=1, relheight=1)
 
 main_menu.tkraise()
 
@@ -215,27 +216,27 @@ subtitle = ctk.CTkLabel(
 
 subtitle.pack()
 
-color_box = ctk.CTkFrame(main_menu,fg_color="#21344a",width=596,height=280,corner_radius=15, border_width=5, border_color="black")
+color_box = ctk.CTkFrame(main_menu,fg_color="#21344a",width=596,height=210,corner_radius=15, border_width=5, border_color="black")
 
-color_box.place(x=100,y=125)
+color_box.place(x=100,y=195)
 
 #Create the game buttons with a consistent theme in mind.
 
-create_game_button(main_menu, 110, 135, eevee, selected_eevee, on_click_lets_go_eevee)
+#create_game_button(main_menu, 110, 135, eevee, selected_eevee, on_click_lets_go_eevee)
 
-create_game_button(main_menu, 110, 275, pikachu, selected_pikachu, on_click_lets_go_pikachu)
+#create_game_button(main_menu, 110, 275, pikachu, selected_pikachu, on_click_lets_go_pikachu)
 
-create_game_button(main_menu, 260, 135, sword, selected_sword, on_click_sword)
+create_game_button(main_menu, 410, 135, sword, selected_sword, on_click_sword)
 
-create_game_button(main_menu, 260, 275, shield, selected_shield, on_click_shield)
+create_game_button(main_menu, 560, 275, shield, selected_shield, on_click_shield)
 
-create_game_button(main_menu, 410, 135, brilliant_diamond, selected_brilliant_diamond, on_click_brilliant_diamond)
+create_game_button(main_menu, 110, 135, brilliant_diamond, selected_brilliant_diamond, on_click_brilliant_diamond)
 
-create_game_button(main_menu, 410, 275, shining_pearl, selected_shining_pearl, on_click_shining_pearl)
+create_game_button(main_menu, 260, 275, shining_pearl, selected_shining_pearl, on_click_shining_pearl)
 
-create_game_button(main_menu, 560, 135, fire_red, selected_fire_red, on_click_fire_red)
+#create_game_button(main_menu, 560, 135, fire_red, selected_fire_red, on_click_fire_red)
 
-create_game_button(main_menu, 560, 275, leaf_green, selected_leaf_green, on_click_leaf_green)
+#create_game_button(main_menu, 560, 275, leaf_green, selected_leaf_green, on_click_leaf_green)
 
 #The button to close down the program
 end_button = ctk.CTkButton(main_menu,text="Quit Program",width=230,height=40,fg_color="#C0392B",hover_color="#96281B", border_width=2, border_color="black", corner_radius=12,font=("Arial",16,"bold"),command=close_project)
