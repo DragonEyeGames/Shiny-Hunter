@@ -30,7 +30,6 @@ class StrongHunt(tk.Frame):
         def end_hunt():
             print("ending hunt")
             config.status="Ending Hunt"
-            save_data(config.hunting_data)
             self.stop_camera()
 
         self.border_box = tk.Frame(self, bg="black", width=788, height=208, relief="groove")
@@ -59,10 +58,10 @@ class StrongHunt(tk.Frame):
         self.status_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 20), text=f"Status: {config.status}")
         self.status_label.place(x=340, y=155)
 
-        self.resets_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 18), text=f"Resets: {config.hunting_data[config.pokemon_name][config.game_name]['resets']}")
+        self.resets_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 18), text=f"Resets: {config.resets}")
         self.resets_label.place(x=340, y=190)
 
-        self.spent_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text=f"Time Spent: {self.convert_seconds(int(config.hunting_data[config.pokemon_name][config.game_name]['time_spent']))}")
+        self.spent_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text=f"Time Spent: {self.convert_seconds(int(config.time_spent))}")
         self.spent_label.place(x=340, y=220)
 
         self.time_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text=f"Last Reset Time: {config.last_reset_time:.3f}")
@@ -70,8 +69,6 @@ class StrongHunt(tk.Frame):
 
         self.reset_time_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text="Average Time/Reset: Loading")
         self.reset_time_label.place(x=340, y=280)
-
-        config.hunting_data = load_data(config.hunting_data)
 
         self.label.lift()
         self.update_frame()
@@ -135,16 +132,16 @@ class StrongHunt(tk.Frame):
 
     def update_frame(self):
         if(self.initialize_time!=self.start_time and config.status!="Shiny Detected!" and config.status != "Ending Hunt"):
-            config.hunting_data[config.pokemon_name][config.game_name]['time_spent']+=(time.time()-self.start_time)
+            config.time_spent+=(time.time()-self.start_time)
             config.current_reset_time+=(time.time()-self.start_time)
             self.start_time=time.time()
         self.hunting.configure(text=f"Hunting Dragonite in {config.game_name}")
-        self.resets_label.configure(text=f"Resets: {config.hunting_data[config.pokemon_name][config.game_name]['resets']}")
+        self.resets_label.configure(text=f"Resets: {config.resets}")
         self.status_label.configure(text=f"Status: {config.status}")
-        self.spent_label.configure(text=f"Time Spent: {self.convert_seconds(int(config.hunting_data[config.pokemon_name][config.game_name]['time_spent']))}")
+        self.spent_label.configure(text=f"Time Spent: {self.convert_seconds(int(config.time_spent))}")
         self.time_label.configure(text=f"Last Reset Time: {config.last_reset_time:.3f}")
-        if(config.hunting_data[config.pokemon_name][config.game_name]['resets']!=0):
-            self.reset_time_label.configure(text=f"Average Time/Reset: {(config.hunting_data[config.pokemon_name][config.game_name]['time_spent']-config.current_reset_time)/config.hunting_data[config.pokemon_name][config.game_name]['resets']:.3f}")
+        if(config.resets!=0):
+            self.reset_time_label.configure(text=f"Average Time/Reset: {(config.time_spent-config.current_reset_time)/config.resets:.3f}")
         if config.start_camera and not self.camera_started:
             self.start_camera()
             self.start_controller()

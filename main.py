@@ -52,7 +52,6 @@ def open_strong_screen():
     show_strong_hunt()
 
 def close_project():
-    save_data(config.hunting_data)
     root.destroy()
 
 main_menu = ctk.CTkFrame(root,fg_color="#050c15",corner_radius=0)
@@ -100,6 +99,8 @@ def show_main_menu():
 
     config.current_reset_time=0.000
     config.last_reset_time=0.000
+
+    config.resets=0
 
     config.cap = None
 

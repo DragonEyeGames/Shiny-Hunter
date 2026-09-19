@@ -64,13 +64,11 @@ class MasudaHunt(tk.Frame):
         self.resets_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 18), text=f"Eggs: {self.eggs}")
         self.resets_label.place(x=340, y=190)
 
-        self.spent_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text=f"Time Spent: {self.convert_seconds(int(config.hunting_data[config.pokemon_name][config.game_name]['time_spent']))}")
+        self.spent_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text=f"Time Spent: {self.convert_seconds(int(config.time_spent))}")
         self.spent_label.place(x=340, y=220)
 
         self.reset_time_label = tk.Label(self, bg="#5e5e5e", fg="white", font=("C052", 16), text="Average Time/Egg: Loading")
         self.reset_time_label.place(x=340, y=280)
-
-        config.hunting_data = load_data(config.hunting_data)
 
         self.label.lift()
         self.update_frame()
@@ -310,7 +308,7 @@ class MasudaHunt(tk.Frame):
         self.status_label.configure(text=f"Status: {config.status}")
         self.spent_label.configure(text=f"Time Spent: {self.convert_seconds(int(time.time()-self.initialize_time))}")
 
-        if(config.hunting_data[config.pokemon_name][config.game_name]['resets']!=0):
+        if(config.resets!=0):
             if(self.eggs>0):
                 self.reset_time_label.configure(text=f"Average Time/Egg: {(time.time()-self.initialize_time())/self.eggs:.3f}")
 

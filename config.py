@@ -8,6 +8,9 @@ status="Idle"
 
 current_reset_time=0.000
 last_reset_time=0.000
+time_spent=0.000
+
+resets=0
 
 cap = None
 cap_lock = threading.Lock()
