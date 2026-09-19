@@ -39,6 +39,7 @@ class CaptureCard(tk.Frame):
             config.status="Ending Hunt"
             self.stop_camera()
 
+
         self.border_box = tk.Frame(self, bg="black", width=788, height=208, relief="groove")
         self.border_box.pack_propagate(False)
         self.border_box.place(x = 6, y = 126)
@@ -131,7 +132,7 @@ class CaptureCard(tk.Frame):
                         config.cap.release()
                     config.cap = None
             if not opened:
-                config.status = "Failed to Find Capture Card"
+                config.status = "Failed to Find Capture"
                 print("[ERROR] Capture card index 0 failed to open.")
                 return
             config.status = "Booted up Screen"
@@ -146,6 +147,8 @@ class CaptureCard(tk.Frame):
             self.camera_started = False
             config.start_camera = False
             self.remove_controller()
+            self.callback()
+        else:
             self.callback()
 
     def update_frame(self):
