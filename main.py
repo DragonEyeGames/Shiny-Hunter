@@ -91,7 +91,7 @@ def open_manual_control():
     current_screen.place(x=0, y=0, relwidth=1, relheight=1)
 
 def show_main_menu():
-    os.execv(sys.executable, ['python'] + sys.argv)
+    os.execv(sys.executable, [sys.executable] + sys.argv)
     global current_screen
     if current_screen is not None:
         current_screen.destroy()

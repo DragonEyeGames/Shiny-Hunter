@@ -74,9 +74,6 @@ class SwScreen(ctk.CTkFrame):
 
         back_button.place(x=350,y=430)
 
-        self.update_idletasks()
-        print(back_button.winfo_width(), back_button.winfo_height())
-
 
 
     # Start hunt
