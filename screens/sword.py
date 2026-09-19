@@ -11,7 +11,7 @@ class SwScreen(ctk.CTkFrame):
 
         # Images
 
-        self.size=(80, 80)
+        self.size=(75, 75)
 
         self.regirock = ctk.CTkImage(light_image=Image.open("pokemon/regirock.png"),dark_image=Image.open("pokemon/regirock.png"),size=self.size)
         self.registeel = ctk.CTkImage(light_image=Image.open("pokemon/registeel.png"),dark_image=Image.open("pokemon/registeel.png"),size=self.size)
@@ -92,15 +92,15 @@ class SwScreen(ctk.CTkFrame):
     def create_pokemon_button(self,x,y,image,name,boot_screen, disabled=False):
 
         # Button
-        button = ctk.CTkButton(self, image=image, text="", width=90, height=90, fg_color="#5e5e5e", bg_color="#21344a", hover_color="#bfbfbf", border_width=3, border_color="black", corner_radius=10, command=lambda: self.start_hunt(name,boot_screen))
+        button = ctk.CTkButton(self, image=image, text="", width=80, height=80, fg_color="#5e5e5e", bg_color="#21344a", hover_color="#bfbfbf", border_width=3, border_color="black", corner_radius=10, command=lambda: self.start_hunt(name,boot_screen))
 
-        button.place(x=x+5,y=y+5)
+        button.place(x=x+10,y=y+10)
 
         if(disabled):
             button.configure(state="disabled")
 
         # Name box
-        label_box = ctk.CTkFrame(self,fg_color="black",bg_color="#5e5e5e",width=86,height=20,corner_radius=5)
+        label_box = ctk.CTkFrame(self,fg_color="black",bg_color="#5e5e5e",width=75,height=20,corner_radius=5)
 
         label_box.place(x=x+8,y=y+66)
 
