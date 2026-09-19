@@ -31,7 +31,7 @@ class SwScreen(ctk.CTkFrame):
         subtitle_font = ctk.CTkFont(family="Knewave", size=30)
 
         # Title
-        title = ctk.CTkLabel(self,text=" Pokémon Sword ",font=title_font,text_color="#2b89d9")
+        title = ctk.CTkLabel(self,text=" Pokémon Sword ",font=title_font,text_color="#3d9beb")
 
         title.pack(pady=(5, 0))
 

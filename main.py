@@ -227,7 +227,7 @@ title = ctk.CTkLabel(
     main_menu,
     text="Pokémon Shiny Hunter! ",
     font=title_font,
-    text_color="#2b89d9"
+    text_color="#3d9beb"
 )
 
 title.pack(pady=(40,10))
