@@ -78,8 +78,10 @@ class CaptureCard(tk.Frame):
         self.reset_time_label.place(x=340, y=280)
 
         self.label.lift()
-        self.update_frame()
+        
         self.last_good_frame=time.time()
+        
+        self.after(20, self.update_frame)
 
     def pokemon_names(self, pokemon_name):
         if(pokemon_name=="Registeel"):
