@@ -73,10 +73,9 @@ class HuntingManager:
             self.controller.left_left() 
             
         elif action == "search": 
-            config.hunting_data[config.pokemon_name][config.game_name]['resets'] += 1 
+            config.resets += 1 
             config.last_reset_time = config.current_reset_time 
             config.current_reset_time = 0 
-            save_data(config.hunting_data) 
             config.status = "Searching" 
             
             detected, ratio, elapsed = self.wait_for_white_flash(config.roi, timeout=.8) 
@@ -87,7 +86,7 @@ class HuntingManager:
                 #Send discord notification as a seperate thread. It seems to be blocking things right now.
                 threading.Thread(
                     target=send_discord_update,
-                    args=(f"Non-Shiny {config.pokemon_name}. Currently at {config.hunting_data[config.pokemon_name][config.game_name]['resets']} Resets. Timestamp: {military_time}.",),
+                    args=(f"Non-Shiny {config.pokemon_name}. Currently at {config.resets} Resets. Timestamp: {military_time}.",),
                     daemon=True
                 ).start()
 
@@ -99,7 +98,7 @@ class HuntingManager:
                 ret, frame = False, None
                 with config.cap_lock:
                     ret, frame = config.cap.read()
-                send_shiny_notification("Shiny Detected!", f"Shiny {config.pokemon_name} Detected in {config.hunting_data[config.pokemon_name][config.game_name]['resets']} Resets! Timestamp: {military_time}.", frame, 14406663) 
+                send_shiny_notification("Shiny Detected!", f"Shiny {config.pokemon_name} Detected in {config.resets} Resets! Timestamp: {military_time}.", frame, 14406663) 
                 while True: # config.status == "Shiny Detected!": 
                     time.sleep(1.0) 
                 #if(config.status== "False Positive"):
