@@ -43,9 +43,9 @@ class SwScreen(ctk.CTkFrame):
 
 
         # Outline box
-        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=508,height=258,corner_radius=15, border_width=5, border_color="black")
+        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=508,height=257,corner_radius=15, border_width=5, border_color="black")
 
-        self.color_box.place(x=146,y=154)
+        self.color_box.place(x=146,y=155)
 
 
         # Pokemon buttons

@@ -43,9 +43,9 @@ class ShScreen(ctk.CTkFrame):
 
 
         # Outline box
-        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=508,height=258,corner_radius=15, border_width=5, border_color="black")
+        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=508,height=257,corner_radius=15, border_width=5, border_color="black")
 
-        self.color_box.place(x=146,y=154)
+        self.color_box.place(x=146,y=155)
 
 
         # Pokemon buttons
@@ -64,13 +64,13 @@ class ShScreen(ctk.CTkFrame):
             width=180, height=40,
             fg_color="#5e5e5e", bg_color="#21344a", hover_color="#bfbfbf",
             border_width=3, border_color="black", corner_radius=10,
-            font=("Arial", 20),
+            font=("Basic", 22),
             command=lambda: self.start_egg(egg_screen))
         self.overworld_button.place(x=295, y=364)
 
 
         # Back button
-        back_button = ctk.CTkButton(self,text="Back",font=("Arial",20),width=100,height=40,fg_color="#3b3b3b",hover_color="#505050",border_color="black",border_width=3,command=back_callback)
+         back_button = ctk.CTkButton(self,text="Back",font=("Basic",25),width=100,height=40,fg_color="#C0392B",hover_color="#96281B",border_color="black",border_width=3,command=back_callback)
 
         back_button.place(x=350,y=430)
 
