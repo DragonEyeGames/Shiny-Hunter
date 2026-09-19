@@ -66,7 +66,7 @@ class SwScreen(ctk.CTkFrame):
             border_width=3, border_color="black", corner_radius=10,
             font=("Arial", 20),
             command=lambda: self.start_egg(egg_screen))
-        self.overworld_button.place(x=310, y=364)
+        self.overworld_button.place(x=295, y=364)
 
         self.update_idletasks()
         print(self.overworld_button.winfo_width(), self.overworld_button.winfo_height())
