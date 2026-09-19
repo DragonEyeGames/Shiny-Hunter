@@ -62,19 +62,19 @@ class CaptureCard(ctk.CTkFrame):
 
         config.status="Idle"
 
-        self.status_label = ctk.CTkLabel(self, fg_color="#5e5e5e", anchor="w", width=290, text_color="white", font=("Basic", 29), text=f"Status: {config.status} ")
+        self.status_label = ctk.CTkLabel(self, fg_color="#5e5e5e", bg_color="#5e5e5e", anchor="w", width=290, text_color="white", font=("Basic", 29), text=f"Status: {config.status} ")
         self.status_label.place(x=340, y=170)
 
-        self.resets_label = ctk.CTkLabel(self, fg_color="#5e5e5e", anchor="w", width=220, text_color="white", font=("Basic", 25), text=f"Resets: {config.resets} ")
+        self.resets_label = ctk.CTkLabel(self, fg_color="#5e5e5e", bg_color="#5e5e5e", anchor="w", width=290, text_color="white", font=("Basic", 25), text=f"Resets: {config.resets} ")
         self.resets_label.place(x=340, y=208)
 
-        self.spent_label = ctk.CTkLabel(self, fg_color="#5e5e5e", anchor="w", width=220, text_color="white", font=("Basic", 20), text=f"Time Spent: {self.convert_seconds(int(config.time_spent))} " )
+        self.spent_label = ctk.CTkLabel(self, fg_color="#5e5e5e", bg_color="#5e5e5e", anchor="w", width=290, text_color="white", font=("Basic", 20), text=f"Time Spent: {self.convert_seconds(int(config.time_spent))} " )
         self.spent_label.place(x=340, y=240)
 
-        self.time_label = ctk.CTkLabel(self, fg_color="#5e5e5e", anchor="w", width=220, text_color="white", font=("Basic", 20), text=f"Last Reset Time: {config.last_reset_time:.3f} ")
+        self.time_label = ctk.CTkLabel(self, fg_color="#5e5e5e", bg_color="#5e5e5e", anchor="w", width=290, text_color="white", font=("Basic", 20), text=f"Last Reset Time: {config.last_reset_time:.3f} ")
         self.time_label.place(x=340, y=270)
 
-        self.reset_time_label = ctk.CTkLabel(self, fg_color="#5e5e5e", anchor="w", width=220, text_color="white", font=("Basic", 20), text="Average Time/Reset: Loading ")
+        self.reset_time_label = ctk.CTkLabel(self, fg_color="#5e5e5e", bg_color="#5e5e5e", anchor="w", width=290, text_color="white", font=("Basic", 20), text="Average Time/Reset: Loading ")
         self.reset_time_label.place(x=340, y=300)
 
         self.label.lift()
