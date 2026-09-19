@@ -42,54 +42,54 @@ class SwScreen(ctk.CTkFrame):
         label.pack()
 
 
-box_x, box_y, box_w, box_h = 123, 150, 580, 265
-self.color_box = ctk.CTkFrame(self, fg_color="#21344a", width=box_w, height=box_h,
-                            corner_radius=15, border_width=5, border_color="black")
-self.color_box.place(x=box_x, y=box_y)
+        box_x, box_y, box_w, box_h = 123, 150, 580, 265
+        self.color_box = ctk.CTkFrame(self, fg_color="#21344a", width=box_w, height=box_h,
+                                    corner_radius=15, border_width=5, border_color="black")
+        self.color_box.place(x=box_x, y=box_y)
 
-btn_size = 90
-spacing = 110
-row_gap = 10
-egg_gap = 15
-egg_w, egg_h = 180, 40
+        btn_size = 90
+        spacing = 110
+        row_gap = 10
+        egg_gap = 15
+        egg_w, egg_h = 180, 40
 
-def row_start_x(n_buttons):
-    total_w = (n_buttons - 1) * spacing + btn_size
-    return box_x + (box_w - total_w) // 2
+        def row_start_x(n_buttons):
+            total_w = (n_buttons - 1) * spacing + btn_size
+            return box_x + (box_w - total_w) // 2
 
-row1_x = row_start_x(5)
-row2_x = row_start_x(3)
+        row1_x = row_start_x(5)
+        row2_x = row_start_x(3)
 
 
-total_h = btn_size * 2 + row_gap + egg_gap + egg_h
-top = box_y + (box_h - total_h) // 2
+        total_h = btn_size * 2 + row_gap + egg_gap + egg_h
+        top = box_y + (box_h - total_h) // 2
 
-row1_y = top
-row2_y = row1_y + btn_size + row_gap
-egg_y  = row2_y + btn_size + egg_gap
+        row1_y = top
+        row2_y = row1_y + btn_size + row_gap
+        egg_y  = row2_y + btn_size + egg_gap
 
-# Pokemon buttons
-self.create_pokemon_button(row1_x + 0*spacing, row1_y, self.regirock,   "Regirock",   boot_screen)
-self.create_pokemon_button(row1_x + 1*spacing, row1_y, self.regice,     "Regice",     boot_screen)
-self.create_pokemon_button(row1_x + 2*spacing, row1_y, self.registeel,  "Registeel",  boot_screen)
-self.create_pokemon_button(row1_x + 3*spacing, row1_y, self.regieleki,  "Regieleki",  boot_screen)
-self.create_pokemon_button(row1_x + 4*spacing, row1_y, self.regidrago,  "Regidrago",  boot_screen, True)
+        # Pokemon buttons
+        self.create_pokemon_button(row1_x + 0*spacing, row1_y, self.regirock,   "Regirock",   boot_screen)
+        self.create_pokemon_button(row1_x + 1*spacing, row1_y, self.regice,     "Regice",     boot_screen)
+        self.create_pokemon_button(row1_x + 2*spacing, row1_y, self.registeel,  "Registeel",  boot_screen)
+        self.create_pokemon_button(row1_x + 3*spacing, row1_y, self.regieleki,  "Regieleki",  boot_screen)
+        self.create_pokemon_button(row1_x + 4*spacing, row1_y, self.regidrago,  "Regidrago",  boot_screen, True)
 
-self.create_pokemon_button(row2_x + 0*spacing, row2_y, self.cobalion,   "Cobalion",   boot_screen, True)
-self.create_pokemon_button(row2_x + 1*spacing, row2_y, self.terrakion,  "Terrakion",  boot_screen, True)
-self.create_pokemon_button(row2_x + 2*spacing, row2_y, self.virizion,   "Virizion",   boot_screen, True)
+        self.create_pokemon_button(row2_x + 0*spacing, row2_y, self.cobalion,   "Cobalion",   boot_screen, True)
+        self.create_pokemon_button(row2_x + 1*spacing, row2_y, self.terrakion,  "Terrakion",  boot_screen, True)
+        self.create_pokemon_button(row2_x + 2*spacing, row2_y, self.virizion,   "Virizion",   boot_screen, True)
 
-# Masuda selection screen
-self.egg_button = ctk.CTkButton(self,
-    text="Overworld Encounter",
-    width=egg_w, height=egg_h,
-    fg_color="#5e5e5e", bg_color="#050c15", hover_color="#bfbfbf",
-    border_width=3, border_color="black", corner_radius=10,
-    font=("Arial", 20),
-    command=lambda: self.start_egg(egg_screen))
+        # Masuda selection screen
+        self.egg_button = ctk.CTkButton(self,
+            text="Overworld Encounter",
+            width=egg_w, height=egg_h,
+            fg_color="#5e5e5e", bg_color="#050c15", hover_color="#bfbfbf",
+            border_width=3, border_color="black", corner_radius=10,
+            font=("Arial", 20),
+            command=lambda: self.start_egg(egg_screen))
 
-egg_x = box_x + (box_w - egg_w) // 2
-self.egg_button.place(x=egg_x, y=egg_y)
+        egg_x = box_x + (box_w - egg_w) // 2
+        self.egg_button.place(x=egg_x, y=egg_y)
 
         # Back button
         back_button = ctk.CTkButton(self,text="Back",font=("Arial",20),width=100,height=40,fg_color="#3b3b3b",hover_color="#505050",border_color="black",border_width=3,command=back_callback)
