@@ -1,6 +1,6 @@
 import customtkinter as ctk
 import cv2
-from PIL import Image, ImageTk
+from PIL import Image
 import config
 from switch_controller import SwitchController
 import threading
@@ -194,7 +194,7 @@ class CaptureCard(ctk.CTkFrame):
                         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
                         img = Image.fromarray(frame)
-                        imgtk = ImageTk.PhotoImage(img)
+                        imgtk = ctk.CTkImage(light_image=img, dark_image=img, size=(width, height))
 
                         self.label.imgtk = imgtk
                         self.label.configure(image=imgtk)
