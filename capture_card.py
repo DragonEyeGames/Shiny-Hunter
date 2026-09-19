@@ -58,24 +58,28 @@ class CaptureCard(ctk.CTkFrame):
         self.end_button = ctk.CTkButton(self, text="End Hunt", font=("C052", 16), width=110, height=40, command=lambda: end_hunt())
         self.end_button.place(x=345, y=420)
 
-        self.hunting = ctk.CTkLabel(self, fg_color="#2b2b2b", text_color="white", font=("Droid Sans Fallback", 30), text=f"Hunting {config.pokemon_name} in {config.game_name}")
+
+        title_font = ctk.CTkFont(family="Knewave", size=60)
+        subtitle_font = ctk.CTkFont(family="Knewave", size=30)
+
+        self.hunting = ctk.CTkLabel(self, text_color="#2b89d9", font=title_font, text=f" Hunting {config.pokemon_name} in {config.game_name} ")
         self.hunting.pack(pady=35)
 
         config.status="Idle"
 
-        self.status_label = ctk.CTkLabel(self, fg_color="#5e5e5e", text_color="white", font=("C052", 20), text=f"Status: {config.status}")
+        self.status_label = ctk.CTkLabel(self, fg_color="#5e5e5e", text_color="white", font=("C052", 20), text=f"Status: {config.status} ")
         self.status_label.place(x=340, y=155)
 
-        self.resets_label = ctk.CTkLabel(self, fg_color="#5e5e5e", text_color="white", font=("C052", 18), text=f"Resets: {config.resets}")
+        self.resets_label = ctk.CTkLabel(self, fg_color="#5e5e5e", text_color="white", font=("C052", 18), text=f"Resets: {config.resets} ")
         self.resets_label.place(x=340, y=190)
 
-        self.spent_label = ctk.CTkLabel(self, fg_color="#5e5e5e", text_color="white", font=("C052", 16), text=f"Time Spent: {self.convert_seconds(int(config.time_spent))}")
+        self.spent_label = ctk.CTkLabel(self, fg_color="#5e5e5e", text_color="white", font=("C052", 16), text=f"Time Spent: {self.convert_seconds(int(config.time_spent))} " )
         self.spent_label.place(x=340, y=220)
 
-        self.time_label = ctk.CTkLabel(self, fg_color="#5e5e5e", text_color="white", font=("C052", 16), text=f"Last Reset Time: {config.last_reset_time:.3f}")
+        self.time_label = ctk.CTkLabel(self, fg_color="#5e5e5e", text_color="white", font=("C052", 16), text=f"Last Reset Time: {config.last_reset_time:.3f} ")
         self.time_label.place(x=340, y=250)
 
-        self.reset_time_label = ctk.CTkLabel(self, fg_color="#5e5e5e", text_color="white", font=("C052", 16), text="Average Time/Reset: Loading")
+        self.reset_time_label = ctk.CTkLabel(self, fg_color="#5e5e5e", text_color="white", font=("C052", 16), text="Average Time/Reset: Loading ")
         self.reset_time_label.place(x=340, y=280)
 
         self.label.lift()
@@ -156,11 +160,15 @@ class CaptureCard(ctk.CTkFrame):
             config.time_spent+=(time.time()-self.start_time)
             config.current_reset_time+=(time.time()-self.start_time)
             self.start_time=time.time()
-        self.hunting.configure(text=f"Hunting {config.pokemon_name} in {config.game_name}")
-        self.resets_label.configure(text=f"Resets: {config.resets}")
-        self.status_label.configure(text=f"Status: {config.status}")
-        self.spent_label.configure(text=f"Time Spent: {self.convert_seconds(int(config.time_spent))}")
-        self.time_label.configure(text=f"Last Reset Time: {config.last_reset_time:.3f}")
+
+        #Where we update all of the displays
+        self.hunting.configure(text=f"Hunting {config.pokemon_name} in {config.game_name} ")
+        self.resets_label.configure(text=f"Resets: {config.resets} ")
+        self.status_label.configure(text=f"Status: {config.status} ")
+        self.spent_label.configure(text=f"Time Spent: {self.convert_seconds(int(config.time_spent))} ")
+        self.time_label.configure(text=f"Last Reset Time: {config.last_reset_time:.3f} ")
+
+
         if(config.resets!=0):
             self.reset_time_label.configure(text=f"Average Time/Reset: {(config.time_spent-config.current_reset_time)/config.resets:.3f}")
         if config.start_camera and not self.camera_started and not config.egg_hunt:
