@@ -64,7 +64,7 @@ class SwScreen(ctk.CTkFrame):
             width=180, height=50,
             fg_color="#5e5e5e", bg_color="#050c15", hover_color="#bfbfbf",
             border_width=3, border_color="black", corner_radius=10,
-            font=("Arial", 20)
+            font=("Arial", 20),
             command=lambda: self.start_egg(egg_screen))
         self.egg_button.place(x=315, y=350)
 
