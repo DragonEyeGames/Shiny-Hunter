@@ -199,10 +199,12 @@ selected_fire_red = ctk.CTkImage(light_image=Image.open("logos/selected_fire_red
 leaf_green = ctk.CTkImage(light_image=Image.open("logos/leaf_green.png"),dark_image=Image.open("logos/leaf_green.png"),size=(100,100))
 selected_leaf_green = ctk.CTkImage(light_image=Image.open("logos/selected_leaf_green.png"),dark_image=Image.open("logos/selected_leaf_green.png"),size=(100,100))
 
+customtkinter.FontManager.load_font("fonts\Risque-Regular.ttf")
+
 title = ctk.CTkLabel(
     main_menu,
-    text="Pokémon Shiny Hunter",
-    font=("Arial",40,"bold"),
+    text="Pokémon Shiny Hunter!",
+    font=("Risque-Regular",40,"bold"),
     text_color="#2b89d9"
 )
 
