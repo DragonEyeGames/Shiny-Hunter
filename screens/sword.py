@@ -27,20 +27,13 @@ class SwScreen(ctk.CTkFrame):
         self.dracozolt = ctk.CTkImage(light_image=Image.open("pokemon/dracozolt.png"),dark_image=Image.open("pokemon/dracozolt.png"),size=self.size)
         self.egg = ctk.CTkImage(light_image=Image.open("pokemon/egg.png"),dark_image=Image.open("pokemon/egg.png"),size=(36,44))
 
-
-        SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-
-        FONT_PATH = os.path.join(SCRIPT_DIR, "fonts", "Knewave-Regular.ttf")
-
-        ctk.FontManager.load_font(FONT_PATH)
-
-        title_font = ctk.CTkFont(family="Knewave", size=50)
-        subtitle_font = ctk.CTkFont(family="Knewave", size=30)
+        title_font = ctk.CTkFont(family="Knewave", size=40)
+        subtitle_font = ctk.CTkFont(family="Knewave", size=20)
 
         # Title
         title = ctk.CTkLabel(self,text="Pokémon Sword",font=title_font,text_color="#2b89d9")
 
-        title.pack(pady=(25, 10))
+        title.pack(pady=(20, 10))
 
 
         # Subtitle
