@@ -78,10 +78,8 @@ class CaptureCard(tk.Frame):
         self.reset_time_label.place(x=340, y=280)
 
         self.label.lift()
-        
+        self.update_frame()
         self.last_good_frame=time.time()
-        
-        self.after(20, self.update_frame)
 
     def pokemon_names(self, pokemon_name):
         if(pokemon_name=="Registeel"):
@@ -133,9 +131,8 @@ class CaptureCard(tk.Frame):
                         config.cap.release()
                     config.cap = None
             if not opened:
-                config.status = "Finding Capture Card"
+                config.status = "Failed to Find Capture Card"
                 print("[ERROR] Capture card index 0 failed to open.")
-                tk.messagebox.showerror("Error", "Capture Card Not Connected!")
                 return
             config.status = "Booted up Screen"
             self.camera_started = True
