@@ -220,6 +220,12 @@ FONT_PATH = os.path.join(SCRIPT_DIR, "fonts", "Knewave-Regular.ttf")
 
 ctk.FontManager.load_font(FONT_PATH)
 
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+FONT_PATH = os.path.join(SCRIPT_DIR, "fonts", "Basic-Regular.ttf")
+
+ctk.FontManager.load_font(FONT_PATH)
+
 title_font = ctk.CTkFont(family="Knewave", size=50)
 subtitle_font = ctk.CTkFont(family="Knewave", size=30)
 
