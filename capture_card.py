@@ -10,6 +10,7 @@ import time
 from hunting.sw_sh_registeel import commands as registeel_commands
 from hunting.sw_sh_regirock import commands as regirock_commands
 from hunting.sw_sh_regidrago import commands as regidrago_commands
+from hunting.sw_sh_regieleki import commands as regieleki_commands
 from hunting.sw_sh_regice import commands as regice_commands
 
 from hunting.bd_sp_giratina import commands as giratina_commands
@@ -90,6 +91,8 @@ class CaptureCard(ctk.CTkFrame):
             return regice_commands
         elif(pokemon_name=="Regidrago"):
             return regidrago_commands
+        elif(pokemon_name=="Regieleki"):
+            return regieleki_commands
         elif(pokemon_name=="Giratina"):
             return giratina_commands
         elif(pokemon_name=="Arceus"):

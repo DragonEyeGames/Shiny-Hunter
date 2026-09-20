@@ -53,7 +53,7 @@ class ShScreen(ctk.CTkFrame):
         self.create_pokemon_button(250,160,self.regice,"Regice",boot_screen)
         self.create_pokemon_button(350,160,self.registeel,"Registeel",boot_screen)
         self.create_pokemon_button(450,160,self.regieleki,"Regieleki",boot_screen)
-        self.create_pokemon_button(550,160,self.regidrago,"Regidrago",boot_screen, True)
+        self.create_pokemon_button(550,160,self.regidrago,"Regidrago",boot_screen)
         self.create_pokemon_button(250,260,self.cobalion,"Cobalion",boot_screen, True)
         self.create_pokemon_button(350,260,self.terrakion,"Terrakion",boot_screen, True)
         self.create_pokemon_button(450,260,self.virizion,"Virizion",boot_screen, True)
