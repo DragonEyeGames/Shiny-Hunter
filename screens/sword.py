@@ -18,6 +18,7 @@ class SwScreen(ctk.CTkFrame):
         self.regice = ctk.CTkImage(light_image=Image.open("pokemon/regice.png"),dark_image=Image.open("pokemon/regice.png"),size=self.size)
         self.regidrago = ctk.CTkImage(light_image=Image.open("pokemon/regidrago.png"),dark_image=Image.open("pokemon/regidrago.png"),size=self.size)
         self.regieleki = ctk.CTkImage(light_image=Image.open("pokemon/regieleki.png"),dark_image=Image.open("pokemon/regieleki.png"),size=self.size)
+        self.regigigas = ctk.CTkImage(light_image=Image.open("pokemon/regigigas.png"),dark_image=Image.open("pokemon/regigigas.png"),size=self.size)
         self.virizion = ctk.CTkImage(light_image=Image.open("pokemon/virizion.png"),dark_image=Image.open("pokemon/virizion.png"),size=self.size)
         self.terrakion = ctk.CTkImage(light_image=Image.open("pokemon/terrakion.png"),dark_image=Image.open("pokemon/terrakion.png"),size=self.size)
         self.cobalion = ctk.CTkImage(light_image=Image.open("pokemon/cobalion.png"),dark_image=Image.open("pokemon/cobalion.png"),size=self.size)
@@ -43,17 +44,18 @@ class SwScreen(ctk.CTkFrame):
 
 
         # Outline box
-        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=508,height=257,corner_radius=15, border_width=5, border_color="black")
+        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=608,height=257,corner_radius=15, border_width=5, border_color="black")
 
-        self.color_box.place(x=146,y=156)
+        self.color_box.place(x=96,y=156)
 
 
         # Pokemon buttons
-        self.create_pokemon_button(150,160,self.regirock,"Regirock",boot_screen)
-        self.create_pokemon_button(250,160,self.regice,"Regice",boot_screen)
-        self.create_pokemon_button(350,160,self.registeel,"Registeel",boot_screen)
-        self.create_pokemon_button(450,160,self.regieleki,"Regieleki",boot_screen)
-        self.create_pokemon_button(550,160,self.regidrago,"Regidrago",boot_screen)
+        self.create_pokemon_button(100,160,self.regirock,"Regirock",boot_screen)
+        self.create_pokemon_button(200,160,self.regice,"Regice",boot_screen)
+        self.create_pokemon_button(300,160,self.registeel,"Registeel",boot_screen)
+        self.create_pokemon_button(400,160,self.regieleki,"Regieleki",boot_screen)
+        self.create_pokemon_button(500,160,self.regidrago,"Regidrago",boot_screen)
+        self.create_pokemon_button(600,160,self.regigigas,"Regigigas",boot_screen)
         self.create_pokemon_button(250,260,self.cobalion,"Cobalion",boot_screen, True)
         self.create_pokemon_button(350,260,self.terrakion,"Terrakion",boot_screen, True)
         self.create_pokemon_button(450,260,self.virizion,"Virizion",boot_screen, True)

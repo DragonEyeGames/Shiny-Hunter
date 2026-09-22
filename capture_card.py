@@ -12,6 +12,7 @@ from hunting.sw_sh_regirock import commands as regirock_commands
 from hunting.sw_sh_regidrago import commands as regidrago_commands
 from hunting.sw_sh_regieleki import commands as regieleki_commands
 from hunting.sw_sh_regice import commands as regice_commands
+from hunting.sw_sh_regigigas import commands as regigigas_commands
 
 from hunting.bd_sp_giratina import commands as giratina_commands
 from hunting.bd_sp_arceus import commands as arceus_commands
@@ -97,6 +98,8 @@ class CaptureCard(ctk.CTkFrame):
             return giratina_commands
         elif(pokemon_name=="Arceus"):
             return arceus_commands
+        elif(pokemon_name=="Regigigas"):
+            return regigigas_commands
 
     def start_controller(self):
          def run():

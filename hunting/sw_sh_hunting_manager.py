@@ -62,6 +62,16 @@ class HuntingManager:
             else: #I attempted adding in recovery steps, but the timings would be too innacurate. This is the way
                self.trigger_soft_reset() 
                raise RestartScriptException() 
+        elif action == "black_a": 
+            self.controller.press_a() 
+            config.status = "Checking Encounter" 
+            detected, ratio, elapsed = self.wait_for_black_flash(config.full, timeout=delay-1) 
+            
+            if detected: 
+                config.status = "Encounter Loaded" 
+            else: #I attempted adding in recovery steps, but the timings would be too innacurate. This is the way
+               self.trigger_soft_reset() 
+               raise RestartScriptException() 
 
         elif action == "b": 
             self.controller.press_b() 
