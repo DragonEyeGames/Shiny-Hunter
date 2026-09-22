@@ -231,7 +231,7 @@ Handles saving and loading Shiny Hunter data and settings.
 
 ---
 
-# 🚧 Roadmap
+# Roadmap
 
 There is still plenty left to do!
 
@@ -246,11 +246,7 @@ There is still plenty left to do!
 ### Features
 
 * [ ] Improve NXBT reliability
-* [ ] Add more recovery checks
 * [ ] Add additional hunting methods
-* [ ] Improve Shiny detection
-* [ ] Finish the touchscreen interface
-* [ ] Improve Discord notifications
 * [ ] Prepare the project for public release
 
 ---
@@ -278,7 +274,3 @@ The project isn't finished yet!
 There are still a handful of things I want to improve before making the project publicly available. The biggest upcoming goal is expanding support to more Pokémon and hunting methods.
 
 If you want to follow the project, stay tuned for future updates!
-
----
-
-## Made with ❤️, Python, and way too many attempts at finding Shiny Pokémon.
