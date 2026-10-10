@@ -79,24 +79,18 @@ class SwScreen(ctk.CTkFrame):
 
         self.popup_button = ctk.CTkFrame(self, fg_color="#2b5382", border_width=5, corner_radius=10, border_color="black", width=400, height=300)
         self.popup_button.pack_propagate(False)
-        label=ctk.CTkLabel(self.popup_button, text="Overworld Encounter Initialization", font=("Basic", 25))
+        label=ctk.CTkLabel(self.popup_button, text="Overworld Encounter Initialization", font=("Basic", 35))
         label.pack(pady=10)
 
-        label=ctk.CTkLabel(self.popup_button, font=("Basic", 18), text="Pokemon Name")
-        label.place(x=20, y=55)
+        label=ctk.CTkLabel(self.popup_button, font=("Basic", 24), text="Pokemon Name")
+        label.place(x=210, y=60)
         input_field = ctk.CTkEntry(self.popup_button, placeholder_text="Input Name...", width=135, height=40)
-        input_field.place(x=10, y=85)
+        input_field.place(x=200, y=90)
 
-        label=ctk.CTkLabel(self.popup_button, font=("Basic", 18), text="Wait Time")
-        label.place(x=290, y=55)
-        input_field = ctk.CTkEntry(self.popup_button, placeholder_text="Time (s)...", width=125, height=40)
-        input_field.place(x=260, y=85)
+        start_button = ctk.CTkButton(self,text="Calibrate + Start",font=("Basic",25),width=100,height=40,fg_color="#1fa323",hover_color="#1d8a21",border_color="black",border_width=3,command=back_callback, corner_radius=10)
+        start_button.place(x=150, y=200)
 
-        label=ctk.CTkLabel(self.popup_button, font=("Basic", 12), text="Or")
-        label.place(x=290, y=105)
-
-        label=ctk.CTkLabel(self.popup_button, font=("Basic", 18), text="Calibrate Timings")
-        label.place(x=290, y=155)
+        
 
     # Start hunt
     def start_hunt(self, pokemon_name, boot_screen):
