@@ -81,8 +81,11 @@ class SwScreen(ctk.CTkFrame):
         self.popup_button.pack_propagate(False)
         label=ctk.CTkLabel(self.popup_button, text="Overworld Encounter Initialization", font=("Basic", 25))
         label.pack(pady=10)
-        label=ctk.CTkLabel(self.popup_button, font=("Basic", 18), text="Type in the Pokemon Name")
-        label.place(x=10, y=25)
+        label=ctk.CTkLabel(self.popup_button, font=("Basic", 18), text="Pokemon Name")
+        label.place(x=10, y=55)
+
+        input_field = ctk.CTkEntry(self, placeholder_text="Input Name...", width=100, height=40)
+        input_field.place(x=10, y=100)
 
     # Start hunt
     def start_hunt(self, pokemon_name, boot_screen):
@@ -104,7 +107,7 @@ class SwScreen(ctk.CTkFrame):
         config.game_name = "Sword"
         config.hunting_type="overworld"
         self.popup_visible=True
-        self.popup_button.place(x=200, y=150)
+        self.popup_button.place(x=200, y=130)
         # boot_screen()
 
 
