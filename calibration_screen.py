@@ -9,6 +9,8 @@ import time
 import hunting.bd_sp_hunting_manager as bd_sp_hm
 import hunting.sw_sh_hunting_manager as sw_sh_hm
 
+import sw_sh_overworld
+
 class CalibrationScreen(ctk.CTkFrame):
     def __init__(self, parent, back_callback, camera_index=0):
         super().__init__(parent, fg_color="#050c15")
@@ -51,6 +53,15 @@ class CalibrationScreen(ctk.CTkFrame):
         self.status_label = ctk.CTkLabel(self, fg_color="#5e5e5e", bg_color="#5e5e5e", anchor="w", width=290, text_color="white", font=("Basic", 29), text=f"Status: {config.status} ")
         self.status_label.place(x=340, y=170)
 
+        self.popup_label=ctk.CTkLabel(self, fg_color="#5e5e5e", bg_color="#5e5e5e", anchor="w", width=290, text_color="white", font=("Basic", 25), text=f"Important: Make Sure This Pokemon Isn't Shiny!!!")
+        self.popup_label.place(x=340, y=200)
+
+        self.popup_label_2=ctk.CTkLabel(self, fg_color="#5e5e5e", bg_color="#5e5e5e", anchor="w", width=290, text_color="white", font=("Basic", 25), text=f"Click Run if the calibration worked.")
+        self.popup_label_2.place(x=340, y=230)
+
+        self.popup_button = ctk.CTkButton(self, text="Run", font=("Basic", 25), width=130, height=50, corner_radius=10, border_width=3, border_color="black", fg_color="#1fa323",hover_color="#1d8a21")
+        self.popup_button.place(x=400, y=270)
+
         self.label.lift()
         self.update_frame()
         self.last_good_frame=time.time()
@@ -85,9 +96,15 @@ class CalibrationScreen(ctk.CTkFrame):
 
             if(detected):
                 rounded = round(elapsed, 1)
-                config.status=f"Calibrated: {rounded} Seconds" 
+                config.status=f"Calibrated at {rounded} Seconds" 
+                rounded = rounded-.3
+                sw_sh_overworld.commands[0] = ("wait", rounded)
+                self.open_popup()
 
          threading.Thread(target=run, daemon=True).start()
+
+    def open_popup(self):
+        pass
 
     def remove_controller(self):
         self.controller.disconnect()
