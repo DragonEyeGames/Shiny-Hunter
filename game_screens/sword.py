@@ -91,7 +91,7 @@ class SwScreen(ctk.CTkFrame):
         start_button.place(x=100, y=190)
 
         cancel_button = ctk.CTkButton(self.popup_button,text="Cancel",font=("Basic",25),width=100,height=40,fg_color="#C0392B",hover_color="#96281B",border_color="black",border_width=3, corner_radius=10)
-        cancel_button.place(x=100, y=250)
+        cancel_button.place(x=150, y=250)
         
 
     # Start hunt
@@ -116,6 +116,13 @@ class SwScreen(ctk.CTkFrame):
         self.popup_visible=True
         self.popup_button.place(x=200, y=130)
         # boot_screen()
+
+    def camce;_overworld(self):
+        if(not self.popup_visible):
+            return
+        
+        self.popup_button.place_forget()
+        self.popup_visible=False
 
 
     def create_pokemon_button(self, x, y, image, name, boot_screen, disabled=False):
