@@ -106,7 +106,7 @@ class HuntingScreen(ctk.CTkFrame):
     def start_controller(self):
          def run():
             config.status="Pairing with Switch"
-            if(self.controller=None):
+            if(self.controller==None):
                 self.controller = SwitchController()
                 self.controller.connect()
             self.start_time = time.time()
