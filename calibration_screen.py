@@ -54,13 +54,11 @@ class CalibrationScreen(ctk.CTkFrame):
         self.status_label.place(x=340, y=170)
 
         self.popup_label=ctk.CTkLabel(self, fg_color="#5e5e5e", bg_color="#5e5e5e", anchor="w", width=290, text_color="white", font=("Basic", 25), text=f"Important: Double Check Non-Shiny!!!")
-        self.popup_label.place(x=340, y=210)
+        
 
         self.popup_label_2=ctk.CTkLabel(self, fg_color="#5e5e5e", bg_color="#5e5e5e", anchor="w", width=290, text_color="white", font=("Basic", 25), text=f"Click Run to start hunting!")
-        self.popup_label_2.place(x=340, y=240)
-
+        
         self.popup_button = ctk.CTkButton(self, text="Run", bg_color="#5e5e5e", font=("Basic", 25), width=130, height=50, corner_radius=10, border_width=3, border_color="black", fg_color="#1fa323",hover_color="#1d8a21")
-        self.popup_button.place(x=430, y=280)
 
         self.label.lift()
         self.update_frame()
@@ -88,7 +86,11 @@ class CalibrationScreen(ctk.CTkFrame):
 
             hunting_manager.trigger_soft_reset()
 
+            config.status = "Skipping Screen..."
+
             time.sleep(3)
+
+            config.status = "Waiting for Pokemon"
 
             detected, ratio, elapsed = hunting_manager.wait_for_white_flash(config.roi, timeout=60, brightness_threshold=230, white_percentage=.95)
 
@@ -99,12 +101,15 @@ class CalibrationScreen(ctk.CTkFrame):
                 config.status=f"Calibrated at {rounded} Seconds" 
                 rounded = rounded-.3
                 sw_sh_overworld.commands[0] = ("wait", rounded)
+                time.sleep(.5)
                 self.open_popup()
 
          threading.Thread(target=run, daemon=True).start()
 
     def open_popup(self):
-        pass
+        self.popup_button.place(x=450, y=280)
+        self.popup_label_2.place(x=340, y=240)
+        self.popup_label.place(x=340, y=210)
 
     def remove_controller(self):
         self.controller.disconnect()
