@@ -9,7 +9,7 @@ import time
 import hunting.bd_sp_hunting_manager as bd_sp_hm
 import hunting.sw_sh_hunting_manager as sw_sh_hm
 
-import sw_sh_overworld
+import hunting.sw_sh_overworld
 
 class CalibrationScreen(ctk.CTkFrame):
     def __init__(self, parent, back_callback, camera_index=0):
