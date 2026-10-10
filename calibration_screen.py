@@ -12,7 +12,7 @@ import hunting.sw_sh_hunting_manager as sw_sh_hm
 import hunting.sw_sh_overworld
 
 class CalibrationScreen(ctk.CTkFrame):
-    def __init__(self, parent, back_callback, camera_index=0, hunt_callback):
+    def __init__(self, parent, back_callback, hunt_callback, camera_index=0):
         super().__init__(parent, fg_color="#050c15")
         self.callback=back_callback
         self.open_hunt_screen=hunt_callback
@@ -58,7 +58,7 @@ class CalibrationScreen(ctk.CTkFrame):
 
         self.popup_label_2=ctk.CTkLabel(self, fg_color="#5e5e5e", bg_color="#5e5e5e", anchor="w", width=290, text_color="white", font=("Basic", 25), text=f"Click Run to start hunting!")
         
-        self.popup_button = ctk.CTkButton(self, text="Run", bg_color="#5e5e5e", font=("Basic", 25), width=130, height=50, corner_radius=10, border_width=3, border_color="black", fg_color="#1fa323",hover_color="#1d8a21")
+        self.popup_button = ctk.CTkButton(self, text="Run", command=self.open_hunt_screen, bg_color="#5e5e5e", font=("Basic", 25), width=130, height=50, corner_radius=10, border_width=3, border_color="black", fg_color="#1fa323",hover_color="#1d8a21")
 
         self.label.lift()
         self.update_frame()

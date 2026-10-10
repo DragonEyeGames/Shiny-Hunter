@@ -66,7 +66,7 @@ def show_calibrate():
     global current_screen
     if current_screen is not None:
         current_screen.destroy()
-    current_screen = CalibrationScreen(root, lambda: show_main_menu(), camera_index=0, show_hunt)
+    current_screen = CalibrationScreen(root, lambda: show_main_menu(), show_hunt, camera_index=0)
     current_screen.place(x=0, y=0, relwidth=1, relheight=1)
 
 def open_manual_control():
