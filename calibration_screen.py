@@ -120,7 +120,6 @@ class CalibrationScreen(ctk.CTkFrame):
                     config.cap.release()
                 config.cap = None
             self.camera_started = False
-            config.start_camera = False
         self.open_hunt_screen()
 
     def remove_controller(self):
