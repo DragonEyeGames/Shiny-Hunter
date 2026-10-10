@@ -12,10 +12,10 @@ import hunting.sw_sh_hunting_manager as sw_sh_hm
 import hunting.sw_sh_overworld
 
 class CalibrationScreen(ctk.CTkFrame):
-    def __init__(self, parent, back_callback, camera_index=0):
+    def __init__(self, parent, back_callback, camera_index=0, hunt_callback):
         super().__init__(parent, fg_color="#050c15")
         self.callback=back_callback
-
+        self.open_hunt_screen=hunt_callback
         self.frame_count = 0
         self.camera_started=False
 

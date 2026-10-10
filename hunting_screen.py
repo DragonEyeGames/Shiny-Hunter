@@ -20,6 +20,8 @@ from hunting.bd_sp_arceus import commands as arceus_commands
 import hunting.bd_sp_hunting_manager as bd_sp_hm
 import hunting.sw_sh_hunting_manager as sw_sh_hm
 
+import hunting.sw_sh_overworld as overworld_hunt
+
 from save_manager import save_data, load_data
 
 class HuntingScreen(ctk.CTkFrame):
@@ -119,7 +121,11 @@ class HuntingScreen(ctk.CTkFrame):
             self.controller.press_a()
             time.sleep(1.5)
             config.status="Hunting"
-            hunting_manager.run_script(self.pokemon_names(config.pokemon_name))
+
+            if(config.hunting_type=="overworld"):
+                hunting_manager.run_script(overworld_hunt)
+            else:
+                hunting_manager.run_script(self.pokemon_names(config.pokemon_name))
 
          threading.Thread(target=run, daemon=True).start()
 
