@@ -110,6 +110,7 @@ class CalibrationScreen(ctk.CTkFrame):
         self.popup_button.place(x=450, y=280)
         self.popup_label_2.place(x=340, y=240)
         self.popup_label.place(x=340, y=210)
+        self.remove_controller()
 
     def remove_controller(self):
         self.controller.disconnect()
