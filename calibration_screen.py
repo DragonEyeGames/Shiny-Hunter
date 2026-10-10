@@ -53,14 +53,14 @@ class CalibrationScreen(ctk.CTkFrame):
         self.status_label = ctk.CTkLabel(self, fg_color="#5e5e5e", bg_color="#5e5e5e", anchor="w", width=290, text_color="white", font=("Basic", 29), text=f"Status: {config.status} ")
         self.status_label.place(x=340, y=170)
 
-        self.popup_label=ctk.CTkLabel(self, fg_color="#5e5e5e", bg_color="#5e5e5e", anchor="w", width=290, text_color="white", font=("Basic", 25), text=f"Important: Make Sure This Pokemon Isn't Shiny!!!")
-        self.popup_label.place(x=340, y=200)
+        self.popup_label=ctk.CTkLabel(self, fg_color="#5e5e5e", bg_color="#5e5e5e", anchor="w", width=290, text_color="white", font=("Basic", 25), text=f"Important: Double Check Non-Shiny!!!")
+        self.popup_label.place(x=340, y=210)
 
-        self.popup_label_2=ctk.CTkLabel(self, fg_color="#5e5e5e", bg_color="#5e5e5e", anchor="w", width=290, text_color="white", font=("Basic", 25), text=f"Click Run if the calibration worked.")
-        self.popup_label_2.place(x=340, y=230)
+        self.popup_label_2=ctk.CTkLabel(self, fg_color="#5e5e5e", bg_color="#5e5e5e", anchor="w", width=290, text_color="white", font=("Basic", 25), text=f"Click Run to start hunting!")
+        self.popup_label_2.place(x=340, y=240)
 
-        self.popup_button = ctk.CTkButton(self, text="Run", font=("Basic", 25), width=130, height=50, corner_radius=10, border_width=3, border_color="black", fg_color="#1fa323",hover_color="#1d8a21")
-        self.popup_button.place(x=400, y=270)
+        self.popup_button = ctk.CTkButton(self, text="Run", bg_color="#5e5e5e", font=("Basic", 25), width=130, height=50, corner_radius=10, border_width=3, border_color="black", fg_color="#1fa323",hover_color="#1d8a21")
+        self.popup_button.place(x=430, y=280)
 
         self.label.lift()
         self.update_frame()
