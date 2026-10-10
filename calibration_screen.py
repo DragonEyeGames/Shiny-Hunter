@@ -112,7 +112,7 @@ class CalibrationScreen(ctk.CTkFrame):
         self.popup_label_2.place(x=340, y=240)
         self.popup_label.place(x=340, y=210)
         
-    def bootup_hunting():
+    def bootup_hunting(self):
         self.remove_controller()
         self.stop_camera()
         self.open_hunt_screen()
