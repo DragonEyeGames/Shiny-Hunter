@@ -20,7 +20,7 @@ from hunting.bd_sp_arceus import commands as arceus_commands
 import hunting.bd_sp_hunting_manager as bd_sp_hm
 import hunting.sw_sh_hunting_manager as sw_sh_hm
 
-import hunting.sw_sh_overworld as overworld_hunt
+from hunting.sw_sh_overworld import commands as overworld_hunt
 
 from save_manager import save_data, load_data
 

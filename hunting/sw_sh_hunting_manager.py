@@ -15,18 +15,18 @@ class RestartScriptException(Exception):
 class HuntingManager:
     def __init__(self, controller):
         self.controller = controller
-        self.script = []
+        self.commands = []
         self.frame_count=0
 
-    def run_script(self, script): 
-        self.script = script 
+    def run_script(self, commands): 
+        self.commands = commands 
 
         while True: 
             print("looping")
             if config.status == "Ending Hunt": 
                 return 
             try: 
-                for action, delay in self.script: 
+                for action, delay in self.commands: 
                     if config.status == "Ending Hunt": 
                         return 
                     current_time = time.time() 
