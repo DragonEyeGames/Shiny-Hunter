@@ -1,7 +1,10 @@
 import threading
 
 pokemon_name=""
+hunting_type=""
+
 game_name=""
+
 start_camera=False
 
 status="Idle"

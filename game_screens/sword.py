@@ -4,9 +4,9 @@ import os
 import config
 
 
-class ShScreen(ctk.CTkFrame):
+class SsScreen(ctk.CTkFrame):
 
-    def __init__(self, parent, back_callback, boot_screen, egg_screen):
+    def __init__(self, parent, back_callback, hunting_screen):
         super().__init__( parent, fg_color="#050c15" )
 
         # Images
@@ -26,13 +26,12 @@ class ShScreen(ctk.CTkFrame):
         self.arctozolt = ctk.CTkImage(light_image=Image.open("pokemon/arctozolt.png"),dark_image=Image.open("pokemon/arctozolt.png"),size=self.size)
         self.dracovish = ctk.CTkImage(light_image=Image.open("pokemon/dracovish.png"),dark_image=Image.open("pokemon/dracovish.png"),size=self.size)
         self.dracozolt = ctk.CTkImage(light_image=Image.open("pokemon/dracozolt.png"),dark_image=Image.open("pokemon/dracozolt.png"),size=self.size)
-        self.egg = ctk.CTkImage(light_image=Image.open("pokemon/egg.png"),dark_image=Image.open("pokemon/egg.png"),size=(36,44))
 
         title_font = ctk.CTkFont(family="Knewave", size=60)
         subtitle_font = ctk.CTkFont(family="Knewave", size=30)
 
         # Title
-        title = ctk.CTkLabel(self,text=" Pokémon Shield ",font=title_font,text_color="#3d9beb")
+        title = ctk.CTkLabel(self,text=" Pokémon Sword ",font=title_font,text_color="#3d9beb")
 
         title.pack(pady=(5, 0))
 
@@ -50,15 +49,15 @@ class ShScreen(ctk.CTkFrame):
 
 
         # Pokemon buttons
-        self.create_pokemon_button(100,160,self.regirock,"Regirock",boot_screen)
-        self.create_pokemon_button(200,160,self.regice,"Regice",boot_screen)
-        self.create_pokemon_button(300,160,self.registeel,"Registeel",boot_screen)
-        self.create_pokemon_button(400,160,self.regigigas,"Regigigas",boot_screen)
-        self.create_pokemon_button(500,160,self.regieleki,"Regieleki",boot_screen)
-        self.create_pokemon_button(600,160,self.regidrago,"Regidrago",boot_screen)
-        self.create_pokemon_button(250,260,self.cobalion,"Cobalion",boot_screen, True)
-        self.create_pokemon_button(350,260,self.terrakion,"Terrakion",boot_screen, True)
-        self.create_pokemon_button(450,260,self.virizion,"Virizion",boot_screen, True)
+        self.create_pokemon_button(100,160,self.regirock,"Regirock",hunting_screen)
+        self.create_pokemon_button(200,160,self.regice,"Regice",hunting_screen)
+        self.create_pokemon_button(300,160,self.registeel,"Registeel",hunting_screen)
+        self.create_pokemon_button(400,160,self.regigigas,"Regigigas",hunting_screen)
+        self.create_pokemon_button(500,160,self.regieleki,"Regieleki",hunting_screen)
+        self.create_pokemon_button(600,160,self.regidrago,"Regidrago",hunting_screen)
+        self.create_pokemon_button(250,260,self.cobalion,"Cobalion",hunting_screen, True)
+        self.create_pokemon_button(350,260,self.terrakion,"Terrakion",hunting_screen, True)
+        self.create_pokemon_button(450,260,self.virizion,"Virizion",hunting_screen, True)
 
         #Masuda selection screen
         self.overworld_button = ctk.CTkButton(self,
@@ -67,7 +66,7 @@ class ShScreen(ctk.CTkFrame):
             fg_color="#5e5e5e", bg_color="#21344a", hover_color="#bfbfbf",
             border_width=3, border_color="black", corner_radius=10,
             font=("Basic", 22),
-            command=lambda: self.start_egg(egg_screen))
+            command=lambda: self.start_overworld(boot_screen))
         self.overworld_button.place(x=295, y=364)
 
 
@@ -81,14 +80,17 @@ class ShScreen(ctk.CTkFrame):
     # Start hunt
     def start_hunt(self, pokemon_name, boot_screen):
 
-        config.game_name = "Shield"
+        config.game_name = "Sword"
+        config.hunting_type="fixed"
         config.pokemon_name = pokemon_name
 
         boot_screen()
 
-    def start_egg(self, egg_screen):
-        config.game_name = "Shield"
-        egg_screen()
+    def start_overworld(self, boot_screen):
+        config.game_name = "Sword"
+        config.hunting_type="overworld"
+        
+        boot_screen()
 
 
     def create_pokemon_button(self, x, y, image, name, boot_screen, disabled=False):

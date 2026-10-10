@@ -3,18 +3,16 @@ from PIL import Image
 import os
 import sys
 
-from screens.sword import SwScreen
-from screens.shield import ShScreen
-from screens.brilliant_diamond import BdScreen
-from screens.shining_pearl import SpScreen
-from screens.fire_red import FrScreen
-from screens.leaf_green import LgScreen
-from screens.lets_go_eevee import LgeScreen
-from screens.lets_go_pikachu import LgpScreen
+from game_screens.sword import SwScreen
+from game_screens.shield import ShScreen
+from game_screens.brilliant_diamond import BdScreen
+from game_screens.shining_pearl import SpScreen
+from game_screens.fire_red import FrScreen
+from game_screens.leaf_green import LgScreen
+from game_screens.lets_go_eevee import LgeScreen
+from game_screens.lets_go_pikachu import LgpScreen
 
-from masuda_hunting import MasudaHunt
-from strong_hunting import StrongHunt
-from capture_card import CaptureCard
+from hunting_screen import HuntingScreen
 from manual_control import ManualControl
 import config
 from save_manager import save_data
@@ -41,15 +39,7 @@ root.configure(bg="black")
 
 def open_capture_screen():
     config.start_camera=True
-    show_normal_hunt()
-
-def open_egg_screen():
-    config.start_camera=True
-    show_egg_hunt()
-
-def open_strong_screen():
-    config.start_camera=True
-    show_strong_hunt()
+    show_hunt()
 
 def close_project():
     root.destroy()
@@ -59,26 +49,11 @@ main_menu.place(x=0, y=0, relwidth=1, relheight=1)
 
 current_screen = None
 
-def show_normal_hunt():
+def show_hunt():
     global current_screen
     if current_screen is not None:
         current_screen.destroy()
-    current_screen = CaptureCard(root, lambda: show_main_menu(), camera_index=0)
-    current_screen.place(x=0, y=0, relwidth=1, relheight=1)
-
-def show_strong_hunt():
-    global current_screen
-    if current_screen is not None:
-        current_screen.destroy()
-    current_screen = StrongHunt(root, lambda: show_main_menu(), camera_index=0)
-    current_screen.place(x=0, y=0, relwidth=1, relheight=1)
-
-def show_egg_hunt():
-    global current_screen
-    if current_screen is not None:
-        current_screen.destroy()
-    #current_screen = MasudaHunt(root, lambda: show_main_menu(), camera_index=0)
-    current_screen = StrongHunt(root, lambda: show_main_menu(), camera_index=0)
+    current_screen = HuntingScreen(root, lambda: show_main_menu(), camera_index=0)
     current_screen.place(x=0, y=0, relwidth=1, relheight=1)
 
 def open_manual_control():
@@ -110,10 +85,10 @@ def show_main_menu():
         current_screen = None
     main_menu.tkraise()
 
-sw = SwScreen(root, show_main_menu, open_capture_screen, open_egg_screen)
+sw = SwScreen(root, show_main_menu, open_capture_screen)
 sw.place(x=0, y=0, relwidth=1, relheight=1)
 
-sh = ShScreen(root, show_main_menu, open_capture_screen, open_egg_screen)
+sh = ShScreen(root, show_main_menu, open_capture_screen)
 sh.place(x=0, y=0, relwidth=1, relheight=1)
 
 bd = BdScreen(root, lambda: main_menu.tkraise(), open_capture_screen)
