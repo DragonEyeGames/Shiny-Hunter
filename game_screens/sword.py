@@ -85,12 +85,12 @@ class SwScreen(ctk.CTkFrame):
         label=ctk.CTkLabel(self.popup_button, font=("Basic", 24), text="Pokemon Name")
         label.place(x=120, y=70)
         input_field = ctk.CTkEntry(self.popup_button, placeholder_text="Input Name...", width=135, height=40)
-        input_field.place(x=130, y=100)
+        input_field.place(x=130, y=105)
 
         start_button = ctk.CTkButton(self.popup_button,text="Calibrate + Start",font=("Basic",25),width=100,height=40,fg_color="#1fa323",hover_color="#1d8a21",border_color="black",border_width=3, corner_radius=10)
         start_button.place(x=100, y=190)
 
-        cancel_button = ctk.CTkButton(self,text="Back",font=("Basic",25),width=100,height=40,fg_color="#C0392B",hover_color="#96281B",border_color="black",border_width=3, corner_radius=10)
+        cancel_button = ctk.CTkButton(self.popup_button,text="Cancel",font=("Basic",25),width=100,height=40,fg_color="#C0392B",hover_color="#96281B",border_color="black",border_width=3, corner_radius=10)
         cancel_button.place(x=100, y=250)
         
 
