@@ -114,7 +114,13 @@ class CalibrationScreen(ctk.CTkFrame):
         
     def bootup_hunting(self):
         self.remove_controller()
-        self.stop_camera()
+        if self.camera_started:
+            with config.cap_lock:
+                if config.cap:
+                    config.cap.release()
+                config.cap = None
+            self.camera_started = False
+            config.start_camera = False
         self.open_hunt_screen()
 
     def remove_controller(self):

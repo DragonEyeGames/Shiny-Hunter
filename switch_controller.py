@@ -207,3 +207,4 @@ class SwitchController:
             self.nx.remove_controller(self.controller_index)
             self.connected = False
             self.controller_index = None
+            print("Stopped controller")
