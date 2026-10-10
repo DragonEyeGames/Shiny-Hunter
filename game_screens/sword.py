@@ -79,16 +79,16 @@ class SwScreen(ctk.CTkFrame):
 
         self.popup_button = ctk.CTkFrame(self, fg_color="#2b5382", border_width=5, corner_radius=10, border_color="black", width=400, height=300)
         self.popup_button.pack_propagate(False)
-        label=ctk.CTkLabel(self.popup_button, text="Overworld Encounter Initialization", font=("Basic", 35))
+        label=ctk.CTkLabel(self.popup_button, text="Overworld Encounter", font=("Basic", 35))
         label.pack(pady=10)
 
         label=ctk.CTkLabel(self.popup_button, font=("Basic", 24), text="Pokemon Name")
-        label.place(x=210, y=60)
+        label.place(x=160, y=70)
         input_field = ctk.CTkEntry(self.popup_button, placeholder_text="Input Name...", width=135, height=40)
-        input_field.place(x=200, y=90)
+        input_field.place(x=150, y=100)
 
         start_button = ctk.CTkButton(self.popup_button,text="Calibrate + Start",font=("Basic",25),width=100,height=40,fg_color="#1fa323",hover_color="#1d8a21",border_color="black",border_width=3,command=back_callback, corner_radius=10)
-        start_button.place(x=150, y=200)
+        start_button.place(x=100, y=200)
 
         
 
