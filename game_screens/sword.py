@@ -84,12 +84,12 @@ class SwScreen(ctk.CTkFrame):
 
         label=ctk.CTkLabel(self.popup_button, font=("Basic", 18), text="Pokemon Name")
         label.place(x=20, y=55)
-        input_field = ctk.CTkEntry(popup_button, placeholder_text="Input Name...", width=100, height=40)
+        input_field = ctk.CTkEntry(self.popup_button, placeholder_text="Input Name...", width=100, height=40)
         input_field.place(x=10, y=150)
 
         label=ctk.CTkLabel(self.popup_button, font=("Basic", 18), text="Wait Time")
         label.place(x=300, y=55)
-        input_field = ctk.CTkEntry(popup_button, placeholder_text="Time (s)...", width=100, height=40)
+        input_field = ctk.CTkEntry(self.popup_button, placeholder_text="Time (s)...", width=100, height=40)
         input_field.place(x=300, y=150)
 
     # Start hunt
