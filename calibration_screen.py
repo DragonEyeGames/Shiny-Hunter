@@ -58,7 +58,7 @@ class CalibrationScreen(ctk.CTkFrame):
 
         self.popup_label_2=ctk.CTkLabel(self, fg_color="#5e5e5e", bg_color="#5e5e5e", anchor="w", width=290, text_color="white", font=("Basic", 25), text=f"Click Run to start hunting!")
         
-        self.popup_button = ctk.CTkButton(self, text="Run", command=self.open_hunt_screen, bg_color="#5e5e5e", font=("Basic", 25), width=130, height=50, corner_radius=10, border_width=3, border_color="black", fg_color="#1fa323",hover_color="#1d8a21")
+        self.popup_button = ctk.CTkButton(self, text="Run", command=self.bootup_hunting, bg_color="#5e5e5e", font=("Basic", 25), width=130, height=50, corner_radius=10, border_width=3, border_color="black", fg_color="#1fa323",hover_color="#1d8a21")
 
         self.label.lift()
         self.update_frame()
@@ -101,6 +101,7 @@ class CalibrationScreen(ctk.CTkFrame):
                 config.status=f"Calibrated at {rounded} Seconds" 
                 rounded = rounded-.3
                 hunting.sw_sh_overworld.commands[0] = ("wait", rounded)
+                print(hunting.sw_sh_overworld.commands)
                 time.sleep(.5)
                 self.open_popup()
 
@@ -110,7 +111,11 @@ class CalibrationScreen(ctk.CTkFrame):
         self.popup_button.place(x=450, y=280)
         self.popup_label_2.place(x=340, y=240)
         self.popup_label.place(x=340, y=210)
+        
+    def bootup_hunting():
         self.remove_controller()
+        self.stop_camera()
+        self.open_hunt_screen()
 
     def remove_controller(self):
         self.controller.disconnect()
