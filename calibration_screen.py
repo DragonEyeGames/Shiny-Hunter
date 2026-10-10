@@ -77,10 +77,15 @@ class CalibrationScreen(ctk.CTkFrame):
 
             hunting_manager.trigger_soft_reset()
 
+            time.sleep(3)
+
             detected, ratio, elapsed = hunting_manager.wait_for_white_flash(config.roi, timeout=60, brightness_threshold=230, white_percentage=.95)
 
+            elapsed+=3
+
             if(detected):
-                config.status=f"Calibrated: {elapsed} Seconds" 
+                rounded = round(elapsed, 1)
+                config.status=f"Calibrated: {rounded} Seconds" 
 
          threading.Thread(target=run, daemon=True).start()
 
