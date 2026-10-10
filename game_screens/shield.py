@@ -43,9 +43,9 @@ class ShScreen(ctk.CTkFrame):
 
 
         # Outline box
-        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=508,height=257,corner_radius=15, border_width=5, border_color="black")
+        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=608,height=257,corner_radius=15, border_width=5, border_color="black")
 
-        self.color_box.place(x=146,y=156)
+        self.color_box.place(x=96,y=156)
 
 
         # Pokemon buttons
@@ -66,7 +66,7 @@ class ShScreen(ctk.CTkFrame):
             fg_color="#5e5e5e", bg_color="#21344a", hover_color="#bfbfbf",
             border_width=3, border_color="black", corner_radius=10,
             font=("Basic", 22),
-            command=lambda: self.start_overworld(boot_screen))
+            command=lambda: self.start_overworld(hunting_screen))
         self.overworld_button.place(x=295, y=364)
 
 
@@ -89,7 +89,7 @@ class ShScreen(ctk.CTkFrame):
     def start_overworld(self, boot_screen):
         config.game_name = "Shield"
         config.hunting_type="overworld"
-        
+
         boot_screen()
 
 

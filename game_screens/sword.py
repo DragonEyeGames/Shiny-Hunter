@@ -43,9 +43,9 @@ class SwScreen(ctk.CTkFrame):
 
 
         # Outline box
-        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=508,height=257,corner_radius=15, border_width=5, border_color="black")
+        self.color_box = ctk.CTkFrame(self,fg_color="#21344a",width=608,height=257,corner_radius=15, border_width=5, border_color="black")
 
-        self.color_box.place(x=146,y=156)
+        self.color_box.place(x=96,y=156)
 
 
         # Pokemon buttons
@@ -59,14 +59,14 @@ class SwScreen(ctk.CTkFrame):
         self.create_pokemon_button(350,260,self.terrakion,"Terrakion",hunting_screen, True)
         self.create_pokemon_button(450,260,self.virizion,"Virizion",hunting_screen, True)
 
-        #Masuda selection screen
+        #Overworld selection screen
         self.overworld_button = ctk.CTkButton(self,
             text="Overworld Encounter",
             width=180, height=40,
             fg_color="#5e5e5e", bg_color="#21344a", hover_color="#bfbfbf",
             border_width=3, border_color="black", corner_radius=10,
             font=("Basic", 22),
-            command=lambda: self.start_overworld(boot_screen))
+            command=lambda: self.start_overworld(hunting_screen))
         self.overworld_button.place(x=295, y=364)
 
 
@@ -75,7 +75,9 @@ class SwScreen(ctk.CTkFrame):
 
         back_button.place(x=350,y=430)
 
-
+        popup_button = ctk.CtkFrame(self, fg_color="black", border_width=2, border_color="white", width=100, height=100)
+        label=ctk.CtkLabel(popup_button, text="Howdy Hey", bg="blue")
+        label.pack(pady=10)
 
     # Start hunt
     def start_hunt(self, pokemon_name, boot_screen):
@@ -89,8 +91,8 @@ class SwScreen(ctk.CTkFrame):
     def start_overworld(self, boot_screen):
         config.game_name = "Sword"
         config.hunting_type="overworld"
-        
-        boot_screen()
+        self.popup_button.place(x=100, y=100)
+        # boot_screen()
 
 
     def create_pokemon_button(self, x, y, image, name, boot_screen, disabled=False):
