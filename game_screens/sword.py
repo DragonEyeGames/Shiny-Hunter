@@ -84,13 +84,19 @@ class SwScreen(ctk.CTkFrame):
 
         label=ctk.CTkLabel(self.popup_button, font=("Basic", 18), text="Pokemon Name")
         label.place(x=20, y=55)
-        input_field = ctk.CTkEntry(self.popup_button, placeholder_text="Input Name...", width=125, height=40)
-        input_field.place(x=10, y=70)
+        input_field = ctk.CTkEntry(self.popup_button, placeholder_text="Input Name...", width=135, height=40)
+        input_field.place(x=10, y=85)
 
         label=ctk.CTkLabel(self.popup_button, font=("Basic", 18), text="Wait Time")
-        label.place(x=270, y=55)
+        label.place(x=290, y=55)
         input_field = ctk.CTkEntry(self.popup_button, placeholder_text="Time (s)...", width=125, height=40)
-        input_field.place(x=260, y=70)
+        input_field.place(x=260, y=85)
+
+        label=ctk.CTkLabel(self.popup_button, font=("Basic", 12), text="Or")
+        label.place(x=290, y=105)
+
+        label=ctk.CTkLabel(self.popup_button, font=("Basic", 18), text="Calibrate Timings")
+        label.place(x=290, y=155)
 
     # Start hunt
     def start_hunt(self, pokemon_name, boot_screen):
