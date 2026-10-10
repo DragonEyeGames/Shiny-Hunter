@@ -93,7 +93,7 @@ class SwScreen(ctk.CTkFrame):
         start_button.place(x=140, y=190)
 
         cancel_button = ctk.CTkButton(self.popup_button,text="Cancel",font=("Basic",25),width=100,height=40,fg_color="#C0392B",hover_color="#96281B",border_color="black",border_width=3, corner_radius=10, command=self.cancel_overworld)
-        cancel_button.place(x=150, y=250)
+        cancel_button.place(x=150, y=240)
         
 
     # Start hunt

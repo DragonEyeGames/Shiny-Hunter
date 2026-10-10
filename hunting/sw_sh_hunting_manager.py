@@ -253,9 +253,6 @@ class HuntingManager:
         while time.time() - start_time < timeout:
             if(cap==None):
                 continue
-            self.frame_count+=1
-            if self.frame_count % 2 != 0:
-                continue #Skipping every other frame to save resources
             
             ret, frame = False, None
 

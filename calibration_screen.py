@@ -43,25 +43,13 @@ class CalibrationScreen(ctk.CTkFrame):
 
         title_font = ctk.CTkFont(family="Knewave", size=55)
 
-        self.hunting = ctk.CTkLabel(self, text_color="#3d9beb", font=title_font, text=f" Calibrating {config.pokemon_name} in {config.game_name} ")
+        self.hunting = ctk.CTkLabel(self, text_color="#3d9beb", font=title_font, text=f" Calibrating {config.pokemon_name} ")
         self.hunting.pack(pady=25)
 
         config.status="Idle"
 
         self.status_label = ctk.CTkLabel(self, fg_color="#5e5e5e", bg_color="#5e5e5e", anchor="w", width=290, text_color="white", font=("Basic", 29), text=f"Status: {config.status} ")
         self.status_label.place(x=340, y=170)
-
-        self.resets_label = ctk.CTkLabel(self, fg_color="#5e5e5e", bg_color="#5e5e5e", anchor="w", width=290, text_color="white", font=("Basic", 25), text=f"Resets: {config.resets} ")
-        self.resets_label.place(x=340, y=208)
-
-        self.spent_label = ctk.CTkLabel(self, fg_color="#5e5e5e", bg_color="#5e5e5e", anchor="w", width=290, text_color="white", font=("Basic", 20), text=f"Time Spent: {self.convert_seconds(int(config.time_spent))} " )
-        self.spent_label.place(x=340, y=240)
-
-        self.time_label = ctk.CTkLabel(self, fg_color="#5e5e5e", bg_color="#5e5e5e", anchor="w", width=290, text_color="white", font=("Basic", 20), text=f"Last Reset Time: {config.last_reset_time:.3f} ")
-        self.time_label.place(x=340, y=270)
-
-        self.reset_time_label = ctk.CTkLabel(self, fg_color="#5e5e5e", bg_color="#5e5e5e", anchor="w", width=290, text_color="white", font=("Basic", 20), text="Average Time/Reset: Loading ")
-        self.reset_time_label.place(x=340, y=300)
 
         self.label.lift()
         self.update_frame()
@@ -73,12 +61,11 @@ class CalibrationScreen(ctk.CTkFrame):
             self.controller = SwitchController()
             self.controller.connect()
             self.start_time = time.time()
-            config.status="Going to Menu"
             self.controller.press_home()
             time.sleep(1.5)
             self.controller.press_a()
             time.sleep(1.5)
-            config.status="Resetting Game"
+            config.status="Initializing Calibration"
 
             hm = None
             if(config.game_name=="Sword" or config.game_name=="Shield"):
@@ -89,6 +76,11 @@ class CalibrationScreen(ctk.CTkFrame):
             hunting_manager = hm.HuntingManager(self.controller)
 
             hunting_manager.trigger_soft_reset()
+
+            detected, ratio, elapsed = hunting_manager.wait_for_white_flash(config.full, timeout=60, brightness_threshold=230, white_percentage=.95)
+
+            if(detected):
+                config.status=f"Calibrated: {elapsed} Seconds" 
 
          threading.Thread(target=run, daemon=True).start()
 
@@ -132,12 +124,8 @@ class CalibrationScreen(ctk.CTkFrame):
             self.start_time=time.time()
 
         #Where we update all of the displays
-        self.hunting.configure(text=f"Calibrating {config.pokemon_name} in {config.game_name} ")
-        self.resets_label.configure(text=f"Resets: {config.resets} ")
+        self.hunting.configure(text=f"Calibrating {config.pokemon_name} ")
         self.status_label.configure(text=f"Status: {config.status} ")
-        self.spent_label.configure(text=f"Time Spent: {self.convert_seconds(int(config.time_spent))} ")
-        self.time_label.configure(text=f"Last Reset Time: {config.last_reset_time:.3f} ")
-
 
         if(config.resets!=0):
             self.reset_time_label.configure(text=f"Average Time/Reset: {(config.time_spent-config.current_reset_time)/config.resets:.3f}")
