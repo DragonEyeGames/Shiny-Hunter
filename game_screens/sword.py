@@ -75,8 +75,8 @@ class SwScreen(ctk.CTkFrame):
 
         back_button.place(x=350,y=430)
 
-        popup_button = ctk.CtkFrame(self, fg_color="black", border_width=2, border_color="white", width=100, height=100)
-        label=ctk.CtkLabel(popup_button, text="Howdy Hey", bg="blue")
+        popup_button = ctk.CTkFrame(self, fg_color="black", border_width=2, border_color="white", width=100, height=100)
+        label=ctk.CTkLabel(popup_button, text="Howdy Hey", bg="blue")
         label.pack(pady=10)
 
     # Start hunt
