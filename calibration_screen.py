@@ -113,14 +113,14 @@ class CalibrationScreen(ctk.CTkFrame):
         self.popup_label.place(x=340, y=210)
         
     def bootup_hunting(self):
-        self.remove_controller()
+        #self.remove_controller()
         if self.camera_started:
             with config.cap_lock:
                 if config.cap:
                     config.cap.release()
                 config.cap = None
             self.camera_started = False
-        self.open_hunt_screen()
+        self.open_hunt_screen(self.controller)
 
     def remove_controller(self):
         self.controller.disconnect()

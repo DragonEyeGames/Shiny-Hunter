@@ -25,10 +25,10 @@ from hunting.sw_sh_overworld import commands as overworld_hunt
 from save_manager import save_data, load_data
 
 class HuntingScreen(ctk.CTkFrame):
-    def __init__(self, parent, back_callback, camera_index=0):
+    def __init__(self, parent, back_callback, camera_index=0, controller=None):
         super().__init__(parent, fg_color="#050c15")
         self.callback=back_callback
-
+        self.controller=controller
         self.frame_count = 0
         self.camera_started=False
 
@@ -106,8 +106,9 @@ class HuntingScreen(ctk.CTkFrame):
     def start_controller(self):
          def run():
             config.status="Pairing with Switch"
-            self.controller = SwitchController()
-            self.controller.connect()
+            if(self.controller=None):
+                self.controller = SwitchController()
+                self.controller.connect()
             self.start_time = time.time()
             config.status="Initializing Hunt"
             hm = None

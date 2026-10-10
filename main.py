@@ -55,11 +55,11 @@ main_menu.place(x=0, y=0, relwidth=1, relheight=1)
 
 current_screen = None
 
-def show_hunt():
+def show_hunt(controller=None):
     global current_screen
     if current_screen is not None:
         current_screen.destroy()
-    current_screen = HuntingScreen(root, lambda: show_main_menu(), camera_index=0)
+    current_screen = HuntingScreen(root, lambda: show_main_menu(), camera_index=0, controller=controller)
     current_screen.place(x=0, y=0, relwidth=1, relheight=1)
 
 def show_calibrate():
