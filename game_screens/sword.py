@@ -27,6 +27,8 @@ class SwScreen(ctk.CTkFrame):
         self.dracovish = ctk.CTkImage(light_image=Image.open("pokemon/dracovish.png"),dark_image=Image.open("pokemon/dracovish.png"),size=self.size)
         self.dracozolt = ctk.CTkImage(light_image=Image.open("pokemon/dracozolt.png"),dark_image=Image.open("pokemon/dracozolt.png"),size=self.size)
 
+        self.popup_visible=False
+
         title_font = ctk.CTkFont(family="Knewave", size=60)
         subtitle_font = ctk.CTkFont(family="Knewave", size=30)
 
@@ -75,12 +77,17 @@ class SwScreen(ctk.CTkFrame):
 
         back_button.place(x=350,y=430)
 
-        self.popup_button = ctk.CTkFrame(self, fg_color="black", border_width=2, border_color="white", width=100, height=100)
-        label=ctk.CTkLabel(self.popup_button, text="Howdy Hey", fg_color="blue")
+        self.popup_button = ctk.CTkFrame(self, fg_color="#2b5382", border_width=2, border_color="black", width=400, height=300)
+        label=ctk.CTkLabel(self.popup_button, text="Overworld Encounter Initialization")
         label.pack(pady=10)
+        label=ctk.CTkLabel(self.popup_button, text="Type in the Pokemon Name")
+        label.place(x=220, y=175)
 
     # Start hunt
     def start_hunt(self, pokemon_name, boot_screen):
+
+        if(self.popup_visible):
+            return
 
         config.game_name = "Sword"
         config.hunting_type="fixed"
@@ -89,9 +96,14 @@ class SwScreen(ctk.CTkFrame):
         boot_screen()
 
     def start_overworld(self, boot_screen):
+
+        if(self.popup_visible):
+            return
+        
         config.game_name = "Sword"
         config.hunting_type="overworld"
-        self.popup_button.place(x=100, y=100)
+        self.popup_visible=True
+        self.popup_button.place(x=200, y=150)
         # boot_screen()
 
 
