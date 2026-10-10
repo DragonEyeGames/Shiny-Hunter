@@ -89,8 +89,8 @@ class SwScreen(ctk.CTkFrame):
         self.input_field = ctk.CTkEntry(self.popup_button, placeholder_text="Input Name...", width=135, height=40)
         self.input_field.place(x=130, y=105)
 
-        start_button = ctk.CTkButton(self.popup_button,text="Calibrate",font=("Basic",25),width=100,height=40,fg_color="#1fa323",hover_color="#1d8a21",border_color="black",border_width=3, corner_radius=10, command=self.calibrate_overworld)
-        start_button.place(x=100, y=190)
+        start_button = ctk.CTkButton(self.popup_button,text="Calibrate",font=("Basic",25),width=120,height=40,fg_color="#1fa323",hover_color="#1d8a21",border_color="black",border_width=3, corner_radius=10, command=self.calibrate_overworld)
+        start_button.place(x=140, y=190)
 
         cancel_button = ctk.CTkButton(self.popup_button,text="Cancel",font=("Basic",25),width=100,height=40,fg_color="#C0392B",hover_color="#96281B",border_color="black",border_width=3, corner_radius=10, command=self.cancel_overworld)
         cancel_button.place(x=150, y=250)
@@ -133,7 +133,7 @@ class SwScreen(ctk.CTkFrame):
         if(not self.popup_visible):
             return
 
-        config.pokemon_name = input_field.get()
+        config.pokemon_name = self.input_field.get()
 
         self.calibrate()
 
