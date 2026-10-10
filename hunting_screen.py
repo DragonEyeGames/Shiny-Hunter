@@ -22,7 +22,7 @@ import hunting.sw_sh_hunting_manager as sw_sh_hm
 
 from save_manager import save_data, load_data
 
-class CaptureCard(ctk.CTkFrame):
+class HuntingScreen(ctk.CTkFrame):
     def __init__(self, parent, back_callback, camera_index=0):
         super().__init__(parent, fg_color="#050c15")
         self.callback=back_callback
