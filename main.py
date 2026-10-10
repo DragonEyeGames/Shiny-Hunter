@@ -13,6 +13,8 @@ from game_screens.lets_go_eevee import LgeScreen
 from game_screens.lets_go_pikachu import LgpScreen
 
 from hunting_screen import HuntingScreen
+from calibration_screen import CalibrationScreen
+
 from manual_control import ManualControl
 import config
 from save_manager import save_data
@@ -41,6 +43,10 @@ def open_capture_screen():
     config.start_camera=True
     show_hunt()
 
+def open_calibrate_screen():
+    config.start_camera=True
+    show_calibrate()
+
 def close_project():
     root.destroy()
 
@@ -54,6 +60,13 @@ def show_hunt():
     if current_screen is not None:
         current_screen.destroy()
     current_screen = HuntingScreen(root, lambda: show_main_menu(), camera_index=0)
+    current_screen.place(x=0, y=0, relwidth=1, relheight=1)
+
+def show_calibrate():
+    global current_screen
+    if current_screen is not None:
+        current_screen.destroy()
+    current_screen = CalibrationScreen(root, lambda: show_main_menu(), camera_index=0)
     current_screen.place(x=0, y=0, relwidth=1, relheight=1)
 
 def open_manual_control():
@@ -85,7 +98,7 @@ def show_main_menu():
         current_screen = None
     main_menu.tkraise()
 
-sw = SwScreen(root, show_main_menu, open_capture_screen)
+sw = SwScreen(root, show_main_menu, open_capture_screen, open_calibrate_screen)
 sw.place(x=0, y=0, relwidth=1, relheight=1)
 
 sh = ShScreen(root, show_main_menu, open_capture_screen)

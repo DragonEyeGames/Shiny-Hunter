@@ -6,8 +6,10 @@ import config
 
 class SwScreen(ctk.CTkFrame):
 
-    def __init__(self, parent, back_callback, hunting_screen):
+    def __init__(self, parent, back_callback, hunting_screen, calibrate_callback):
         super().__init__( parent, fg_color="#050c15" )
+
+        self.calibrate=calibrate_callback
 
         # Images
 
@@ -84,10 +86,10 @@ class SwScreen(ctk.CTkFrame):
 
         label=ctk.CTkLabel(self.popup_button, font=("Basic", 24), text="Pokemon Name")
         label.place(x=120, y=70)
-        input_field = ctk.CTkEntry(self.popup_button, placeholder_text="Input Name...", width=135, height=40)
-        input_field.place(x=130, y=105)
+        self.input_field = ctk.CTkEntry(self.popup_button, placeholder_text="Input Name...", width=135, height=40)
+        self.input_field.place(x=130, y=105)
 
-        start_button = ctk.CTkButton(self.popup_button,text="Calibrate + Start",font=("Basic",25),width=100,height=40,fg_color="#1fa323",hover_color="#1d8a21",border_color="black",border_width=3, corner_radius=10)
+        start_button = ctk.CTkButton(self.popup_button,text="Calibrate",font=("Basic",25),width=100,height=40,fg_color="#1fa323",hover_color="#1d8a21",border_color="black",border_width=3, corner_radius=10, command=self.calibrate_overworld)
         start_button.place(x=100, y=190)
 
         cancel_button = ctk.CTkButton(self.popup_button,text="Cancel",font=("Basic",25),width=100,height=40,fg_color="#C0392B",hover_color="#96281B",border_color="black",border_width=3, corner_radius=10, command=self.cancel_overworld)
@@ -106,6 +108,7 @@ class SwScreen(ctk.CTkFrame):
 
         boot_screen()
 
+
     def start_overworld(self, boot_screen):
 
         if(self.popup_visible):
@@ -123,6 +126,16 @@ class SwScreen(ctk.CTkFrame):
         
         self.popup_button.place_forget()
         self.popup_visible=False
+
+
+    def calibrate_overworld(self):
+
+        if(not self.popup_visible):
+            return
+
+        config.pokemon_name = input_field.get()
+
+        self.calibrate()
 
 
     def create_pokemon_button(self, x, y, image, name, boot_screen, disabled=False):
