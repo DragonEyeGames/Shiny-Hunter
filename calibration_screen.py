@@ -77,7 +77,7 @@ class CalibrationScreen(ctk.CTkFrame):
 
             hunting_manager.trigger_soft_reset()
 
-            detected, ratio, elapsed = hunting_manager.wait_for_white_flash(config.full, timeout=60, brightness_threshold=230, white_percentage=.95)
+            detected, ratio, elapsed = hunting_manager.wait_for_white_flash(config.roi, timeout=60, brightness_threshold=230, white_percentage=.95)
 
             if(detected):
                 config.status=f"Calibrated: {elapsed} Seconds" 
