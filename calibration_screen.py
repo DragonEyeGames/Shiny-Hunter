@@ -88,19 +88,19 @@ class CalibrationScreen(ctk.CTkFrame):
 
             config.status = "Skipping Screen..."
 
-            time.sleep(3)
+            time.sleep(4)
 
             config.status = "Waiting for Pokemon"
 
             detected, ratio, elapsed = hunting_manager.wait_for_white_flash(config.roi, timeout=60, brightness_threshold=230, white_percentage=.95)
 
-            elapsed+=3
+            elapsed+=4
 
             if(detected):
                 rounded = round(elapsed, 1)
                 config.status=f"Calibrated at {rounded} Seconds" 
                 rounded = rounded-.3
-                sw_sh_overworld.commands[0] = ("wait", rounded)
+                hunting.sw_sh_overworld.commands[0] = ("wait", rounded)
                 time.sleep(.5)
                 self.open_popup()
 
