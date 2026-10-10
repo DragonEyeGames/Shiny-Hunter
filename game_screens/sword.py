@@ -77,12 +77,12 @@ class SwScreen(ctk.CTkFrame):
 
         back_button.place(x=350,y=430)
 
-        self.popup_button = ctk.CTkFrame(self, fg_color="#2b5382", border_width=2, border_color="black", width=400, height=300)
+        self.popup_button = ctk.CTkFrame(self, fg_color="#2b5382", border_width=5, corner_radius=10, border_color="black", width=400, height=300)
         self.popup_button.pack_propagate(False)
-        label=ctk.CTkLabel(self.popup_button, text="Overworld Encounter Initialization")
+        label=ctk.CTkLabel(self.popup_button, text="Overworld Encounter Initialization", font=("Basic", 25))
         label.pack(pady=10)
-        label=ctk.CTkLabel(self.popup_button, text="Type in the Pokemon Name")
-        label.place(x=220, y=175)
+        label=ctk.CTkLabel(self.popup_button, font=("Basic", 18), text="Type in the Pokemon Name")
+        label.place(x=10, y=25)
 
     # Start hunt
     def start_hunt(self, pokemon_name, boot_screen):
