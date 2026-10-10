@@ -4,7 +4,7 @@ import os
 import config
 
 
-class SsScreen(ctk.CTkFrame):
+class SwScreen(ctk.CTkFrame):
 
     def __init__(self, parent, back_callback, hunting_screen):
         super().__init__( parent, fg_color="#050c15" )
