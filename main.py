@@ -201,7 +201,7 @@ selected_fire_red = ctk.CTkImage(light_image=Image.open("logos/selected_fire_red
 leaf_green = ctk.CTkImage(light_image=Image.open("logos/leaf_green.png"),dark_image=Image.open("logos/leaf_green.png"),size=(100,100))
 selected_leaf_green = ctk.CTkImage(light_image=Image.open("logos/selected_leaf_green.png"),dark_image=Image.open("logos/selected_leaf_green.png"),size=(100,100))
 
-settings_cog = ctk.CTkImage(light_image=Image.open("icons/settings_cog.png"),dark_image=Image.open("icons/settings_cog.png"),size=(64,64))
+settings_cog = ctk.CTkImage(light_image=Image.open("icons/cog.png"),dark_image=Image.open("icons/cog.png"),size=(64,64))
 
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
