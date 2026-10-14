@@ -235,7 +235,7 @@ subtitle = ctk.CTkLabel(
 )
 
 settings = ctk.CTkButton(
-    main_menu, width=64, height=64, image=settings_cog
+    main_menu, width=64, height=64, image=settings_cog, text="", fg_color="#050c15"
 )
 settings.place(x=700, y=24)
 
