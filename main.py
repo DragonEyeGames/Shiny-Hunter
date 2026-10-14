@@ -201,6 +201,8 @@ selected_fire_red = ctk.CTkImage(light_image=Image.open("logos/selected_fire_red
 leaf_green = ctk.CTkImage(light_image=Image.open("logos/leaf_green.png"),dark_image=Image.open("logos/leaf_green.png"),size=(100,100))
 selected_leaf_green = ctk.CTkImage(light_image=Image.open("logos/selected_leaf_green.png"),dark_image=Image.open("logos/selected_leaf_green.png"),size=(100,100))
 
+settings_cog = ctk.CTkImage(light_image=Image.open("icons/settings_cog.png"),dark_image=Image.open("icons/settings_cog.png"),size=(64,64))
+
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -231,6 +233,11 @@ subtitle = ctk.CTkLabel(
     text="Select a Game",
     font=subtitle_font
 )
+
+settings = ctk.CTkButton(
+    main_menu, width=64, height=64, image=settings_cog
+)
+settings.place(x=700, y=24)
 
 subtitle.pack()
 
