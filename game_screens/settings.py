@@ -28,5 +28,5 @@ class SettingsScreen(ctk.CTkFrame):
 
         back_button.place(x=350,y=430)
 
-        self.input_field = ctk.CTkEntry(self.popup_button, placeholder_text="Input Discord Webhook URL...", width=600, height=40)
+        self.input_field = ctk.CTkEntry(self, placeholder_text="Input Discord Webhook URL...", width=600, height=40)
         self.input_field.place(x=100,y=200)
