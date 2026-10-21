@@ -11,6 +11,7 @@ from game_screens.fire_red import FrScreen
 from game_screens.leaf_green import LgScreen
 from game_screens.lets_go_eevee import LgeScreen
 from game_screens.lets_go_pikachu import LgpScreen
+from game_screen.settings import SettingsScreen
 
 from hunting_screen import HuntingScreen
 from calibration_screen import CalibrationScreen
@@ -122,6 +123,8 @@ lge = LgeScreen(root, lambda: main_menu.tkraise())
 lgp = LgpScreen(root, lambda: main_menu.tkraise())
 #lgp.place(x=0, y=0, relwidth=1, relheight=1)
 
+settings_screen = SettingsScreen(root, lambda: main_menu.tkraise())
+
 main_menu.tkraise()
 
 #Button scripts
@@ -149,6 +152,9 @@ def on_click_fire_red():
 
 def on_click_leaf_green():
     lg.tkraise()
+
+def on_click_settings():
+    settings_screen.tkraise()
 
 #Button helper function
 def create_game_button(parent, x, y, image, hover_image, command):
@@ -235,9 +241,9 @@ subtitle = ctk.CTkLabel(
 )
 
 settings = ctk.CTkButton(
-    main_menu, width=64, height=64, image=settings_cog, text="", fg_color="#050c15"
+    main_menu, width=64, height=64, image=settings_cog, text="", fg_color="#050c15", command=on_click_settings
 )
-settings.place(x=700, y=24)
+settings.place(x=690, y=14)
 
 subtitle.pack()
 
