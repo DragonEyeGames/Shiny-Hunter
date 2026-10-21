@@ -11,6 +11,7 @@ class SettingsScreen(ctk.CTkFrame):
 
         title_font = ctk.CTkFont(family="Knewave", size=60)
         subtitle_font = ctk.CTkFont(family="Knewave", size=30)
+        instruction_font = ctk.CTkFont(family="Basic", size=22)
 
         # Title
         title = ctk.CTkLabel(self,text=" Settings ",font=title_font,text_color="#3d9beb")
@@ -28,14 +29,18 @@ class SettingsScreen(ctk.CTkFrame):
 
         back_button.place(x=350,y=430)
 
-        shiny_prompt = ctk.CTkLabel(self, text="Input the URL for you Shiny Discord Webhook")
-        shiny_prompt.place(x=100, y=180)
+        shiny_prompt = ctk.CTkLabel(self, text="Input the URL for you Shiny Discord Webhook", font=instruction_font)
+        shiny_prompt.place(x=100, y=175)
 
         self.shiny_field = ctk.CTkEntry(self, placeholder_text="Input Discord Webhook URL...", width=600, height=40)
-        self.shiny_field.place(x=100,y=220)
+        self.shiny_field.place(x=100,y=210)
 
-        normal_prompt = ctk.CTkLabel(self, text="Input the URL for you Non-Shiny Discord Webhook")
-        normal_prompt.place(x=100, y=280)
+        normal_prompt = ctk.CTkLabel(self, text="Input the URL for you Non-Shiny Discord Webhook", font=instruction_font)
+        normal_prompt.place(x=100, y=275)
 
         self.normal_field = ctk.CTkEntry(self, placeholder_text="Input Discord Webhook URL...", width=600, height=40)
-        self.normal_field.place(x=100,y=320)
+        self.normal_field.place(x=100,y=310)
+
+        test_button = ctk.CTkButton(self,text="Test",font=("Basic",25),width=100,height=40,fg_color="#1fa323",hover_color="#1d8a21",border_color="black",border_width=3,command=back_callback, corner_radius=10)
+
+        test_button.place(x=350,y=370)
