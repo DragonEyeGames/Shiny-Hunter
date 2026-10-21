@@ -11,7 +11,7 @@ from game_screens.fire_red import FrScreen
 from game_screens.leaf_green import LgScreen
 from game_screens.lets_go_eevee import LgeScreen
 from game_screens.lets_go_pikachu import LgpScreen
-from game_screen.settings import SettingsScreen
+from game_screens.settings import SettingsScreen
 
 from hunting_screen import HuntingScreen
 from calibration_screen import CalibrationScreen
