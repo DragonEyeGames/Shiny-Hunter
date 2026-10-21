@@ -27,3 +27,6 @@ class SettingsScreen(ctk.CTkFrame):
         back_button = ctk.CTkButton(self,text="Back",font=("Basic",25),width=100,height=40,fg_color="#C0392B",hover_color="#96281B",border_color="black",border_width=3,command=back_callback, corner_radius=10)
 
         back_button.place(x=350,y=430)
+
+        self.input_field = ctk.CTkEntry(self.popup_button, placeholder_text="Input Discord Webhook URL...", width=600, height=40)
+        self.input_field.place(x=100,y=200)
