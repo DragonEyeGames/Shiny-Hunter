@@ -28,5 +28,14 @@ class SettingsScreen(ctk.CTkFrame):
 
         back_button.place(x=350,y=430)
 
-        self.input_field = ctk.CTkEntry(self, placeholder_text="Input Discord Webhook URL...", width=600, height=40)
-        self.input_field.place(x=100,y=200)
+        shiny_prompt = ctk.CtkLabel(self, text="Input the URL for you Shiny Discord Webhook")
+        shiny_prompt.place(x=100, y=180)
+
+        self.shiny_field = ctk.CTkEntry(self, placeholder_text="Input Discord Webhook URL...", width=600, height=40)
+        self.shiny_field.place(x=100,y=220)
+
+        normal_prompt = ctk.CtkLabel(self, text="Input the URL for you Non-Shiny Discord Webhook")
+        normal_prompt.place(x=100, y=280)
+
+        self.normal_field = ctk.CTkEntry(self, placeholder_text="Input Discord Webhook URL...", width=600, height=40)
+        self.normal_field.place(x=100,y=320)
