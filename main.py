@@ -124,6 +124,7 @@ lgp = LgpScreen(root, lambda: main_menu.tkraise())
 #lgp.place(x=0, y=0, relwidth=1, relheight=1)
 
 settings_screen = SettingsScreen(root, lambda: main_menu.tkraise())
+settings_screen.place(x=0, y=0, relwidth=1, relheight=1)
 
 main_menu.tkraise()
 
