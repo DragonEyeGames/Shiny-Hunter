@@ -8,9 +8,11 @@ SHINY_URL = "https://discord.com/api/webhooks/1524064459033940131/DLA5vBhAQl_iyV
 
 ERROR_URL = "https://discord.com/api/webhooks/1524064922139496460/j-YTI6HA0f28obvb7IcSZz9vKA9V-Fa8rRTEDEAf0FB8OMWKn6xZEjWHZB__CCumiqf8"
 
-def send_discord_update(message):
+def send_discord_update(message, url=None):
+    if(url==None):
+        url=NONSHINY_URL
     payload = {"content": message}
-    response = requests.post(NONSHINY_URL, json=payload)
+    response = requests.post(url, json=payload)
     
     if response.status_code == 204:
         print("Update sent successfully!")

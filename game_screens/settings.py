@@ -13,7 +13,7 @@ class SettingsScreen(ctk.CTkFrame):
         title_font = ctk.CTkFont(family="Knewave", size=60)
         subtitle_font = ctk.CTkFont(family="Knewave", size=30)
         instruction_font = ctk.CTkFont(family="Basic", size=22)
-        
+
         def test_webhooks():
                     threading.Thread(
                         target=send_discord_update,
@@ -55,10 +55,10 @@ class SettingsScreen(ctk.CTkFrame):
 
         test_button = ctk.CTkButton(self,text="Test",font=("Basic",25),width=100,height=40,fg_color="#1fa323",hover_color="#1d8a21",border_color="black",border_width=3,command=test_webhooks, corner_radius=10)
 
-        test_button.place(x=175,y=360)
+        test_button.place(x=225,y=360)
 
         save_button = ctk.CTkButton(self,text="Test",font=("Basic",25),width=100,height=40,fg_color="#1fa323",hover_color="#1d8a21",border_color="black",border_width=3,command=back_callback, corner_radius=10)
 
-        save_button.place(x=625,y=360)
+        save_button.place(x=475,y=360)
 
         
