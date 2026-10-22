@@ -13,7 +13,18 @@ class SettingsScreen(ctk.CTkFrame):
         title_font = ctk.CTkFont(family="Knewave", size=60)
         subtitle_font = ctk.CTkFont(family="Knewave", size=30)
         instruction_font = ctk.CTkFont(family="Basic", size=22)
-
+        
+        def test_webhooks():
+                    threading.Thread(
+                        target=send_discord_update,
+                        args=(f"The shiny webhook works!", self.shiny_field.get()),
+                        daemon=True
+                    ).start()
+                    threading.Thread(
+                        target=send_discord_update,
+                        args=(f"The non-shiny webhook works!", self.normal_field.get()),
+                        daemon=True
+                    ).start()
         # Title
         title = ctk.CTkLabel(self,text=" Settings ",font=title_font,text_color="#3d9beb")
 
@@ -50,14 +61,4 @@ class SettingsScreen(ctk.CTkFrame):
 
         save_button.place(x=625,y=360)
 
-        def test_webhooks():
-            threading.Thread(
-                target=send_discord_update,
-                args=(f"The shiny webhook works!", self.shiny_field.get()),
-                daemon=True
-            ).start()
-            threading.Thread(
-                target=send_discord_update,
-                args=(f"The non-shiny webhook works!", self.normal_field.get()),
-                daemon=True
-            ).start()
+        
