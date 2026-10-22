@@ -2,7 +2,8 @@ import customtkinter as ctk
 from PIL import Image
 import os
 import config
-
+from discord_webhook import send_discord_update, send_shiny_notification
+import threading
 
 class SettingsScreen(ctk.CTkFrame):
 
@@ -41,6 +42,22 @@ class SettingsScreen(ctk.CTkFrame):
         self.normal_field = ctk.CTkEntry(self, placeholder_text="Input Discord Webhook URL...", width=600, height=40)
         self.normal_field.place(x=100,y=310)
 
-        test_button = ctk.CTkButton(self,text="Test",font=("Basic",25),width=100,height=40,fg_color="#1fa323",hover_color="#1d8a21",border_color="black",border_width=3,command=back_callback, corner_radius=10)
+        test_button = ctk.CTkButton(self,text="Test",font=("Basic",25),width=100,height=40,fg_color="#1fa323",hover_color="#1d8a21",border_color="black",border_width=3,command=test_webhooks, corner_radius=10)
 
-        test_button.place(x=350,y=370)
+        test_button.place(x=175,y=360)
+
+        save_button = ctk.CTkButton(self,text="Test",font=("Basic",25),width=100,height=40,fg_color="#1fa323",hover_color="#1d8a21",border_color="black",border_width=3,command=back_callback, corner_radius=10)
+
+        save_button.place(x=625,y=360)
+
+        def test_webhooks():
+            threading.Thread(
+                target=send_discord_update,
+                args=(f"The shiny webhook works!", self.shiny_field.get()),
+                daemon=True
+            ).start()
+            threading.Thread(
+                target=send_discord_update,
+                args=(f"The non-shiny webhook works!", self.normal_field.get()),
+                daemon=True
+            ).start()
