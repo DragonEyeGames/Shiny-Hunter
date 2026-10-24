@@ -9,15 +9,18 @@ SHINY_URL = "https://discord.com/api/webhooks/1524064459033940131/DLA5vBhAQl_iyV
 ERROR_URL = "https://discord.com/api/webhooks/1524064922139496460/j-YTI6HA0f28obvb7IcSZz9vKA9V-Fa8rRTEDEAf0FB8OMWKn6xZEjWHZB__CCumiqf8"
 
 def send_discord_update(message, url=None):
-    if(url==None):
-        url=NONSHINY_URL
-    payload = {"content": message}
-    response = requests.post(url, json=payload)
-    
-    if response.status_code == 204:
-        print("Update sent successfully!")
-    else:
-        print(f"Failed to send update: {response.status_code}")
+    try:
+        if(url==None):
+            url=NONSHINY_URL
+        payload = {"content": message}
+        response = requests.post(url, json=payload)
+        
+        if response.status_code == 204:
+            print("Update sent successfully!")
+        else:
+            print(f"Failed to send update: {response.status_code}")
+    except:
+        print("Invalid URL")
 
 def send_shiny_notification(title, description, frame=None, color=3447003):
     embed_data = {
