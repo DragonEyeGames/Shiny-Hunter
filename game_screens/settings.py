@@ -21,6 +21,7 @@ class SettingsScreen(ctk.CTkFrame):
             self.normal_field.delete(0, "end")
 
         def test_webhooks():
+            self.test_button.configure(text="Sent...", disabled=True, text_color="gray50", fg_color="gray25" )
                     threading.Thread(
                         target=send_discord_update,
                         args=(f"The shiny webhook works!", self.shiny_field.get()),
@@ -31,6 +32,8 @@ class SettingsScreen(ctk.CTkFrame):
                         args=(f"The non-shiny webhook works!", self.normal_field.get()),
                         daemon=True
                     ).start()
+            time.sleep(2)
+            self.test_button.configure(text="Test", disabled=False, text_color="white", fg_color=fg_color="#1fa323")
         # Title
         title = ctk.CTkLabel(self,text=" Settings ",font=title_font,text_color="#3d9beb")
 
@@ -65,9 +68,9 @@ class SettingsScreen(ctk.CTkFrame):
         save_button = ctk.CTkButton(self,text="Clear",font=("Basic",25),width=80,height=40,fg_color="#C0392B",hover_color="#96281B",border_color="black",border_width=3,command=clear_normal, corner_radius=10)
         save_button.place(x=670,y=310)
 
-        test_button = ctk.CTkButton(self,text="Test",font=("Basic",25),width=100,height=40,fg_color="#1fa323",hover_color="#1d8a21",border_color="black",border_width=3,command=test_webhooks, corner_radius=10)
+        self.test_button = ctk.CTkButton(self,text="Test",font=("Basic",25),width=100,height=40,fg_color="#1fa323",hover_color="#1d8a21",border_color="black",border_width=3,command=test_webhooks, corner_radius=10)
 
-        test_button.place(x=225,y=360)
+        self.test_button.place(x=225,y=360)
 
         save_button = ctk.CTkButton(self,text="Save",font=("Basic",25),width=100,height=40,fg_color="#1fa323",hover_color="#1d8a21",border_color="black",border_width=3,command=back_callback, corner_radius=10)
 
