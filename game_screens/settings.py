@@ -6,6 +6,8 @@ from discord_webhook import send_discord_update, send_shiny_notification
 import threading
 import time
 
+from save_manager import load_settings, save_settings
+
 class SettingsScreen(ctk.CTkFrame):
 
     def __init__(self, parent, back_callback):
@@ -81,5 +83,13 @@ class SettingsScreen(ctk.CTkFrame):
         save_button = ctk.CTkButton(self,text="Save",font=("Basic",25),width=100,height=40,fg_color="#1fa323",hover_color="#1d8a21",border_color="black",border_width=3,command=back_callback, corner_radius=10)
 
         save_button.place(x=475,y=360)
+
+        shiny_value, non_shiny_value = save_manager.load_settings()
+
+        self.shiny_field.delete(0, "end")
+        self.shiny_field.insert(0, shiny_value)
+
+        self.normal_field.delete(0, "end")
+        self.normal_field.insert(0, non_shiny_value)
 
         
