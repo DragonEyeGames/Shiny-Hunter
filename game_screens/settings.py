@@ -21,7 +21,7 @@ class SettingsScreen(ctk.CTkFrame):
         def clear_normal():
             self.normal_field.delete(0, "end")
 
-        def test_webhooks(self):
+        def test_webhooks():
             self.test_button.configure(text="Sent...", state="disabled", text_color="gray50", fg_color="gray25")
             
             threading.Thread(
@@ -37,9 +37,9 @@ class SettingsScreen(ctk.CTkFrame):
             
             self.test_button.after(2000, self.reset_test_button)
 
-        def reset_test_button(self):
+        def reset_test_button():
             self.test_button.configure(text="Test", state="normal", text_color="white", fg_color="#1fa323", hover_color="#1d8a21")
-            
+
         # Title
         title = ctk.CTkLabel(self,text=" Settings ",font=title_font,text_color="#3d9beb")
 
