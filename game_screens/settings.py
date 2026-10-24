@@ -4,6 +4,7 @@ import os
 import config
 from discord_webhook import send_discord_update, send_shiny_notification
 import threading
+import time
 
 class SettingsScreen(ctk.CTkFrame):
 
