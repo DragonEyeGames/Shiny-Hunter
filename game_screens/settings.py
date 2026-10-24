@@ -35,7 +35,7 @@ class SettingsScreen(ctk.CTkFrame):
                 daemon=True
             ).start()
             
-            self.test_button.after(2000, self.reset_test_button)
+            self.test_button.after(2000, reset_test_button)
 
         def reset_test_button():
             self.test_button.configure(text="Test", state="normal", text_color="white", fg_color="#1fa323", hover_color="#1d8a21")
