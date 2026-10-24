@@ -39,11 +39,16 @@ class SettingsScreen(ctk.CTkFrame):
             
             self.test_button.after(2000, reset_test_button)
 
-        def save_webhooks():
-            save_settings(self.shiny_field.get(), self.normal_field.get())
-
         def reset_test_button():
             self.test_button.configure(text="Test", state="normal", text_color="white", fg_color="#1fa323", hover_color="#1d8a21")
+
+        def save_webhooks():
+            self.save_button.configure(text="Saved...", state="disabled", text_color="gray50", fg_color="gray25")
+            save_settings(self.shiny_field.get(), self.normal_field.get())
+            self.save_button.after(2000, reset_save_button)
+
+        def reset_save_button():
+            self.save_button.configure(text="Save", state="normal", text_color="white", fg_color="#1fa323", hover_color="#1d8a21")
 
         # Title
         title = ctk.CTkLabel(self,text=" Settings ",font=title_font,text_color="#3d9beb")
@@ -67,8 +72,8 @@ class SettingsScreen(ctk.CTkFrame):
         self.shiny_field = ctk.CTkEntry(self, placeholder_text="Input Discord Webhook URL...", width=550, height=40)
         self.shiny_field.place(x=100,y=210)
 
-        save_button = ctk.CTkButton(self,text="Clear",font=("Basic",25),width=80,height=40,fg_color="#C0392B",hover_color="#96281B",border_color="black",border_width=3,command=clear_shiny, corner_radius=10)
-        save_button.place(x=670,y=210)
+        self.save_button = ctk.CTkButton(self,text="Clear",font=("Basic",25),width=80,height=40,fg_color="#C0392B",hover_color="#96281B",border_color="black",border_width=3,command=clear_shiny, corner_radius=10)
+        self.save_button.place(x=670,y=210)
 
         normal_prompt = ctk.CTkLabel(self, text="Input the URL for you Non-Shiny Discord Webhook", font=instruction_font)
         normal_prompt.place(x=100, y=275)
