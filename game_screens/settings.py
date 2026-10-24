@@ -22,16 +22,16 @@ class SettingsScreen(ctk.CTkFrame):
 
         def test_webhooks():
             self.test_button.configure(text="Sent...", disabled=True, text_color="gray50", fg_color="gray25" )
-                    threading.Thread(
-                        target=send_discord_update,
-                        args=(f"The shiny webhook works!", self.shiny_field.get()),
-                        daemon=True
-                    ).start()
-                    threading.Thread(
-                        target=send_discord_update,
-                        args=(f"The non-shiny webhook works!", self.normal_field.get()),
-                        daemon=True
-                    ).start()
+            threading.Thread(
+                target=send_discord_update,
+                args=(f"The shiny webhook works!", self.shiny_field.get()),
+                daemon=True
+            ).start()
+            threading.Thread(
+                target=send_discord_update,
+                args=(f"The non-shiny webhook works!", self.normal_field.get()),
+                daemon=True
+            ).start()
             time.sleep(2)
             self.test_button.configure(text="Test", disabled=False, text_color="white", fg_color=fg_color="#1fa323")
         # Title
