@@ -39,6 +39,9 @@ class SettingsScreen(ctk.CTkFrame):
             
             self.test_button.after(2000, reset_test_button)
 
+        def save_webhooks():
+            save_settings(shiny_field.get(), normal_field.get())
+
         def reset_test_button():
             self.test_button.configure(text="Test", state="normal", text_color="white", fg_color="#1fa323", hover_color="#1d8a21")
 
@@ -80,11 +83,11 @@ class SettingsScreen(ctk.CTkFrame):
 
         self.test_button.place(x=225,y=360)
 
-        save_button = ctk.CTkButton(self,text="Save",font=("Basic",25),width=100,height=40,fg_color="#1fa323",hover_color="#1d8a21",border_color="black",border_width=3,command=back_callback, corner_radius=10)
+        save_button = ctk.CTkButton(self,text="Save",font=("Basic",25),width=100,height=40,fg_color="#1fa323",hover_color="#1d8a21",border_color="black",border_width=3,command=save_webhooks, corner_radius=10)
 
         save_button.place(x=475,y=360)
 
-        shiny_value, non_shiny_value = save_manager.load_settings()
+        shiny_value, non_shiny_value = load_settings()
 
         self.shiny_field.delete(0, "end")
         self.shiny_field.insert(0, shiny_value)
