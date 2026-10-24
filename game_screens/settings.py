@@ -72,8 +72,8 @@ class SettingsScreen(ctk.CTkFrame):
         self.shiny_field = ctk.CTkEntry(self, placeholder_text="Input Discord Webhook URL...", width=550, height=40)
         self.shiny_field.place(x=100,y=210)
 
-        self.save_button = ctk.CTkButton(self,text="Clear",font=("Basic",25),width=80,height=40,fg_color="#C0392B",hover_color="#96281B",border_color="black",border_width=3,command=clear_shiny, corner_radius=10)
-        self.save_button.place(x=670,y=210)
+        clear_button = ctk.CTkButton(self,text="Clear",font=("Basic",25),width=80,height=40,fg_color="#C0392B",hover_color="#96281B",border_color="black",border_width=3,command=clear_shiny, corner_radius=10)
+        clear_button.place(x=670,y=210)
 
         normal_prompt = ctk.CTkLabel(self, text="Input the URL for you Non-Shiny Discord Webhook", font=instruction_font)
         normal_prompt.place(x=100, y=275)
@@ -81,16 +81,14 @@ class SettingsScreen(ctk.CTkFrame):
         self.normal_field = ctk.CTkEntry(self, placeholder_text="Input Discord Webhook URL...", width=550, height=40)
         self.normal_field.place(x=100,y=310)
 
-        save_button = ctk.CTkButton(self,text="Clear",font=("Basic",25),width=80,height=40,fg_color="#C0392B",hover_color="#96281B",border_color="black",border_width=3,command=clear_normal, corner_radius=10)
-        save_button.place(x=670,y=310)
+        clear_button = ctk.CTkButton(self,text="Clear",font=("Basic",25),width=80,height=40,fg_color="#C0392B",hover_color="#96281B",border_color="black",border_width=3,command=clear_normal, corner_radius=10)
+        clear_button.place(x=670,y=310)
 
         self.test_button = ctk.CTkButton(self,text="Test",font=("Basic",25),width=100,height=40,fg_color="#1fa323",hover_color="#1d8a21",border_color="black",border_width=3,command=test_webhooks, corner_radius=10)
-
         self.test_button.place(x=225,y=360)
 
-        save_button = ctk.CTkButton(self,text="Save",font=("Basic",25),width=100,height=40,fg_color="#1fa323",hover_color="#1d8a21",border_color="black",border_width=3,command=save_webhooks, corner_radius=10)
-
-        save_button.place(x=475,y=360)
+        self.save_button = ctk.CTkButton(self,text="Save",font=("Basic",25),width=100,height=40,fg_color="#1fa323",hover_color="#1d8a21",border_color="black",border_width=3,command=save_webhooks, corner_radius=10)
+        self.save_button.place(x=475,y=360)
 
         shiny_value, non_shiny_value = load_settings()
 
