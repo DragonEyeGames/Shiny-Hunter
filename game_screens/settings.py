@@ -40,7 +40,7 @@ class SettingsScreen(ctk.CTkFrame):
             self.test_button.after(2000, reset_test_button)
 
         def save_webhooks():
-            save_settings(shiny_field.get(), normal_field.get())
+            save_settings(self.shiny_field.get(), self.normal_field.get())
 
         def reset_test_button():
             self.test_button.configure(text="Test", state="normal", text_color="white", fg_color="#1fa323", hover_color="#1d8a21")
