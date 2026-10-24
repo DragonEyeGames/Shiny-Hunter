@@ -21,8 +21,9 @@ class SettingsScreen(ctk.CTkFrame):
         def clear_normal():
             self.normal_field.delete(0, "end")
 
-        def test_webhooks():
-            self.test_button.configure(text="Sent...", state="disabled", text_color="gray50", fg_color="gray25", hover_color="gray25")
+        def test_webhooks(self):
+            self.test_button.configure(text="Sent...", state="disabled", text_color="gray50", fg_color="gray25")
+            
             threading.Thread(
                 target=send_discord_update,
                 args=(f"The shiny webhook works!", self.shiny_field.get()),
@@ -33,8 +34,12 @@ class SettingsScreen(ctk.CTkFrame):
                 args=(f"The non-shiny webhook works!", self.normal_field.get()),
                 daemon=True
             ).start()
-            time.sleep(2)
+            
+            self.test_button.after(2000, self.reset_test_button)
+
+        def reset_test_button(self):
             self.test_button.configure(text="Test", state="normal", text_color="white", fg_color="#1fa323", hover_color="#1d8a21")
+            
         # Title
         title = ctk.CTkLabel(self,text=" Settings ",font=title_font,text_color="#3d9beb")
 
