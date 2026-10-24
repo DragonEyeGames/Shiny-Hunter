@@ -14,10 +14,10 @@ class SettingsScreen(ctk.CTkFrame):
         subtitle_font = ctk.CTkFont(family="Knewave", size=30)
         instruction_font = ctk.CTkFont(family="Basic", size=22)
 
-        def clear_shiny(self):
+        def clear_shiny():
             self.shiny_field.delete(0, "end")
 
-        def clear_normal(self):
+        def clear_normal():
             self.normal_field.delete(0, "end")
 
         def test_webhooks():
