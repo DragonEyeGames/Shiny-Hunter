@@ -46,6 +46,8 @@ class SettingsScreen(ctk.CTkFrame):
             self.save_button.configure(text="Saved...", state="disabled", text_color="gray50", fg_color="gray25")
             save_settings(self.shiny_field.get(), self.normal_field.get())
             self.save_button.after(2000, reset_save_button)
+            config.SHINY_URL = self.shiny_field.get()
+            config.NONSHINY_URL = self.normal_field.get()
 
         def reset_save_button():
             self.save_button.configure(text="Save", state="normal", text_color="white", fg_color="#1fa323", hover_color="#1d8a21")
@@ -92,10 +94,14 @@ class SettingsScreen(ctk.CTkFrame):
 
         shiny_value, non_shiny_value = load_settings()
 
+
         self.shiny_field.delete(0, "end")
         self.shiny_field.insert(0, shiny_value)
 
         self.normal_field.delete(0, "end")
         self.normal_field.insert(0, non_shiny_value)
+
+        config.SHINY_URL = shiny_value
+        config.NONSHINY_URL = non_shiny_value
 
         

@@ -1,17 +1,14 @@
 import json
 import cv2
 import requests
+import config
 
-NONSHINY_URL = "https://discord.com/api/webhooks/1524064922139496460/j-YTI6HA0f28obvb7IcSZz9vKA9V-Fa8rRTEDEAf0FB8OMWKn6xZEjWHZB__CCumiqf8"
-
-SHINY_URL = "https://discord.com/api/webhooks/1524064459033940131/DLA5vBhAQl_iyVv45qNBYtFugQaYBGeOVxwz1mttrYaTBj2vHndjP3lBte_7pwiycwcr"
-
-ERROR_URL = "https://discord.com/api/webhooks/1524064922139496460/j-YTI6HA0f28obvb7IcSZz9vKA9V-Fa8rRTEDEAf0FB8OMWKn6xZEjWHZB__CCumiqf8"
+ERROR_URL = ""
 
 def send_discord_update(message, url=None):
     try:
         if(url==None):
-            url=NONSHINY_URL
+            url=config.NONSHINY_URL
         payload = {"content": message}
         response = requests.post(url, json=payload)
         
@@ -52,10 +49,10 @@ def send_shiny_notification(title, description, frame=None, color=3447003):
         data_payload = {"payload_json": json.dumps(payload)}
         file_payload = {"file": (filename, file_bytes, "image/png")}
         
-        requests.post(SHINY_URL, data=data_payload, files=file_payload)
+        requests.post(config.SHINY_URL, data=data_payload, files=file_payload)
     else:
         # Fallback to text-only if frame reading fails
-        requests.post(SHINY_URL, json=payload)
+        requests.post(config.SHINY_URL, json=payload)
 
 def send_failure_notification(title, description, color=3447003):
     payload = {

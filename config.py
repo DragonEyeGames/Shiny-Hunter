@@ -1,5 +1,8 @@
 import threading
 
+NONSHINY_URL = ""
+SHINY_URL = ""
+
 pokemon_name=""
 hunting_type=""
 
